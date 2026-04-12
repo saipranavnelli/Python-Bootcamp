@@ -1,0 +1,444 @@
+while else:
+-----------
+	syntax
+	------
+	while condition:
+		stmt_1
+		stmt_2
+		......
+	        stmt_n
+	else:
+	    stmt_1
+	    stmt_2
+	    ......
+	    stmt_n
+
+flowchart:
+----------
+	ref fig: while else block flowchart
+
+ex1:
+---
+	demo.py
+	-------
+print("hai")
+i=1
+while i<=5:
+    print("siva",i)
+    i+=1
+else:
+    print("Good Morning")
+print("bye")
+
+	output
+	-------
+hai
+siva 1
+siva 2
+siva 3
+siva 4
+siva 5
+Good Morning
+bye
+
+ex2:
+----
+	demo.py
+	-------
+print("hai")
+i=1
+while i<=5:
+    print("siva",i)
+    if i==3:
+        break
+    i+=1
+else:
+    print("Good Morning")
+print("bye")
+
+	output
+	------
+hai
+siva 1
+siva 2
+siva 3
+bye
+
+ex3:
+---
+	demo.py
+	-------
+print("hai")
+i=1
+while i<=5:
+    i+=1
+    if i==3:
+        continue
+
+    print("siva",i)
+else:
+    print("Good Morning")
+print("bye")
+
+	output
+	------
+hai
+siva 2
+siva 4
+siva 5
+siva 6
+Good Morning
+bye
+
+for loop:
+---------
+the for loop is used to execute the block of statements repeatedly with respect to each and every element in our iterable object.
+
+	syntax
+	------
+	for variable in iterableobj:
+		stmt_1
+		stmt_2
+		......
+		stmt_n
+
+note:
+-----
+if no-more elements in our iterable object then immediately the control will goto outside the for loop.
+
+ex1:
+----
+	demo.py
+	--------
+x=[6,3,7,2]
+for i in x:
+    print("hai",i)
+    print("siva krishna")
+print("bye")
+
+	(or)
+
+x=[6,3,7,2]
+for j in x:
+    print("hai",j)
+    print("siva krishna")
+print("bye")
+
+	(or)
+
+x=[6,3,7,2]
+for _ in x:
+    print("hai",_)
+    print("siva krishna")
+print("bye")
+
+	output
+	------
+hai 6
+siva krishna
+hai 3
+siva krishna
+hai 7
+siva krishna
+hai 2
+siva krishna
+bye
+
+ex2:
+---
+	demo.py
+	-------
+for _ in "krishna":
+    print("hai")
+    
+print("bye")
+
+	(or)
+
+for j in "krishna":
+    print("hai")
+    
+print("bye")
+
+	output
+	------
+hai
+hai
+hai
+hai
+hai
+hai
+hai
+bye
+
+for else
+--------
+	syntax
+	------
+	for varibale in iterableobj:
+		stmt_1
+		stmt_2
+		......
+		stmt_n
+	else:
+	     stmt_1
+	     stmt_2
+	     ......
+	     stmt_n
+
+Note:
+-----
+if no-more elements in our iterable object then only control will goto else block otherwise the control dont goto the else block.
+
+ex3:
+---
+	demo.py
+	--------
+for j in "krishna":
+    print("hai",j)
+
+else:
+    print("hello")
+    
+print("bye")
+
+	output
+	------
+hai k
+hai r
+hai i
+hai s
+hai h
+hai n
+hai a
+hello
+bye
+
+ex4:
+----
+	demo.py
+	-------
+for j in "krishna":
+    print("hai",j)
+    if j=='s':
+        break
+else:
+    print("hello")
+    
+print("bye")
+
+	output
+	------
+hai k
+hai r
+hai i
+hai s
+bye
+
+ex5:
+----
+	demo.py
+	-------
+for j in "krishna":    
+    if j=='s':
+        continue
+    print("hai",j)
+else:
+    print("hello")
+    
+print("bye")
+
+	output
+	------
+hai k
+hai r
+hai i
+hai h
+hai n
+hai a
+hello
+bye
+
+working with range() function:
+------------------------------
+the range() function is a one builtin function in both python2.x and python3.x versions.
+
+in python2.x versions, the range() to return the list object, the list object is a mutable object.
+
+in python3.x versions, the range() to return the range object, the range object is a Immutable object.
+
+	Scenario-1
+	-----------
+	range(stop)
+
+	here the stop value is an exclusive value
+	     by default startswith 0
+	     by default increment by 1
+
+ex1:
+---
+>>> x=range(5)
+>>> x
+range(0, 5)
+
+>>> type(x)
+<class 'range'>
+
+>>> for i in x:
+        print(i)
+
+0
+1
+2
+3
+4
+
+>>> list(x)
+[0, 1, 2, 3, 4]
+
+
+	Scenario-2
+	-----------
+	range(start,stop)
+
+	here the start value is inclusive value
+	     the stop value is exclusive value
+	     by default increment by 1
+
+ex2:
+---
+>>> y=range(5,10)
+>>> y
+range(5, 10)
+
+>>> type(y)
+<class 'range'>
+
+>>> for j in y:
+        print(j)
+
+5
+6
+7
+8
+9
+
+>>> list(y)
+[5, 6, 7, 8, 9]
+
+	Scenario-3
+	-----------
+	range(start,stop,step)
+
+	here the start value is an Inclusive value
+	     the stop value is an Exclusive value
+	     the step value is either Increment/Decrement
+
+ex3:
+---
+>>> z=range(1,10,2)
+>>> z
+range(1, 10, 2)
+
+>>> type(z)
+<class 'range'>
+
+>>> for i in z:
+        print(i)
+
+1
+3
+5
+7
+9
+>>> list(z)
+[1, 3, 5, 7, 9]
+
+ex4:
+---
+>>> a=range(10,1,-2)
+>>> a
+range(10, 1, -2)
+
+>>> type(a)
+<class 'range'>
+
+>>> for k in a:
+       print(k)
+
+10
+8
+6
+4
+2
+
+Note:
+-----
+the range() function always takes the parameter as Integer objects only, by mistakely we can pass boolean values,internally that boolean values are converting into integers like True means 1 and False means 0.
+
+ex:
+---
+>>> x=range(5)
+>>> x
+range(0, 5)
+
+>>> y=range(True)
+>>> y
+range(0, 1)
+
+>>> z=range(2.3)
+TypeError: 'float' object cannot be interpreted as an integer
+
+>>> a=range(3+2j)
+TypeError: 'complex' object cannot be interpreted as an integer
+
+>>> b=range("siva")
+TypeError: 'str' object cannot be interpreted as an integer
+
+>>> c=range([6,3,7,9])
+TypeError: 'list' object cannot be interpreted as an integer
+
+>>> d=range((5,3,7,9))
+TypeError: 'tuple' object cannot be interpreted as an integer
+
+>>> e=range({6,3,7,9})
+TypeError: 'set' object cannot be interpreted as an integer
+
+>>> f=range({'m':34,'sc':90,'so':21})
+TypeError: 'dict' object cannot be interpreted as an integer
+
+
+Note:
+----
+in range() we are passing same number as a both start and stop values, in that case the range() to return the empty range object i.e., there's no elements between start and stop values.
+
+ex1:
+----
+>>> x=range(5,10)
+>>> x
+range(5, 10)
+>>> len(x)
+5
+>>> list(x)
+[5, 6, 7, 8, 9]
+
+ex2:
+----
+>>> y=range(5,5)
+>>> y
+range(5, 5)
+>>> len(y)
+0
+>>> list(y)
+[]
+
+
+
+
+
+
+
+
+
+
+

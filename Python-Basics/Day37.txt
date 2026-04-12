@@ -1,0 +1,290 @@
+
+			Functions
+			----------
+what is Function?
+-----------------
+a function is a block of organized,reusable code to perform a particular action/operation/task.
+
+types of functions:
+-------------------
+the functions can be categorized into 2 type's, they are
+
+	1).Builtin/Predefined Functions
+
+	2).User-Defined Functions
+
+Advantages of functions:
+------------------------
+1).Functions provides Reusability of code
+2).Function's provides better modularity of our applications
+
+
+Builtin/Predefind Functions:
+-----------------------------
+these functions are already predefined for some special purpose, we can use that functions only for that particular purpose.
+
+ex1:
+---
+write a python program to print the list of builtin functions and no.of builtin functions?
+
+	demo.py
+	------
+import builtins
+x=[]
+for i in dir(builtins):
+    if i.isalpha():
+        if i.islower():
+            x.append(i)
+print(x)
+print("="*45)
+print(len(x))
+
+	output
+	------
+['abs', 'aiter', 'all', 'anext', 'any', 'ascii', 'bin', 'bool', 'breakpoint', 'bytearray', 'bytes', 'callable', 'chr', 'classmethod', 'compile', 'complex', 'copyright', 'credits', 'delattr', 'dict', 'dir', 'divmod', 'enumerate', 'eval', 'exec', 'exit', 'filter', 'float', 'format', 'frozenset', 'getattr', 'globals', 'hasattr', 'hash', 'help', 'hex', 'id', 'input', 'int', 'isinstance', 'issubclass', 'iter', 'len', 'license', 'list', 'locals', 'map', 'max', 'memoryview', 'min', 'next', 'object', 'oct', 'open', 'ord', 'pow', 'print', 'property', 'quit', 'range', 'repr', 'reversed', 'round', 'set', 'setattr', 'slice', 'sorted', 'staticmethod', 'str', 'sum', 'super', 'tuple', 'type', 'vars', 'zip']
+=============================================
+75
+
+abs()
+------
+Return the absolute value of the argument.
+
+	abs(argument)
+
+ex:
+---
+>>> abs(5)
+5
+>>> abs(-3)
+3
+>>> abs(2.3)
+2.3
+>>> abs(-3.2)
+3.2
+>>> abs(2+3j)
+3.605551275463989
+
+all()
+-----
+Return True if bool(x) is True for all values x in the iterable.
+
+If the iterable is empty, return True.
+
+	all(iterableobj)
+
+ex:
+---
+>>> x=[5,2.3,4j,"siva"]
+>>> y=[9,2,6,1]
+>>> z=[8,3,0]
+>>> a=[False,True,0]
+>>> b=[False,0]
+>>> c="siva"
+>>> d=45
+>>> e=[]
+>>> all(x)
+True
+>>> all(y)
+True
+>>> all(z)
+False
+>>> all(a)
+False
+>>> all(b)
+False
+>>> all(c)
+True
+>>> all(d)
+TypeError: 'int' object is not iterable
+>>> all(e)
+True
+
+
+any()
+-----
+Return True if bool(x) is True for any x in the iterable.
+
+If the iterable is empty, return False.
+
+	any(iterableobj)
+
+ex:
+---
+>>> x=[5,2.3,4j,"siva"]
+>>> y=[9,2,6,1]
+>>> z=[8,3,0]
+>>> a=[False,True,0]
+>>> b=[False,0]
+>>> c="siva"
+>>> d=45
+>>> e=[]
+>>> any(x)
+True
+>>> any(y)
+True
+>>> any(z)
+True
+>>> any(a)
+True
+>>> any(b)
+False
+>>> any(c)
+True
+>>> any(d)
+TypeError: 'int' object is not iterable
+>>> any(e)
+False
+
+bytes()
+-------
+bytes() to return the bytes object, the bytes object is a immutable object.
+
+	bytes(iterableobj)
+
+ex:
+--
+>>> x=[9,32,65,97]
+>>> x
+[9, 32, 65, 97]
+>>> type(x)
+<class 'list'>
+>>> y=bytes(x)
+>>> y
+b'\t Aa'
+>>> type(y)
+<class 'bytes'>
+>>> y[0]
+9
+>>> y[0]=90
+TypeError: 'bytes' object does not support item assignment
+
+bytearray()
+-----------
+the bytearray() function to return the bytearray object, the bytearray object is a mutable object
+
+	bytearray(iterableobj)
+
+ex:
+---
+>>> x=[9,32,65,97]
+>>> x
+[9, 32, 65, 97]
+>>> type(x)
+<class 'list'>
+>>> y=bytearray(x)
+>>> y
+bytearray(b'\t Aa')
+>>> type(y)
+<class 'bytearray'>
+>>> y[0]=90
+>>> y
+bytearray(b'Z Aa')
+
+memoryview()
+-------------
+the memoryview() to return the memoryview object.
+
+	memoryview(bytesobj)		--> immutable object
+
+	memoryview(bytearrayobj)	--> mutable object
+
+ex1:
+----
+>>> x=[9,32,65,97]
+>>> x
+[9, 32, 65, 97]
+>>> type(x)
+<class 'list'>
+>>> y=bytes(x)
+>>> y
+b'\t Aa'
+>>> type(y)
+<class 'bytes'>
+>>> z=memoryview(y)
+>>> z
+<memory at 0x0000026A3F3AC880>
+>>> type(z)
+<class 'memoryview'>
+>>> z[0]
+9
+>>> z[0]=90
+TypeError: cannot modify read-only memory
+
+ex2:
+----
+>>> x=[9,32,65,97]
+>>> x
+[9, 32, 65, 97]
+>>> type(x)
+<class 'list'>
+>>> y=bytearray(x)
+>>> y
+bytearray(b'\t Aa')
+>>> type(y)
+<class 'bytearray'>
+>>> z=memoryview(y)
+>>> z
+<memory at 0x0000026A3F3AC640>
+>>> type(z)
+<class 'memoryview'>
+>>> z[0]
+9
+>>> z[0]=90
+>>> z
+<memory at 0x0000026A3F3AC640>
+>>> z[0]
+90
+>>> list(z)
+[90, 32, 65, 97]
+
+enumerate()
+-----------
+Return an enumerate object.
+
+	enumerate(iterableobj,start=0)
+
+The enumerate object yields pairs containing a count (from start, which defaults to zero) and a value yielded by the iterable argument.
+
+enumerate is useful for obtaining an indexed list:(0, seq[0]), (1, seq[1]), (2, seq[2]), ......
+
+ex1:
+----
+	demo.py
+	-------
+x=[2,3.2,4j,False]
+for i in enumerate(x):
+    print(i)
+
+	output
+	------
+(0, 2)
+(1, 3.2)
+(2, 4j)
+(3, False)
+
+ex2:
+----
+	demo.py
+	-------
+x=[2,3.2,4j,False]
+for i,j in enumerate(x,start=100):
+    print(i,j)
+
+	output
+	------
+100 2
+101 3.2
+102 4j
+103 False
+
+ex3:
+---
+	demo.py
+	-------
+x=[2,3.2,4j,False]
+print(list(enumerate(x)))
+
+	output
+	------
+[(0, 2), (1, 3.2), (2, 4j), (3, False)]
+

@@ -1,0 +1,447 @@
+if we want to display all the availabel methods of any class with syntax and dscription, in that case we are using help() function.
+
+	syntax
+	------
+	help(classname)
+
+		ex:
+		---
+		help(str)
+
+	help(classname.methodname)
+
+		ex:
+		----
+		help(str.upper)
+
+	help(functionname)
+
+		ex:
+		---
+		help(len)
+
+if we want to display the list of all the available methods of any class without syntax and description, in that case we are using dir() function.
+
+	syntax
+	------
+	dir(classname)
+
+		ex:
+		----
+		dir(str)
+
+	dir(modulename)
+
+		ex:
+		----
+		dir(builtins)
+
+Note:
+-----
+in python, by default every builtin class having 2 type's of methods, they are
+
+	1).Dunder/Special/Magic methods
+
+	2).Normal Methods
+
+
+Dunder/Special/Magic methods:
+-----------------------------
+any method name which contains both prefix and suffix double underscores(__), that type of methods are called, Dunder/Special/Magic Methods.
+
+these methods are executed automatically whenever we are performeing that particular operation.
+
+working with str class Dunder Methods:
+----------------------------------------
+ex1:
+----
+>>> x="siva"
+>>> y="krishna"
+>>> x+y
+'sivakrishna'
+>>> x.__add__(y)
+'sivakrishna'
+
+ex2:
+----
+>>> x="siva"
+>>> z=5
+>>> x*z
+'sivasivasivasivasiva'
+>>> x.__mul__(z)
+'sivasivasivasivasiva'
+
+ex3:
+----
+>>> x="siva"
+>>> y="Siva"
+
+>>> x==y
+False
+>>> x.__eq__(y)
+False
+
+>>> x!=y
+True
+>>> x.__ne__(y)
+True
+
+>>> x<y
+False
+>>> x.__lt__(y)
+False
+
+>>> x<=y
+False
+>>> x.__le__(y)
+False
+
+>>> x>y
+True
+>>> x.__gt__(y)
+True
+
+>>> x>=y
+True
+>>> x.__ge__(y)
+True
+
+Normal Methods:
+--------------
+any method name which dont contains both prefix and suffix double underscores, that type of methods are called Normal Methods.
+
+these methods are not executed automatically,whenever we are calling a method then only these methods are executed.
+
+working with str class normal methods:
+--------------------------------------
+capitalize()
+------------
+Return a capitalized version of the string.
+
+More specifically, make the first character have upper case and the rest lowercase.
+
+	strobj.capitalize()
+
+ex:
+---
+>>> x="hello"
+>>> y="hai rama"
+>>> z="good morning rama"
+>>> a="123rama"
+>>> b="Hello"
+>>> c="Hello Rama"
+>>> d="Hello RAMA"
+>>> x.capitalize()
+'Hello'
+>>> y.capitalize()
+'Hai rama'
+>>> z.capitalize()
+'Good morning rama'
+>>> a.capitalize()
+'123rama'
+>>> b.capitalize()
+'Hello'
+>>> c.capitalize()
+'Hello rama'
+>>> d.capitalize()
+'Hello rama'
+
+title()
+-------
+Return a version of the string where each word is titlecased.
+
+More specifically, words start with uppercased characters and all remaining cased characters have lower case.
+
+	strobj.title()
+
+ex:
+---
+>>> x="hello"
+>>> y="hai rama"
+>>> z="good morning rama"
+>>> a="123rama"
+>>> b="Hello"
+>>> c="Hello Rama"
+>>> d="Hello RAMA"
+>>> x.title()
+'Hello'
+>>> y.title()
+'Hai Rama'
+>>> z.title()
+'Good Morning Rama'
+>>> a.title()
+'123Rama'
+>>> b.title()
+'Hello'
+>>> c.title()
+'Hello Rama'
+>>> d.title()
+'Hello Rama'
+
+count()
+-------
+Return the number of occurrences of given char/substr in the given string object.
+
+	strobj.count(char/substr,start,end)
+
+    	Optional arguments start and end are interpreted as in slice notation.
+
+ex:
+---
+>>> x="hai siva krishna hai"
+>>> x
+'hai siva krishna hai'
+>>> x.count('h')
+3
+>>> x.count('a')
+4
+>>> x.count('s')
+2
+>>> x.count('k')
+1
+>>> x.count('b')
+0
+>>> x.count('A')
+0
+>>> x.count("hai")
+2
+>>> x.count("haI")
+0
+
+center()
+--------
+Return a centered string of length width.
+
+Padding is done using the specified fill character (default is a space)
+
+	strobj.center(width,fillchar=" ")
+
+	the fillchar must be one charecter long only
+
+ex:
+---
+>>> x="siva"
+>>> x
+'siva'
+>>> x.center(3)
+'siva'
+>>> x.center(9)
+'   siva  '
+>>> x.center(13,'@')
+'@@@@@siva@@@@'
+>>> x.center(13,'b')
+'bbbbbsivabbbb'
+>>> x.center(13,'7')
+'77777siva7777'
+>>> x.center(13,'ab')
+TypeError: The fill character must be exactly one character long
+
+ljust()
+-------
+Return a left-justified string of length width.
+
+Padding is done using the specified fill character (default is a space)
+
+	strobj.ljust(width,fillchar=" ")
+
+	the fillchar must be one charecter long only
+
+ex:
+---
+>>> x="siva"
+>>> x
+'siva'
+>>> x.ljust(0)
+'siva'
+>>> x.ljust(9)
+'siva     '
+>>> x.ljust(13,'@')
+'siva@@@@@@@@@'
+>>> x.ljust(13,'a')
+'sivaaaaaaaaaa'
+>>> x.ljust(13,'5')
+'siva555555555'
+>>> x.ljust(13,'ab')
+TypeError: The fill character must be exactly one character long
+
+rjust()
+-------
+Return a right-justified string of length width.
+
+Padding is done using the specified fill character (default is a space)
+
+	strobj.rjust(width,fillchar=" ")
+
+	the fillchar must be one charecter long only
+
+ex:
+---
+>>> x="siva"
+>>> x
+'siva'
+>>> x.rjust(4)
+'siva'
+>>> x.rjust(9)
+'     siva'
+>>> x.rjust(13,'2')
+'222222222siva'
+>>> x.rjust(13,'a')
+'aaaaaaaaasiva'
+>>> x.rjust(13,'@')
+'@@@@@@@@@siva'
+>>> x.rjust(13,'ab')
+TypeError: The fill character must be exactly one character long
+
+zfill()
+------
+Pad a numeric string with zeros on the left, to fill a field of the given width.
+
+The string is never truncated.
+
+	strobj.zfill(width)
+
+ex:
+---
+>>> x="siva"
+>>> x
+'siva'
+>>> x.zfill(4)
+'siva'
+>>> x.zfill(9)
+'00000siva'
+
+find()
+------
+Return the lowest index in String where substring substr/char is found
+
+	strobj.find(char/substr,start,end)
+
+Optional arguments start and end are interpreted as in slice notation,Return -1 on failure.
+
+ex:
+---
+>>> x="hai siva krishna hai"
+>>> x
+'hai siva krishna hai'
+>>> x.find('a')
+1
+>>> x.find('s')
+4
+>>> x.find('hai')
+0
+>>> x.find('A')
+-1
+>>> x.find('b')
+-1
+>>> x.find('a',1)
+1
+>>> x.find('a',2)
+7
+>>> x.find('a',8,15)
+-1
+>>> x.find('a',8,16)
+15
+
+rfind()
+-------
+Return the highest index in String where substring substr/char is found
+
+	strobj.rfind(char/substr,start,end)
+
+Optional arguments start and end are interpreted as in slice notation,Return -1 on failure.
+
+ex:
+---
+>>> x="hai siva krishna hai"
+>>> x
+'hai siva krishna hai'
+>>> x.rfind('a')
+18
+>>> x.rfind('s')
+12
+>>> x.rfind('hai')
+17
+>>> x.rfind('haI')
+-1
+>>> x.rfind('A')
+-1
+>>> x.rfind('a',2)
+18
+>>> x.rfind('a',2,15)
+7
+>>> x.rfind('a',2,16)
+15
+
+index()
+-------
+Return the lowest index in String where substring substr/char is found
+
+	strobj.index(char/substr,start,end)
+
+Optional arguments start and end are interpreted as in slice notation,Raises ValueError when the substring is not found.
+
+ex:
+---
+>>> x="hai siva krishna hai"
+>>> x
+'hai siva krishna hai'
+>>> x.index('a')
+1
+>>> x.index('s')
+4
+>>> x.index('hai')
+0
+>>> x.index('a',2)
+7
+>>> x.index('a',8,15)
+ValueError: substring not found
+>>> x.index('a',8,16)
+15
+>>> x.index('A')
+ValueError: substring not found
+>>> x.index('haI')
+ValueError: substring not found
+
+rindex()
+--------
+Return the highest index in String where substring substr/char is found
+
+	strobj.rindex(char/substr,start,end)
+
+Optional arguments start and end are interpreted as in slice notation.Raises ValueError when the substring is not found.
+
+ex:
+---
+>>> x="hai siva krishna hai"
+>>> x
+'hai siva krishna hai'
+>>> x.rindex('a')
+18
+>>> x.rindex('s')
+12
+>>> x.rindex('hai')
+17
+>>> x.rindex('haI')
+ValueError: substring not found
+>>> x.rindex('A')
+ValueError: substring not found
+>>> x.rindex('a',2,16)
+15
+>>> x.rindex('a',2,15)
+7
+
+Note:
+------
+>>> y="siva"
+>>> y
+'siva'
+>>> y.find('v')
+2
+>>> y.index('v')
+2
+>>> y.find('k')
+-1
+>>> y[-1]
+'a'
+>>> y.index('k')
+ValueError: substring not found

@@ -1,0 +1,360 @@
+ex1:
+----
+write a python program to print '*'s in square pattern?
+
+sample input:
+	num=5
+
+expected output:
+
+* * * * *
+* * * * *
+* * * * *
+* * * * *
+* * * * *
+
+	demo.py
+	-------
+num=int(input("enter your number: "))
+r=1
+while r<=num:
+    c=1
+    while c<=num:
+        print("*",end=" ")
+        c+=1
+    r+=1
+    print()
+
+	(or)
+
+num=int(input("enter your number: "))
+for r in range(1,num+1):
+    for c in range(1,num+1):
+        print("*",end=" ")
+    print()
+
+
+ex2:
+---
+write a python program to print '*'s in hollow square pattern?
+
+sample input:
+	num=5
+
+expected output:
+
+* * * * *
+*       *
+*       *
+*       *
+* * * * *
+
+	demo.py
+	-------
+num=int(input("enter your number: "))
+r=1
+while r<=num:
+    c=1
+    while c<=num:
+        if r==1 or r==num or c==1 or c==num:
+            print("*",end=" ")
+        else:
+            print(" ",end=" ")
+        c+=1
+    r+=1
+    print()
+
+	(or)
+
+num=int(input("enter your number: "))
+for r in range(1,num+1):
+    for c in range(1,num+1):
+        if r==1 or r==num or c==1 or c==num:
+            print("*",end=" ")
+        else:
+            print(" ",end=" ")
+    print()
+
+ex3:
+---
+write a python program to print '*'s in right-angle triangle pattern?
+
+sample input:
+	num=5
+
+expected output:
+
+*
+* *
+* * *
+* * * *
+* * * * *
+
+	demo.py
+	-------
+num=int(input("enter your number: "))
+r=1
+while r<=num:
+    c=1
+    while c<=r:
+        print("*",end=" ")
+        c+=1
+    r+=1
+    print()
+
+	(or)
+
+num=int(input("enter your number: "))
+for r in range(1,num+1):
+    for c in range(1,r+1):
+        print("*",end=" ")
+    print()
+
+ex4:
+---
+write a python program to print '*'s in hollow right-angle triangle pattern?
+
+sample input:
+
+	num=5
+
+expected output:
+
+*
+* *
+*   *
+*     *
+* * * * *
+
+
+	demo.py
+	-------
+num=int(input("enter your number: "))
+r=1
+while r<=num:
+    c=1
+    while c<=r:
+        if c==1 or r==num or r==c:
+            print("*",end=" ")
+        else:
+            print(" ",end=" ")
+        c+=1
+    r+=1
+    print()
+
+	(or)
+
+num=int(input("enter your number: "))
+for r in range(1,num+1):
+    for c in range(1,r+1):
+        if c==1 or r==num or r==c:
+            print("*",end=" ")
+        else:
+            print(" ",end=" ")
+    print()
+
+
+ex5:
+----
+write a python program to print '*'s in inverted right angle triangle?
+
+sample input:
+
+	num=5
+
+expected output:
+
+* * * * *
+* * * *
+* * *
+* *
+*
+	demo.py
+	-------
+num=int(input("enter your number: "))
+for r in range(1,num+1):
+    for c in range(1,num-r+2):
+        print("*",end=" ")
+    print()
+
+
+ex6:
+----
+write a python program to print '*'s in floyd's triangle pattern?
+
+sample input:
+	
+	num=5
+
+expected output:
+
+    *
+   * *
+  * * *
+ * * * *
+* * * * *
+
+	demo.py
+	-------
+num=int(input("enter your number: "))
+for r in range(1,num+1):
+    for c in range(1,num-r+1):
+        print(" ",end="")
+    for c in range(1,r+1):
+        print("*",end=" ")
+    print()
+
+ex7:
+---
+write a python program to print '*'s in diamond pattern?
+
+sample input:
+
+	num=5
+
+expected output:
+
+    *
+   * *
+  * * *
+ * * * *
+* * * * * 
+ * * * *
+  * * *
+   * *
+    *
+
+	demo.py
+	-------
+num=int(input("enter your number: "))
+for r in range(1,num+1):
+    for c in range(1,num-r+1):
+        print(" ",end="")
+    for c in range(1,r+1):
+        print("*",end=" ")
+    print()
+for r in range(1,num):
+    for c in range(1,r+1):
+        print(" ",end="")
+    for c in range(1,num-r+1):
+        print("*",end=" ")
+    print()
+    
+ex8:
+----
+write a python program to print '*'s in pyramid pattern?
+
+sample input:
+
+	num=5
+
+expected output:
+
+        *
+      * * *
+    * * * * *
+  * * * * * * *
+* * * * * * * * *
+
+	demo.py
+	-------
+num=int(input("enter your number: "))
+for r in range(1,num+1):
+    
+    for c in range(1,num-r+1):
+        print(" ",end=" ")
+    
+    for c in range(1,r+1):
+        print("*",end=" ")
+
+    for c in range(1,r):
+        print("*",end=" ")
+    
+    print()
+
+
+Assignment-1:
+-------------
+* * * * *
+  * * * *
+    * * *
+      * *
+        *
+
+Assignment-2:
+-------------
+        *
+      * *
+    * * *
+  * * * *
+* * * * *
+
+Assignment-3:
+-------------
+* * * * *
+* * * *
+* * *
+* *
+*
+* *
+* * *
+* * * *
+* * * * *
+
+Assignment-4:
+-------------
+* * * * *
+  * * * *
+    * * *
+      * *
+        *
+      * *
+    * * *
+  * * * *
+* * * * *
+
+Assignment-5:
+-------------
+* * * * *
+ * * * *
+  * * *
+   * *
+    *
+
+
+Assignment-6:
+-------------
+* * * * *
+ * * * *
+  * * *
+   * *
+    *
+   * *
+  * * *
+ * * * *
+* * * * *
+
+Assignment-7:
+-------------
+* * * * * * * * *
+  * * * * * * *
+    * * * * *
+      * * *
+        *
+
+Assignment-8:
+-------------
+* * * * * * * * *
+  * * * * * * *
+    * * * * *
+      * * *
+        *
+      * * *
+    * * * * *
+  * * * * * * *
+* * * * * * * * *
+
+
+
+
+

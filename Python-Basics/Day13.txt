@@ -1,0 +1,153 @@
+Operator Presidency:
+-------------------
+whenever our expression contains multiple operators, in that case we need to identify which operator is executed first,which operator is executed second,.....,which operator is executed last by using operator presidency concept.
+
+in our expression, the multiple operators having the same priority, in that case we are follow the Left to Right Associativity.
+
+in Arithmetic Operators,we are follow the PEMDAS rule
+
+	P	--> ()
+	E	--> **
+	MD	--> *,%,/,//
+	AS	--> +,-
+
+ex:
+---
+>>> x=3+2*(4-1)%3**2//3-1/2
+>>> x
+4.5
+
+	3+2*(4-1)%3**2//3-1/2
+	3+2*3%3**2//3-1/2
+	3+2*3%9//3-1/2
+	3+6%9//3-1/2
+	3+6//3-1/2
+	3+2-1/2
+	3+2-0.5
+	5-0.5
+	4.5
+
+in Logical Operators, we are follow the and,or
+
+ex:
+---
+>>> y=False and True or not False and True or not True and False
+>>> y
+True
+
+	False and True or not False and True or not True and False
+	False or not False and True or not True and False
+	False or True or not True and False
+	False or True or False
+	True or False
+	True
+
+in Bitwise Operators, we are follow the ~, << or >>,&,^,|
+
+ex:
+---
+>>> z=3^4<<2|5&3
+>>> z
+19
+
+	3^4<<2|5&3
+	3^16|5&3
+	3^16|1
+	19|1
+	19
+
+Note:
+-----
+the arithmetic Operators are having More Priority than Bitwise Operators.
+
+ex4:
+---
+>>> a=2+3&2-(3|4)*2^3//2<<2
+>>> a
+0
+
+	2+3&2-(3|4)*2^3//2<<2
+	2+3&2-7*2^3//2<<2
+	2+3&2-14^3//2<<2
+	2+3&2-14^1<<2
+	5&2-14^1<<2
+	5&-12^1<<2
+	5&-12^4        
+	4^4
+	0
+	
+Control Flow Statements:
+------------------------
+the Control Flow Statements are used to control the flow of the program execution.
+
+why we need to control the flow of the program execution?
+---------------------------------------------------------
+Generally, in any programming language by default all the statements are executed at only once.
+
+if we want to skip the execution of some statements,if we want to repeat the some statements execution, in that case we need to control the flow of the program execution.
+
+how to control the flow of the program execution?
+-------------------------------------------------
+we can control the flow of the program execution by using control flow statements.
+
+the control flow statements can be categorized into 3 type's, they are
+
+	1).Conditional/Sequential Statements
+
+	2).Looping/Iterative Statements
+
+	3).Jumping/Transform Statements
+
+what is condition?
+------------------
+any expression to give the result as boolean value, that type of expressions are called conditions.
+
+ex:
+---
+x,y=10,3
+
+x+y	--> 13		--> expression
+x-y	--> 7		--> expression
+x*y	--> 30		--> expression
+x==y	--> False	--> expression	--> condition
+x>y	--> True	--> expression	--> condition
+x<y	--> False	--> expression	--> condition
+x&y	--> 2		--> expression
+x|y	--> 11		--> expression
+
+what is block?
+--------------
+in python, a block is a the group of statements which are follow the same space indentation concept.
+
+	syntax
+	-------
+	stmt_1
+	stmt_2
+	......
+	......:
+	     stmt_a
+	     stmt_b
+	     ......
+        stmt_n-1
+	stmt_n
+
+
+Conditional/Sequential Statements:
+-----------------------------------
+the Conditional/Sequential Statements are used to execute the block of statements or to skip the execution of block of statements to execute one block of statements among from multiple blocks of statements.
+
+the python supported Conditional/Sequential Statements are:
+
+	if
+	if else
+	if elif else
+	elif ladder
+	nested if
+	match case
+
+
+
+
+
+	
+	

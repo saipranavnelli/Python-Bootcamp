@@ -1,0 +1,252 @@
+insert()
+--------
+Insert object before index.
+
+	listobj.insert(index.value)
+
+ex:
+---
+>>> x=[10,20,30,40,50]
+>>> x
+[10, 20, 30, 40, 50]
+>>> x.insert(0,5)
+>>> x
+[5, 10, 20, 30, 40, 50]
+>>> x.insert(x.index(30),25)
+>>> x
+[5, 10, 20, 25, 30, 40, 50]
+>>> x.insert(-1,35)
+>>> x
+[5, 10, 20, 25, 30, 40, 35, 50]
+>>> x.insert(len(x),45)
+>>> x
+[5, 10, 20, 25, 30, 40, 35, 50, 45]
+>>> x.insert(100000,15)
+>>> x
+[5, 10, 20, 25, 30, 40, 35, 50, 45, 15]
+>>> x.index(15)
+9
+
+pop()
+-----
+Remove and return item at index (default last).
+
+Raises IndexError if list is empty or index is out of range.
+
+	listobj.pop(index=-1)
+
+ex:
+---
+>>> x=[10,20,30,40,50]
+>>> x
+[10, 20, 30, 40, 50]
+>>> x.pop()
+50
+>>> x
+[10, 20, 30, 40]
+>>> x.pop(1)
+20
+>>> x
+[10, 30, 40]
+>>> x.pop(x.index(30))
+30
+>>> x
+[10, 40]
+>>> x.pop(3)
+IndexError: pop index out of range
+>>> x.pop()
+40
+>>> x
+[10]
+>>> x.pop(0)
+10
+>>> x
+[]
+>>> x.pop()
+IndexError: pop from empty list
+
+remove()
+--------
+Remove first occurrence of value.
+
+Raises ValueError if the value is not present.
+
+	listobj.remove(value)
+
+ex1:
+---
+>>> x=[10,20,30,40,50]
+>>> x
+[10, 20, 30, 40, 50]
+>>> x.remove(10)
+>>> x
+[20, 30, 40, 50]
+>>> x.remove(40)
+>>> x
+[20, 30, 50]
+>>> x.remove(70)
+ValueError: list.remove(x): x not in list
+>>> x.remove()
+TypeError: list.remove() takes exactly one argument (0 given)
+>>>
+
+
+ex2:
+---
+>>> y=[10,20,30,10,30,20,10,40,30,20,10]
+>>> y
+[10, 20, 30, 10, 30, 20, 10, 40, 30, 20, 10]
+>>> y.remove(10)
+>>> y
+[20, 30, 10, 30, 20, 10, 40, 30, 20, 10]
+>>> y.remove(30)
+>>> y
+[20, 10, 30, 20, 10, 40, 30, 20, 10]
+
+ex3:
+---
+write a python program to remove all the occurencess of given element in our list object?
+
+	demo.py
+	-------
+x=eval(input("enter your list object: "))
+ele=eval(input("enter your element: "))
+y=[]
+for val in x:
+    if val!=ele:
+        y.append(val)
+print(y)
+
+	output
+	------
+enter your list object: [10,20,30,10,30,20,40,10,30,20,10]
+enter your element: 10
+[20, 30, 30, 20, 40, 30, 20]
+
+ex4:
+----
+write a python program to remove all the duplicate elements from the given list object?
+
+	demo.py
+	-------
+x=eval(input("enter your list object: "))
+y=[]
+for val in x:
+    if val not in y:
+        y.append(val)
+print(y)
+
+	output
+	------
+enter your list object: [10,20,30,10,10,30,20,20,40,10,30,30,20,10]
+[10, 20, 30, 40]
+
+
+sort()
+-----
+to return the list object elements in sorting order, by default it will perform ascending order.
+
+the sort() to perform Inplace Order i.e., after perform the operation the result will be stored into same variable.
+
+	listobj.sort() 			--> Ascending order
+
+	listobj.sort(reverse=True)	--> Descending order
+
+ex1:
+---
+>>> x=[6,3,7,9]
+>>> x.sort()
+>>> x
+[3, 6, 7, 9]
+
+ex2:
+---
+>>> y=[6,3,7,9]
+>>> y.sort(reverse=True)
+>>> y
+[9, 7, 6, 3]
+
+reverse()
+--------
+return the elements in reverse order,
+
+it will perform the inplace order operation.
+
+	listobj.reverse()
+
+ex:
+---
+>>> z=[6,3,7,9]
+>>> z.reverse()
+>>> z
+[9, 7, 3, 6]
+
+Assignment-1:
+-------------
+write a python program to print the no.of elements in a given list object, without using builtin len() function?
+
+	input			output
+	-----			-------
+    [5,2,7,9,1,8]		6
+
+Assignment-2:
+------------
+write a python program to print the sum of the given list object elements,without using builtin sum() function?
+
+	input			output
+	-----			-------
+   [5,2,7,9,1,8]		32
+
+Assignment-3:
+--------------
+write a python program to find the maximum element from the given list object, without using builtin max() function?
+
+	input			output
+	-----			-------
+   [5,2,7,9,1,8]		9
+
+
+Assignment-4:
+--------------
+write a python program to find the minimum element from the given list object, without using builtin min() function?
+
+	input			output
+	-----			-------
+   [5,2,7,9,1,8]		1
+
+
+Assignment-5:
+------------
+write a python program to print given list object elements in ascending order, with out using builtin sorted() function?
+
+	input			output
+	-----			-------
+   [5,2,7,9,1,8]		[1,2,5,7,8,9]
+
+
+Assignment-6:
+-------------
+write a python program to print given list object elements in descending order, with out using builtin sorted() function?
+
+	input			output
+	-----			-------
+   [5,2,7,9,1,8]		[9,8,7,5,2,1]
+
+
+Assignment-7:
+-------------
+write a python program to print given list object elements in reverse order, with out using builtin reversed() function?
+
+	input			output
+	-----			-------
+   [5,2,7,9,1,8]		[8,1,9,7,2,5]
+
+Assignment-8:
+-------------
+write a python program to calculate the accumulated sum of the given list object elements?
+
+	input			output
+	-----			-------
+   [5,2,7,9,1,8]		[5,7,14,23,24,32]
+
+

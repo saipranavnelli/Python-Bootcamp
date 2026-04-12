@@ -1,0 +1,655 @@
+		Identifier's
+		-------------
+what is Identifier?
+------------------
+an Identifier is a Name, it's may be annything like either variable name,function name, class name and method name.
+
+in python, at the time of defineing a an identifiers we are follow the some rules, they are
+
+	Rule1:
+	------
+	the identifiers contains alphabets(lower/upper/both),digits(0-9) and 		underscore(_) symbols only.
+
+	Rule2:
+	------
+	the identifiers must begin with either Alphabets or underscore(_) symbols 		only.
+
+			(or)
+
+	the identifiers should not begin with digits
+
+	Rule3:
+	------
+	Don't assign any keyword as an Identifier
+
+Note:
+-----
+in Python, the Identifiers are Case-Sensitive because of that reason python is a Casesensitive language.
+
+		Variables
+		---------
+what is variable?
+----------------
+a variable is a name which is referenceing to an object in the memory.
+
+the variables are used to store the data for future reference/use.
+
+	syntax
+	------
+	variablename=value
+
+examples:
+---------
+>>> x=10
+>>> x
+10
+
+>>> My_Name_123="siva"
+>>> My_Name_123
+'siva'
+
+>>> _y=20
+>>> _y
+20
+
+>>> __z=30
+>>> __z
+30
+
+>>> __in__=40
+>>> __in__
+40
+
+>>> 2c=67
+SyntaxError: invalid decimal literal
+
+>>> and=45
+SyntaxError: invalid syntax
+
+>>> break=89
+SyntaxError: invalid syntax
+
+>>> Break=89
+>>> Break
+89
+
+if we want to assign the single value to multiple variables at a time, in that case we are using following command
+
+	var_1=var_2=....=var_n=value
+
+ex:
+---
+>>> a=b=c=10
+>>> a
+10
+>>> b
+10
+>>> c
+10
+
+if we want to assign the different values to different variables at a time, in that case we are using following command
+
+	var_1,var_2,...,var_n=val_1,val_2,...,val_n
+
+ex:
+---
+>>> p,q,r=10,20,30
+>>> p
+10
+>>> q
+20
+>>> r
+30
+
+if we want to assign the multiple values to single variable at a time, in that case we are using following command
+
+	var=val_1,val_2,...,val_n
+
+ex:
+---
+>>> x=10,20,30
+>>> x
+(10, 20, 30)
+>>> x[0]
+10
+>>> x[1]
+20
+>>> x[2]
+30
+
+>>> e,f,d=5
+TypeError: cannot unpack non-iterable int object
+
+>>> e,f,d=5,6
+ValueError: not enough values to unpack (expected 3, got 2)
+
+>>> e,f,d=x
+>>> e
+10
+>>> f
+20
+>>> d
+30
+
+>>> x=0
+>>> x
+0
+
+>>> y=0000
+>>> y
+0
+
+>>> z=10,000
+>>> z
+(10, 0)
+
+>>> a=10_000
+>>> a
+10000
+
+>>> a=_10000
+NameError: name '_10000' is not defined
+
+>>> a=10000_
+SyntaxError: invalid decimal literal
+
+>>> my_name="siva"
+>>> my_name
+'siva'
+
+>>> my-name="siva"
+SyntaxError: cannot assign to expression here. Maybe you meant '==' instead of '='?
+
+>>> my@name="siva"
+SyntaxError: cannot assign to expression here. Maybe you meant '==' instead of '='?
+
+Note:
+------
+in python, the variablenames are unlimited length.
+
+ex1:
+----
+write a python program to perform the addition of two numbers?
+
+	addition.py
+	-----------
+x=4
+y=5
+print("addition of x and y:",x+y)
+
+	output
+	------
+C:\Users\Lenovo\Desktop\python9am>python addition.py
+addition of x and y: 9
+
+ex2:
+---
+write a python program to perform the swapping of two numbers with the help of third/temporary variable?
+
+	swapping.py
+	-----------
+x,y=10,20
+print("Before Swapping:",x,y)
+z=x
+x=y
+y=z
+print("After Swapping:",x,y)
+
+	output
+	-------
+C:\Users\Lenovo\Desktop\python9am>python swapping.py
+Before Swapping: 10 20
+After Swapping: 20 10
+
+Note:
+-----
+	%d	--> integers
+	%f	--> floating point numbers
+	%s	--> string/char
+
+ex3:
+----
+	swapping.py
+	-----------
+x,y=10,20
+print("Before Swapping x=%d and y=%d"%(x,y))
+z=x
+x=y
+y=z
+print("After Swapping x=%d and y=%d"%(x,y))
+
+	output
+	------
+C:\Users\Lenovo\Desktop\python9am>python swapping.py
+Before Swapping x=10 and y=20
+After Swapping x=20 and y=10
+
+ex4:
+----
+write a python program to perform the swapping of two numbers without third/temporary variable?
+
+	swapping.py
+	-----------
+x,y=10,20
+print("Before Swapping x=%d and y=%d"%(x,y))
+x=x+y #x=10+20=30
+y=x-y #y=30-20=10
+x=x-y #x=30-10=20
+print("After Swapping x=%d and y=%d"%(x,y))
+
+	(or)
+
+x,y=10,20
+print("Before Swapping x=%d and y=%d"%(x,y))
+x,y=y,x
+print("After Swapping x=%d and y=%d"%(x,y))
+
+	output
+	------
+C:\Users\Lenovo\Desktop\python9am>python swapping.py
+Before Swapping x=10 and y=20
+After Swapping x=20 and y=10
+
+working with builtin functions:
+-------------------------------
+print()
+-------
+in python2.x versions, the print is a keyword not a function.
+
+in python3.x versions, the print is a function not a keyword.
+
+the print() is used to print the value/result to the output screen/window.
+
+	syntax
+	------
+	print(val_1,val_2,...,val_n,sep=" ",end="\n",file=sys.stdout,flush=False)
+
+		(or)
+
+	print(*values,sep=" ",end="\n",file=sys.stdout,flush=False)
+
+ex1:
+---
+	demo.py
+	-------
+print("hai")
+print("hai","siva")
+print("hai","siva","krishna")
+print("hai","siva","krishna",sep=",")
+print("hai","siva","krishna",sep="\t")
+print("hai","siva","krishna",sep="")
+print("hai","siva","krishna",sep="->")
+
+	output
+	------
+C:\Users\Lenovo\Desktop\python9am>python demo.py
+hai
+hai siva
+hai siva krishna
+hai,siva,krishna
+hai     siva    krishna
+haisivakrishna
+hai->siva->krishna
+
+ex2:
+----
+	demo.py
+	-------
+print("hai")
+print("siva")
+print("krishna")
+print("hai",end=" ")
+print("siva",end=" ")
+print("krishna")
+print("hai",end="\t")
+print("siva",end="\t")
+print("krishna")
+print("hai",end="")
+print("siva",end="")
+print("krishna")
+
+	output
+	-------
+C:\Users\Lenovo\Desktop\python9am>python demo.py
+hai
+siva
+krishna
+hai siva krishna
+hai     siva    krishna
+haisivakrishna
+
+type()
+------
+in python2.x versions, the type() function to return the type of the object.
+
+in python3.x versions, the type() function to return the class of the object.
+
+ex:
+---
+	demo.py
+	-------
+x=10
+print(x)
+print(type(x))
+y=2.3
+print(y)
+print(type(y))
+
+	output
+	------
+C:\Users\Lenovo\Desktop\python9am>python demo.py
+10
+<class 'int'>
+2.3
+<class 'float'>
+
+id()
+-----
+to return the address of an object i.e., the id() function is used to identify an object.
+
+ex:
+---
+	demo.py
+	-------
+x=10
+print(x)
+print(type(x))
+print(id(x))
+y=2.3
+print(y)
+print(type(y))
+print(id(y))
+
+	output
+	-------
+C:\Users\Lenovo\Desktop\python9am>python demo.py
+10
+<class 'int'>
+140716727248280
+2.3
+<class 'float'>
+1389972986992
+
+ex2:
+----
+	demo.py
+	-------
+x=10
+print(x,type(x),id(x))
+y=2.3
+print(y,type(y),id(y))
+
+	output
+	------
+C:\Users\Lenovo\Desktop\python9am>python demo.py
+10 <class 'int'> 140716727248280
+2.3 <class 'float'> 2887353212016
+
+what is Datatype?
+-----------------
+a datatype defines the type of the data a variable can hold.
+
+in Generally, the datatype's can be categorized into 2 type's, they are
+
+	1).Static Datatype's
+
+	2).Dynamic Datatype's
+
+Static Datatype's:
+-------------------
+the programmer/developer to assign the datatype to the variables by explicitly at the time of defineing/declaring the variables, is known as a Static Datatype's Concept.
+
+any high level programming language which support Static Datatype's concept, that type of high level programming languages are called Static Typed Languages.
+
+	ex: C,C++,Java,.Net,Go,...
+
+ex: in C Langauge
+---
+	demo.c
+	-------
+#include<stdio.h>
+void main()
+{
+    int eid=101;
+    char ename[40]="siva";
+    float esal=30000.0;
+    printf("%d %s %f",eid,ename,esal);
+}
+
+Dynamic Datatype's:
+-------------------
+the programmer/developer don't assign the datatype to the variables by explicitly at the time of defineing/declaring the variables but at runtime automatically to assign the datatype's to the variables based on the value of that variables,is known as a Dynamic Datatype's Concept.
+
+any high level programming language which support dynamic datatype's concept, that type of high-level programming langauges are called Dynamically Typed Langauges.
+
+	ex: Python,JavaScript,...
+
+ex: in Python Programming
+
+	demo.py
+	--------
+eid=101
+ename="siva"
+esal=30000.0
+print(eid,ename,esal)
+
+Python Datatype's:
+------------------
+Python is a Dynamically Typed Langauge
+
+in Python, every datatype having it's own class.
+
+the python supported datatype's are
+
+	1).Number/Numerical Datatype's
+		a).int
+		b).float
+		c).complex
+
+	2).Boolean Datatype's
+
+	3).Text Sequence Datatype's
+		a).string
+
+	4).Number Sequence Datatype's
+		a).list
+		b).tuple
+		c).range
+		d).xrange(only in python2.x)
+
+	5).Set Datatype's
+		a).set
+		b).frozenset
+
+	6).Mapping Datatype's
+		a).dictionary
+
+	7).Binary Sequence Datatype's
+		a).bytes
+		b).bytearray
+		c).memoryview
+
+	8).None Datatype's
+
+
+
+Number/Numerical Datatype's:
+---------------------------
+the Number/Numerical Datatype's are used to hold/store the Numerical values.
+
+in python, the Number/Numerical Datatype's can be categorized into 3 type's, they are
+
+	1).Integer Number Datatype's
+	2).Floating Point Number Datatype's
+	3).Complex Number Datatype's
+
+
+Integer Number Datatype's:
+--------------------------
+in python, the Integer Number Datatype's having 'int' class
+
+ex:
+---
+>>> x=10
+>>> print(x)
+10
+>>> print(type(x))
+<class 'int'>
+>>> type(x)
+<class 'int'>
+
+in python, we can assign any number system as an integer object.
+
+	Binary Number System's			--> 0b
+	Octal Number System's			--> 0o
+	Decimal Number System's
+	Hexadecimal Number System's		--> 0x
+
+ex:
+---
+>>> x=0b1010 #binary
+>>> type(x)
+<class 'int'>
+
+>>> y=0o37 #octal
+>>> type(y)
+<class 'int'>
+
+>>> z=39 #decimal
+>>> type(z)
+<class 'int'>
+
+>>> p=0x2c #hexadecimal
+>>> type(p)
+<class 'int'>
+
+note:
+-----
+int()		--> to convert any type of data into integer
+		--> by default return value is 0
+
+ex:
+---
+>>> x=int()
+>>> x
+0
+>>> type(x)
+<class 'int'>
+
+Floating Point Number Datatype:
+-------------------------------
+in python,the Floating Point Number Datatype having 'float' class
+
+ex:
+---
+>>> x=2.3
+>>> x
+2.3
+>>> type(x)
+<class 'float'>
+
+>>> y=2.3e2
+>>> y
+230.0
+>>> type(y)
+<class 'float'>
+
+>>> z=2.3e-2
+>>> z
+0.023
+>>> type(z)
+<class 'float'>
+
+in python, we can assign only decimal number system as an floating point object.
+
+>>> x=0b1010.01 #binary
+SyntaxError: invalid syntax
+
+>>> y=0o37.3 #octal
+SyntaxError: invalid syntax
+
+>>> z=0x2c.3 #hexadecimal
+SyntaxError: invalid syntax
+
+>>> p=39.3 #decimal
+>>> type(p)
+<class 'float'>
+
+note:
+-----
+float()		--> to convert any type of data into float
+		--> by default return value is 0.0
+
+ex:
+---
+>>> x=float()
+>>> x
+0.0
+
+Complex Number Datatype:
+------------------------
+in python,the Complex Number Datatype having 'complex' class
+
+	c=a+bj	or  c=a+bJ   
+
+ex:
+---
+>>> x=2+3j
+>>> x
+(2+3j)
+>>> type(x)
+<class 'complex'>
+
+>>> y=2+3J
+>>> y
+(2+3j)
+>>> type(y)
+<class 'complex'>
+
+>>> z=3j
+>>> z
+3j
+>>> type(z)
+<class 'complex'>
+
+>>> a=2+3k
+SyntaxError: invalid decimal literal
+
+>>> b=2+3i
+SyntaxError: invalid decimal literal
+
+note:
+-----
+complex()	--> to convert any type of data into complex
+		--> by default return value is 0j
+
+ex:
+--
+>>> x=complex()
+>>> x
+0j
+
+ex2:
+---
+>>> a=5
+>>> float(a)
+5.0
+>>> complex(a)
+(5+0j)
+
+ex3:
+---
+>>> b=2.3
+>>> int(b)
+2
+>>> complex(b)
+(2.3+0j)
+
+ex4:
+----
+>>> c=2+3j
+>>> int(c)
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'complex'
+
+>>> float(c)
+TypeError: float() argument must be a string or a real number, not 'complex'

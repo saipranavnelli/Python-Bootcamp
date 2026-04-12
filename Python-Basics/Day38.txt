@@ -1,0 +1,337 @@
+copyright()
+-----------
+to get the python copyrights inforamation
+
+>>> copyright()
+Copyright (c) 2001 Python Software Foundation.
+All Rights Reserved.
+
+Copyright (c) 2000 BeOpen.com.
+All Rights Reserved.
+
+Copyright (c) 1995-2001 Corporation for National Research Initiatives.
+All Rights Reserved.
+
+Copyright (c) 1991-1995 Stichting Mathematisch Centrum, Amsterdam.
+All Rights Reserved.
+
+license()
+--------
+to get the python license information
+
+>>> license()
+A. HISTORY OF THE SOFTWARE
+==========================
+
+Python was created in the early 1990s by Guido van Rossum at Stichting
+Mathematisch Centrum (CWI, see https://www.cwi.nl) in the Netherlands
+as a successor of a language called ABC.  Guido remains Python's
+principal author, although it includes many contributions from others.
+	......
+	......
+
+credits()
+----------
+to get the python credits information
+
+>>> credits()
+Thanks to CWI, CNRI, BeOpen, Zope Corporation, the Python Software
+Foundation, and a cast of thousands for supporting Python
+development.  See www.python.org for more information.
+
+
+divmod()
+--------
+Return the tuple (x//y, x%y)
+
+	divmod(x,y)
+
+ex:
+---
+>>> divmod(4,2)
+(2, 0)
+>>> divmod(9,2)
+(4, 1)
+>>> divmod(9,3)
+(3, 0)
+>>> divmod(8,3)
+(2, 2)
+>>> divmod(8,2)
+(4, 0)
+
+pow()
+-----
+Equivalent to base**exp with 2 arguments or base**exp % mod with 3 arguments
+
+	pow(x,y)	--> x**y
+
+	pow(x,y,z)	--> x**y%z
+
+ex:
+---
+>>> pow(2,3)
+8
+>>> pow(3,2)
+9
+>>> pow(2,3,2)
+0
+>>> pow(2,3,3)
+2
+>>> pow(3,2,2)
+1
+>>> pow(3,2,3)
+0
+
+round()
+------
+to return the round figure value of the given number
+
+	round(number,no_of_decimal_places)
+
+ex:
+---
+>>> round(2.49)
+2
+>>> round(2.50)
+2
+>>> round(2.51)
+3
+>>> round(2.36273281)
+2
+>>> round(2.36273281,1)
+2.4
+>>> round(2.36273281,2)
+2.36
+>>> round(2.36273281,3)
+2.363
+>>> round(2.36273281,4)
+2.3627
+>>> round(2.36273281,5)
+2.36273
+>>> round(2.36273281,6)
+2.362733
+
+zip()
+-----
+to return the zip object
+
+	zip(*iterableobj)
+
+The zip object yields n-length tuples, where n is the number of iterables passed as positional arguments to zip().  
+
+The i-th element in every tuple comes from the i-th iterable argument to zip().This continues until the shortest argument is exhausted.
+
+If strict is true and one of the arguments is exhausted before the others,raise a ValueError.
+
+ex1:
+----
+	demo.py
+	-------
+x=zip()
+print(x)
+print(type(x))
+
+	output
+	------
+<zip object at 0x000001931E0FF500>
+<class 'zip'>
+
+ex2:
+---
+	demo.py
+	-------
+eids=[101,102,103,104]
+enames=["siva","rama","krishna","sachin"]
+esalries=[3000,5000,2000,1000]
+dnos=[10,20,30,40]
+data=zip(eids,enames,esalries,dnos)
+print(data)
+for rec in data:
+    print(rec)
+
+	output
+	------
+<zip object at 0x00000128DDE3F440>
+(101, 'siva', 3000, 10)
+(102, 'rama', 5000, 20)
+(103, 'krishna', 2000, 30)
+(104, 'sachin', 1000, 40)
+
+ex3:
+----
+	demo.py
+	-------
+eids=[101,102,103,104]
+enames=["siva","rama"]
+esalries=[3000]
+dnos=[10,20,30]
+data=zip(eids,enames,esalries,dnos)
+print(list(data))
+
+	output
+	-------
+[(101, 'siva', 3000, 10)]
+
+ex4:
+----
+	demo.py
+	-------
+eids=[101,102,103,104]
+enames=["siva","rama"]
+esalries=[3000]
+dnos=[10,20,30]
+data=zip(eids,enames,esalries,dnos,strict=True)
+print(list(data))
+
+	output
+	-----
+ValueError: zip() argument 3 is shorter than arguments 1-2
+
+ex5:
+----
+	demo.py
+	-------
+eids=[101]
+enames=["siva","rama"]
+esalries=[3000,4000,5000,1000]
+dnos=[10,20,30]
+data=zip(eids,enames,esalries,dnos,strict=True)
+print(list(data))
+
+	output
+	------
+ValueError: zip() argument 2 is longer than argument 1
+
+user-defined functions:
+-----------------------
+we can define a function to perform a particular operation according to our business requirements, that type of functions are called User-Defined functions.
+
+	syntax:
+	-------
+	def functionname(p_1,p_2,...,p_n):
+		"""doc string"""
+		stmt_1
+		stmt_2
+		......
+		stmt_n
+		return [value]
+
+ex1:
+----
+write a python program to create a simple python function?
+
+
+	demo.py
+	-------
+print("hai")
+def wishes():
+    print("siva krishna")
+    print("Good Afternoon")
+print("bye")
+
+	output
+	------
+hai
+bye
+
+Note:
+-----
+in the above example we are creating a function but we are not calling that function.
+
+the function is not executed automatically, whenever we are calling a function then only function logic will be executed.
+
+how to call the function?
+--------------------------
+we can call the function directly by using function name.
+
+	syntax
+	------
+	functionname(arg_1,arg_2,....,arg_n)
+ex2:
+---
+	demo.py
+	-------
+print("hai")
+def wishes():
+    print("siva krishna")
+    print("Good Afternoon")
+wishes()
+print("bye")
+
+	output
+	------
+hai
+siva krishna
+Good Afternoon
+bye
+
+note:
+----
+we can call one function N no.of times in our program.
+
+ex3:
+----
+	demo.py
+	-------
+print("hai")
+def wishes():    
+    print("Good Afternoon")
+print("siva")
+wishes()
+print("hello")
+wishes()
+print("krishna")
+print("bye")
+
+	output
+	------
+hai
+siva
+Good Afternoon
+hello
+Good Afternoon
+krishna
+bye
+
+ex4: function with parameters
+----
+	demo.py
+	-------
+def add(x,y):
+    """addition of x and y"""
+    z=x+y
+    print(z)
+add()
+    
+	output
+	------
+TypeError: add() missing 2 required positional arguments: 'x' and 'y'
+
+ex5:
+----
+	demo.py
+	-------
+def add(x,y):
+    """addition of x and y"""
+    z=x+y
+    print(z)
+add(4)
+    
+	output
+	------
+TypeError: add() missing 1 required positional argument: 'y'
+
+ex6:
+---
+	demo.py
+	-------
+def add(x,y):
+    """addition of x and y"""
+    z=x+y
+    print(z)
+add(4,5)
+    
+	output
+	------
+9
+

@@ -1,0 +1,269 @@
+how to copy the data from one object to another object?
+-------------------------------------------------------
+we can copy the data from one object to another object in 3 ways, they are
+
+	1).Hard Copy
+
+	2).Shallow Copy
+
+	3).Deep Copy
+
+Hard Copy:
+-----------
+we can implement the Hard Copy by using "=" operator.
+
+whenever we are trying to implement the Hard Copy, in that case both original data and copied data are referenceing to single object in the memory.
+
+in single-dimensional,we can change the original data then automatically copied data also effected and vice-versa.
+
+in multi-dimensional,we can change the original data then automatically copied data also effected and vice-versa.
+
+ex:
+---
+>>> x=[1,2,3,[4,5,[6,7]]]
+>>> y=x #hardcopy
+>>> x
+[1, 2, 3, [4, 5, [6, 7]]]
+>>> y
+[1, 2, 3, [4, 5, [6, 7]]]
+>>> id(x)
+2734706750464
+>>> id(y)
+2734706750464
+
+	single-dimensional
+	------------------
+>>> x[1]=20
+>>> x
+[1, 20, 3, [4, 5, [6, 7]]]
+>>> y
+[1, 20, 3, [4, 5, [6, 7]]]
+>>> y[0]=10
+>>> y
+[10, 20, 3, [4, 5, [6, 7]]]
+>>> x
+[10, 20, 3, [4, 5, [6, 7]]]
+
+	multi-dimensional
+	-----------------
+>>> x[3][1]=50
+>>> x
+[10, 20, 3, [4, 50, [6, 7]]]
+>>> y
+[10, 20, 3, [4, 50, [6, 7]]]
+>>> y[-1][-1][-1]=70
+>>> y
+[10, 20, 3, [4, 50, [6, 70]]]
+>>> x
+[10, 20, 3, [4, 50, [6, 70]]]
+
+Shallow Copy:
+--------------
+we can implement the Shallow Copy by using following options, they are
+
+	1).by using builtin functions
+
+	2).by using builtin methods
+
+	3).by using comprihension
+
+	4).by using copy() of copy module
+
+	5).by using slicing concept
+
+whenever we are trying to implement shallow copy, in that case both original data and copied data are referenceing to different objects in the memory.
+
+in single-dimensional,we are trying to change the original data that is not effected in copied data and vice-versa.
+
+in multi-dimensional,we are trying to change the original data that is effected in copied data and vice-versa.
+
+ex1: by using builtin functions
+---
+>>> x=[1,2,3]
+>>> y=list(x)
+>>> x
+[1, 2, 3]
+>>> y
+[1, 2, 3]
+>>> id(x)
+2734733415424
+>>> id(y)
+2734733414848
+
+ex2: by using builtin methods
+----
+>>> a=[1,2,3]
+>>> b=a.copy()
+>>> a
+[1, 2, 3]
+>>> b
+[1, 2, 3]
+>>> id(a)
+2734733414656
+>>> id(b)
+2734733413248
+
+ex3: by using comprihension
+----
+>>> p=[1,2,3]
+>>> q=[i for i in p]
+>>> p
+[1, 2, 3]
+>>> q
+[1, 2, 3]
+>>> id(p)
+2734706738880
+>>> id(q)
+2734733417984
+
+ex4: by using slicing concept
+---
+>>> x=[1,2,3]
+>>> y=x[::]
+>>> x
+[1, 2, 3]
+>>> y
+[1, 2, 3]
+>>> id(x)
+2734733418240
+>>> id(y)
+2734733418496
+
+ex5: by using copy() of copy module
+---
+>>> from copy import copy
+>>> x=[1,2,3]
+>>> y=copy(x)
+>>> x
+[1, 2, 3]
+>>> y
+[1, 2, 3]
+>>> id(x)
+2734733418752
+>>> id(y)
+2734733418240
+
+ex6:
+---
+>>> from copy import copy
+>>> x=[1,2,3,[4,5,[6,7]]]
+>>> y=copy(x)
+>>> x
+[1, 2, 3, [4, 5, [6, 7]]]
+>>> y
+[1, 2, 3, [4, 5, [6, 7]]]
+>>> id(x)
+2734706738048
+>>> id(y)
+2734733419520
+
+	single-dimensional
+	------------------
+>>> x[1]=20
+>>> x
+[1, 20, 3, [4, 5, [6, 7]]]
+>>> y
+[1, 2, 3, [4, 5, [6, 7]]]
+>>> y[0]=10
+>>> y
+[10, 2, 3, [4, 5, [6, 7]]]
+>>> x
+[1, 20, 3, [4, 5, [6, 7]]]
+
+	multi-dimensional
+	-----------------
+>>> x[3][1]=50
+>>> x
+[1, 20, 3, [4, 50, [6, 7]]]
+>>> y
+[10, 2, 3, [4, 50, [6, 7]]]
+>>> y[-1][-1][-1]=70
+>>> y
+[10, 2, 3, [4, 50, [6, 70]]]
+>>> x
+[1, 20, 3, [4, 50, [6, 70]]]
+
+Deep Copy:
+-----------
+we can implement the deep copy by using deepcopy() of copy module
+
+whenever we are trying to implement deep copy, in that case both original data and copied data are referenceing to different objects in the memory.
+
+in single-dimensional,we are trying to change the original data that is not effected in copied data and vice-versa.
+
+in multi-dimensional,we are trying to change the original data that is not effected in copied data and vice-versa.
+
+ex:
+---
+>>> from copy import deepcopy
+>>> x=[1,2,3,[4,5,[6,7]]]
+>>> y=deepcopy(x)
+>>> x
+[1, 2, 3, [4, 5, [6, 7]]]
+>>> y
+[1, 2, 3, [4, 5, [6, 7]]]
+>>> id(x)
+2734734288704
+>>> id(y)
+2734734530496
+	
+	single dimensional
+	------------------
+>>> x[1]=20
+>>> x
+[1, 20, 3, [4, 5, [6, 7]]]
+>>> y
+[1, 2, 3, [4, 5, [6, 7]]]
+>>> y[0]=10
+>>> y
+[10, 2, 3, [4, 5, [6, 7]]]
+>>> x
+[1, 20, 3, [4, 5, [6, 7]]]
+
+	multi dimensional
+	-----------------
+>>> x[3][1]=50
+>>> x
+[1, 20, 3, [4, 50, [6, 7]]]
+>>> y
+[10, 2, 3, [4, 5, [6, 7]]]
+>>> y[-1][-1][-1]=70
+>>> y
+[10, 2, 3, [4, 5, [6, 70]]]
+>>> x
+[1, 20, 3, [4, 50, [6, 7]]]
+
+
+how to delete an objects manually?
+---------------------------------
+if we want to delete an objects manually by using "del" keyword
+
+ex:
+---
+>>> x=10
+>>> y=20
+>>> x+y
+30
+>>> del x
+>>> x-y
+NameError: name 'x' is not defined
+
+ex2:
+---
+>>> a=[5,3,7,9,2]
+>>> a
+[5, 3, 7, 9, 2]
+>>> a.pop()
+2
+>>> a
+[5, 3, 7, 9]
+>>> a.remove(3)
+>>> a
+[5, 7, 9]
+>>> del a[1]
+>>> a
+[5, 9]
+
+
+
+

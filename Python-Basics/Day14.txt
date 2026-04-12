@@ -1,0 +1,336 @@
+if block
+--------
+we can define any block which is preceeded by 'if' keyword, that block is called 
+if block.
+
+	syntax
+	-------
+	if condition:stmt
+
+		(or)
+
+	if condition:
+		stmt_1
+		stmt_2
+		......
+		stmt_n
+
+		(or)
+
+	if(condition):
+		stmt_1
+		stmt_2
+		......
+		stmt_n
+
+flowchart:
+----------
+	ref fig: if block flowchart
+
+ex1:
+----
+	demo.py
+	-------
+print("hai")
+num=int(input("enter your number: "))
+if num>5:print("siva")
+print("bye")
+
+	output1
+	--------
+hai
+enter your number: 7
+siva
+bye
+
+	output2
+	--------
+hai
+enter your number: 3
+bye
+
+ex2:
+----
+	demo.py
+	-------
+print("hai")
+num=int(input("enter your number: "))
+if num>5:
+    print("siva")
+    print("Good Morning")
+print("bye")
+
+	output1
+	-------
+hai
+enter your number: 7
+siva
+Good Morning
+bye
+
+	output2
+	-------
+hai
+enter your number: 3
+bye
+
+if else block
+-------------
+	syntax
+	-------
+	if condition:
+		stmt_1
+		stmt_2
+		......
+		stmt_n
+	else:
+	     stmt_1
+	     stmt_2
+	     ......
+	     stmt_n
+
+flowchart:
+----------
+	ref fig: if else block flowchart
+
+ex3:
+---
+	demo.py
+	-------
+print("hai")
+num=int(input("enter your number: "))
+if num>5:
+    print("siva")
+    print("Good Morning")
+else:
+    print("krishna")
+    print("Good Afternoon")
+print("bye")
+
+	output1
+	--------
+hai
+enter your number: 7
+siva
+Good Morning
+bye
+
+	output2
+	--------
+hai
+enter your number: 3
+krishna
+Good Afternoon
+bye
+
+ex4:
+----
+write a python script/program to check whether given number is either even or odd number?
+
+	demo.py
+	-------
+num=int(input("enter your number: "))
+if num%2==0:
+    print("Even Number")
+else:
+    print("Odd Number")
+
+	(or)
+
+num=int(input("enter your number: "))
+res="Even Number" if num%2==0 else "Odd Number"
+print(res)
+
+	(or)
+
+num=int(input("enter your number: "))
+print("Even Number" if num%2==0 else "Odd Number")
+
+	output1
+	-------
+enter your number: 12
+Even Number
+
+	output2
+	-------
+enter your number: 9
+Odd Number
+	
+if elif else block
+--------------------
+	syntax
+	------
+	if condition:
+		stmt_1
+		stmt_2
+		......
+		stmt_n
+	elif condition:
+		stmt_1
+		stmt_2
+		......
+		stmt_n
+	else:
+             stmt_1
+	     stmt_2
+	     ......
+	     stmt_n
+
+flowchart:
+----------
+	ref fig: if elif else block flowchart
+
+ex5:
+----
+write a python script/program to check whether given integer is either positive or negative or zero?
+
+	demo.py
+	-------
+num=int(input("enter your number: "))
+if num>0:
+    print("Positive Integer")
+elif num<0:
+    print("Negative Integer")
+else:
+    print("Zero")
+
+	(or)
+
+num=int(input("enter your number: "))
+if num>0:
+    print("Positive Integer")
+else:
+    if num<0:
+        print("Negative Integer")
+    else:
+        print("Zero")
+	
+	(or)
+
+num=int(input("enter your number: "))
+res="Positive Integer" if num>0 else "Negative Integer" if num<0 else "Zero"
+print(res)
+
+	(or)
+
+num=int(input("enter your number: "))
+print("Positive Integer" if num>0 else "Negative Integer" if num<0 else "Zero")
+
+	(or)
+
+num=int(input("enter your number: "))
+print("Positive Integer" if num>0 else
+      "Negative Integer" if num<0 else "Zero")
+
+	output1
+	-------
+enter your number: 8
+Positive Integer
+
+	output2
+	-------
+enter your number: -3
+Negative Integer
+
+	output3
+	-------
+enter your number: 0
+Zero
+
+Assignment-1:
+-------------
+write a python program to check whether that particular person is eligible for voter registration or not, based on age?
+
+	input			output
+	------			-------
+	17			not eligible
+	18			eligible
+
+Assignment-2:
+--------------
+write a python program to check whether given string is palindrome string or not, without ignore the case?
+
+A string is considered a palindrome if it reads the same forwards(left to right) and backwards(right to left). 
+
+	input		rev_string	output
+	------		----------	--------
+	siva		avis		not a palindrome
+
+	madam		madam		palindrome
+
+	level		level		palindrome
+
+	Malayalam	malayalaM	not a palindrome	
+
+Assignment-3:
+-------------
+write a python program to check whether given string is palindrome string or not, with ignore the case?
+
+	input		rev_string	output
+	------		----------	--------
+	siva		avis		not a palindrome
+
+	madam		madam		palindrome
+
+	level		level		palindrome
+
+	Malayalam	malayalaM	palindrome
+
+Assignment-4:
+-------------
+write a python program to check whether given charecter is either alphabet or digit or special charecter, without using string class builtin methods?
+
+	input		output
+	------		-------
+	t		alphabet
+	A		alphabet
+	8		digit
+	@		special charecter
+
+Assignment-5:
+-------------
+write a python program to check whether given charecter is either alphabet or digit or special charecter, using string class builtin methods?
+
+	input		output
+	------		-------
+	t		alphabet
+	A		alphabet
+	8		digit
+	@		special charecter
+
+
+elif ladder:
+-----------
+we can define a single if with multiple elif blocks, is known as a elif ladder.
+
+	syntax
+	-------
+	if condition:
+		stmt_1
+		stmt_2
+		......
+	elif condition:
+		stmt_1
+		stmt_2
+		......
+	elif condition:
+		stmt_1
+		stmt_2
+		......
+	---------
+	---------
+	---------
+	elif condition:
+		stmt_1
+		stmt_2
+		......
+	else:
+	    stmt_1
+	    stmt_2
+	    ......
+Note:
+----
+in elif ladder, the else block is an optional.
+
+
+	

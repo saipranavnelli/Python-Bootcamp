@@ -1,0 +1,312 @@
+ex1:
+----
+write a python program to print 1 to N natural numbers in a square pattern?
+
+sample input:
+
+	num=5
+
+expected output:
+
+1 2 3 4 5
+1 2 3 4 5
+1 2 3 4 5
+1 2 3 4 5
+1 2 3 4 5
+
+	demo.py
+	-------
+num=int(input("enter your number: "))
+for r in range(1,num+1):
+    for c in range(1,num+1):
+        print(c,end=" ")
+    print()
+
+ex2:
+----
+write a python program to print 1 to N natural numbers in a square pattern?
+
+sample input:
+
+	num=5
+
+expected output:
+
+1 1 1 1 1
+2 2 2 2 2
+3 3 3 3 3
+4 4 4 4 4
+5 5 5 5 5
+
+	demo.py
+	-------
+num=int(input("enter your number: "))
+for r in range(1,num+1):
+    for c in range(1,num+1):
+        print(r,end=" ")
+    print()
+
+ex3:
+----
+write a python program to print 1 to N natural numbers in a right-angle triangle pattern?
+
+sample input:
+
+	num=5
+
+expected output:
+
+1
+1 2
+1 2 3
+1 2 3 4
+1 2 3 4 5
+
+	demo.py
+	-------
+num=int(input("enter your number: "))
+for r in range(1,num+1):
+    for c in range(1,r+1):
+        print(c,end=" ")
+    print()
+
+
+ex4:
+----
+write a python program to print 1 to N natural numbers in a right-angle triangle pattern?
+
+sample input:
+
+	num=5
+
+expected output:
+
+1
+2 2
+3 3 3 
+4 4 4 4
+5 5 5 5 5
+
+	demo.py
+	-------
+num=int(input("enter your number: "))
+for r in range(1,num+1):
+    for c in range(1,r+1):
+        print(r,end=" ")
+    print()
+
+
+ex5:
+----
+write a python program to print 1 to N natural numbers in a Floyd's triangle pattern?
+
+sample input:
+
+	num=5
+
+expected output:
+
+    1
+   1 2
+  1 2 3
+ 1 2 3 4
+1 2 3 4 5
+
+	demo.py
+	-------
+num=int(input("enter your number: "))
+for r in range(1,num+1):
+    for c in range(1,num-r+1):
+        print(" ",end="")
+    for c in range(1,r+1):
+        print(c,end=" ")
+    print()
+
+ex6:
+----
+write a python program to print 1-N natural numbers in a diamond pattern?
+
+sample input:
+
+	num=5
+
+expected output:
+
+    1
+   1 2
+  1 2 3
+ 1 2 3 4
+1 2 3 4 5
+ 1 2 3 4
+  1 2 3
+   1 2
+    1
+
+	demo.py
+	-------
+num=int(input("enter your number: "))
+for r in range(1,num+1):
+    for c in range(1,num-r+1):
+        print(" ",end="")
+    for c in range(1,r+1):
+        print(c,end=" ")
+    print()    
+for r in range(1,num):
+    for c in range(1,r+1):
+        print(" ",end="")
+    for c in range(1,num-r+1):
+        print(c,end=" ")
+    print()
+
+
+ex7:
+----
+write a python program to print 1 to N natural numbers in a Pyramid Pattern?
+
+sample input:
+
+	num=5
+
+expected output:
+
+        5
+      4 5 4
+    3 4 5 4 3
+  2 3 4 5 4 3 2
+1 2 3 4 5 4 3 2 1
+
+	demo.py
+	-------
+num=int(input("enter your number: "))
+for r in range(1,num+1):
+    for c in range(1,num-r+1):
+        print(" ",end=" ")
+    for c in range(num-r+1,num+1):
+        print(c,end=" ")
+    for c in range(num-1,num-r,-1):
+        print(c,end=" ")
+    print()
+    
+
+ex8:
+----
+write a python program to print 1 to N natural numbers in a Pyramid Pattern?
+
+sample input:
+
+	num=5
+
+expected output:
+
+        1
+      2 1 2
+    3 2 1 2 3
+  4 3 2 1 2 3 4
+5 4 3 2 1 2 3 4 5
+
+	demo.py
+	-------
+num=int(input("enter your number: "))
+for r in range(1,num+1):
+    for c in range(1,num-r+1):
+        print(" ",end=" ")
+    for c in range(r,0,-1):
+        print(c,end=" ")
+    for c in range(2,r+1):
+        print(c,end=" ")
+    print()
+
+
+Asignment-1:
+-------------
+1 2 3 4 5
+  1 2 3 4
+    1 2 3
+      1 2
+        1
+
+
+Assignment-2:
+-------------
+        1
+      2 2
+    3 3 3
+  4 4 4 4
+5 5 5 5 5
+
+Assignment-3:
+-------------
+1 2 3 4 5
+1 2 3 4
+1 2 3
+1 2
+1
+1 2
+1 2 3
+1 2 3 4
+1 2 3 4 5
+
+Assignment-4:
+-------------
+1 1 1 1 1
+  2 2 2 2
+    3 3 3
+      4 4
+        5
+      4 4
+    3 3 3
+  2 2 2 2
+1 1 1 1 1
+
+
+Assignment-5:
+-------------
+    5
+   4 4
+  3 3 3
+ 2 2 2 2
+1 1 1 1 1
+
+Assignment-6:
+-------------
+1 2 3 4 5
+ 1 2 3 4
+  1 2 3
+   1 2
+    1
+
+
+Assignment-7:
+-------------
+1 1 1 1 1
+ 2 2 2 2
+  3 3 3
+   4 4
+    5
+   4 4
+  3 3 3
+ 2 2 2 2
+1 1 1 1 1
+
+Assignment-8:
+--------------
+1 2 3 4 5 4 3 2 1
+  2 3 4 5 4 3 2
+    3 4 5 4 3
+      4 5 4
+        5
+
+
+Assignment-9:
+-------------
+1 1 1 1 1 1 1 1 1
+  2 2 2 2 2 2 2
+    3 3 3 3 3
+      4 4 4
+        5
+      4 4 4
+    3 3 3 3 3
+  2 2 2 2 2 2 2
+1 1 1 1 1 1 1 1 1
+
+

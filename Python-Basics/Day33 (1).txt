@@ -1,0 +1,276 @@
+Frozenset Data structure:
+--------------------------
+in python, the Frozenset Data Type having 'frozenset' class
+
+we can create a frozenset object by using frozenset() or frozenset(iterableobj)
+
+ex:
+---
+>>> x=frozenset()
+>>> x
+frozenset()
+>>> type(x)
+<class 'frozenset'>
+
+>>> y=frozenset("siva")
+>>> y
+frozenset({'s', 'v', 'i', 'a'})
+>>> type(y)
+<class 'frozenset'>
+
+>>> z=frozenset([7,4,9,2])
+>>> z
+frozenset({9, 2, 4, 7})
+>>> type(z)
+<class 'frozenset'>
+
+the frozenset object is a immutable object but it allows only immutable objects.
+
+ex:
+---
+>>> x=frozenset([3,2.3,4j,False,"siva",(8,9)])
+>>> x
+frozenset({False, 2.3, 3, 4j, (8, 9), 'siva'})
+
+>>> y=frozenset((3,2.3,4j,False,"siva",(8,9)))
+>>> y
+frozenset({False, 2.3, 3, 4j, (8, 9), 'siva'})
+
+>>> z=frozenset((3,2.3,4j,False,"siva",[8,9]))
+TypeError: cannot use 'list' as a set element (unhashable type: 'list')
+
+the frozenset object dont allow the duplicate elements.
+
+>>> a=frozenset([6,3,6,9,3,6,9,5])
+>>> a
+frozenset({9, 3, 5, 6})
+
+>>> b=frozenset([False,1,0,True])
+>>> b
+frozenset({False, 1})
+
+>>> c=frozenset((True,1,0,False))
+>>> c
+frozenset({0, True})
+
+in frozenset object, the insertion order is not preserved because of that reason the frozenset object is a non-sequence object.
+
+the frozenset object allows both homogenious and hetrogenious elements.
+
+	homogenious(same/similar type of data)
+	-----------
+>>> a=frozenset([5,3,7,19,21])
+>>> a
+frozenset({3, 5, 7, 19, 21})
+
+>>> b=frozenset((2.3,7.1,9.5))
+>>> b
+frozenset({9.5, 2.3, 7.1})
+
+	hetrogenious(different/dissimilar type of data)
+	------------
+>>> x=frozenset([3,2.3,4j,False,"siva",(8,9)])
+>>> x
+frozenset({False, 2.3, 3, 4j, (8, 9), 'siva'})
+
+the frozenset object don't support both indexing and slicing concepts.
+
+ex:
+---
+>>> x=frozenset([3,2.3,4j,False,"siva",(8,9)])
+>>> x
+frozenset({False, 2.3, 3, 4j, (8, 9), 'siva'})
+
+>>> x[1] #indexing
+TypeError: 'frozenset' object is not subscriptable
+
+>>> x[:3] #slicing
+TypeError: 'frozenset' object is not subscriptable
+
+the frozenset object support nested frozenset mechanism
+
+ex:
+---
+>>> x=frozenset([4,2.3,frozenset((False,3j)),"siva"])
+>>> x
+frozenset({2.3, frozenset({False, 3j}), 4, 'siva'})
+
+working with builtin functions:
+-------------------------------
+>>> a=frozenset([6,2,9,1])
+>>> a
+frozenset({9, 2, 6, 1})
+>>> len(a)
+4
+>>> sum(a)
+18
+>>> min(a)
+1
+>>> max(a)
+9
+>>> sorted(a)
+[1, 2, 6, 9]
+>>> sorted(a,reverse=True)
+[9, 6, 2, 1]
+>>> reversed(a)
+TypeError: 'frozenset' object is not reversible
+
+working with frozenset class methods:
+-------------------------------------
+	if we want to display all the frozenset class method names with syntax and description, in that case we are using help() function.
+
+	help(frozenset)
+
+	if we want to display the list of all the available frozenset class method names without syntax and description, in that case we are using dir() function.
+
+	dir(frozenset)
+
+copy()
+-------
+Return a shallow copy of a set.
+
+	frozensetobj.copy()
+
+ex:
+---
+>>> a=frozenset([6,2,9,1])
+>>> a
+frozenset({9, 2, 6, 1})
+>>> b=a.copy()
+>>> b
+frozenset({9, 2, 6, 1})
+
+ex2:
+----
+>>> x=frozenset([1,2,3,4])
+>>> y=frozenset([3,4,5,6])
+
+>>> x.union(y)
+frozenset({1, 2, 3, 4, 5, 6})
+>>> x|y
+frozenset({1, 2, 3, 4, 5, 6})
+
+>>> x.intersection(y)
+frozenset({3, 4})
+>>> x&y
+frozenset({3, 4})
+
+>>> x.difference(y)
+frozenset({1, 2})
+>>> x-y
+frozenset({1, 2})
+
+>>> x.symmetric_difference(y)
+frozenset({1, 2, 5, 6})
+>>> x^y
+frozenset({1, 2, 5, 6})
+
+ex3:
+----
+>>> x=frozenset([1,2,3,4,5])
+>>> y=frozenset([1,3,5])
+>>> z=frozenset([2,4,6])
+>>> x.issuperset(y)
+True
+>>> x.issuperset(z)
+False
+>>> y.issubset(x)
+True
+>>> z.issubset(x)
+False
+
+ex4:
+----
+>>> a=frozenset([1,2,3,4])
+>>> b=frozenset([9,0,5])
+>>> c=frozenset([8,6,4])
+>>> a.isdisjoint(b)
+True
+>>> a.isdisjoint(c)
+False
+>>> b.isdisjoint(c)
+True
+
+Dictionary Data Structure:
+---------------------------
+in python, the dictionary data type having "dict" class
+
+we can create a dict object by using {} or by calling dict() or dict(iterableobj)
+
+ex:
+---
+>>> x={}
+>>> x
+{}
+>>> type(x)
+<class 'dict'>
+
+>>> y=dict()
+>>> y
+{}
+>>> type(y)
+<class 'dict'>
+
+the dict object contains group of key-value pairs, each key-value pair act as a one item in our dict object.
+
+	{key:value,key:value,...,key:value}
+	 ---------,---------,...,---------
+	    |         |             |
+	  item_1    item_2        item_n
+
+the dict object is a mutable object but keys must be immutable and values are either mutable or immutable objects.
+
+ex:
+---
+>>> x={'siva':3.2,4j:[5,6],False:{7,8},(5,1):9}
+>>> x
+{'siva': 3.2, 4j: [5, 6], False: {8, 7}, (5, 1): 9}
+
+>>> y={'siva':3.2,4j:(5,6),False:{7,8},[5,1]:9}
+TypeError: cannot use 'list' as a dict key (unhashable type: 'list')
+
+>>> z=dict([('id',101),('name','siva'),('salary',30000.0)])
+>>> z
+{'id': 101, 'name': 'siva', 'salary': 30000.0}
+
+from python3.4+ versions onwards, the dict object act as a sequence object.
+
+the dict object dont allow the duplicate keys but it allow the duplicate values i.e., in dict object keys must be unique and values are duplicated.
+
+ex:
+---
+>>> x={'m':45,'sc':21,'so':90,'tel':21,'m':35}
+>>> x
+{'m': 35, 'sc': 21, 'so': 90, 'tel': 21}
+
+the dict object don't support indexing and slicing concept's but it support Hashing concept i.e., we are using key's.
+
+by using hashing concept we can perform following opertions like:
+
+	retreive
+	insert
+	update
+
+ex1: Retreive
+----
+>>> x={'siva':3.2,4j:[5,6],False:{7,8},(5,1):9}
+>>> x
+{'siva': 3.2, 4j: [5, 6], False: {8, 7}, (5, 1): 9}
+>>> x['siva']
+3.2
+>>> x[4j]
+[5, 6]
+>>> x[False]
+{8, 7}
+>>> x[(5,1)]
+9
+>>> x[4j][0]
+5
+>>> x[9]
+KeyError: 9
+
+
+
+
+
+

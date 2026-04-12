@@ -1,0 +1,340 @@
+ex1:
+----
+write a python program to print lowercase alphabets in a square pattern?
+
+sample input:
+
+	num=5
+
+expected output:
+
+a b c d e
+a b c d e
+a b c d e
+a b c d e
+a b c d e
+
+	demo.py
+	-------
+num=int(input("enter your number: "))
+for r in range(num):
+    for c in range(num):
+        print(chr(97+c),end=" ")
+    print()
+
+ex2:
+----
+write a python program to print uppercase alphabets in a square pattern?
+
+sample input:
+
+	num=5
+
+expected output:
+
+A A A A A
+B B B B B
+C C C C C
+D D D D D
+E E E E E
+
+	demo.py
+	-------
+num=int(input("enter your number: "))
+for r in range(num):
+    for c in range(num):
+        print(chr(65+r),end=" ")
+    print()
+
+
+ex3:
+----
+write a python program to print lowercase alphabets in a righ-angle triangle pattern?
+
+sample input:
+
+	num=5
+
+expected output:
+
+a
+a b
+a b c
+a b c d
+a b c d e
+
+	demo.py
+	-------
+num=int(input("enter your number: "))
+for r in range(num):
+    for c in range(r+1):
+        print(chr(97+c),end=" ")
+    print()
+
+ex4:
+----
+write a python program to print uppercase alphabets in a righ-angle triangle pattern?
+
+sample input:
+
+	num=5
+
+expected output:
+
+A
+B B
+C C C
+D D D D
+E E E E E
+
+	demo.py
+	-------
+num=int(input("enter your number: "))
+for r in range(num):
+    for c in range(r+1):
+        print(chr(65+r),end=" ")
+    print()
+
+ex5:
+----
+write a python program to print lowercase alphabets in a inverted righ-angle tri-angle pattern?
+
+sample input:
+
+	num=5
+
+expected output:
+
+a b c d e
+a b c d
+a b c
+a b
+a
+
+	demo.py
+	-------
+num=int(input("enter your number: "))
+for r in range(num):
+    for c in range(num-r):
+        print(chr(97+c),end=" ")
+    print()
+
+ex6:
+----
+write a python program to print uppercase alphabets in a inverted right tri-angle pattern?
+
+sample input:
+
+	num=5
+
+expected output:
+
+A A A A A
+B B B B 
+C C C 
+D D
+E
+
+	demo.py
+	-------
+num=int(input("enter your number: "))
+for r in range(num):
+    for c in range(num-r):
+        print(chr(65+r),end=" ")
+    print()
+
+
+ex7:
+---
+write a python program to print lowercase alphabets in a floyd's triangle pattern?
+
+sample input:
+	
+	num=5
+
+expected output:
+
+    a
+   a b
+  a b c
+ a b c d
+a b c d e
+
+	demo.py
+	--------
+num=int(input("enter your number: "))
+for r in range(num):
+    for c in range(num-r-1):
+        print(" ",end="")
+    for c in range(r+1):
+        print(chr(97+c),end=" ")
+    print()
+
+ex8:
+----
+write a python program to print uppercase alphabets in a inverted floyd's triangle pattern?
+
+sample input:
+	
+	num=5
+
+expected output:
+
+A A A A A
+ B B B B
+  C C C
+   D D
+    E
+
+	demo.py
+	-------
+num=int(input("enter your number: "))
+for r in range(num):
+    for c in range(r):
+        print(" ",end="")
+    for c in range(num-r):
+        print(chr(65+r),end=" ")
+    print()
+
+ex9:
+---
+write a python program to print uppercase alphabets in a diamond pattern?
+
+sample input:
+
+	num=5
+
+expected output:
+
+    A
+   A B
+  A B C
+ A B C D
+A B C D E
+ A B C D
+  A B C
+   A B
+    A
+
+	demo.py
+	--------
+num=int(input("enter your number: "))
+for r in range(num):
+    for c in range(num-r-1):
+        print(" ",end="")
+    for c in range(r+1):
+        print(chr(65+c),end=" ")
+    print()
+for r in range(num-1):
+    for c in range(r+1):
+        print(" ",end="")
+    for c in range(num-r-1):
+        print(chr(65+c),end=" ")
+    print()
+
+ex10:
+-----
+write a python program to print lowercase alphabets in a pyramid pattern?
+
+sample input:
+
+	num=5
+
+expected output:
+ 
+        e
+      d e d
+    c d e d c
+  b c d e d c b
+a b c d e d c b a
+
+	demo.py
+	-------
+num=int(input("enter your number: "))
+for r in range(num):
+    for c in range(num-r-1):
+        print(" ",end=" ")
+    for c in range(r,-1,-1):
+        print(chr(97+num-c-1),end=" ")
+    for c in range(r):
+        print(chr(97+num-c-2),end=" ")
+    print()
+
+
+ex11:
+-----
+write a python program to print uppercase alphabets in a inverted pyramid pattern?
+
+sample input:
+
+	num=5
+
+expected output:
+
+A A A A A A A A A
+  B B B B B B B
+    C C C C C
+      D D D
+        E
+
+
+	demo.py
+	-------
+num=int(input("enter your number: "))
+for r in range(num):
+    for c in range(r):
+        print(" ",end=" ")
+    for c in range(num-r):
+        print(chr(65+r),end=" ")
+    for c in range(num-r-1):
+        print(chr(65+r),end=" ")    
+    print()
+
+
+ex12:
+-----
+write a python program to print uppercase alphabets in a inverted Diamond pattern?
+
+sample input:
+
+	num=5
+
+expected output:
+
+A A A A A A A A A
+  B B B B B B B
+    C C C C C
+      D D D
+        E
+      D D D
+    C C C C C 
+  B B B B B B B 
+A A A A A A A A A 
+
+	demo.py
+	-------
+num=int(input("enter your number: "))
+for r in range(num):
+    for c in range(r):
+        print(" ",end=" ")
+    for c in range(num-r):
+        print(chr(65+r),end=" ")
+    for c in range(num-r-1):
+        print(chr(65+r),end=" ")    
+    print()
+for r in range(num-1):
+    for c in range(num-r-2):
+        print(" ",end=" ")
+    for c in range(r+2):
+        print(chr(65+num-r-2),end=" ")
+    for c in range(r+1):
+        print(chr(65+num-r-2),end=" ")    
+    print()
+
+
+
+
+
+
+
+

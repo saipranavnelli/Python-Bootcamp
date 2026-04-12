@@ -1,0 +1,305 @@
+infinite while loop:
+--------------------
+infinite while loop means our while condition is always True.
+
+	syntax
+	------
+	while condition:
+		stmt_1
+		stmt_2
+		......
+		stmt_n
+
+flowchart:
+----------
+	ref fig: infinite while loop flowchart
+
+ex1:
+----
+	demo.py
+	-------
+while True:
+    print("hai")
+
+	(or)
+
+while 1:
+    print("hai")
+
+	(or)
+
+while 3<5:
+    print("hai")
+
+	output
+	------
+hai
+hai
+hai
+hai
+hai
+hai
+....
+...., keep on executeing upto sufficienht memory
+
+Jumping/Transform statements:
+------------------------------
+the python supported Jumping/Transform statements are,
+
+	break
+	continue
+	pass
+
+break statement:
+----------------
+the "break" is a keyword in python, which is used in the looping statements only.
+
+if we want to exit from the loop execution at the time of middle of the loop execution, in that case we are using "break" statement.
+
+whenever the control reach the "break" statement then immediately the control will goto outside the while/for block i.e., the control exit from that loop.
+
+ex2:
+----
+	demo.py
+	--------
+i=0
+while True:
+    print("hai",i)
+    if i==5:
+        break
+    i+=1
+print("bye")
+
+	output
+	------
+hai 0
+hai 1
+hai 2
+hai 3
+hai 4
+hai 5
+bye
+
+continue statement:
+-------------------
+the "continue" is a keyword in python,which is used in the looping statements.
+
+if we want to skip the execution of one particular iteration, in that case we are using "continue" statement.
+
+whenever the control reach the "continue" statement then immediately to skip the execution of that particular iteration i.e., dont execute remaining statements in our while/for block and control will goto main loop statement.
+
+ex3:
+---
+	demo.py
+	-------
+i=0
+while i<=5:
+    i+=1
+    if i==3:
+        continue
+    print("hai",i)
+print("bye")
+
+	output
+	-------
+hai 1
+hai 2
+hai 4
+hai 5
+hai 6
+bye
+
+ex4:
+---
+	demo.py
+	-------
+while True:
+    uname=input("enter your user name: ")
+    if uname=='siva':
+        while True:
+            pwd=input("enter your password: ")
+            if pwd=='krish@123':                
+                break
+            else:
+                print("Invalid Password")
+                continue
+            
+    else:
+        print("Invalid Username")
+        continue
+
+    break
+print("Successfully Login")
+
+	(or)
+
+while 1:
+    uname=input("enter your user name: ")
+    if uname=='siva':
+        while True:
+            pwd=input("enter your password: ")
+            if pwd=='krish@123':                
+                break
+            else:
+                print("Invalid Password")
+                continue
+            
+    else:
+        print("Invalid Username")
+        continue
+
+    break
+print("Successfully Login")
+
+
+	output1
+	------
+enter your user name: siva
+enter your password: krish@123
+Successfully Login
+
+	output2
+	-------
+enter your user name: abc
+Invalid Username
+enter your user name: 
+Invalid Username
+enter your user name: 123
+Invalid Username
+enter your user name: pqr
+Invalid Username
+enter your user name: siva
+enter your password: krishna
+Invalid Password
+enter your password: siva123
+Invalid Password
+enter your password: krishna123
+Invalid Password
+enter your password: krish@123
+Successfully Login
+
+ex5:
+----
+	demo.py
+	-------
+u_c=p_c=0
+while True:
+    uname=input("enter your user name: ")
+    if uname=='siva':
+        while True:
+            pwd=input("enter your password: ")
+            if pwd=='krish@123':                
+                break
+            else:
+                p_c+=1
+                if p_c==3:
+                    break
+                else:
+                    print("Invalid Password")
+                    print(f"you have {3-p_c} attempts left")
+                    continue
+            
+    else:
+        u_c+=1
+        if u_c==3:
+            break
+        else:
+            print("Invalid Username")
+            print(f"you have {3-u_c} attempts left")
+            continue
+
+    break
+if uname=='siva':
+    if pwd=='krish@123':
+        print("Successfully login")
+    else:
+        print("you are enter maximum no.of times wrong password")
+else:
+    print("you are enter maximum no.of times wrong username")
+
+	output1
+	--------
+enter your user name: siva
+enter your password: krish@123
+Successfully Login
+
+	output2
+	-------
+enter your user name: abc
+Invalid Username
+you have 2 attempts left
+enter your user name: pqr
+Invalid Username
+you have 1 attempts left
+enter your user name: xyz
+you are enter maximum no.of times wrong username
+
+	output3
+	--------
+enter your user name: siva
+enter your password: krishna
+Invalid Password
+you have 2 attempts left
+enter your password: siva123
+Invalid Password
+you have 1 attempts left
+enter your password: krishna123
+you are enter maximum no.of times wrong password
+
+pass statement:
+----------------
+the "pass" is a keyword in python, which is used to create a empty blocks i.e., empty if block,else block,elif block,while block,for block,function block,class block and method block in python.
+
+	c/c++/java			Python
+	---------			-------
+	if(condition)			if condition:
+	{					pass
+
+	}				(or)
+
+					if condition:
+						...
+
+
+function in C				Python
+	-------				-------
+	function funcname(p_1,..,p_n)	def funname(p_1,...,p_n):
+	{					pass
+
+
+	}
+
+class in Java				Python
+      --------				--------
+	class classname			class classname:
+	{					pass
+
+	}
+
+ex:
+---
+	demo.py
+	-------
+print("hai")
+if 3<5:
+    pass
+
+print("bye")
+
+	(or)
+
+print("hai")
+if 3<5:
+    ...
+
+print("bye")
+
+	output
+	------
+hai
+bye
+
+
+
+
+

@@ -1,0 +1,228 @@
+what is Comprihension?
+-----------------------
+in python, comprihension means creating a new list/set/dictionary in a short,clean and readable way,using a single line of code.
+
+python provides four types of comprihensions, they are:
+
+	1).List comprihension
+	2).Set comprihension
+	3).Dictionary comprihension
+	4).Generator comprihension
+
+Note:
+most commonly used list comprihension only.
+
+what is List Comprihension?
+---------------------------
+the List Comprihension is a compact way to create a new list from an existing list/sequence,using a single readable line of code.
+
+it replaces:
+	long for loops
+	multiple append() calls
+
+with a clean one-line expression.
+
+syntax:
+-------
+	[expression for item in iterableobj if condition]
+
+	here expression	--> what to store in the list
+	     item	--> each value from the iterable
+	     iterable	--> Sequences like list,range,string,...,etc
+	     condition(optional) --> filter the items
+
+we can implement the list comprihension to required minimum one for loop and one list object.
+
+ex1:
+----
+write a python program to generate 1-N natural numbers in to list object?
+
+	demo.py
+	------
+num=int(input("enter your number: "))
+x=[]
+for i in range(1,num+1):
+    x.append(i)
+print(x)
+    
+	(or)
+
+num=int(input("enter your number: "))
+print([i for i in range(1,num+1)])
+
+	output
+	-------
+enter your number: 10
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+ex2:
+---
+write a python program to generate the even numbers from 1 to N into list object?
+
+	demo.py
+	--------
+num=int(input("enter your number: "))
+x=[]
+for i in range(1,num+1):
+    if i%2==0:
+        x.append(i)
+print(x)
+    
+	(or)
+
+num=int(input("enter your number: "))
+print([i for i in range(1,num+1) if i%2==0])
+
+	output
+	------
+enter your number: 10
+[2, 4, 6, 8, 10]
+
+ex3:
+----
+write a python program N no.of elements input to the list object?
+
+	demo.py
+	-------
+num=int(input("enter your number: "))
+x=[]
+for i in range(num):
+    x.append(eval(input("enter element: ")))
+print(x)
+
+	(or)
+
+num=int(input("enter your number: "))
+print([eval(input("enter element: ")) for i in range(num)])
+
+	output
+	------
+enter your number: 5
+enter element: 3.2
+enter element: 4j
+enter element: 9
+enter element: 'siva'
+enter element: [7,8]
+[3.2, 4j, 9, 'siva', [7, 8]]
+
+ex4:
+----
+write a python program input to the elements into nested list?
+
+	demo.py
+	-------
+x=eval(input("enter your nested list: ")) 
+for i in range(len(x)):
+    for j in range(len(x)):
+        x[j].append(eval(input()))
+print(x)
+
+	output1
+	-------
+enter your nested list: [[],[]]
+4
+2
+5
+1
+[[4, 5], [2, 1]]
+
+	output2
+	-------
+enter your nested list: [[],[],[]]
+4
+2
+5
+1
+7
+8
+2
+3
+8
+[[4, 1, 2], [2, 7, 3], [5, 8, 8]]
+
+
+ex5:
+---
+write a python program input to the elements into nested list by using list comprihension?
+
+	demo.py
+	-------
+x=int(input("enter no.of list objects: "))
+y=int(input("enter no.of elements into each list: "))
+print([[eval(input()) for j in range(y)] for i in range(x)])
+
+	output1
+	-------
+enter no.of list objects: 3
+enter no.of elements into each list: 2
+4
+2
+6
+9
+2
+1
+[[4, 2], [6, 9], [2, 1]]
+
+	output2
+	-------
+enter no.of list objects: 3
+enter no.of elements into each list: 2
+4
+2
+6
+9
+2
+1
+[[4, 2], [6, 9], [2, 1]]
+
+ex6:
+---
+write a python program to perform matrix addition?
+
+	demo.py
+	--------
+x=int(input("enter no.of list objects: "))
+y=int(input("enter no.of elements into each list: "))
+
+print("enter elements into first matrix: ")
+a=[[eval(input()) for j in range(y)] for i in range(x)]
+
+print("enter elements into second matrix: ")
+b=[[eval(input()) for j in range(y)] for i in range(x)]
+
+print("First Matric rows and columns are: ")
+for row in a:
+    print("\t",row)
+
+print("Second Matric rows and columns are: ")
+for row in b:
+    print("\t",row)
+
+c=[[a[i][j]+b[i][j] for j in range(y)] for i in range(x)]
+print("Second Matric rows and columns are: ")
+for row in c:
+    print("\t",row)
+
+	output
+	------
+enter no.of list objects: 2
+enter no.of elements into each list: 2
+enter elements into first matrix: 
+3
+2
+5
+1
+enter elements into second matrix: 
+4
+3
+2
+4
+First Matric rows and columns are: 
+	 [3, 2]
+	 [5, 1]
+Second Matric rows and columns are: 
+	 [4, 3]
+	 [2, 4]
+Second Matric rows and columns are: 
+	 [7, 5]
+	 [7, 5]

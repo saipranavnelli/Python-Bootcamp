@@ -1,0 +1,182 @@
+ex1:
+-----
+write a python script/program to check whether given number is palindrome number or not?
+
+Definition: 
+A number is a palindrome if its digits are the same when reversed.
+
+Examples:
+121 is a palindrome because when reversed, it is still 121.
+
+12321 is a palindrome,555 is a palindrome.
+
+123 is not a palindrome because its reverse,321, is different.
+
+How to check:
+Take the original number.
+Reverse its digits.Compare the reversed number to the original number. 
+If they are the same, it is a palindrome.
+
+	demo.py
+	-------
+num=int(input("enter your number: "))
+temp=num
+rev=0
+while num>=1:
+    dig=num%10
+    rev=rev*10+dig
+    num//=10
+if temp==rev:
+    print("Given number is a Palindrome number")
+
+else:
+    print("Given number is not a Palindrome number")
+
+	(or)
+
+num=int(input("enter your number: "))
+if str(num)==str(num)[::-1]:
+    print("Given number is a Palindrome number")
+else:
+    print("Given number is not a Palindrome number")
+
+ex2:
+----
+write a python program to check whether given number is Strong Number or not?
+
+A strong number is a positive integer that is equal to the sum of the factorials of its digits. For example, 145 is a strong number because 1!+4!+5!=1+24+120=145. 
+
+Other examples include 1, 2, and 40585. 
+
+How To determine if a number is strong?
+
+Break the number down into its individual digits.
+
+Calculate the factorial of each digit.
+The factorial of a non-negative integer n, n! is the product of all positive integers up to n. 
+
+For example, 5!=1*2*3*4*5=120. Remember that 0!=1.
+
+Sum all the factorials together.
+
+Compare the sum to the original number,If they are equal, it is a strong number.
+
+	demo.py
+	-------
+num=int(input("enter your number: "))
+temp=num
+s=0
+while num>=1:
+    dig=num%10
+    i=1
+    f=1
+    while i<=dig:
+        f*=i
+        i+=1
+    s+=f
+    num//=10
+if temp==s:
+    print("Given number is a Strong number")
+
+else:
+    print("Given number is not a Strong number")
+
+
+ex3:
+-----
+write a python program to check whether given number is Perfect number or not?
+
+a perfect number is a positive integer that is equal to the sum of its positive proper divisors, that is, divisors excluding the number itself.	
+
+6	--> 1,2,3,6	--> 1+2+3 = 6 --> perfect number
+
+8	--> 1,2,4,8	--> 1+2+4 = 7 --> not a perfect number
+
+	demo.py
+	-------
+num=int(input("enter your number: "))
+s=0
+i=1
+while i<=num:
+    if num%i==0:
+        if i!=num:
+            s+=i
+    i+=1
+if num==s:
+    print("Given Number is a Perfect number")
+
+else:
+    print("Given Number is not a Perfect number")
+
+
+EX4:
+----
+write a python program to check whether given number is prime number or not?
+
+A prime number is a natural number greater than 1 that has only two factors: 1 and itself. Examples include 2, 3, 5, and 7. 
+
+Numbers greater than 1 that have more than two factors are called composite numbers, such as 4, 6, and 9. 
+
+	demo.py
+	-------
+num=int(input("enter your number: "))
+i=1
+c=0
+if num>1:
+    while i<=num:
+        if num%i==0:
+            c+=1
+        i+=1
+    if c==2:
+        print("Given number is a Prime Number")
+    else:
+        print("Given number is not a Prime Number")
+elif num==0 or num==1:
+    print("Given number is not a Prime Number")
+    
+else:
+    print("Please Enter Positive Integers only")
+        
+
+
+assignment-1:
+-------------
+write a python program to print the no.of digits in a given number Without using string conversion and len() ?
+
+	input		output
+	-----		-------
+	5		1
+
+	45		2
+
+	450		3
+	
+
+assignment-2:
+------------
+write a python program to print sum of the digits in a given number Without using string conversion and len() ?
+
+	input		output
+	-----		------
+	5		5
+	12		3
+	405		9		
+	
+
+assignment-3:
+--------------
+write a python program to print the total no.of charecters,no.of alphabets,no.of lowercase alphabets,no.of uppercase alphabets,no.of digits and no.of special charecters in a given string object?
+
+	sample input		expected output
+	------------		----------------
+	Hello Siva@123		total No.of Charecters: 14
+				No.of Alphabets: 9
+				no.of lowercase alphabets: 7
+				no.of uppercase alphabets: 2
+				no.of digits: 3
+				no.of special charecters: 2
+
+
+
+
+

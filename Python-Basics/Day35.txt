@@ -1,0 +1,228 @@
+items()
+-------
+to return the list of items from the dict object
+
+	dictobj.items()
+
+ex:
+---
+>>> x={'m':45,'sc':89,'so':21,'tel':12}
+>>> x
+{'m': 45, 'sc': 89, 'so': 21, 'tel': 12}
+>>> x.items()
+dict_items([('m', 45), ('sc', 89), ('so', 21), ('tel', 12)])
+
+keys()
+------
+to return the list of keys from the dict object
+
+	dictobj.keys()
+
+ex:
+---
+>>> x={'m':45,'sc':89,'so':21,'tel':12}
+>>> x
+{'m': 45, 'sc': 89, 'so': 21, 'tel': 12}
+>>> x.keys()
+dict_keys(['m', 'sc', 'so', 'tel'])
+
+values()
+--------
+to return the list of values from the dict object
+
+	dictobj.values()
+
+ex:
+---
+>>> x={'m':45,'sc':89,'so':21,'tel':12}
+>>> x
+{'m': 45, 'sc': 89, 'so': 21, 'tel': 12}
+>>> x.values()
+dict_values([45, 89, 21, 12])
+
+pop()
+------
+remove specified key and return the corresponding value.
+
+If the key is not found, return the default if given; otherwise,raise a KeyError.
+
+	dictobj.pop(key,defaultvalue)
+
+ex:
+---
+>>> x={'m':45,'sc':89,'so':21,'tel':12}
+>>> x
+{'m': 45, 'sc': 89, 'so': 21, 'tel': 12}
+>>> x.pop('sc',100)
+89
+>>> x
+{'m': 45, 'so': 21, 'tel': 12}
+>>> x.pop('py',100)
+100
+>>> x
+{'m': 45, 'so': 21, 'tel': 12}
+>>> x.pop('so')
+21
+>>> x
+{'m': 45, 'tel': 12}
+>>> x.pop('java')
+KeyError: 'java'
+>>> x
+{'m': 45, 'tel': 12}
+
+popitem()
+---------
+Remove and return a (key, value) pair as a 2-tuple.
+
+Pairs are returned in LIFO (last-in, first-out) order,Raises KeyError if the dict is empty.
+
+	dictobj.popitem() 
+
+ex:
+---
+>>> x={'m':45,'sc':89,'so':21,'tel':12}
+>>> x
+{'m': 45, 'sc': 89, 'so': 21, 'tel': 12}
+>>> x.popitem()
+('tel', 12)
+>>> x
+{'m': 45, 'sc': 89, 'so': 21}
+>>> x.popitem()
+('so', 21)
+>>> x
+{'m': 45, 'sc': 89}
+>>> x.popitem()
+('sc', 89)
+>>> x
+{'m': 45}
+>>> x.popitem()
+('m', 45)
+>>> x
+{}
+>>> x.popitem()
+KeyError: 'popitem(): dictionary is empty'
+
+update()
+--------
+to update the dict object
+
+	dictobj.update(dictobj)
+
+ex:
+---
+>>> x={'m':45,'sc':89,'so':21,'tel':12}
+>>> y={'eng':89,'m':31,'hin':45,'tel':56}
+>>> x
+{'m': 45, 'sc': 89, 'so': 21, 'tel': 12}
+>>> y
+{'eng': 89, 'm': 31, 'hin': 45, 'tel': 56}
+>>> x.update(y)
+>>> x
+{'m': 31, 'sc': 89, 'so': 21, 'tel': 56, 'eng': 89, 'hin': 45}
+>>> y
+{'eng': 89, 'm': 31, 'hin': 45, 'tel': 56}
+
+ex:
+---
+>>> a={'m':45,'sc':89,'so':21,'tel':12}
+>>> b={'eng':89,'m':31,'hin':45,'tel':56}
+>>> a
+{'m': 45, 'sc': 89, 'so': 21, 'tel': 12}
+>>> b
+{'eng': 89, 'm': 31, 'hin': 45, 'tel': 56}
+>>> a|b #merge
+{'m': 31, 'sc': 89, 'so': 21, 'tel': 56, 'eng': 89, 'hin': 45}
+>>> a
+{'m': 45, 'sc': 89, 'so': 21, 'tel': 12}
+>>> b
+{'eng': 89, 'm': 31, 'hin': 45, 'tel': 56}
+>>> a|=b #update
+>>> a
+{'m': 31, 'sc': 89, 'so': 21, 'tel': 56, 'eng': 89, 'hin': 45}
+>>> b
+{'eng': 89, 'm': 31, 'hin': 45, 'tel': 56}
+
+Dict Comprihension:
+-------------------
+to generate the items into the dict object dynamically by writing some logic in that dict object, is known as a dict comprihension.
+
+we can implement the dict comprihension to required minimum one for loop and one dict object.
+
+	syntax
+	-------
+	{result expression condition}
+
+ex1:
+----
+write a python program to generate the items(key's are even numbers and values are odd numbers) into dict object from 1 to N natural numbers?
+
+	demo.py
+	-------
+num=int(input("enter your number: "))
+x={}
+for i in range(1,num+1):
+    if i%2==0:
+        x[i]=i-1
+print(x)
+
+	(or)
+
+num=int(input("enter your number: "))
+print({i:i-1 for i in range(1,num+1) if i%2==0})
+
+	output
+	------
+enter your number: 10
+{2: 1, 4: 3, 6: 5, 8: 7, 10: 9}
+
+ex2:
+----
+write a python program to generate items(keys are elements and values or no.of occurencess of that elements) into dict object from the given list object?
+
+	demo.py
+	-------
+y=eval(input("enter your list object: "))
+x={}
+for ele in y:
+    x[ele]=y.count(ele)
+print(x)
+
+	(or)
+
+y=eval(input("enter your list object: "))
+print({ele:y.count(ele) for ele in y})
+
+	output
+	------
+enter your list object: [10,20,30,10,40,30,10,20,30,10]
+{10: 4, 20: 2, 30: 3, 40: 1}
+
+ex3:
+----
+write a python program to genertae the item's(keys are words and values are length of that words) into dict object from the given string object?
+
+	demo.py
+	-------
+x=input("enter your string: ")
+y={}
+for word in x.split():
+    y[word]=len(word)
+print(y)
+
+	(or)
+
+x=input("enter your string: ").split()
+y={}
+for word in x:
+    y[word]=len(word)
+print(y)
+
+	(or)
+
+x=input("enter your string: ").split()
+print({word:len(word) for word in x})
+
+	output
+	-------
+enter your string: hello siva Good Afternoon
+{'hello': 5, 'siva': 4, 'Good': 4, 'Afternoon': 9}

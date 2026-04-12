@@ -1,0 +1,338 @@
+assignment-1:
+--------------
+write a python program to seperate the list into 2 sublist, first sublist contains even numbers in ascending order and second sublist contains odd numbers in descending order?
+
+	sample input			expected output
+	------------			----------------
+[5,2,7,1,6,9,3,4,8]			[[2,4,6,8],[9,7,5,3,1]]
+
+assignment-2:
+-------------
+write a python program to return the list of tuples,each tuple contains element and no.of occurencess from the given list object?
+
+	sample input			expected output
+	-------------			----------------
+[10,20,30,10,30,20,10,40,30,20,10]	[(10,4),(20,3),(30,3),(40,1)]
+
+assignment-3:
+-------------
+write a python program to convert nested list into flatted list?
+
+	sample input			expected output
+	-------------			----------------
+[1,2,3,[4,5],6,[7,8,[10,9],11],12]	[1,2,3,4,5,6,7,8,10,9,11,12]
+
+
+assignment-4:
+------------
+write a python program to print th most common occured element in a given list?
+
+	sample input			expected output
+	------------			----------------
+[10,20,30,10,30,40,10,20,30,10]		10
+
+
+Tuple Data Structure
+---------------------
+in python, the tuple datatype having 'tuple' class
+
+we can create a tuple object by using () or by calling tuple() or tuple(iterableobj)
+
+ex:
+---
+>>> x=()
+>>> x
+()
+>>> type(x)
+<class 'tuple'>
+
+>>> y=tuple()
+>>> y
+()
+>>> type(y)
+<class 'tuple'>
+
+>>> z=(5,3,7,9)
+>>> z
+(5, 3, 7, 9)
+>>> type(z)
+<class 'tuple'>
+
+>>> a=tuple("siva")
+>>> a
+('s', 'i', 'v', 'a')
+>>> type(a)
+<class 'tuple'>
+
+>>> b=tuple([6,3,7,9])
+>>> b
+(6, 3, 7, 9)
+>>> type(b)
+<class 'tuple'>
+
+the tuple object is a immutable object but it allows both mutable and immutable objects.
+
+ex:
+---
+>>> x=(2,3.2,4j,False,"siva",[6,7])
+>>> x
+(2, 3.2, 4j, False, 'siva', [6, 7])
+
+in tuple object insertion order is preserved because of that reason the tuple object is a sequence object.
+
+the tuple object allows duplicate elements.
+
+ex:
+---
+>>> y=(6,3,6,9,3,6,9,3,5)
+>>> y
+(6, 3, 6, 9, 3, 6, 9, 3, 5)
+
+the tuple object allows both homogenious and hetrogenious elements
+
+	homogenious(same/similar type of data)
+	-----------
+>>> a=(5,3,7,9)
+>>> a
+(5, 3, 7, 9)
+
+>>> b=(5.3,2.1,9.5)
+>>> b
+(5.3, 2.1, 9.5)
+
+	hetrogenious(different/dissimilar type of data)
+	------------
+>>> x=(2,3.2,4j,False,"siva",[6,7])
+>>> x
+(2, 3.2, 4j, False, 'siva', [6, 7])
+
+the tuple object also support both indexing and slicing concepts.
+
+by using indexing,we can retreive only one element from the tuple object at a time.
+
+ex:
+---
+>>> x=(2,3.2,4j,False,"siva",[6,7])
+>>> x
+(2, 3.2, 4j, False, 'siva', [6, 7])
+>>> x[0]
+2
+>>> x[-1]
+[6, 7]
+>>> x[4]
+'siva'
+>>> x[-1][0]
+6
+>>> x[-2][0]
+'s'
+
+by using slicing concept we can retreive one or more elements from the tuple object.
+
+ex:
+---
+>>> x=(2,3.2,4j,False,"siva",[6,7])
+>>> x
+(2, 3.2, 4j, False, 'siva', [6, 7])
+>>> x[:3]
+(2, 3.2, 4j)
+>>> x[-3:]
+(False, 'siva', [6, 7])
+>>> x[1:4]
+(3.2, 4j, False)
+>>> x[4][:3]
+'siv'
+>>> x[4][-3:]
+'iva'
+>>> x[4][-3:][::-1]
+'avi'
+>>> x[::-1]
+([6, 7], 'siva', False, 4j, 3.2, 2)
+>>> x[3:4] #slicing
+(False,)
+>>> x[3] #indexing
+False
+
+we can't update the tuple object elements
+
+ex:
+---
+>>> x=(2,3.2,4j,False,"siva",[6,7])
+>>> x
+(2, 3.2, 4j, False, 'siva', [6, 7])
+>>> x[0]=20
+TypeError: 'tuple' object does not support item assignment
+>>> x[-2]="krishna"
+TypeError: 'tuple' object does not support item assignment
+>>> x[-1]=[60,70]
+TypeError: 'tuple' object does not support item assignment
+>>> x[-1][0]=60
+>>> x
+(2, 3.2, 4j, False, 'siva', [60, 7])
+>>> x[-2][1]='u'
+TypeError: 'str' object does not support item assignment
+
+the tuple object support nested tuple mechanism.
+
+ex:
+---
+>>> a=((),())
+>>> a
+((), ())
+
+>>> b=((5,3,7),(8,2,1))
+>>> b
+((5, 3, 7), (8, 2, 1))
+>>> b[0]
+(5, 3, 7)
+>>> b[-1]
+(8, 2, 1)
+>>> b[0][-1]
+7
+>>> b[-1][0]
+8
+
+>>> c=(6,3,8,(2,7,9,(4,5,(1,0),10),11),13)
+>>> c
+(6, 3, 8, (2, 7, 9, (4, 5, (1, 0), 10), 11), 13)
+>>> c[3][3][2][0]
+1
+>>> c[-2][-2][-2][-1]
+0
+>>> c[-2][-4]
+7
+>>> c[3][1]
+7
+
+working with builtin functions:
+--------------------------------
+>>> x=(5,3,7,2)
+>>> x
+(5, 3, 7, 2)
+>>> len(x)
+4
+>>> min(x)
+2
+>>> max(x)
+7
+>>> sum(x)
+17
+>>> sorted(x)
+[2, 3, 5, 7]
+>>> sorted(x,reverse=True)
+[7, 5, 3, 2]
+>>> reversed(x)
+<reversed object at 0x00000233B6358310>
+>>> tuple(reversed(x))
+(2, 7, 3, 5)
+
+working with tuple class methods:
+---------------------------------
+if we want to display all the available tuple class methods with syntax and description, in that case we are using help() function.
+
+	help(tuple)
+
+if we want to display the list of all the available tuple class method names without syntax and description, in that case we are using dir() function.
+
+	dir(tuple)
+
+count()
+-------
+Return number of occurrences of value.
+
+	tupleobj.count(element)
+
+ex:
+---
+>>> x=(10,20,30,10,30,20,40,10,30,20,10)
+>>> x
+(10, 20, 30, 10, 30, 20, 40, 10, 30, 20, 10)
+>>> x.count(10)
+4
+>>> x.count(20)
+3
+>>> x.count(30)
+3
+>>> x.count(40)
+1
+>>> x.count(50)
+0
+
+index()
+-------
+Return first index of value.
+
+Raises ValueError if the value is not present.
+
+	tupleobj.index(element)
+
+ex:
+---
+>>> y=(10,20,30,40,50)
+>>> y
+(10, 20, 30, 40, 50)
+>>> y.index(10)
+0
+>>> y.index(40)
+3
+>>> y.index(60)
+ValueError: tuple.index(x): x not in tuple
+
+ex2:
+---
+>>> z=(10,20,30,10,30,20,10,40,30,20,10)
+>>> z
+(10, 20, 30, 10, 30, 20, 10, 40, 30, 20, 10)
+>>> z.index(10)
+0
+>>> z.index(40)
+7
+>>> z.index(30)
+2
+
+Note:
+-----
+the tuple object dont support comprihension concept, by mistakely we are trying to implement the comprihension technique on tuple object we will get generator object.
+
+ex:
+---
+>>> x=[i for i in range(1,11) if i%2==0]
+>>> x
+[2, 4, 6, 8, 10]
+>>> type(x)
+<class 'list'>
+
+>>> y=(i for i in range(1,11) if i%2==0)
+>>> y
+<generator object <genexpr> at 0x00000233B48E2810>
+>>> type(y)
+<class 'generator'>
+
+ex2:
+---
+>>> a=[5]
+>>> a
+[5]
+>>> type(a)
+<class 'list'>
+
+>>> b=(5)
+>>> b
+5
+>>> type(b)
+<class 'int'>
+
+>>> c=5
+>>> type(c)
+<class 'int'>
+
+>>> d=5,
+>>> d
+(5,)
+>>> type(d)
+<class 'tuple'>
+
+>>> e=(5,)
+>>> e
+(5,)
+>>> type(e)
+<class 'tuple'>

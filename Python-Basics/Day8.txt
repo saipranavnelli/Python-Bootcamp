@@ -1,0 +1,391 @@
+the string object supporting slicing concept also.
+
+by using slicing concept,we can retreive/fetch substrings i.e., one or more charecters from the string object at a time.
+
+	Scenario-1
+	----------
+	strobj[:stop]
+
+	here the stop/end index is exclusive value
+	     by default startswith 0
+	     by default increment by 1
+
+ex:
+---
+>>> x="siva krishna"
+>>> x[:4]
+'siva'
+>>> x[:-8]
+'siva'
+
+	Scenario-2
+	----------
+	strobj[start: ]
+
+	here the start index is Inclusive Value
+	     by default increment by 1
+
+ex:
+---
+>>> x="siva krishna"
+>>> x[5:]
+'krishna'
+>>> x[-7:]
+'krishna'
+
+	Scenario-3
+	--------
+	strobj[start:stop]
+
+	here start index is Inclusive value
+	     stop/end index is Exclusive value
+	     by default increment by 1
+
+ex:
+---
+>>> x="siva krishna"
+>>> x
+'siva krishna'
+>>> x[5:10]
+'krish'
+>>> x[-7:-2]
+'krish'
+>>> x[5:-2]
+'krish'
+>>> x[-7:10]
+'krish'
+>>> x[3:6]
+'a k'
+>>> x[-9:-6]
+'a k'
+>>> x[4] #indexing
+' '
+>>> x[4:5] #slicing
+' '
+
+Note:
+-----
+	strobj[start:stop:step], here we are not passing any start,stop and step value, in that case our string is printed from left to right and incremented by 1 i.e., our original string exactly printed.
+
+>>> y="siva"
+>>> y
+'siva'
+
+>>> y[::]
+'siva'
+
+>>> y[ : : ]
+'siva'
+
+>>> y[ : :1]
+'siva'
+
+	strobj[start:stop:step], here we are not passing both start and stop values but we are passing step value is -1, in that case our string is printed from right to left and decremented by i.e., our string is printed in reverese order.
+
+>>> y="siva"
+>>> y[::-1]
+'avis'
+
+ex:
+---
+>>> x="siva krishna"
+>>> x[::2]
+'sv rsn'
+>>> x[::-2]
+'ahikai'
+>>> x[5:10:2]
+'kih'
+>>> x[-3:-8:-2]
+'hik'
+>>> x[9:4:-2]
+'hik'
+>>> x[1:-1]
+'iva krishn'
+
+ex1:
+----
+write a python script/program to print the given string in a reverse order?
+
+	demo.py
+	------
+x=input("enter your string: ")
+y=x[::-1]
+print("Reverse Order: ",y)
+
+	output
+	------
+enter your string: siva
+Reverse Order:  avis
+
+ex2:
+----
+	demo.py
+	------
+x=input("enter your string: ")
+print("The Reverse Order of '%s' is: '%s' "%(x,x[::-1]))
+
+	output
+	------
+enter your string: siva
+The Reverse Order of 'siva' is: 'avis' 
+
+ex3:
+-----
+write a python program/script to print the Even Indexing Charecters and Odd Indexing Charecters Seperately?
+
+	demo.py
+	-------
+x=input("enter your string: ")
+even_indexing_chars=x[::2]
+odd_indexing_chars=x[1::2]
+print("Even Indexing Charecters: '%s'"%even_indexing_chars)
+print("Odd Indexing Charecters: '%s'"%odd_indexing_chars)
+
+	output
+	------
+enter your string: siva krishna
+Even Indexing Charecters: 'sv rsn'
+Odd Indexing Charecters: 'iakiha'
+
+ex4:
+----
+write a python program to swap the first charecter and last charecter in a given string?
+
+	demo.py
+	-------
+x=input("enter your string: ")
+a=x[0] #fetch first charecter
+b=x[-1] #fetch last charecter
+c=x[1:-1] #fetch except first and last charecters
+res=b+c+a
+print(res)
+
+	(or)
+
+x=input("enter your string: ")
+print(x[-1]+x[1:-1]+x[0])
+
+	output
+	------
+enter your string: siva krishna
+aiva krishns
+
+working with builtin functions:
+---------------------------------
+len()
+-----
+to return the no.of charecters/values/items in a given container(collection/iterable) object.
+
+	len(iterableobj)
+
+ex:
+---
+>>> x="siva krishna"
+>>> y=[6,3,7,9]
+>>> z={'m':45,'sc':90,'so':21}
+>>> a=678
+>>> len(x)
+12
+>>> len(y)
+4
+>>> len(z)
+3
+>>> len(a)
+TypeError: object of type 'int' has no len()
+
+
+ord()
+-----
+to return the ASCII(American Standard Code for Information and Interchange) value of the Given Charecter.
+
+	ord(char)
+
+Note:
+-----
+	a - z	--> 97 - 122
+	A - Z	--> 65 - 90
+        0 - 9	--> 48 - 57
+
+ex:
+---
+>>> ord('a')
+97
+>>> ord('9')
+57
+>>> ord('A')
+65
+>>> ord('@')
+64
+>>> ord('#')
+35
+>>> ord('ab')
+TypeError: ord() expected a character, but string of length 2 found
+
+chr()
+------
+to return the charecter of the given ASCII value
+
+	chr(ASCII value)
+
+ex:
+---
+>>> chr(65)
+'A'
+>>> chr(97)
+'a'
+>>> chr(48)
+'0'
+>>> chr(32)
+' '
+>>> chr(9)
+'\t'
+>>> chr(64)
+'@'
+
+min()
+------
+to return the minimum charecter/elements from the given iterable object
+
+	min(iterableobj,key=function)
+
+ex:
+---
+>>> x="Hello@123"
+>>> y=[6,3,7,9]
+>>> z=987
+>>> min(x)
+'1'
+>>> min(y)
+3
+>>> min(z)
+TypeError: 'int' object is not iterable
+
+ex2:
+----
+>>> a=[10,20,30,20,40,30,10,20,30,10,30,10,20,10,]
+>>> min(a)
+10
+>>> min(a,key=a.count)
+40
+
+ex3:
+----
+>>> b=[10,20,30,10,30,10,40,20,10,30,50,10]
+>>> min(b)
+10
+>>> min(b,key=b.count)
+40
+
+ex4:
+----
+>>> c=[10,20,30,10,30,10,50,20,10,30,40,10]
+>>> min(c)
+10
+>>> min(c,key=c.count)
+50
+
+max()
+-----
+to return the maximum value/charecter from the given iterable object?
+
+	max(iterableobj,key=function)
+
+ex:
+---
+>>> x="Hello@123"
+>>> y=[6,3,7,9]
+>>> z=987
+>>> max(x)
+'o'
+>>> max(y)
+9
+>>> max(z)
+TypeError: 'int' object is not iterable
+
+ex2:
+----
+>>> a=[10,20,30,20,40,30,10,20,30,10]
+>>> a
+[10, 20, 30, 20, 40, 30, 10, 20, 30, 10]
+>>> max(a)
+40
+>>> max(a,key=a.count)
+10
+
+ex3:
+----
+>>> b=[10,20,30,10,20,40,10,30,10]
+>>> max(b)
+40
+>>> max(b,key=b.count)
+10
+
+sorted()
+-------
+to return the elements/charecters in sorting order from the given iterable object.
+
+by default, the sorted() always to return the output as list format
+
+by default, the sorted() to return the output in the form as Ascending Order.
+
+	sorted(iterableobj,key=function,reverse=False)
+
+ex1: Ascending Order
+---
+>>> x="Hello@123"
+>>> y=[6,3,7,9]
+>>> z=987
+>>> sorted(x)
+['1', '2', '3', '@', 'H', 'e', 'l', 'l', 'o']
+>>> sorted(y)
+[3, 6, 7, 9]
+>>> sorted(z)
+TypeError: 'int' object is not iterable
+
+ex2: Descending Order
+----
+>>> x="Hello@123"
+>>> y=[6,3,7,9]
+>>> sorted(x,reverse=True)
+['o', 'l', 'l', 'e', 'H', '@', '3', '2', '1']
+>>> sorted(y,reverse=True)
+[9, 7, 6, 3]
+
+ex3:
+----
+>>> b=[10,20,30,10,20,40,10,30,10,20]
+>>> sorted(b)
+[10, 10, 10, 10, 20, 20, 20, 30, 30, 40]
+>>> sorted(b,key=b.count)
+[40, 30, 30, 20, 20, 20, 10, 10, 10, 10]
+>>> sorted(b,key=b.count,reverse=True)
+[10, 10, 10, 10, 20, 20, 20, 30, 30, 40]
+
+reversed()
+-----------
+to return the reverse iterator object.
+
+	revesred(iterableobj)
+
+ex:
+---
+>>> x="Hello@123"
+>>> y=[6,3,7,9]
+>>> z=987
+
+>>> reversed(x)
+<reversed object at 0x0000023743F0B760>
+>>> list(reversed(x))
+['3', '2', '1', '@', 'o', 'l', 'l', 'e', 'H']
+>>> "".join(list(reversed(x)))
+'321@olleH'
+
+>>> reversed(y)
+<list_reverseiterator object at 0x0000023743CB3460>
+>>> list(reversed(y))
+[9, 7, 3, 6]
+>>> tuple(reversed(y))
+(9, 7, 3, 6)
+
+>>> reversed(z)
+TypeError: 'int' object is not reversible

@@ -1,0 +1,519 @@
+eval()
+------
+to read one or more input values with homogenious and hetrogenious from user input.
+
+in eval(), our input values must be seperated by "," only.
+
+ex1:
+----
+	demo.py
+	-------
+a,b,c=eval(input("enter a,b,c values: "))
+total=a+b+c
+avg=total/3
+print(avg)
+
+	output1
+	-------
+enter a,b,c values: 4,2,5
+3.6666666666666665
+
+	output
+	-------
+enter a,b,c values: 4,2.3,2+3j
+(2.766666666666667+1j)
+
+	output3
+	-------
+enter a,b,c values: 4 2 5
+SyntaxError: invalid syntax
+
+ex2:
+----
+	demo.py
+	-------
+x=eval(input("enter your input values: "))
+print(x)
+avg=sum(x)/len(x)
+print(avg)
+
+
+	output
+	------
+enter your input values: 5,3,7,2
+(5, 3, 7, 2)
+4.25
+
+	output2
+	--------
+enter your input values: 7,
+(7,)
+7.0
+
+	output3
+	-------
+enter your input values: 7
+7
+TypeError: 'int' object is not iterable
+
+ex:
+---
+	demo.py
+	------
+product_pricess=eval(input("enter your product pricess: "))
+total_cost=sum(product_pricess)
+if total_cost>=10000:
+    dis=(30/100)*total_cost
+    sub_total=total_cost-dis
+    gst=(18/100)*sub_total
+    bill=sub_total+gst
+    print(f"Total Cost:  {total_cost:.2f}")
+    print(f"Discount(30%): {dis:.2f}")
+    print(f"Sub Total: {sub_total:.2f}")
+    print(f"GST(18%): {gst:.2f}")
+    print(f"Bill: {bill:.2f}")
+elif total_cost<10000 and total_cost>=7000:
+    dis=(20/100)*total_cost
+    sub_total=total_cost-dis
+    gst=(13/100)*sub_total
+    bill=sub_total+gst
+    print(f"Total Cost:  {total_cost:.2f}")
+    print(f"Discount(20%): {dis:.2f}")
+    print(f"Sub Total: {sub_total:.2f}")
+    print(f"GST(13%): {gst:.2f}")
+    print(f"Bill: {bill:.2f}")
+elif total_cost<7000 and total_cost>=5000:
+    dis=(15/100)*total_cost
+    sub_total=total_cost-dis
+    gst=(8/100)*sub_total
+    bill=sub_total+gst
+    print(f"Total Cost:  {total_cost:.2f}")
+    print(f"Discount(15%): {dis:.2f}")
+    print(f"Sub Total: {sub_total:.2f}")
+    print(f"GST(8%): {gst:.2f}")
+    print(f"Bill: {bill:.2f}")
+elif total_cost<5000 and total_cost>=3000:
+    dis=(10/100)*total_cost
+    sub_total=total_cost-dis
+    gst=(5/100)*sub_total
+    bill=sub_total+gst
+    print(f"Total Cost:  {total_cost:.2f}")
+    print(f"Discount(10%): {dis:.2f}")
+    print(f"Sub Total: {sub_total:.2f}")
+    print(f"GST(5%): {gst:.2f}")
+    print(f"Bill: {bill:.2f}")
+elif total_cost<3000 and total_cost>=1000:
+    dis=(5/100)*total_cost
+    sub_total=total_cost-dis
+    gst=(2/100)*sub_total
+    bill=sub_total+gst
+    print(f"Total Cost:  {total_cost:.2f}")
+    print(f"Discount(5%): {dis:.2f}")
+    print(f"Sub Total: {sub_total:.2f}")
+    print(f"GST(2%): {gst:.2f}")
+    print(f"Bill: {bill:.2f}")
+elif total_cost<1000:
+    dis=(0/100)*total_cost
+    sub_total=total_cost-dis
+    gst=(0/100)*sub_total
+    bill=sub_total+gst
+    print(f"Total Cost:  {total_cost:.2f}")
+    print(f"Discount(0%): {dis:.2f}")
+    print(f"Sub Total: {sub_total:.2f}")
+    print(f"GST(0%): {gst:.2f}")
+    print(f"Bill: {bill:.2f}")
+    
+    
+	(or)
+
+product_pricess=eval(input("enter your product pricess: "))
+total_cost=sum(product_pricess)
+if total_cost>=10000:
+    dis=(30/100)*total_cost
+    sub_total=total_cost-dis
+    gst=(18/100)*sub_total
+    bill=sub_total+gst
+    print(f"Total Cost:  {total_cost:.2f}")
+    print(f"Discount(30%): {dis:.2f}")
+    print(f"Sub Total: {sub_total:.2f}")
+    print(f"GST(18%): {gst:.2f}")
+    print(f"Bill: {bill:.2f}")
+elif total_cost<10000 and total_cost>=7000:
+    dis=(20/100)*total_cost
+    sub_total=total_cost-dis
+    gst=(13/100)*sub_total
+    bill=sub_total+gst
+    print(f"Total Cost:  {total_cost:.2f}")
+    print(f"Discount(20%): {dis:.2f}")
+    print(f"Sub Total: {sub_total:.2f}")
+    print(f"GST(13%): {gst:.2f}")
+    print(f"Bill: {bill:.2f}")
+elif total_cost<7000 and total_cost>=5000:
+    dis=(15/100)*total_cost
+    sub_total=total_cost-dis
+    gst=(8/100)*sub_total
+    bill=sub_total+gst
+    print(f"Total Cost:  {total_cost:.2f}")
+    print(f"Discount(15%): {dis:.2f}")
+    print(f"Sub Total: {sub_total:.2f}")
+    print(f"GST(8%): {gst:.2f}")
+    print(f"Bill: {bill:.2f}")
+elif total_cost<5000 and total_cost>=3000:
+    dis=(10/100)*total_cost
+    sub_total=total_cost-dis
+    gst=(5/100)*sub_total
+    bill=sub_total+gst
+    print(f"Total Cost:  {total_cost:.2f}")
+    print(f"Discount(10%): {dis:.2f}")
+    print(f"Sub Total: {sub_total:.2f}")
+    print(f"GST(5%): {gst:.2f}")
+    print(f"Bill: {bill:.2f}")
+elif total_cost<3000 and total_cost>=1000:
+    dis=(5/100)*total_cost
+    sub_total=total_cost-dis
+    gst=(2/100)*sub_total
+    bill=sub_total+gst
+    print(f"Total Cost:  {total_cost:.2f}")
+    print(f"Discount(5%): {dis:.2f}")
+    print(f"Sub Total: {sub_total:.2f}")
+    print(f"GST(2%): {gst:.2f}")
+    print(f"Bill: {bill:.2f}")
+else:
+    dis=(0/100)*total_cost
+    sub_total=total_cost-dis
+    gst=(0/100)*sub_total
+    bill=sub_total+gst
+    print(f"Total Cost:  {total_cost:.2f}")
+    print(f"Discount(0%): {dis:.2f}")
+    print(f"Sub Total: {sub_total:.2f}")
+    print(f"GST(0%): {gst:.2f}")
+    print(f"Bill: {bill:.2f}")
+    
+    
+	(or)
+
+product_pricess=eval(input("enter your product pricess: "))
+total_cost=sum(product_pricess)
+if total_cost>=10000:
+    dis=(30/100)*total_cost
+    sub_total=total_cost-dis
+    gst=(18/100)*sub_total
+    bill=sub_total+gst
+    print(f"Total Cost:  {total_cost:.2f}")
+    print(f"Discount(30%): {dis:.2f}")
+    print(f"Sub Total: {sub_total:.2f}")
+    print(f"GST(18%): {gst:.2f}")
+    print(f"Bill: {bill:.2f}")
+elif 10000>total_cost>=7000:
+    dis=(20/100)*total_cost
+    sub_total=total_cost-dis
+    gst=(13/100)*sub_total
+    bill=sub_total+gst
+    print(f"Total Cost:  {total_cost:.2f}")
+    print(f"Discount(20%): {dis:.2f}")
+    print(f"Sub Total: {sub_total:.2f}")
+    print(f"GST(13%): {gst:.2f}")
+    print(f"Bill: {bill:.2f}")
+elif 7000>total_cost>=5000:
+    dis=(15/100)*total_cost
+    sub_total=total_cost-dis
+    gst=(8/100)*sub_total
+    bill=sub_total+gst
+    print(f"Total Cost:  {total_cost:.2f}")
+    print(f"Discount(15%): {dis:.2f}")
+    print(f"Sub Total: {sub_total:.2f}")
+    print(f"GST(8%): {gst:.2f}")
+    print(f"Bill: {bill:.2f}")
+elif 5000>total_cost>=3000:
+    dis=(10/100)*total_cost
+    sub_total=total_cost-dis
+    gst=(5/100)*sub_total
+    bill=sub_total+gst
+    print(f"Total Cost:  {total_cost:.2f}")
+    print(f"Discount(10%): {dis:.2f}")
+    print(f"Sub Total: {sub_total:.2f}")
+    print(f"GST(5%): {gst:.2f}")
+    print(f"Bill: {bill:.2f}")
+elif 3000>total_cost>=1000:
+    dis=(5/100)*total_cost
+    sub_total=total_cost-dis
+    gst=(2/100)*sub_total
+    bill=sub_total+gst
+    print(f"Total Cost:  {total_cost:.2f}")
+    print(f"Discount(5%): {dis:.2f}")
+    print(f"Sub Total: {sub_total:.2f}")
+    print(f"GST(2%): {gst:.2f}")
+    print(f"Bill: {bill:.2f}")
+else:
+    dis=(0/100)*total_cost
+    sub_total=total_cost-dis
+    gst=(0/100)*sub_total
+    bill=sub_total+gst
+    print(f"Total Cost:  {total_cost:.2f}")
+    print(f"Discount(0%): {dis:.2f}")
+    print(f"Sub Total: {sub_total:.2f}")
+    print(f"GST(0%): {gst:.2f}")
+    print(f"Bill: {bill:.2f}")
+    
+    	output1
+	-------
+enter your product pricess: 7890,345,234,890,2999
+Total Cost:  12358.00
+Discount(30%): 3707.40
+Sub Total: 8650.60
+GST(18%): 1557.11
+Bill: 10207.71
+
+	output2
+	-------
+enter your product pricess: 123,45,67,320,149
+Total Cost:  704.00
+Discount(0%): 0.00
+Sub Total: 704.00
+GST(0%): 0.00
+Bill: 704.00
+
+	output3
+	-------
+enter your product pricess: 786,45,3499,1999
+Total Cost:  6329.00
+Discount(15%): 949.35
+Sub Total: 5379.65
+GST(8%): 430.37
+Bill: 5810.02
+
+Nested if:
+----------
+we can define a if block inside another if block, is known as a nested if.
+
+	syntax
+	-------
+	if condition: #outer if
+		stmt_1
+		stmt_2
+		......
+		if condition: #inner if
+			stmt_1
+			stmt_2
+			......
+
+Note:
+-----
+whenever our outer if condition is True then only the control will goto inner if condition otherwise the control dont goto the inner if condition.
+
+ex1:
+----
+write a python program to check whether given charecter is alphabet or not, whether it is an alphabet to check whether that alpahabet is either lowercase or uppercase alphabet?
+
+	demo.py
+	-------
+ch=input("enter your charecter: ")
+if ch>='a' and ch<='z' or ch>='A' and ch<='Z':
+    if ch>='a' and ch<='z':
+        print("Given charecter is Lowercase alphabet")
+    else:
+        print("Given charecter is Uppercase alphabet")
+else:
+    print("given charecter is not a Alphabet")
+    
+	(or)
+
+ch=input("enter your charecter: ")
+if ch.isalpha():
+    if ch.islower():
+        print("Given charecter is Lowercase alphabet")
+    else:
+        print("Given charecter is Uppercase alphabet")
+else:
+    print("given charecter is not a Alphabet")
+    
+	output1
+	-------
+enter your charecter: e
+Given charecter is Lowercase alphabet
+
+	output2
+	-------
+enter your charecter: L
+Given charecter is Uppercase alphabet
+
+	output3
+	-------
+enter your charecter: 7
+given charecter is not a Alphabet
+
+	output4
+	-------
+enter your charecter: @
+given charecter is not a Alphabet
+			
+ex2:
+----
+write a python program to check whetehr given string is alphabetical string or not, whether it is an alphabetical string to check that string contains only lowercase alphabets or only uppercase alphabets or both combination of lowercase and uppercase alphabets?
+
+	demo.py
+	-------
+s=input("enter your string: ")
+if s.isalpha():
+    if s.islower():
+        print("Given string contains only lowercase alphabets")
+    elif s.isupper():
+        print("Given string contains only uppercase alphabets")
+    else:
+        print("Given string contains both lower and uppercase alphabets")
+else:
+    print("Given string object contains not only alphabets")
+    
+	output1
+	--------
+enter your string: siva
+Given string contains only lowercase alphabets
+
+	output2
+	--------
+enter your string: RAMA
+Given string contains only uppercase alphabets
+
+	output3
+	--------
+enter your string: kRiShNa
+Given string contains both lower and uppercase alphabets
+
+	output4
+	--------
+enter your string: siva123
+Given string object contains not only alphabets
+
+ex3:
+----
+write a python program to check whether given two strings are Anagram strings or not?
+
+An anagram string is a string that is formed by rearranging the letters of another string, using all the original letters exactly once. 
+
+For two strings to be anagrams, they must contain the same characters with the same frequency
+
+Key characteristics:
+---------------------
+They have the exact same set of characters.
+
+Each character appears the same number of times in both strings.
+
+The order of the characters is different.
+
+Examples:
+---------
+"triangle" and "integral" are anagrams.
+
+"race" and "care" are anagrams.
+
+"debit card" and "bad credit" are anagrams if spaces are ignored.
+
+"silent" and "listen" are anagrams
+
+"heart" and "earth" are  anagrams
+
+"mom" and "mam" are not an anagrams
+
+"dad" and "bad" are not an anagrams
+
+"mad" and "madam" are not an anagrams
+
+	demo.py
+	-------
+s1=input("enter string_1: ")
+s2=input("enter string_2: ")
+if len(s1)==len(s2):
+    if sorted(s1)==sorted(s2):
+        print("Given two strings are Anagram strings")
+    else:
+        print("Given two strings are not an Anagram strings")
+else:
+    print("Given two strings are not an Anagram strings")
+    
+
+Assignment-1:
+-------------
+write a python program to find the maximum numbers from the given 2 numbers?
+
+	sample input		expected output
+	-----------		----------------
+	x=4,y=5			y is a maximum number
+
+	x=5,y=4			x is a maximum number
+
+	x=5,y=5			x and y are equal numbers
+
+Assignment-2:
+--------------
+write a python program to find the minimum numbers from the given 3 numbers?
+
+	sample input		expected output
+	-------------		-----------------
+	x=3,y=2,z=1		z is a minimum number
+
+	x=3,y=1,z=2		y is a minimum number
+
+	x=1,y=3,z=2		x is a minimum number
+
+	x=3,y=3,z=3		all are equal numbers
+
+	x=1,y=3,z=1		x and z are minimum numbers
+
+	x=1,y=1,z=3		x and y are minimum numbers
+
+	x=3,y=1,z=1		y and z are minimum numbers
+
+
+Assignment-3:
+-------------
+write a python program to check whether given charecter is either alphabet or not, whether it is an alphabet to check whether that alphabet is either vowel or consonent?
+
+	input				output
+	------				-------
+	e				vowel
+
+	t				consonent
+
+	A				vowel
+
+	Z				consonent
+
+	@				special charecter
+
+	8				digit
+
+
+
+Assignment-4:
+------------
+write a python program to read the 6 subjects marks from the user-input/keyboard,to check whether that student Pass or Fail, if that student is pass to calculate the total marks,avg marks,grade of that student?
+
+	if all subjects marks >= 35	--> pass
+	then to calculate total marks,avg marks,grade
+		
+		if avg marks>=75	--> 'A+' Grade
+		   65>=avg marks<75 	--> 'A' Grade
+		   55>=avg marks<65	--> 'B' Grade
+		   45>=avg marks<55	--> 'C' Grade
+		   otherwise		--> Pass
+
+	if any one subject or all subjects < 35	--> fail
+
+
+ 
+Assignment-5:
+------------
+write a python program to read 3 angles from the user input, to check whetehr that is triangle or not, whether it is a triangle to check whether that triangle is either right-angle triangle or Accute or Obtuse triangle?
+
+
+
+
+
+
+
+
+
+
+
+
+

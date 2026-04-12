@@ -1,0 +1,287 @@
+			Collections
+			-----------
+List:
+-----
+in python, the list datatype having 'list' class
+
+we can create a list object by using [] or by calling list() or list(iterableobj)
+
+ex:
+---
+>>> x=[]
+>>> x
+[]
+>>> type(x)
+<class 'list'>
+
+>>> y=list()
+>>> y
+[]
+>>> type(y)
+<class 'list'>
+
+>>> a=[5,3,7,9]
+>>> a
+[5, 3, 7, 9]
+>>> type(a)
+<class 'list'>
+
+>>> b=list("siva")
+>>> b
+['s', 'i', 'v', 'a']
+>>> type(b)
+<class 'list'>
+
+>>> c=list((6,3,8,9))
+>>> c
+[6, 3, 8, 9]
+>>> type(c)
+<class 'list'>
+
+the list object is a mutable object but it allows both mutable and immutable objects.
+
+ex:
+--
+>>> x=[2,3.2,4j,False,"siva",(7,5),[9,6]]
+>>> x
+[2, 3.2, 4j, False, 'siva', (7, 5), [9, 6]]
+
+in list object, the insertion order is preserved because of that reason the list object is a sequence object.
+
+the list object allows duplicate elements.
+
+ex:
+---
+>>> y=[6,3,6,3,5,6,9,3,2]
+>>> y
+[6, 3, 6, 3, 5, 6, 9, 3, 2]
+
+the list object allows both homogenious and hetrogenious data.
+
+	homogenious(same/similar type of data)
+	-----------
+>>> a=[5,3,9,2]
+>>> a
+[5, 3, 9, 2]
+
+>>> b=[4.2,9.1,7.5,3.9]
+>>> b
+[4.2, 9.1, 7.5, 3.9]
+
+	hetrogenious(different/dissimilar type of data)
+	-------------
+>>> x=[2,3.2,4j,False,"siva",(7,5),[9,6]]
+>>> x
+[2, 3.2, 4j, False, 'siva', (7, 5), [9, 6]]
+
+the list object support indexing concept.
+
+in list object each and every element having unique indexing.
+
+	ref fig: list indexing
+
+by using indexing concept,we can retreive only one element from the list object at a time.
+
+ex:
+---
+>>> x=[2,3.2,4j,False,"siva",(5,6),[9,8]]
+>>> x
+[2, 3.2, 4j, False, 'siva', (5, 6), [9, 8]]
+>>> x[0]
+2
+>>> x[4]
+'siva'
+>>> x[-3]
+'siva'
+>>> x[-1]
+[9, 8]
+>>> x[6]
+[9, 8]
+>>> x[-2][-1]
+6
+>>> x[5][1]
+6
+>>> x[-3][1]
+'i'
+>>> x[7]
+IndexError: list index out of range
+
+the list object supporting slicing concept also.
+
+by using slicing concept,we can retreive 1 or more elements from list object at a time.
+
+ex:
+---
+>>> x=[2,3.2,4j,False,"siva",(5,6),[9,8]]
+>>> x
+[2, 3.2, 4j, False, 'siva', (5, 6), [9, 8]]
+>>> x[:3]
+[2, 3.2, 4j]
+>>> x[-3:]
+['siva', (5, 6), [9, 8]]
+>>> x[1:4]
+[3.2, 4j, False]
+>>> x[::-1]
+[[9, 8], (5, 6), 'siva', False, 4j, 3.2, 2]
+>>> x[4][:3]
+'siv'
+>>> x[-3][-3:]
+'iva'
+>>> x[-3][-3:][::-1]
+'avi'
+
+by using indexing,we can update the list object elements.
+
+ex:
+--
+>>> x=[2,3.2,4j,False,"siva",(5,6),[9,8]]
+>>> x
+[2, 3.2, 4j, False, 'siva', (5, 6), [9, 8]]
+>>> x[0]=20
+>>> x
+[20, 3.2, 4j, False, 'siva', (5, 6), [9, 8]]
+>>> x[-3]="krishna"
+>>> x
+[20, 3.2, 4j, False, 'krishna', (5, 6), [9, 8]]
+>>> x[-2]=(50,60)
+>>> x
+[20, 3.2, 4j, False, 'krishna', (50, 60), [9, 8]]
+>>> x[-1]=[90,80]
+>>> x
+[20, 3.2, 4j, False, 'krishna', (50, 60), [90, 80]]
+>>> x[-1][0]=900
+>>> x
+[20, 3.2, 4j, False, 'krishna', (50, 60), [900, 80]]
+>>> x[-2][0]=500
+TypeError: 'tuple' object does not support item assignment
+>>> x[-3][2]='u'
+TypeError: 'str' object does not support item assignment
+
+the list object support nested list mechanism.
+
+ex:
+--
+>>> a=[[],[]]
+>>> a
+[[], []]
+
+>>> b=[[5,3,7],[9,2,8]]
+>>> b
+[[5, 3, 7], [9, 2, 8]]
+>>> b[1]
+[9, 2, 8]
+>>> b[1][1]
+2
+>>> b[0][0]
+5
+>>> b[0][-1]
+7
+>>> b[-1][0]
+9
+
+>>> c=[3,9,2,[4,8,[7,6],1],5]
+>>> c
+[3, 9, 2, [4, 8, [7, 6], 1], 5]
+>>> c[3][2][0]
+7
+>>> c[-2][-2][-1]
+6
+>>> c[-4]
+9
+>>> c[3][1]
+8
+
+ex1:
+---
+write a python program to print the list object elements through iteration?
+
+	demo.py
+	-------
+x=eval(input("enter your list: "))
+i=0
+while i<len(x):
+    print(x[i])
+    i+=1
+
+	(or)
+
+x=eval(input("enter your list: "))
+for i in x:
+    print(i)
+
+	(or)
+
+x=eval(input("enter your list: "))
+for i in range(len(x)):
+    print(x[i])
+
+	output1(homogenious data)
+	-------
+enter your list: [5,2,9,1]
+5
+2
+9
+1
+
+	output2(hetrogenious data)
+	--------
+enter your list: [2,3.2,4j,False]
+2
+3.2
+4j
+False
+
+ex2:
+---
+write a python program to print the nested list object elements through iteration?
+
+	demo.py
+	-------
+x=eval(input("enter your netsed list: "))
+for i in x:
+    print(i)
+
+	output
+	------
+enter your netsed list: [[5,3,7],[8,2,6]]
+[5, 3, 7]
+[8, 2, 6]
+
+
+ex3:
+---
+	demo.py
+	--------
+x=eval(input("enter your netsed list: "))
+for i in x:
+    for j in i:
+        print(j)
+
+	(or)
+
+x=eval(input("enter your netsed list: "))
+i=0
+while i<len(x):
+    j=0
+    while j<len(x[i]):
+        print(x[i][j])
+        j+=1
+    i+=1
+
+	(or)
+
+x=eval(input("enter your netsed list: "))
+for i in range(len(x)):
+    for j in range(len(x[i])):
+        print(x[i][j])
+
+
+	output
+	------
+enter your netsed list: [[5,3,7],[8,2,6]]
+5
+3
+7
+8
+2
+6

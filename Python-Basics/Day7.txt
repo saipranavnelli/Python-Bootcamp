@@ -1,0 +1,640 @@
+eval()
+------
+the eval() is a one builtin function in python.
+
+it allows takes the input as any type of data and any type of number system.
+
+it allows to read the one or more input values from the user/keyboard/console with homogenious(same/similar type of data) and hetrogenious(different/dissimilar type of data) data.
+
+in eval() function, our input values must be seperated by "," only
+
+ex1:
+----
+	demo.py
+	-------
+a=int(input("enter a value: "))
+b=int(input("enter b value: "))
+c=int(input("enter c value: "))
+print(a+b+c)
+
+	output
+	------
+enter a value: 4
+enter b value: 2
+enter c value: 5
+11
+
+	output2
+	-------
+enter a value: 4
+enter b value: 2
+enter c value: 3.1
+
+ValueError: invalid literal for int() with base 10: '3.1'
+
+ex2:
+----
+	demo.py
+	-------
+a=eval(input("enter a value: "))
+b=eval(input("enter b value: "))
+c=eval(input("enter c value: "))
+print(a+b+c)
+
+	output1
+	-------
+enter a value: 4
+enter b value: 2
+enter c value: 3
+9
+
+	output2
+	-------
+enter a value: 4
+enter b value: 2.3
+enter c value: 4j
+(6.3+4j)
+
+ex3:
+----
+	demo.py
+	-------
+a,b,c=eval(input("enter a,b and c values: "))
+print(a+b+c)
+
+	output1
+	-------
+enter a,b and c values: 4,5,2
+11
+
+	output2
+	--------
+enter a,b and c values: 4,2.3,4j
+(6.3+4j)
+
+	output3
+	--------
+enter a,b and c values: 3 4 2
+SyntaxError: invalid syntax
+
+ex4:
+----
+	demo.py
+	------
+marks=eval(input("enter student marks: "))
+print(marks)
+total=sum(marks)
+print(total)
+avg=sum(marks)/len(marks)
+print(avg)
+
+	output
+	------
+enter student marks: 45,34,89,23
+(45, 34, 89, 23)
+191
+47.75
+
+ex5:
+----
+	demo.py
+	-------
+x=eval(input("enter your number system: "))
+print("Binary Number System: ",bin(x))
+print("Octal Number System: ",oct(x))
+print("Decimal Number System: ",x)
+print("Hexadecimal Number System: ",hex(x))
+
+	output
+	------
+enter your number system: 0b11010
+Binary Number System:  0b11010
+Octal Number System:  0o32
+Decimal Number System:  26
+Hexadecimal Number System:  0x1a
+
+what is Object?
+--------------
+an object is a instance of a class i.e., in python everything we are treated as an object.
+
+	Scenario-1: based on insertion order is presrved
+	-----------
+	Sequence Objects
+	Non-Sequence Obejcts
+
+	Sceanrio-2: based on iteration
+	----------
+	Iterable Objects
+	Non-Iterable Objects
+
+	Scenario-3: based on mutability
+	-----------
+	Mutable Objects
+	Immutable Objects
+
+Sequence Objects:
+-----------------
+any object always which follow the insertion order preserved concept i.e., both input order and output order will be same, that type of objects are called Sequence Objects.
+
+	ex: String,list,tuple,dictionary(from 3.4+ versions onwards),range,...
+
+
+ex1:
+----
+>>> x=[4,3,9,7]
+>>> x
+[4, 3, 9, 7]
+>>> type(x)
+<class 'list'>
+
+ex2:
+----
+>>> y="krishna"
+>>> y
+'krishna'
+>>> type(y)
+<class 'str'>
+
+Non-Sequence Obejcts
+---------------------
+any object in some cases don't follow the insertion order preserved concept i.e., in some case both input order and output order will not be same, that type of objects are called Non-Sequence Obejcts.
+
+	ex: set,frozenset,dictionary(before 3.4(python2.x and 3.x(3.0 to 3.4)))
+
+ex:
+---
+>>> a={5,3,9,12}
+>>> a
+{9, 3, 12, 5}
+>>> type(a)
+<class 'set'>
+
+ex2:
+----
+>>> b={1,2,3,4}
+>>> b
+{1, 2, 3, 4}
+>>> type(b)
+<class 'set'>
+
+Iterable Objects:
+-----------------
+any object which allow the iterations i.e., we can use any object as a repeated purpose, that type of objects are called Iterable Objects.
+
+	ex: string,list,tuple,set,frozenset,dictionary,range,....
+
+ex1:
+---
+>>> x=[5,3,6,9]
+>>> msg="hello siva,Good Morning"
+>>> for i in x:
+        print(msg)
+
+hello siva,Good Morning
+hello siva,Good Morning
+hello siva,Good Morning
+hello siva,Good Morning
+
+ex2:
+----
+>>> y="krishna"
+>>> for ch in y:
+        print(msg)
+
+hello siva,Good Morning
+hello siva,Good Morning
+hello siva,Good Morning
+hello siva,Good Morning
+hello siva,Good Morning
+hello siva,Good Morning
+hello siva,Good Morning
+
+Non-Iterable Objects:
+---------------------
+any object which don't allow the iterations i.e., we can't use any object as a repeated purpose, that type of objects are called Non-Iterable Objects.
+
+	ex: int,float,complex,bool
+
+ex:
+---
+>>> z=67865
+>>> msg="hello siva,Good Morning"
+>>> for j in z:
+     	print(msg)
+
+
+TypeError: 'int' object is not iterable
+
+Mutable Objects:
+----------------
+any object which allows to modify(insert,delete and update) the data, that type of objects are called Mutable Objects.
+
+	ex: list,set,dictionary,bytearray
+
+ex1:
+----
+>>> x=[5,3,7,9]
+>>> x
+[5, 3, 7, 9]
+>>> id(x)
+1608977412992
+>>> type(x)
+<class 'list'>
+>>> x[1]
+3
+>>> x[1]=30
+>>> x
+[5, 30, 7, 9]
+>>> id(x)
+1608977412992
+
+Immutable Objects:
+------------------
+any object which don't allows to modify(insert,delete and update) the data, that type of objects are called Immutable objects.
+
+	ex: int,float,complex,bool,str,tuple,frozenset,range,xrange,bytes,...
+
+
+ex:
+---
+>>> y=(5,3,9,7)
+>>> y
+(5, 3, 9, 7)
+>>> type(y)
+<class 'tuple'>
+>>> id(y)
+1608977292464
+>>> y[1]
+3
+>>> y[1]=30
+TypeError: 'tuple' object does not support item assignment
+
+Note:
+------
+the different immutable objects having the same data but referenceing same/single object in the memory.
+
+ex1:
+----
+	demo.py
+	--------
+x=10
+y=10
+z=10
+print(id(x))
+print(id(y))
+print(id(z))
+
+	output
+	------
+C:\Users\Lenovo\Desktop>python demo.py
+140716881126808
+140716881126808
+140716881126808
+
+ex2:
+----
+	demo.py
+	-------
+x="hai siva krishna"
+y="hai siva krishna"
+z="hai siva krishna"
+print(id(x))
+print(id(y))
+print(id(z))
+
+	output
+	------
+C:\Users\Lenovo\Desktop>python demo.py
+2259655063664
+2259655063664
+2259655063664
+
+ex3:
+----
+	demo.py
+	-------
+x=(1,2,3)
+y=(1,2,3)
+z=(1,2,3)
+print(id(x))
+print(id(y))
+print(id(z))
+
+	output
+	------
+C:\Users\Lenovo\Desktop>python demo.py
+2196839231664
+2196839231664
+2196839231664
+
+
+the different mutable objects having the same data but referenceing different objects in the memory.
+
+ex:
+---
+	demo.py
+	-------
+x=[1,2,3]
+y=[1,2,3]
+z=[1,2,3]
+print(id(x))
+print(id(y))
+print(id(z))
+
+	output
+	-------
+C:\Users\Lenovo\Desktop>python demo.py
+2495893190720
+2495893075072
+2495895264448
+
+
+		String Handling
+		----------------
+what is String?
+---------------
+a String is a Charecter or collection of charecters or sequence of words.
+
+in python, the string datatype having 'str' class
+
+in python, the string object is a Sequence,Iterable and Immutable object.
+
+how to represent the strings in python?
+----------------------------------------
+we can represent the strings in python, in two ways, they are
+
+	1).Single Line String
+
+		a).by using single-single quote's
+
+			ex: 'siva'
+
+		b).by using single-double quote's
+
+			ex: "siva"
+
+	2).Multi-Line String
+
+		a).by using Tripple-Single Quote's
+			
+			ex: '''siva
+			       krishna'''
+
+		b).by using Tripple-Double Quote's
+
+			ex: """siva
+			       krishna"""
+
+
+ex1:
+---
+	demo.py
+	--------
+#single line strings
+x='siva'
+y="krishna"
+#multiline strings
+z='''siva
+ameerpet
+hyderabad
+telangana
+500016'''
+a="""krishna
+guntur
+amaravathi
+andhrapradesh
+522656"""
+print(x)
+print("*"*45)
+print(y)
+print("="*45)
+print(z)
+print("-"*45)
+print(a)
+
+	output
+	------
+C:\Users\Lenovo\Desktop>python demo.py
+siva
+*********************************************
+krishna
+=============================================
+siva
+ameerpet
+hyderabad
+telangana
+500016
+---------------------------------------------
+krishna
+guntur
+amaravathi
+andhrapradesh
+522656
+
+Note:
+------
+a quote inside different quote is possible but a quote inside same quote is not possible.
+
+ex2:
+----
+	demo.py
+	-------
+#single line strings
+x='hai "siva" krishna'
+y="hai 'siva' krishna"
+#multiline strings
+z='''siva
+"ameerpet"
+'hyderabad'
+"""telangana"""
+500016'''
+a="""krishna
+'guntur'
+"amaravathi"
+'''andhrapradesh'''
+522656"""
+print(x)
+print("*"*45)
+print(y)
+print("="*45)
+print(z)
+print("-"*45)
+print(a)
+
+	output
+	------
+C:\Users\Lenovo\Desktop>python demo.py
+hai "siva" krishna
+*********************************************
+hai 'siva' krishna
+=============================================
+siva
+"ameerpet"
+'hyderabad'
+"""telangana"""
+500016
+---------------------------------------------
+krishna
+'guntur'
+"amaravathi"
+'''andhrapradesh'''
+522656
+
+ex3:
+---
+	demo.py
+	-------
+x='hai 'siva' krishna'
+print(x)
+
+	output
+	------
+C:\Users\Lenovo\Desktop>python demo.py
+ 
+SyntaxError: invalid syntax. Is this intended to be part of the string?
+
+ex4:
+----
+	demo.py
+	-------
+x="hai "siva" krishna"
+print(x)
+
+	output
+	------
+C:\Users\Lenovo\Desktop>python demo.py
+  
+SyntaxError: invalid syntax. Is this intended to be part of the string?
+
+ex5:
+----
+	demo.py
+	--------
+x="""hai """siva""" krishna"""
+print(x)
+
+	output
+	-------
+C:\Users\Lenovo\Desktop>python demo.py
+
+SyntaxError: invalid syntax. Is this intended to be part of the string?
+
+ex6:
+----
+	demo.py
+	-------
+x='''hai '''siva''' krishna'''
+print(x)
+
+	output
+	-------
+C:\Users\Lenovo\Desktop>python demo.py
+
+SyntaxError: invalid syntax. Is this intended to be part of the string?
+
+ex7:
+----
+	demo.py
+	-------
+x='''hai """siva "krishna 'bye'""""'''
+print(x)
+
+	output
+	------
+C:\Users\Lenovo\Desktop>python demo.py
+hai """siva "krishna 'bye'""""
+
+ex8:
+----
+	demo.py
+	-------
+x="hai\nsiva\nkrishna"
+print(x)
+
+	output
+	-------
+C:\Users\Lenovo\Desktop>python demo.py
+hai
+siva
+krishna
+
+ex9:
+----
+	demo.py
+	-------
+x="hai\tsiva\tkrishna"
+print(x)
+
+	output
+	------
+C:\Users\Lenovo\Desktop>python demo.py
+hai     siva    krishna
+
+ex10:
+-----
+	demo.py
+	-------
+x="hai\n\tsiva\n\t\tkrishna"
+print(x)
+
+	output
+	-------
+C:\Users\Lenovo\Desktop>python demo.py
+hai
+        siva
+                krishna
+
+
+
+indexing:
+---------
+indexing means position of the charecter/element in a sequence(string,list,tuple,range..)
+
+indexing allows to extract/retreive element(char/value) from the sequence.
+
+we can represent the indexing within the square brackets i.e., [] only.
+
+the string object supporting indexing concept, in python the indexing can be categorized into 2 type's, they are
+
+	1).Positive/Forward Indexing
+
+	2).Negative/Backward Indexing
+
+
+			Indexing
+			   |
+		-------------------------
+		|			|
+	Positive/Forward	Neagtive/Backward
+		|			|
+takes from Left to Right	takes from Right to Left
+		|			|
+by default startswith 0		by default startswith -1
+
+
+in string object,each and every charecter having unique indexing.
+
+	ref fig: string indexing
+
+by using indexing we can retreive only one charecter from the string object at a time.
+
+ex:
+---
+>>> x="siva krishna"
+>>> x
+'siva krishna'
+>>> x[2]
+'v'
+>>> x[4]
+' '
+>>> x[9]
+'h'
+>>> x[-3]
+'h'
+>>> x[-8]
+' '
+>>> x[-10]
+'v'
+>>> x[12]
+IndexError: string index out of range
+

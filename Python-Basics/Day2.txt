@@ -1,0 +1,498 @@
+Implementations of Python:
+---------------------------
+Python is a Language Specification, and different groups have created their own Implementations of Python Interpreter.
+
+these implementations are differ in speed,compatibility and purpose.
+
+1.Cpython:
+--------
+Cpython is the default and most widely used implementation written in C-programming
+
+Compiles Python Code into bytecode which is executed by the Python Virtual Machine(PVM).
+
+It support all Python Libraries
+
+2.Jython:
+--------
+Jython is the Another Implemenation of Python written in Java
+
+It Runs on the Java Virtual Machine(JVM)
+
+can import and use Java Libraries directly
+
+3.IronPython:
+-----------
+IronPython is the another Implementation of Python for the .Net Framework(C#).
+
+it Integrates well with .NET Libraries
+
+4.PyPy:
+------
+It written in Python(Rpython) itself.
+
+it uses JIT(Just-In-Time) Compiler, making it much faster for many applications compared to CPython.
+
+5.MicroPython:
+------------
+it is an another implementation of Python3 for micro-controllers(IOT Devices)
+
+It is a Light weight and optimized for devices with low memory
+
+6.Stackless Python:
+------------------
+it is a varient of Cpython
+
+it focus on concurrency and micro-threads without using os threads
+
+7.Cython:
+-------
+it is not a seperate interpreter but an Enhancement
+
+it is a superset of python that comiles to C
+
+it is great for speed optimization and wrapping C/C++ libraries
+
+Distributions of Python:
+--------------------------
+a python distribution is a pre-packaged bundle of the python interpreter along with additional libraries,tools and configurations for specific purposes.
+
+the popular python distributions are:
+
+1).Standard Python Distribution(Cpython):
+it comes from www.python.org
+it includes only the standard Library
+it is a light-weight, but you may need to manually install extra libraries using pip.
+
+2).Anaconda distribution:
+it is widely used in Data Science,AI and Machine Learning.
+it comes with python,jupyter notebook,spyder IDE and many scientifi libraries pre-installed(NumPy,Pandas,matplotlib,scikit-learn,TensorFlow,...)
+has it's own package manager called conda
+
+3).ActivePython:
+it is a Commercial python distribution by ActiveState
+it comes with enterprise-grade support and pre-compiled libraries
+
+4).WinPython:
+it is a portable distribution for windows
+Doesn't required installation
+
+
+Note:
+-----
+Implementations= Different Versions of Python Interpreter(CPython,Jython,PyPy,....)
+
+Distributions= Bundled Python + Libraries + Tools(Cpython,Anaconda,ActivePython,...)
+
+what is Comment?
+----------------
+A comment is a part of a program's source code that is ignored by the compiler or interpreter.
+
+A comment is basically a text note that gives an explanation about the source code.
+
+We include the comments in our source code, to increase the readability of the program.
+
+how to represent the Comments in Python?
+----------------------------------------
+we can represents the comments in python, in two ways
+
+	1).single line comment
+
+		# comment_line
+
+	2).multi line comment
+
+		""" comment_line_1
+		    comment_line_2
+	                .....
+		    comment_line_n """
+
+
+ex:
+---
+	demo.py(without comments)
+	-------
+x=10
+y=20
+print(x+y)
+print(x-y)
+print(x*y)
+print(x/y)
+
+	output
+	------
+30
+-10
+200
+0.5
+
+ex2:
+----
+	demo.py(with comments)
+	-------
+""" write a python program to perform the arithmetic calculations like:
+    1).Addition
+    2).Subtraction
+    3).Multiplication
+    4).Division """
+#variable Decleration
+x=10
+y=20
+
+print(x+y)#Addition
+print(x-y)#Subtraction
+print(x*y)#Multiplication
+print(x/y)#Division
+
+	output
+	------
+30
+-10
+200
+0.5
+
+Versions of Python:
+-------------------
+Initially, the python released into the market in the year of 1991.
+
+the Python1.0 version is released into the market in the year of 1994.
+
+the python1.x versions don't support Garbage Collector concept.
+
+the Python2.0 version is released into the market in the year of 2000.
+
+from python2.0 version onwards, the python language also support Garbage Collector concept.
+
+the Python3.0 version is released into the market in the year of 2008.
+
+	Python3.x	--> 3.0,3.1,3.2,....,3.14.3(feb-2026)
+
+note:
+-----
+the PSF(Python Software Foundation) Team completely to stop the python2.x versions.
+
+the python2.7.18(20-apr-2020) is the last release of Python2.x versions.
+
+Python Environment Setup:
+------------------------
+the Python Environment Setup can be categorized into 3 parts, they are
+
+	1). Downloading Python Software
+
+	2). Install Python Software
+
+	3). Python Path Setup
+
+How to Downloading Python Software?
+------------------------------------
+	goto www.python.org
+		|
+	goto downloads
+		|
+	select our operating system
+	     (windows)
+		|
+	to download any one file related to that 
+	particular operating system bit number
+	(windows installer file)
+
+How to Install Python Software?
+--------------------------------
+	double click on Python3.x version related downloaded file
+			|
+	to enable admin priviliges and to select any one option(custom/installNow)
+			|
+	to enable all the optional features and click on next
+			|
+	to select installation location and click on install button
+			|
+		click on yes
+
+
+what is Path?
+--------------
+a path defines the location of a file or folder in a computer's file system
+
+The PATH environment variable, also referred to as just PATH or Path
+
+what is Python path?
+--------------------
+Python path is a special environment variable that provides guidance to the Python interpreter about where to find various libraries and applications.
+
+why we need to set the python path?
+-----------------------------------
+	after installation of python software by default we can access the python interpreter on top of that particular installtion location only.
+
+ex:
+---
+C:\Users\Lenovo>python
+	"python" is not recognized
+
+C:\Users\Lenovo>cd ..
+
+C:\Users>cd ..
+
+C:\>cd Python314
+
+C:\Python314>python
+Python 3.14.3
+
+>>> print("hello world")
+hello world
+>>> ^Z  #ctrl+z
+
+
+C:\Python314>d:
+
+D:\>python
+	"python" is not recognized
+
+D:\>
+
+	
+	if we want to access the python interpreter on top of any location in our computer/system, in that case we need to set the python path.
+
+
+how to set the python path?
+----------------------------
+we can set the python path in two scenarios, they are
+
+	scenario-1: temporary purpose i.e., temporary path setup
+
+	scenario-2: permanent purpose i.e., permanent path setup
+
+temporary path setup:
+---------------------
+	if we want to set the python path temporarly, in that case we are using following command,
+
+	set path="python_installation_location"
+
+ex:
+---
+C:\Users\Lenovo>set path="C:\Python314"
+
+
+permanent path setup:
+--------------------
+	if we want to set the python path permanently, in that case we are follow the following steps,
+
+	goto ThisPC
+	     |
+	Right click on ThisPC
+	     |
+	click on Properties
+	     |
+	click on Advanced System Settings
+	     |
+	click on Environment variables
+	     |
+	goto system variables
+	     |
+	to select path variable and click on edit
+(windows8,10,11 versions, again click on edit text and click on ok)
+	     |
+	to put ; and to add our python installation location
+	     |
+	click on ok
+	     |
+	click on ok
+	     |
+	click on ok
+
+
+how to develop python programs/applications/projects?
+-----------------------------------------------------
+we can implement/develop the python programs in 2 mode's, they are
+
+	1).Interactive Mode
+
+	2).Batch Mode
+
+Interactive Mode:
+-----------------
+in Interactive Mode, we can write one by one python statements directly on python interpreter and executeing.
+
+how to working with Python Interactive Mode?
+---------------------------------------------
+	goto command prompt(CMD)/Terminal
+		|
+	by typing python and to press enter key
+
+how to exit from Python Interactive Mode?
+-----------------------------------------
+we can exit from Python Interactive Mode by using following options like
+
+	ctrl+z		(or)	exit()		(or)	quit()
+
+note:
+-----
+the python interactive mode working mechanism is based on REPL rule
+	
+	REPL(Read Evaluate Print Loop)
+
+Problems in Interactive Mode:
+-----------------------------
+once we are exit from python interactive mode previous work done will not be saved in anywhere because of that reason the Python Interactive Mode is not suitable for development of the python applications/projects but it is suitable for only learning the python.
+
+Batch Mode:
+-----------
+in Batch Mode, we can write one or more python statements into a single file, we can save that file with ".py" extension and executeing that file.
+
+how to implement the Batch Mode?
+---------------------------------
+we can implement the Batch Mode in two ways, they are
+
+	1). by using Editor's
+
+	2). by using IDE's
+
+what is Editor?
+---------------
+Editor is an application software, which will provides good environment to writeing the source code.
+
+	windows			--> notepad,notepad++,editplus,sublime,...
+
+	linux/mac		--> Vi Editor,Nano Editor,Text Editor,sublime,...
+
+how to working with Editor's?
+------------------------------
+	open any one editor in our computer
+			|
+	goto file menu and to select new file
+			|
+	to write one or more python statements into that file
+			|
+	to save that file with ".py" extension
+
+ex:
+---
+	C:\Users\Lenovo\Desktop\sample.py
+	----------------------------------
+print("hello world")
+
+
+how to run/execute python file/script through cmd/terminal?
+-----------------------------------------------------------
+	if we want to run/execute python file/script through cmd/terminal, in that case we are using following command,
+
+	python filename.py
+
+ex:
+---
+C:\Users\Lenovo>python sample.py
+python: can't open file 'C:\\Users\\Lenovo\\sample.py': [Errno 2] No such file or directory
+
+C:\Users\Lenovo>python C:\Users\Lenovo\Desktop\sample.py
+hello world
+
+	(or)
+
+C:\Users\Lenovo>cd Desktop
+
+C:\Users\Lenovo\Desktop>python sample.py
+hello world
+
+ex2:
+----
+	D:\sivakrishna\osdemo\calculator.py
+	-----------------------------------
+x=10
+y=20
+print(x+y)
+print(x-y)
+
+	output
+	-------
+C:\Users\Lenovo>python D:\sivakrishna\osdemo\calculator.py
+30
+-10
+
+	(or)
+
+C:\Users\Lenovo>d:
+
+D:\>cd sivakrishna
+
+D:\sivakrishna>cd osdemo
+
+D:\sivakrishna\osdemo>python calculator.py
+30
+-10
+
+Problems in Editor's:
+---------------------
+in Editor's, the development of the application takes more time.
+
+the Editor's, don't support automatic debugging concept.
+
+note:
+-----
+to overcome the problems in editors to introduce IDE's concept.
+
+in realtime/live scenarios all companies are using IDE's only.
+
+what is IDE's?
+--------------
+IDE's(Integrated Development Environment's) are tools, which will provides good environment to Faster Development of the applications.
+
+the IDE's, support automatic debugging concept.
+
+the Python supported IDE's are,
+	idle
+	pycharm
+	vs code IDE
+	Atom
+	Spyder
+	Jupiter notebook
+	Eclipse
+	Netbeans
+	.....
+	.....
+
+what is idle?
+-------------
+idle is a one default and builtin IDE for python but it is not a standard IDE.
+
+idle support both Interactive Mode and Batch Mode Concept's
+
+
+how to working with Interactive Mode in idle?
+---------------------------------------------
+	goto search and by typing idle
+			|
+	to select any one idle in our computer
+
+
+how to working with Batch Mode in idle?
+----------------------------------------
+	goto search and by typing idle
+			|
+	to select any one idle in our computer
+			|
+	goto file menu and to select new file
+			|
+	to write the one or more python statements into that file
+			|
+	to save that file with .py extension
+
+
+how to run python file/module/script in idle?
+----------------------------------------------
+if we want to run python file/module/script in idle, in that case we are using following option,
+
+	goto run menu
+	      |
+	click on run module
+
+		(or)
+
+	to press F5	or	Fn+F5
+
+note:
+-----
+except idle, if we want to working with any another IDE, in that case we need to download and install that particular IDE by explicitly.
+
+
+
+
+
+

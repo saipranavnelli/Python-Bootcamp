@@ -1,0 +1,199 @@
+ex2: insert operation
+----
+>>> y={'m':45,'sc':90,'so':21,'tel':91}
+>>> y
+{'m': 45, 'sc': 90, 'so': 21, 'tel': 91}
+>>> y['hin']=65
+>>> y
+{'m': 45, 'sc': 90, 'so': 21, 'tel': 91, 'hin': 65}
+
+ex3: update operation
+----
+>>> y={'m':45,'sc':90,'so':21,'tel':91}
+>>> y
+{'m': 45, 'sc': 90, 'so': 21, 'tel': 91}
+>>> y['sc']=100
+>>> y
+{'m': 45, 'sc': 100, 'so': 21, 'tel': 91}
+
+the dict object dont allow the another dict object as a key but it allows another dict object as a value.
+
+ex:
+---
+>>> x={'name':'siva','marks':{'m':45,'sc':89,'so':31}}
+>>> x
+{'name': 'siva', 'marks': {'m': 45, 'sc': 89, 'so': 31}}
+
+>>> y={'name':'siva',{'m':45,'sc':89,'so':31}:'marks'}
+TypeError: cannot use 'dict' as a dict key (unhashable type: 'dict')
+
+working with builtin functions:
+---------------------------------
+>>> x={'m':56,'sc':21,'so':89,'tel':45}
+>>> x
+{'m': 56, 'sc': 21, 'so': 89, 'tel': 45}
+>>> len(x)
+4
+
+	based on keys
+	-------------
+>>> min(x) #by default it will works based on keys
+'m'
+>>> max(x) #by default it will works based on keys
+'tel'
+>>> sorted(x) #by default it will works based on keys
+['m', 'sc', 'so', 'tel']
+>>> sorted(x,reverse=True) #by default it will works based on keys
+['tel', 'so', 'sc', 'm']
+>>> list(reversed(x)) #by default it will works based on keys
+['tel', 'so', 'sc', 'm']
+
+	based on values
+	-----------------
+>>> min(x.values()) #it will works based on values
+21
+>>> max(x.values()) #it will works based on values
+89
+>>> sorted(x.values()) #it will works based on values
+[21, 45, 56, 89]
+>>> sorted(x.values(),reverse=True) #it will works based on values
+[89, 56, 45, 21]
+>>> list(reversed(x.values())) #it will works based on values
+[45, 89, 21, 56]
+
+	based on keys but return items
+	--------------------------------
+>>> min(x.items()) #it will works based on key but it return an item
+('m', 56)
+>>> max(x.items()) #it will works based on key but it return an item
+('tel', 45)
+>>> sorted(x.items()) #it will works based on key but it return an item
+[('m', 56), ('sc', 21), ('so', 89), ('tel', 45)]
+>>> sorted(x.items(),reverse=True) #it will works based on key but it return an item
+[('tel', 45), ('so', 89), ('sc', 21), ('m', 56)]
+>>> reversed(x.items())#it will works based on key but it return an item
+<dict_reverseitemiterator object at 0x0000024FE6A52930>
+>>> list(reversed(x.items()))#it will works based on key but it return an item
+[('tel', 45), ('so', 89), ('sc', 21), ('m', 56)]
+>>> dict(reversed(x.items()))#it will works based on key but it return an item
+{'tel': 45, 'so': 89, 'sc': 21, 'm': 56}
+
+working with dict class methods:
+----------------------------------
+if we want to display all the available dict class method names with syntax and description, in that case we are using help() function.
+
+	help(dict)
+
+if we want to display the list of all the available dict class method names without syntax and description, in that case we are using dir() function.
+
+	dir(dict)
+
+clear()
+-------
+Remove all items from the dict.
+
+	dictobj.clear()
+
+ex:
+---
+>>> x={'m':56,'sc':21,'so':89,'tel':45}
+>>> x
+{'m': 56, 'sc': 21, 'so': 89, 'tel': 45}
+>>> len(x)
+4
+>>> x.clear()
+>>> x
+{}
+>>> len(x)
+0
+
+copy()
+------
+Return a shallow copy of the dict.
+
+	dictobj.copy()
+
+ex:
+---
+>>> x={'m':56,'sc':21,'so':89,'tel':45}
+>>> x
+{'m': 56, 'sc': 21, 'so': 89, 'tel': 45}
+>>> y=x.copy()
+>>> y
+{'m': 56, 'sc': 21, 'so': 89, 'tel': 45}
+
+fromkeys()
+----------
+Create a new dictionary with keys from iterable and values set to value
+
+	dictobj.fromkeys(key,value=None)
+
+	here key must be iterable object
+	     value is a either iterable or non-iterable object
+
+ex:
+---
+>>> {}.fromkeys("siva")
+{'s': None, 'i': None, 'v': None, 'a': None}
+
+>>> {}.fromkeys("siva",5)
+{'s': 5, 'i': 5, 'v': 5, 'a': 5}
+
+>>> {}.fromkeys(['m','sc','so'],45)
+{'m': 45, 'sc': 45, 'so': 45}
+
+>>> {}.fromkeys(['m','sc','so'],[67,45,32])
+{'m': [67, 45, 32], 'sc': [67, 45, 32], 'so': [67, 45, 32]}
+
+>>> {}.fromkeys(5,"siva")
+TypeError: 'int' object is not iterable
+
+get()
+-----
+Return the value for key if key is in the dictionary, else default.
+
+	dictobj.get(key,default=None)
+
+ex:
+---
+>>> x={'m':56,'sc':21,'so':89,'tel':45}
+>>> x
+{'m': 56, 'sc': 21, 'so': 89, 'tel': 45}
+>>> print(x.get('sc'))
+21
+>>> print(x.get('py'))
+None
+>>> print(x.get('so',100))
+89
+>>> print(x.get('java',100))
+100
+>>> x
+{'m': 56, 'sc': 21, 'so': 89, 'tel': 45}
+
+setdefault()
+-------------
+Insert key with a value of default if key is not in the dictionary.
+
+Return the value for key if key is in the dictionary, else default.
+
+	dictobj.setdefault(key,default=None)
+
+ex:
+---
+>>> x={'m':56,'sc':21,'so':89,'tel':45}
+>>> x
+{'m': 56, 'sc': 21, 'so': 89, 'tel': 45}
+>>> print(x.setdefault('sc'))
+21
+>>> print(x.setdefault('py'))
+None
+>>> x
+{'m': 56, 'sc': 21, 'so': 89, 'tel': 45, 'py': None}
+>>> print(x.setdefault('so',100))
+89
+>>> print(x.setdefault('java',100))
+100
+>>> x
+{'m': 56, 'sc': 21, 'so': 89, 'tel': 45, 'py': None, 'java': 100}
+
+

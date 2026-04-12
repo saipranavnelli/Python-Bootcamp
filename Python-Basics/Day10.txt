@@ -1,0 +1,734 @@
+strip()
+------
+to remove the given charecters from the string object at leading(begening) and trailing(ending) positions.
+
+	strobj.strip(chars)
+
+by default it will remove whitespace charecters.
+
+ex1:
+----
+>>> x="siva krishna"
+>>> x
+'siva krishna'
+>>> x.strip('s')
+'iva krishna'
+>>> x
+'siva krishna'
+>>> x.strip('a')
+'siva krishn'
+>>> x
+'siva krishna'
+>>> x.strip('siva')
+' krishn'
+>>> x
+'siva krishna'
+>>> x.strip('k')
+'siva krishna'
+>>> x
+'siva krishna'
+>>> x.strip('b')
+'siva krishna'
+>>> x
+'siva krishna'
+
+ex2:
+----
+>>> y="madam"
+>>> y
+'madam'
+>>> y.strip('m')
+'ada'
+>>> y
+'madam'
+>>> y.strip('a')
+'madam'
+>>> y
+'madam'
+>>> y.strip('am')
+'d'
+>>> y
+'madam'
+>>> y.strip('dma')
+''
+>>> y
+'madam'
+>>> y.strip('d')
+'madam'
+>>> y
+'madam'
+
+ex3:
+----
+>>> z=" siva "
+>>> z
+' siva '
+>>> z.strip()
+'siva'
+>>> z
+' siva '
+
+ex4:
+----
+>>> a="\n \tsiva\n \t"
+>>> a
+'\n \tsiva\n \t'
+>>> a.strip()
+'siva'
+>>> a
+'\n \tsiva\n \t'
+
+lstrip()
+--------
+to remove the given charecters from the string object at leading(begening)  positions only.
+
+	strobj.lstrip(chars)
+
+by default it will remove whitespace charecters.
+
+ex1:
+---
+>>> y="madam"
+>>> y
+'madam'
+>>> y.lstrip('m')
+'adam'
+>>> y
+'madam'
+>>> y.lstrip('am')
+'dam'
+>>> y
+'madam'
+>>> y.lstrip('dma')
+''
+>>> y
+'madam'
+>>> y.lstrip("d")
+'madam'
+>>> y
+'madam'
+
+ex2:
+----
+>>> z=" siva "
+>>> z
+' siva '
+>>> z.lstrip()
+'siva '
+>>> z
+' siva '
+
+ex3:
+----
+>>> a="\n \tsiva\n \t"
+>>> a
+'\n \tsiva\n \t'
+>>> a.lstrip()
+'siva\n \t'
+>>> a
+'\n \tsiva\n \t'
+
+rstrip()
+--------
+to remove the given charecters from the string object at trailing(ending) positions only.
+
+	strobj.rstrip(chars)
+
+by default it will remove whitespace charecters.
+
+ex1:
+----
+>>> y="madam"
+>>> y
+'madam'
+>>> y.rstrip('m')
+'mada'
+>>> y
+'madam'
+>>> y.rstrip('am')
+'mad'
+>>> y
+'madam'
+>>> y.rstrip('dma')
+''
+>>> y
+'madam'
+
+ex2:
+----
+>>> z=" siva "
+>>> z
+' siva '
+>>> z.rstrip()
+' siva'
+>>> z
+' siva '
+
+ex3:
+----
+>>> a="\n \tsiva\n \t"
+>>> a
+'\n \tsiva\n \t'
+>>> a.rstrip()
+'\n \tsiva'
+>>> a
+'\n \tsiva\n \t'
+
+split()
+-------
+Return a list of the substrings in the string, using sep as the separator string.
+
+	strobj.split(sep,maxsplit=-1)
+
+      here sep is the separator used to split the string.
+
+When set to None (the default value), will split on any whitespace character (including \n \r \t \f and spaces) and will discard empty strings from the result.
+      
+	here maxsplit is the Maximum number of splits,-1 (the default value) means no limit.
+
+    Splitting starts at the front of the string and works to the end.
+
+ex1:
+----
+>>> x="hello siva krishna good morning"
+>>> x
+'hello siva krishna good morning'
+>>> x.split()
+['hello', 'siva', 'krishna', 'good', 'morning']
+>>> x.split(" ")
+['hello', 'siva', 'krishna', 'good', 'morning']
+
+ex2:
+----
+>>> y="hello,siva krishna,good morning"
+>>> y
+'hello,siva krishna,good morning'
+>>> y.split(",")
+['hello', 'siva krishna', 'good morning']
+>>> y
+'hello,siva krishna,good morning'
+>>> y.split()
+['hello,siva', 'krishna,good', 'morning']
+
+ex3:
+----
+>>> z="hello siva krishna good morning"
+>>> z
+'hello siva krishna good morning'
+>>> z.split(",")
+['hello siva krishna good morning']
+>>> z.split(" ")
+['hello', 'siva', 'krishna', 'good', 'morning']
+>>> z
+'hello siva krishna good morning'
+>>> z.split(" ",1)
+['hello', 'siva krishna good morning']
+>>> z.split(" ",2)
+['hello', 'siva', 'krishna good morning']
+>>> z.split(" ",3)
+['hello', 'siva', 'krishna', 'good morning']
+
+rsplit()
+--------
+Return a list of the substrings in the string, using sep as the separator string.
+
+	strobj.rsplit(sep,maxsplit=-1)
+
+      here sep is the separator used to split the string.
+
+When set to None (the default value), will split on any whitespace character (including \n \r \t \f and spaces) and will discard empty strings from the result.
+      
+	here maxsplit is the Maximum number of splits,-1 (the default value) means no limit.
+
+	Splitting starts at the end of the string and works to the front.
+
+ex:
+---
+>>> z="hello siva krishna good morning"
+>>> z
+'hello siva krishna good morning'
+>>> z.split(" ")
+['hello', 'siva', 'krishna', 'good', 'morning']
+>>> z
+'hello siva krishna good morning'
+>>> z.rsplit(" ")
+['hello', 'siva', 'krishna', 'good', 'morning']
+>>> z
+'hello siva krishna good morning'
+>>> z.split(" ",2)
+['hello', 'siva', 'krishna good morning']
+>>> z
+'hello siva krishna good morning'
+>>> z.rsplit(" ",2)
+['hello siva krishna', 'good', 'morning']
+
+ex:
+---
+write a python script/program to print the no.of words in a given string?
+
+	demo.py
+	-------
+x=input("enter your string: ")
+words=x.split()
+no_of_words=len(words)
+print("No.Of Words in a Given string are:%d words"%no_of_words)
+
+	(or)
+
+print("No.Of Words in a Given string are:%d words"
+      %len(input("enter your string: ").split()))
+
+	output
+	------
+enter your string: hello siva krishna good morning
+No.Of Words in a Given string are:5 words
+
+join()
+-------
+Concatenate any number of strings.
+
+The string whose method is called is inserted in between each given string.
+
+The result is returned as a new string.
+
+	strobj.join(iterableobj)
+ex1:
+----
+>>> x=" "
+>>> y="siva"
+>>> x.join(y)
+'s i v a'
+
+ex2:
+----
+>>> a="."
+>>> b=["D","Siva"]
+>>> a.join(b)
+'D.Siva'
+
+replace()
+---------
+Return a copy with all occurrences of substring old replaced by new.
+
+	strobj.replace(old char/substr,new char/substr,count=-1)
+
+     here count is the Maximum number of occurrences to replace,-1 (the default value) means replace all occurrences.
+
+ex:
+---
+>>> x="hai siva krishna hai"
+>>> x
+'hai siva krishna hai'
+>>> x.replace('i','u')
+'hau suva krushna hau'
+>>> x
+'hai siva krishna hai'
+>>> x.replace('hai','hello')
+'hello siva krishna hello'
+>>> x
+'hai siva krishna hai'
+>>> x.replace('i','u',1)
+'hau siva krishna hai'
+>>> x
+'hai siva krishna hai'
+>>> x.replace('i','u',2)
+'hau suva krishna hai'
+>>> x
+'hai siva krishna hai'
+>>> x.replace('i','u',3)
+'hau suva krushna hai'
+>>> x
+'hai siva krishna hai'
+>>> x.replace('hai','hello',1)
+'hello siva krishna hai'
+>>> x
+'hai siva krishna hai'
+
+ex2:
+---
+>>> x="hello siva krishna good morning"
+>>> x.title()
+'Hello Siva Krishna Good Morning'
+>>> x.title().replace(' ','')
+'HelloSivaKrishnaGoodMorning'
+>>> ''.join(x.title().split())
+'HelloSivaKrishnaGoodMorning'
+
+
+lower()
+-------
+Return a copy of the string converted to lowercase.
+
+	strobj.lower()
+
+ex:
+---
+>>> x="siva"
+>>> y="RAMA"
+>>> z="KrIsHnA"
+>>> a="123"
+>>> b="rama@123"
+>>> c="SIVA@123"
+>>> x.lower()
+'siva'
+>>> y.lower()
+'rama'
+>>> z.lower()
+'krishna'
+>>> a.lower()
+'123'
+>>> b.lower()
+'rama@123'
+>>> c.lower()
+'siva@123'
+
+upper()
+-------
+Return a copy of the string converted to uppercase.
+
+	strobj.upper()
+
+ex:
+---
+>>> x="siva"
+>>> y="RAMA"
+>>> z="KrIsHnA"
+>>> a="123"
+>>> b="rama@123"
+>>> c="SIVA@123"
+>>> x.upper()
+'SIVA'
+>>> y.upper()
+'RAMA'
+>>> z.upper()
+'KRISHNA'
+>>> a.upper()
+'123'
+>>> b.upper()
+'RAMA@123'
+>>> c.upper()
+'SIVA@123'
+
+swpacase()
+----------
+Convert uppercase characters to lowercase and lowercase characters to uppercase.
+
+	strobj.swapcase()
+
+ex:
+---
+>>> x="siva"
+>>> y="RAMA"
+>>> z="KrIsHnA"
+>>> a="123"
+>>> b="rama@123"
+>>> c="SIVA@123"
+>>> x.swapcase()
+'SIVA'
+>>> y.swapcase()
+'rama'
+>>> z.swapcase()
+'kRiShNa'
+>>> a.swapcase()
+'123'
+>>> b.swapcase()
+'RAMA@123'
+>>> c.swapcase()
+'siva@123'
+
+istitle()
+---------
+to check whether given string is titlecased string or not.
+
+	strobj.istitle()
+
+ex:
+---
+>>> x="Hello"
+>>> y="Hello RAMA"
+>>> z="Hello Rama Good morning"
+>>> a="Hello Rama Good Morning"
+>>> b="123rama"
+>>> c="123Rama"
+>>> x.istitle()
+True
+>>> y.istitle()
+False
+>>> z.istitle()
+False
+>>> a.istitle()
+True
+>>> b.istitle()
+False
+>>> c.istitle()
+True
+
+isspace()
+--------
+to check whether given string object is spaced string or not i.e., that string object contains only whitespace charecters or not.
+
+	strobj.isspace()
+
+ex:
+--
+>>> x=""
+>>> y=" "
+>>> z="     "
+>>> a=" siva krishna "
+>>> b="\n\t"
+>>> x.isspace()
+False
+>>> y.isspace()
+True
+>>> z.isspace()
+True
+>>> a.isspace()
+False
+>>> b.isspace()
+True
+
+startswith()
+-------------
+Return True if the string starts with the specified prefix, False otherwise.
+
+	strobj.startswith(prefix,start,end)
+
+	here start and end values optional
+
+ex:
+---
+>>> x="siva krishna"
+>>> x
+'siva krishna'
+>>> x.startswith('s')
+True
+>>> x.startswith('a')
+False
+>>> x.startswith('siv')
+True
+>>> x.startswith('sia')
+False
+>>> x.startswith('k')
+False
+>>> x.startswith('k',5)
+True
+
+endswith()
+----------
+Return True if the string ends with the specified suffix, False otherwise.
+
+	strobj.endswith(suffix,start,end)
+
+	here start and end values are optional
+
+ex:
+---
+>>> x="siva krishna"
+>>> x
+'siva krishna'
+>>> x.endswith('a')
+True
+>>> x.endswith('s')
+False
+>>> x.endswith('hna')
+True
+>>> x.endswith('sna')
+False
+>>> x.endswith('h',5,9)
+False
+>>> x.endswith('h',5,10)
+True
+>>> x.endswith('A')
+False
+
+isalnum()
+----------
+Return True if the string is an alpha-numeric string, False otherwise.
+
+A string is alpha-numeric if all characters in the string are alpha-numeric and
+there is at least one character in the string.
+
+	strobj.isalnum()
+
+ex:
+---
+>>> x="siva"
+>>> y="RAMA"
+>>> z="KrIsHnA"
+>>> a="siva123"
+>>> b="RAMA123"
+>>> c="123"
+>>> d="siva@123"
+>>> e="RAMA@123"
+>>> f=""
+>>> x.isalnum()
+True
+>>> y.isalnum()
+True
+>>> z.isalnum()
+True
+>>> a.isalnum()
+True
+>>> b.isalnum()
+True
+>>> c.isalnum()
+True
+>>> d.isalnum()
+False
+>>> e.isalnum()
+False
+>>> f.isalnum()
+False
+
+isalpha()
+---------
+Return True if the string is an alphabetic string, False otherwise.
+
+A string is alphabetic if all characters in the string are alphabetic and there
+is at least one character in the string.
+
+	strobj.isalpha()
+
+ex:
+---
+>>> x="siva"
+>>> y="RAMA"
+>>> z="KrIsHnA"
+>>> a="siva123"
+>>> b="RAMA123"
+>>> c="123"
+>>> d="siva@123"
+>>> e="RAMA@123"
+>>> f=""
+>>> x.isalpha()
+True
+>>> y.isalpha()
+True
+>>> z.isalpha()
+True
+>>> a.isalpha()
+False
+>>> b.isalpha()
+False
+>>> c.isalpha()
+False
+>>> d.isalpha()
+False
+>>> e.isalpha()
+False
+>>> f.isalpha()
+False
+
+isdigit()
+---------
+Return True if the string is a digit string, False otherwise.
+
+A string is a digit string if all characters in the string are digits and there is at least one character in the string.
+
+	strobj.isdigit()
+
+ex:
+---
+>>> x="siva"
+>>> y="RAMA"
+>>> z="KrIsHnA"
+>>> a="siva123"
+>>> b="RAMA123"
+>>> c="123"
+>>> d="siva@123"
+>>> e="RAMA@123"
+>>> f=""
+>>> x.isdigit()
+False
+>>> y.isdigit()
+False
+>>> z.isdigit()
+False
+>>> a.isdigit()
+False
+>>> b.isdigit()
+False
+>>> c.isdigit()
+True
+>>> d.isdigit()
+False
+>>> e.isdigit()
+False
+>>> f.isdigit()
+False
+
+islower()
+--------
+Return True if the string is a lowercase string, False otherwise.
+
+A string is lowercase if all cased characters in the string are lowercase and there is at least one cased character in the string.
+
+	strobj.islower()
+
+ex:
+---
+>>> x="siva"
+>>> y="RAMA"
+>>> z="KrIsHnA"
+>>> a="siva123"
+>>> b="RAMA123"
+>>> c="123"
+>>> d="siva@123"
+>>> e="RAMA@123"
+>>> f=""
+>>> x.islower()
+True
+>>> y.islower()
+False
+>>> z.islower()
+False
+>>> a.islower()
+True
+>>> b.islower()
+False
+>>> c.islower()
+False
+>>> d.islower()
+True
+>>> e.islower()
+False
+>>> f.islower()
+False
+
+isupper()
+---------
+Return True if the string is an uppercase string, False otherwise.
+
+A string is uppercase if all cased characters in the string are uppercase and there is at least one cased character in the string.
+
+	strobj.isupper()
+
+ex:
+---
+>>> x="siva"
+>>> y="RAMA"
+>>> z="KrIsHnA"
+>>> a="siva123"
+>>> b="RAMA123"
+>>> c="123"
+>>> d="siva@123"
+>>> e="RAMA@123"
+>>> f=""
+>>> x.isupper()
+False
+>>> y.isupper()
+True
+>>> z.isupper()
+False
+>>> a.isupper()
+False
+>>> b.isupper()
+True
+>>> c.isupper()
+False
+>>> d.isupper()
+False
+>>> e.isupper()
+True
+>>> f.isupper()
+False

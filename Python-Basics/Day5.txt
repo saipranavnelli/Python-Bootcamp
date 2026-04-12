@@ -1,0 +1,540 @@
+Boolean Datatype:
+------------------
+the Boolean datatypes are used to store the boolean values.
+
+in python, the boolean values are True and False
+
+in python, the boolean datatype having 'bool' class
+
+ex:
+---
+>>> x=True
+>>> x
+True
+>>> type(x)
+<class 'bool'>
+
+>>> y=False
+>>> y
+False
+>>> type(y)
+<class 'bool'>
+
+>>> z=true
+NameError: name 'true' is not defined. Did you mean: 'True'?
+
+>>> a=false
+NameError: name 'false' is not defined. Did you mean: 'False'?
+
+note:
+-----
+bool()		--> to convert any type of data into boolean datatype
+		--> by default return value is False
+
+ex:
+---
+>>> x=bool()
+>>> x
+False
+
+ex2:
+----
+>>> x=1
+>>> y=0
+>>> z=9
+>>> bool(x)
+True
+>>> bool(y)
+False
+>>> bool(z)
+True
+
+ex3:
+----
+>>> x=1.0
+>>> y=0.0
+>>> z=9.5
+>>> bool(x)
+True
+>>> bool(y)
+False
+>>> bool(z)
+True
+
+ex4:
+----
+>>> x=2+3j
+>>> y=2+0j
+>>> z=3j
+>>> a=0+0j
+>>> b=0.0j
+>>> bool(x)
+True
+>>> bool(y)
+True
+>>> bool(z)
+True
+>>> bool(a)
+False
+>>> bool(b)
+False
+
+ex5:
+----
+>>> x=False
+>>> y=True
+>>> int(x)
+0
+>>> int(y)
+1
+>>> float(x)
+0.0
+>>> float(y)
+1.0
+>>> complex(x)
+0j
+>>> complex(y)
+(1+0j)
+
+String Datatype:
+----------------
+in python, the string datatype having 'str' class
+
+in python, we can represent the string object by using '' or ""
+
+in python, the string object is a Sequence Object i.e., insertion order is preserved in all the cases
+
+in python, the string object is a Iterable Object i.e., we can apply the iterations
+
+in python, the string object is a Immutable Object i.e., we can't modify the data
+
+ex:
+---
+>>> x='siva'
+>>> x
+'siva'
+>>> type(x)
+<class 'str'>
+
+>>> y="krishna"
+>>> y
+'krishna'
+>>> type(y)
+<class 'str'>
+
+note:
+-----
+str()		--> to convert any type of data into string type of data
+		--> by default return value is empty string i.e., ''
+
+ex:
+---
+>>> x=str()
+>>> x
+''
+
+ex2:
+----
+>>> x=1
+>>> y=0
+>>> z=9
+>>> str(x)
+'1'
+>>> str(y)
+'0'
+>>> str(z)
+'9'
+
+ex3:
+-----
+>>> x=1.0
+>>> y=0.0
+>>> z=9.5
+>>> str(x)
+'1.0'
+>>> str(y)
+'0.0'
+>>> str(z)
+'9.5'
+
+ex4:
+----
+>>> x=2+3j
+>>> y=3j
+>>> z=2+0j
+>>> a=0+0j
+>>> b=0.0j
+>>> str(x)
+'(2+3j)'
+>>> str(y)
+'3j'
+>>> str(z)
+'(2+0j)'
+>>> str(a)
+'0j'
+>>> str(b)
+'0j'
+
+ex5:
+----
+>>> x=False
+>>> y=True
+>>> str(x)
+'False'
+>>> str(y)
+'True'
+
+ex6:
+-----
+>>> x="abc" #alphabetical string
+>>> y="123" #numerical string
+>>> z="abc123" #alphanumerical string
+>>> a="abc@123" #alphanumerical string with special charecters
+>>> b="" #empty string
+
+>>> int(x)
+ValueError: invalid literal for int() with base 10: 'abc'
+>>> int(y)
+123
+>>> int(z)
+ValueError: invalid literal for int() with base 10: 'abc123'
+>>> int(a)
+ValueError: invalid literal for int() with base 10: 'abc@123'
+>>> int(b)
+ValueError: invalid literal for int() with base 10: ''
+
+
+>>> float(x)
+ValueError: could not convert string to float: 'abc'
+>>> float(y)
+123.0
+>>> float(z)
+ValueError: could not convert string to float: 'abc123'
+>>> float(a)
+ValueError: could not convert string to float: 'abc@123'
+>>> float(b)
+ValueError: could not convert string to float: ''
+
+
+>>> complex(x)
+ValueError: complex() arg is a malformed string
+>>> complex(y)
+(123+0j)
+>>> complex(z)
+ValueError: complex() arg is a malformed string
+>>> complex(a)
+ValueError: complex() arg is a malformed string
+>>> complex(b)
+ValueError: complex() arg is a malformed string
+
+ex7:
+---
+>>> x="abc" #alphabetical string
+>>> y="123" #numerical string
+>>> z="abc123" #alphanumerical string
+>>> a="abc@123" #alphanumerical string with special charecters
+>>> b="" #empty string
+>>> bool(x)
+True
+>>> bool(y)
+True
+>>> bool(z)
+True
+>>> bool(a)
+True
+>>> bool(b)
+False
+
+list datatype:
+---------------
+in python, the list datatype having 'list' class
+
+we can create a list object by using [] or by calling list() function
+
+in python, the list object is a Sequence Object i.e., insertion order is preserved in all the cases
+
+in python, the list object is a Iterable Object i.e., we can apply the iterations
+
+in python, the list object is a Mutable Object i.e., we can modify the data
+
+ex:
+---
+>>> x=[]
+>>> x
+[]
+>>> type(x)
+<class 'list'>
+
+>>> y=list()
+>>> y
+[]
+>>> type(y)
+<class 'list'>
+
+>>> a=[4,3,7,9]
+>>> a
+[4, 3, 7, 9]
+>>> type(a)
+<class 'list'>
+>>> id(a)
+1433461537536
+>>> a[1]=30
+>>> a
+[4, 30, 7, 9]
+>>> id(a)
+1433461537536
+
+tuple datatype:
+----------------
+in python, the tuple datatype having 'tuple' class
+
+we can create a tuple object by using () or by calling tuple() function
+
+in python, the tuple object is a Sequence Object i.e., insertion order is preserved in all the cases
+
+in python, the tuple object is a Iterable Object i.e., we can apply the iterations
+
+in python, the tuple object is a Immutable Object i.e., we can't modify the data
+
+ex:
+---
+>>> x=()
+>>> x
+()
+>>> type(x)
+<class 'tuple'>
+
+>>> y=tuple()
+>>> y
+()
+>>> type(y)
+<class 'tuple'>
+
+>>> z=(4,3,7,9)
+>>> z
+(4, 3, 7, 9)
+>>> type(z)
+<class 'tuple'>
+>>> id(z)
+1433461563344
+>>> z[1]=30
+TypeError: 'tuple' object does not support item assignment
+
+set datatype:
+-------------
+in python, the set datatype having 'set' class
+
+we can create a set object by using {} or by calling set() function
+
+in python, the set object is a Non-Sequence Object i.e., insertion order is not preserved in all the cases
+
+in python, the set object is a Iterable Object i.e., we can apply the iterations
+
+in python, the set object is a mutable Object i.e., we can modify the data
+
+ex:
+---
+>>> x={}
+>>> x
+{}
+>>> type(x)
+<class 'dict'>
+
+>>> y=set()
+>>> y
+set()
+>>> type(y)
+<class 'set'>
+
+>>> z={5,3,7,9}
+>>> z
+{9, 3, 5, 7}
+>>> type(z)
+<class 'set'>
+
+>>> a={1,2,3,4}
+>>> a
+{1, 2, 3, 4}
+>>> type(a)
+<class 'set'>
+
+frozenset datatype:
+--------------------
+in python, the frozenset datatype having 'frozenset' class
+
+we can create a frozenset object by calling frozenset() function
+
+in python, the frozenset object is a Non-Sequence Object i.e., insertion order is not preserved in all the cases
+
+in python, the frozenset object is a Iterable Object i.e., we can apply the iterations
+
+in python, the frozenset object is a Immutable Object i.e., we can't modify the data
+
+ex:
+---
+>>> x=frozenset()
+>>> x
+frozenset()
+>>> type(x)
+<class 'frozenset'>
+
+>>> y=frozenset([6,3,7,9])
+>>> y
+frozenset({9, 3, 6, 7})
+>>> type(y)
+<class 'frozenset'>
+
+Note:
+-----
+list()		--> to convert any type of iterable object into list
+		--> by default return value is empty list i.e., []
+
+tuple()		--> to convert any type of iterable object into tuple
+		--> by default return value is empty tuple i.e.,()
+
+set()		--> to convert any type of iterable object into set
+		--> by default return value is empty set i.e., set()
+
+frozenset()	--> to convert any type of iterable object into frozenset
+		--> by default return value is empty frozenset i.e., frozenset()
+
+
+ex1:
+----
+>>> x="siva"
+>>> list(x)
+['s', 'i', 'v', 'a']
+>>> tuple(x)
+('s', 'i', 'v', 'a')
+>>> set(x)
+{'v', 's', 'a', 'i'}
+>>> frozenset(x)
+frozenset({'v', 's', 'a', 'i'})
+
+ex2:
+----
+>>> y=[5,3,7,9]
+>>> str(y)
+'[5, 3, 7, 9]'
+>>> tuple(y)
+(5, 3, 7, 9)
+>>> set(y)
+{9, 3, 5, 7}
+>>> frozenset(y)
+frozenset({9, 3, 5, 7})
+
+ex3:
+----
+>>> z=(5,3,7,12)
+>>> str(z)
+'(5, 3, 7, 12)'
+>>> list(z)
+[5, 3, 7, 12]
+>>> set(z)
+{3, 12, 5, 7}
+>>> frozenset(z)
+frozenset({3, 12, 5, 7})
+
+ex4:
+-----
+>>> a={6,3,7,12}
+>>> str(a)
+'{3, 12, 6, 7}'
+>>> list(a)
+[3, 12, 6, 7]
+>>> tuple(a)
+(3, 12, 6, 7)
+>>> frozenset(a)
+frozenset({3, 12, 6, 7})
+
+ex5:
+-----
+>>> b=frozenset([5,3,9,23])
+>>> str(b)
+'frozenset({9, 3, 5, 23})'
+>>> list(b)
+[9, 3, 5, 23]
+>>> tuple(b)
+(9, 3, 5, 23)
+>>> set(b)
+{9, 3, 5, 23}
+
+Dictionary Datatype:
+-------------------
+in python, the dictionary datatype having 'dict' class
+
+we can create a dict object by using {} or by calling dict()
+
+the dict object contains group of key-value pairs, each key-value pair act as one item in our dict object.
+
+	{key:value,key:value,.....,key:value}
+	 ---------,---------,.....,---------
+	    |	      |               |
+	item_1     item_2           item_n
+
+in python, the dict object is a mutable object but key's must be immutable objects and values are either mutable or immutable objects.
+
+from python3.4 versions onwards, the dict object act as a sequence object.
+
+in python, the dict object is a iterable object.
+
+ex:
+----
+>>> x={'name':'siva','age':34,'sal':30000.0}
+>>> x
+{'name': 'siva', 'age': 34, 'sal': 30000.0}
+>>> type(x)
+<class 'dict'>
+
+None Datatype:
+--------------
+in python, the None Datatype having "NoneType" class
+
+ex:
+---
+>>> x=None
+>>> print(x)
+None
+>>> print(type(x))
+<class 'NoneType'>
+
+ex:
+---
+	demo.py
+	-------
+x=10
+y=2.3
+z=2+3j
+a=False
+b="siva"
+c=[5,3,7,9]
+d=(4,2,7,9)
+e={6,2,7,9}
+f=frozenset("siva")
+g={'m':56,'sc':67,'so':21}
+h=None
+print(x,type(x),id(x))
+print(y,type(y),id(y))
+print(z,type(z),id(z))
+print(a,type(a),id(a))
+print(b,type(b),id(b))
+print(c,type(c),id(c))
+print(d,type(d),id(d))
+print(e,type(e),id(e))
+print(f,type(f),id(f))
+print(g,type(g),id(g))
+print(h,type(h),id(h))
+
+	output
+	-------
+10 <class 'int'> 140717429990808
+2.3 <class 'float'> 1591391768688
+(2+3j) <class 'complex'> 1591391767376
+False <class 'bool'> 140717429082912
+siva <class 'str'> 1591392240240
+[5, 3, 7, 9] <class 'list'> 1591348228992
+(4, 2, 7, 9) <class 'tuple'> 1591392162640
+{9, 2, 6, 7} <class 'set'> 1591391612352
+frozenset({'a', 'i', 'v', 's'}) <class 'frozenset'> 1591392393184
+{'m': 56, 'sc': 67, 'so': 21} <class 'dict'> 1591356432960
+None <class 'NoneType'> 140717429082944

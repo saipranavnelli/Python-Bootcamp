@@ -1,0 +1,577 @@
+casefold()
+----------
+Return a version of the string suitable for caseless comparisons.
+
+	strobj.casefold()
+
+ex:
+---
+>>> x="rama"
+>>> y="rama"
+>>> z="Rama"
+>>> x==y
+True
+>>> x==z
+False
+>>> x==z.casefold()
+True
+>>> x==z.lower()
+True
+
+ex2:
+----
+>>> z="Rama"
+>>> z.lower()
+'rama'
+>>> z.casefold()
+'rama'
+
+ex3:
+----
+>>> x="hai siva krishna hai"
+>>> x
+'hai siva krishna hai'
+>>> x.count('a')
+4
+>>> x.count('A')
+0
+>>> x.count('A'.casefold())
+4
+
+partition()
+-----------
+Partition the string into three parts using the given separator.
+
+	strobj.partition(sep)
+
+This will search for the separator in the string.  If the separator is found,returns a 3-tuple containing the part before the separator, the separator itself, and the part after it.
+
+If the separator is not found, returns a 3-tuple containing the original string and two empty strings.
+
+ex:
+---
+>>> x="hai siva krishna good morning"
+>>> x
+'hai siva krishna good morning'
+>>> x.partition(' ')
+('hai', ' ', 'siva krishna good morning')
+>>> x.partition(",")
+('hai siva krishna good morning', '', '')
+
+rpartition()
+------------
+Partition the string into three parts using the given separator.
+
+	strobj.rpartition(sep)
+
+This will search for the separator in the string, starting at the end. If the separator is found, returns a 3-tuple containing the part before the separator, the separator itself, and the part after it.
+
+If the separator is not found, returns a 3-tuple containing two empty strings and the original string.
+
+ex:
+---
+>>> x="hai siva krishna good morning"
+>>> x
+'hai siva krishna good morning'
+>>> x.rpartition(" ")
+('hai siva krishna good', ' ', 'morning')
+>>> x
+'hai siva krishna good morning'
+>>> x.partition(",")
+('hai siva krishna good morning', '', '')
+>>> x.rpartition(",")
+('', '', 'hai siva krishna good morning')
+
+removeprefix()
+---------------
+Return a string with the given prefix string removed if present.
+
+If the string starts with the prefix string, return string[len(prefix):] Otherwise, return a copy of the original string.
+
+	strobj.removeprefix(prefix)
+
+ex:
+---
+>>> x="aaabbaaa"
+>>> x
+'aaabbaaa'
+>>> x.lstrip('a')
+'bbaaa'
+>>> x
+'aaabbaaa'
+>>> x.removeprefix('a')
+'aabbaaa'
+>>> x
+'aaabbaaa'
+>>> x.removeprefix('aa')
+'abbaaa'
+>>> x
+'aaabbaaa'
+>>> x.removeprefix('aaa')
+'bbaaa'
+>>> x
+'aaabbaaa'
+
+removesuffix()
+---------------
+Return a string with the given suffix string removed if present.
+
+If the string ends with the suffix string and that suffix is not empty,return string[:-len(suffix)] Otherwise, return a copy of the original string.
+
+	strobj.removesuffix(suffix)
+
+ex:
+---
+>>> x="aaabbaaa"
+>>> x
+'aaabbaaa'
+>>> x.rstrip('a')
+'aaabb'
+>>> x
+'aaabbaaa'
+>>> x.removesuffix('a')
+'aaabbaa'
+>>> x
+'aaabbaaa'
+>>> x.removesuffix('aa')
+'aaabba'
+>>> x
+'aaabbaaa'
+>>> x.removesuffix('aaa')
+'aaabb'
+>>> x
+'aaabbaaa'
+
+format()
+---------
+Return a formatted version of the string, using substitutions from args and kwargs.
+    
+The substitutions are identified by braces ('{' and '}').
+
+	strobj.format(*args,**KWargs)
+
+ex:
+---
+>>> "".format("hai","siva","krishna")
+''
+
+>>> "{}".format("hai","siva","krishna")
+'hai'
+
+>>> "{} {}".format("hai","siva","krishna")
+'hai siva'
+
+>>> "{0} {2}".format("hai","siva","krishna")
+'hai krishna'
+
+>>> "{1} {2} {0}".format("hai","siva","krishna")
+'siva krishna hai'
+
+>>> "{} {} {}".format("hai","siva","krishna")
+'hai siva krishna'
+
+>>> "{} {} {} {}".format("hai","siva","krishna")
+IndexError: Replacement index 3 out of range for positional args tuple
+
+>>> "{} {} {2}".format("hai","siva","krishna")
+ValueError: cannot switch from automatic field numbering to manual field specification
+
+>>> "{0} {1} {}".format("hai","siva","krishna")
+ValueError: cannot switch from manual field specification to automatic field numbering
+
+>>> "{name} {age} {sal}".format(name="siva",age=34,sal=35000)
+'siva 34 35000'
+
+ex:
+---
+	demo.py
+	--------
+name=input("enter your name: ")
+age=int(input("enter your age: "))
+print("hello",name,"you are",age,"year's old")
+print("hello %s you are %d year's old"%(name,age))
+print("hello {} you are {} year's old".format(name,age))
+print("hello {0} you are {1} year's old".format(name,age))
+print(f"hello {name} you are {age} year's old")
+
+	output
+	-------
+enter your name: siva
+enter your age: 34
+hello siva you are 34 year's old
+hello siva you are 34 year's old
+hello siva you are 34 year's old
+hello siva you are 34 year's old
+hello siva you are 34 year's old
+
+encode()
+--------
+Encode the string using the codec registered for encoding.
+
+	strobj.encode(encoding="utf-8")
+
+ex:
+---
+>>> x="siva@123"
+>>> x
+'siva@123'
+>>> type(x)
+<class 'str'>
+
+>>> y=x.encode()
+>>> y
+b'siva@123'
+>>> type(y)
+<class 'bytes'>
+
+>>> z=str(y,encoding="utf-8")
+>>> z
+'siva@123'
+>>> type(z)
+<class 'str'>
+
+
+		Operators
+		-----------
+what is Operator?
+-----------------
+an operator is a special charecter,which is used to perform the operation on the data of the operands/objects.
+
+	ex:
+	---
+	x=10
+	y=20
+
+	x + y	--> Expression(it is a combination of both Operators and Operands)
+
+		--> here + is a Operator
+		--> x and y are Operands
+		--> 10 and 20 are data of the Operands
+
+Types of Operators:
+-------------------
+the Python supported Operators are,
+
+	1).Arithmetic Operators
+	2).Comparission/Relational Operators
+	3).Logical Operators
+	4).Bitwise Operators
+	5).Assignment Operators
+	6).Identity Operators
+	7).Membership Operators
+
+Arithmetic Operators:
+---------------------
+the Arithmetic Operators are used to perform the Arithmetic Calculations
+
+	Arithmetic	Arithmetic	input's		Result
+	   Operation	   Operator	x=10,y=3
+	--------------------------------------------------------
+	Addition	     +		x+y		13
+
+	Subtraction	     -		x-y		7
+
+	Multiplication	     *		x*y		30
+
+	Division	     /		x/y		3.333335
+		(floating point division)
+
+	Floor Division      //		x//y		3
+		(Integer division)
+
+	Modulo	            %		x%y		1
+
+	Exponent	   **		x**y		1000
+
+
+ex:
+---
+	demo.py
+	-------
+x,y=10,3
+print(x+y)
+print(x-y)
+print(x*y)
+print(x/y)
+print(x//y)
+print(x%y)
+print(x**y)
+
+	output
+	------
+13
+7
+30
+3.3333333333333335
+3
+1
+1000
+
+note:
+-----
+on top of the string we can apply only 2 arithmetic operators they are +,*
+
+ex1: string concatenation
+----
+>>> x="siva"
+>>> y="krishna"
+>>> z=3
+>>> x+y
+'sivakrishna'
+>>> x+z
+TypeError: can only concatenate str (not "int") to str
+
+ex2: string multiplication
+----
+>>> x="siva"
+>>> y="krishna"
+>>> z=3
+>>> x*y
+TypeError: can't multiply sequence by non-int of type 'str'
+>>> x*z
+'sivasivasiva'
+
+Comparission/Relational Operators:
+----------------------------------
+the Comparission/Relational Operators are used to compare the data of the objects/operands.
+
+the Comparission/Relational Operators are always to return the output as boolean values like True or False.
+
+the Comparission/Relational Operators are,
+
+	equal too			-->	==
+
+	not equal too			-->	!=
+
+	Lessthan			-->	<
+
+	Lessthan or equal too		-->	<=
+
+	Greaterthan			-->	>
+
+	Greaterthan or equal too	-->	>=
+
+ex:
+---
+	demo.py
+	-------
+x,y=10,3
+print(x==y)
+print(x!=y)
+print(x>y)
+print(x>=y)
+print(x<y)
+print(x<=y)
+
+	output
+	------
+False
+True
+True
+True
+False
+False
+
+Logical Operators:
+-------------------
+the Logical Operators are used to perform the mathmatical logical operations.
+
+the Logical Operators takes the input as boolean and to return the output as boolean values.
+
+the Logical Operators are,
+
+	Logical Operation		Logical Operator
+				    C/C++/Java	    Python
+	------------------	    -----------------------
+	Logical and			&&	    and
+
+	Logical or			||	    or
+
+	Logical not			!	    not
+
+logical operators truth table:
+-----------------------------
+	input's			output's
+	--------		---------
+        ip_1	ip_2	ip_1 and ip_2	ip_1 or ip_2	not ip_1   not ip_2
+	------------    --------------	-------------	---------  ---------
+0	False	False	     False	    False	True	    True     
+1	False	True	     False	    True	True	    False
+2	True	False	     False	    True	False	    True
+3	True	True	     True	    True	False	    False
+
+
+ex1:
+---
+	demo.py
+	-------
+x,y=True,False
+print(x and y) 
+print(x and not y) 
+print(x or y)
+print(not x or y)
+
+	output
+	------
+False
+True
+True
+False
+
+ex2:
+----
+>>> 5 and 0
+0
+>>> 0 and 1
+0
+>>> 5 and 9
+9
+>>> 9 and 5
+5
+>>> 0 and False
+0
+>>> False and 0
+False
+
+ex3:
+---
+>>> 5 or 0
+5
+>>> 0 or 5
+5
+>>> 1 or 9
+1
+>>> 9 or True
+9
+>>> 0 or False
+False
+>>> False or 0
+0
+
+Bitwise Operators:
+------------------
+the Bitwise Operators are used to perform the operation on the binary data.
+
+the bitwise operators takes the input as decimal and to return the output as decimal.
+
+the bitwise operators are internally to perform the following actions/steps, they are
+
+	step1: to convert Decimal to Binary
+
+	step2: to perform the operation on Binary Data
+
+	step3: to convert Binary into Decimal
+
+the Bitwise Operators are,
+
+	Bitwise and		-->	&
+
+	Bitwise or		-->	|
+
+	Bitwise xor		-->	^
+
+	Bitwise Negation	-->	~
+
+	Bitwise Leftshift	-->	<<
+
+	Bitwise Rightshift	-->	>>
+
+
+Bitwise and(&) example:
+-----------------------
+>>> x=10
+>>> y=3
+>>> x&y
+2
+
+	step1: to convert Decimal into Binary
+	------
+		x=10	--> 1010
+		y=3	--> 0011
+
+	step2: to perform the operation on binary data
+	-----
+
+ip_1	ip_2	ip_1 & ip_2
+----------------------------
+0	0	    0		x=1010
+0	1	    0		y=0011
+1	0	    0         x&y=0010
+1	1	    1
+
+	step3: to convert Binary into Decimal
+	-----
+		0010
+	        0*2**3+0*2**2+1*2**1+0*2**0
+		0*8+0*4+1*2+0*1
+		0+0+2+0
+		2
+
+Bitwise or(|) example:
+----------------------
+>>> x=10
+>>> y=3
+>>> x|y
+11
+
+	step1: to convert Decimal into Binary
+	------
+		x=10	--> 1010
+		y=3	--> 0011
+
+	step2: to perform the operation on binary data
+	-----
+
+ip_1	ip_2	ip_1 | ip_2
+----------------------------
+0	0	    0		x=1010
+0	1	    1		y=0011
+1	0	    1         x|y=1011
+1	1	    1
+
+	step3: to convert Binary into Decimal
+	-----
+		1011
+		1*2**3+0*2**2+1*2**1+1*2**0
+		1*8+0*4+1*2+1*1
+		8+0+2+1
+		11
+
+Bitwise xor(^) example:
+-----------------------
+>>> x=10
+>>> y=3
+>>> x^y
+9
+
+	step1: to convert Decimal into Binary
+	------
+		x=10	--> 1010
+		y=3	--> 0011
+
+	step2: to perform the operation on binary data
+	-----
+
+ip_1	ip_2	ip_1 ^ ip_2
+----------------------------
+0	0	    0		x=1010
+0	1	    1		y=0011
+1	0	    1         x^y=1001
+1	1	    0
+
+	step3: to convert Binary into Decimal
+	-----
+		1001
+		1*2**3+0*2**2+0*2**1+1*2**0
+		1*8+0*4+0*2+1*1
+		8+0+0+1
+		9
+
+
+
+
+
+
+
+
+
