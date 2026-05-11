@@ -1,0 +1,327 @@
+in python,we can return multiple values also possible, by default these multiple values will be return in the form of tuple object.
+
+ex:
+---
+	demo.py
+	--------
+def cal(x,y):
+    return x+y,x-y,x*y,x/y
+print(cal(3,2))
+
+	output
+	------
+(5, 1, 6, 1.5)
+
+
+in python, the return value is an optional, by default return value is None
+
+ex:
+---
+	demo.py
+	-------
+def f1():
+    print("hai")
+    print("siva")
+    return
+print(f1())
+
+	output
+	------
+hai
+siva
+None
+
+
+once the control reach the return statement then immediately the control will goto outside the function body.
+
+ex:
+---
+	demo.py
+	-------
+def f1():
+    print("hai")
+    print("siva")
+    return "good morning"
+    print("good bye")
+print(f1())
+print("bye")
+
+	output
+	------
+hai
+siva
+good morning
+bye
+
+Variables:
+----------
+the Variables are used to store the data for future use/reference.
+
+in procedure oriented programming, the variables can be categorized into 3 type's, they are
+
+	1).Local Variables
+
+	2).Global Variables
+
+	3).Non-Local Variables
+
+Local Variables:
+----------------
+we can define a variables within the function body, that type of variables are also called local variables.
+
+the function parameters are also act as a local variables to that particular function.
+
+we can access the local variables within that particular function only
+
+ex1:
+---
+	demo.py
+	-------
+def f1(x,y):
+    z=x+y
+    print(x,y,z)
+f1(4,5)
+
+	output
+	------
+4 5 9
+
+we can't access the local variables data from outside of that particular function.
+
+ex2:
+---
+	demo.py
+	-------
+def f1(x,y):
+    z=x+y
+    print(x,y,z)
+f1(4,5)
+print(z) #Error
+
+	output
+	------
+4 5 9
+
+NameError: name 'z' is not defined
+
+
+we can't access the local variables data within another functions also
+
+ex3:
+----
+	demo.py
+	-------
+def f1(x,y):
+    z=x+y
+    print(x,y,z)
+f1(4,5)
+def f2():
+    print(z) #error
+f2()
+
+	output
+	-----
+4 5 9
+
+NameError: name 'z' is not defined
+
+
+we can modify the local variables data within that particular function directly.
+
+ex4:
+---
+	demo.py
+	-------
+def f1(x,y):
+    z=x+y
+    print(x,y,z)
+    x=10
+    y=20
+    z=x-y
+    print(x,y,z)
+f1(4,5)
+
+	output
+	-------
+4 5 9
+10 20 -10
+
+Global Variables:
+-----------------
+we can define a variables above the function definitions and at the begening of the program, that type of variables are called Global Variables.
+
+we can access the global variables data at any where in our program i.e., within the functions and outside the functions.
+
+ex1:
+---
+	demo.py
+	-------
+x,y=10,20
+def f1():
+    z=x+y
+    print(x,y,z)#10 20 30
+f1()
+a=x-y #-10
+print(a,x,y)#-10 10 20
+def f2():
+    p=a+x+y #20
+    print(p,a,x,y)#20 -10 10 20
+f2()
+print(a,x,y)#-10 10 20
+
+    	output
+	------
+10 20 30
+-10 10 20
+20 -10 10 20
+-10 10 20
+
+
+in python, directly we can't update the global variables data within the functions.
+
+ex:
+---
+	demo.py
+	-------
+x=10
+def f1():
+    print(x)
+    x+=5
+    print(x)
+f1()
+print(x)
+def f2():
+    print(x)
+    x+=5
+    print(x)
+f2()
+print(x)
+
+	output
+	------
+UnboundLocalError: cannot access local variable 'x' where it is not associated with a value
+
+note:
+----
+if we want to update the global varaibles data within the functions, in that case we are using forward decleration mechanism
+
+	syntax
+	------
+	global globalvariablename
+
+once we can modify the global variables data that is effected in remaining all other cases.
+
+ex3:
+---
+	demo.py
+	-------
+x=10
+def f1():
+    global x
+    print(x) #10
+    x+=5
+    print(x) #15
+f1()
+print(x) #15
+def f2():
+    global x
+    print(x) #15
+    x+=5
+    print(x) #20
+f2()
+print(x) #20
+
+	output
+	------
+10
+15
+15
+15
+20
+20
+
+Non-Local variables:
+--------------------
+we can define a variables within the outer function and above the inner function definitions, that type of variables are called nonlocal varaiables to the inner function and local variables to the outer function.
+
+we can access the nonlocal variables data within the outer function only i.e., we can access within the inner function and outside the inner function also.
+
+ex:
+---
+	demo.py
+	--------
+def f1():
+    x=10 #local to f1 and nonlocal to f2
+    def f2():
+        print(x) #10
+    f2()
+    print(x) #10
+f1()
+print(x) #error
+        
+        
+	output
+	------
+10
+10
+
+NameError: name 'x' is not defined
+
+
+in python, directly we can't modify the nonlocal variables data within the inner functions.
+
+ex2:
+---
+	demo.py
+	-------
+def f1():
+    x=10 #local to f1 and nonlocal to f2
+    def f2():
+        print(x) 
+        x+=5
+        print(x)
+    f2()
+    print(x) 
+f1()
+
+        output	
+	-------
+UnboundLocalError: cannot access local variable 'x' where it is not associated with a value
+
+note:
+-----
+if we want to update the nonlocal varaibles data within the inner functions, in that case we are using forward decleration mechanism
+
+	syntax
+	------
+	nonlocal nonlocalvariablename
+
+once we can modify the nonlocal variables data that is effected in remaining all other cases.
+
+ex3:
+----
+	demo.py
+	-------
+def f1():
+    x=10 #local to f1 and nonlocal to f2
+    def f2():
+        nonlocal x
+        print(x) 
+        x+=5
+        print(x)
+    f2()
+    print(x) 
+f1()
+
+	output
+	------
+10
+15
+15
+
+      
+        
+
+
+        
+	

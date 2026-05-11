@@ -1,0 +1,197 @@
+ex:
+---
+	demo.py
+	-------
+x=10 #global variable
+def f1():
+    global x
+    y=20 #local to f1 and nonlocal to f2
+    print(x,y)#10 20
+    x+=5 #x=15
+    y+=5 #y=25
+    def f2():
+        global x
+        nonlocal y
+        z=30 #local to f2
+        print(x,y,z)#15 25 30
+        x+=5 #x=20
+        y+=5 #y=30
+        z+=5 #z=35
+        print(x,y,z) #20 30 35
+    f2()
+    print(x,y)#20 30
+f1()
+print(x)#20
+
+	output
+	------
+10 20
+15 25 30
+20 30 35
+20 30
+20
+
+what is Scope?
+---------------
+Scope refers to the region of the program where a variable is recognized or accessible.
+
+in python, scope determines the visibility and lifetime of a variable or object.
+
+python uses LEGB rule to define the scope hierarchy
+
+	Local Encloseing(Non-Local) Global Builtins 
+
+ex1:
+----
+	demo.py
+	-------
+x,y,z=1,2,3
+def f1():
+    y,z=20,30
+    def f2():
+        z=300
+        print(x,y,z) #1 20 300
+    f2()
+    print(x,y,z)#1 20 30
+f1()
+print(x,y,z)#1 2 3
+
+	output
+	-------
+1 20 300
+1 20 30
+1 2 3
+
+ex2:
+----
+	demo.py
+	-------
+x,y,z=1,2,3
+def f1(x):
+    y,z=20,30
+    def f2(y):
+        z=300
+        print(x,y,z) #10 200 300
+    f2(200)
+    print(x,y,z)#10 20 30
+f1(10)
+print(x,y,z)#1 2 3
+
+	output
+	------
+10 200 300
+10 20 30
+1 2 3
+
+ex3:
+----
+	demo.py
+	-------
+def cal():
+    def len(x):
+        return x
+    print(len([6,3,6,8])) #[6,3,6,8]
+cal()
+print(len([6,3,6,8]))#4
+
+	output
+	------
+[6, 3, 6, 8]
+4
+
+what is Function Recurssion?
+----------------------------
+the Function Recurssion means a function can call itself.
+
+the function recurssion can be categorized into 2 types, they are
+
+	1).Finite Recurssion
+
+	2).Infinite Recurssion
+
+
+ex1:
+----
+write a python program to find the factorial of the given number by using function recurssion concept?
+
+	demo.py
+	-------
+num=int(input("Enter a number: ")) 
+def fact(n):
+    if n==0 or n==1:
+        return 1
+    else:
+        return n*fact(n-1) 
+    
+print("Factorial of",num,"is",fact(num))
+
+	(or)
+
+num=int(input("Enter a number: ")) 
+def fact(n):
+    if n==0 or n==1:
+        return 1
+    return n*fact(n-1)
+res=fact(num)     
+print("Factorial of",num,"is",res)
+
+	output
+	------
+C:\Users\Lenovo\Desktop\my_demo_proj>python demo.py
+Enter a number: 5
+Factorial of 5 is 120
+
+ex2:
+---
+write a python program/script to print N terms from the fibonacci sequence by using function recurssion?
+
+	demo.py
+	-------
+num=int(input("Enter a number: "))
+def fibonacci(n):
+    if n <= 0:
+        return 0
+    elif n == 1:
+        return 1
+    else:
+        return fibonacci(n-1) + fibonacci(n-2)
+
+for i in range(num):
+    print(fibonacci(i),end=" ")
+
+	output
+	------
+C:\Users\Lenovo\Desktop\my_demo_proj>python demo.py
+Enter a number: 10
+0 1 1 2 3 5 8 13 21 34
+
+ex3:
+---
+write a python program/script to solve the Towers of Honnai Problem by using function recurssion?
+
+	demo.py
+	-------
+def tower_of_hanoi(n, source, target, auxiliary):
+    if n == 1:
+        print(f"Move disk 1 from {source} to {target}")
+        return
+    tower_of_hanoi(n - 1, source, auxiliary, target)
+    print(f"Move disk {n} from {source} to {target}")
+    tower_of_hanoi(n - 1, auxiliary, target, source)
+num=int(input("Enter the number of disks: "))
+tower_of_hanoi(num, 'A', 'C', 'B')
+
+	output
+	------
+C:\Users\Lenovo\Desktop\my_demo_proj>python demo.py
+Enter the number of disks: 3
+Move disk 1 from A to C
+Move disk 2 from A to B
+Move disk 1 from C to B
+Move disk 3 from A to C
+Move disk 1 from B to A
+Move disk 2 from B to C
+Move disk 1 from A to C
+
+
+

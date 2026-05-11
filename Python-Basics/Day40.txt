@@ -1,0 +1,281 @@
+Variable-Keyword(KW-Args) Arguments:
+------------------------------------
+the Variable-Keyword(KW-Args) Arguments takes 0 or more keyword arguments.
+
+by default, the Variable-Keyword(KW-Args) Arguments type is dictionary
+
+	syntax
+	------
+	def functionname(**parameter):
+		--------
+		--------
+		--------
+
+ex1:
+----
+	demo.py
+	-------
+def f1(**x):
+    print(x,type(x))
+f1()
+
+	output
+	------
+{} <class 'dict'>
+
+ex2:
+---
+	demo.py
+	------
+def f1(**x):
+    print(x,type(x))
+f1(name="siva",age=35,sal=30000.0)
+
+	output
+	------
+{'name': 'siva', 'age': 35, 'sal': 30000.0} <class 'dict'>
+
+ex3:
+----
+	demo.py
+	-------
+def f1(x,*y,**z):
+    print(x,type(x))
+    print(y,type(y))
+    print(z,type(z))
+f1()
+
+	output
+	------
+TypeError: f1() missing 1 required positional argument: 'x'
+
+ex4:
+----
+	demo.py
+	-------
+def f1(x,*y,**z):
+    print(x,type(x))
+    print(y,type(y))
+    print(z,type(z))
+f1(4)
+
+	output
+	------
+4 <class 'int'>
+() <class 'tuple'>
+{} <class 'dict'>
+
+ex5:
+----
+	demo.py
+	-------
+def f1(x,*y,**z):
+    print(x,type(x))
+    print(y,type(y))
+    print(z,type(z))
+f1(2.3,4j,False,9,name="siva",age=35,sal=35000.0)
+
+	output
+	------
+2.3 <class 'float'>
+(4j, False, 9) <class 'tuple'>
+{'name': 'siva', 'age': 35, 'sal': 35000.0} <class 'dict'>
+
+ex6:
+----
+	demo.py
+	-------
+def f1(*x,y,**z):
+    print(x,type(x))
+    print(y,type(y))
+    print(z,type(z))
+f1(2.3,4j,False,9,name="siva",age=35,sal=35000.0)
+
+	output
+	------
+TypeError: f1() missing 1 required keyword-only argument: 'y'
+
+ex7:
+----
+	demo.py
+	-------
+def f1(*x,y,**z):
+    print(x,type(x))
+    print(y,type(y))
+    print(z,type(z))
+f1(2.3,4j,False,name="siva",age=35,sal=35000.0,y=9)
+
+	(or)
+
+def f1(*x,y,**z):
+    print(x,type(x))
+    print(y,type(y))
+    print(z,type(z))
+f1(2.3,4j,False,y=9,name="siva",age=35,sal=35000.0)
+
+	output
+	------
+(2.3, 4j, False) <class 'tuple'>
+9 <class 'int'>
+{'name': 'siva', 'age': 35, 'sal': 35000.0} <class 'dict'>
+
+ex8:
+----
+	demo.py
+	-------
+def f1(**x,y,*z):
+    print(x,type(x))
+    print(y,type(y))
+    print(z,type(z))
+f1(2.3,4j,False,y=9,name="siva",age=35,sal=35000.0)
+
+SyntaxError: Arguments(normal and arbitrary) can't follow the Variable-Keyword Arguments.
+
+what is Doc String?
+--------------------
+the doc string is a special type of string,we can place modules,functions,classes and methods.
+
+the doc string provides readability of the module,function,class and methods.
+
+we can represent the doc string by using tripple quotes
+
+how to get the documentation string(doc string) of a function?
+----------------------------------------------------------------
+if we want to get the documentation string(doc string) of a function, in that case we are using help() function.
+
+	syntax
+	------
+	help(functionname)
+
+ex1:
+---
+>>> help(len)
+Help on built-in function len in module builtins:
+
+len(obj, /)
+    Return the number of items in a container.
+
+
+ex2:
+----
+>>> from math import sqrt
+>>> help(sqrt)
+Help on built-in function sqrt in module math:
+
+sqrt(x, /)
+    Return the square root of x.
+
+ex3:
+----
+	addition.py
+	-----------
+def add(x,y):
+    '''return the addition of x and y i.e., x+y'''
+    z=x+y
+    print(z)
+
+
+>>> from addition import add
+>>> help(add)
+Help on function add in module addition:
+
+add(x, y)
+    return the addition of x and y i.e., x+y
+
+Note:
+------
+the doc string provides readable descriptions about what code does.
+
+if we want to get the doc string of a function by using __doc__ attriute
+
+ex:
+---
+>>> len.__doc__
+'Return the number of items in a container.'
+
+>>> from math import sqrt
+>>> sqrt.__doc__
+'Return the square root of x.'
+
+>>> from addition import add
+>>> add.__doc__
+'return the addition of x and y i.e., x+y'
+
+working with return statement:
+------------------------------
+the return statement is used to returneing a value.
+
+if we want to store the function result and use that result into another functions i.e., reuse the function result in that case we are using return statement.
+
+ex1:
+---
+	demo.py
+	-------
+def add(x,y):    
+    z=x+y
+    print(z)
+add(4,5)
+
+	output
+	------
+9
+
+ex2:
+----
+	demo.py
+	-------
+def add(x,y):    
+    z=x+y
+    return z
+add(4,5)
+
+	output
+	------
+No Output i.e., here the return statement can't be handled
+
+how to handled the return statement?
+------------------------------------
+we can handled the return statement in 2 ways, they are
+
+	scenario-1
+	----------
+def add(x,y):    
+    z=x+y
+    return z
+print(add(4,5))
+
+	output
+	------
+9
+
+	scenario-2
+	----------
+def add(x,y):    
+    z=x+y
+    return z
+a=add(4,5)
+print(a)
+
+	output
+	------
+9
+
+ex:
+---
+	demo.py
+	-------
+def add(x,y):    
+    z=x+y
+    return z
+a=add(4,5)
+print(a)
+def sub(b):
+    c=a-b
+    return c
+res=sub(4)
+print(res)
+
+	output
+	-------
+9
+5

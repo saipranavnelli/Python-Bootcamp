@@ -1,0 +1,249 @@
+ex:
+---
+	demo.py
+	-------
+x=[1,2,3]
+y=[4,5,6]
+z=[]
+for i,j in zip(x,y):
+    z.append(i+j)
+print(z)
+
+	(or)
+
+x=[1,2,3]
+y=[4,5,6]
+print(list(map(lambda i,j:i+j,x,y)))
+
+	output
+	------
+[5, 7, 9]
+
+ex:
+---
+sample input:
+	4
+	5
+
+expected output:
+	9
+
+	demo.py
+	-------
+x=int(input())
+y=int(input())
+z=x+y
+print(z)
+
+ex:
+---
+sample input:
+	4,5
+
+expected output:
+	9
+
+	demo.py
+	-------
+x,y=eval(input())
+z=x+y
+print(z)
+
+ex:
+---
+sample input:
+	4 5
+
+expected output:
+	9
+
+	demo.py
+	-------
+x,y=input().split()
+z=int(x)+int(y)
+print(z)
+
+	(or)
+
+x,y=map(int,input().split())
+z=x+y
+print(z)
+
+working with reduce() function:
+-------------------------------
+the reduce() function is a builtin function in python2.x versions only.
+
+in python3.x versions, the reduce() function is not a builtin function, it is a function in the functools module.
+
+the reduce() function is used to reduce the no.of elements in a given iterable objects into single value i.e., it will return output as single value.
+
+	reduce(function,iterableobj)	--> single value
+
+ex1:
+---
+	demo.py
+	--------
+from functools import reduce
+x=[3,1,2,6,4]
+print(reduce(lambda i,j:i+j,x))
+
+	output
+	------
+16
+
+ex2:
+----
+	demo.py
+	--------
+from functools import reduce
+x=[3,1,2,6,4]
+print(reduce(lambda i,j:i if i<j else j,x))
+
+	output
+	------
+1
+
+ex3:
+---
+	demo.py
+	-------
+from functools import reduce
+x=[3,1,2,6,4]
+print(reduce(lambda i,j:i if i>j else j,x))
+
+	output
+	------
+6
+
+call by value and Call by reference:
+-------------------------------------
+in python, the concept of call by value and call by reference works a bit differently compared to some other programming languages.
+
+Call By Value(Immutable Types)
+-------------
+if you pass immutable types, python behaves like call by value.
+
+changes made inside the function do-not affect the original variable.
+
+ex:
+---
+	demo.py
+	-------
+x=10
+def f1(y):
+    print(y) #10
+    y+=5
+    print(y) #15
+print(x) #10
+f1(x)
+print(x) #10
+
+	output
+	------
+10
+10
+15
+10
+
+call by reference(mutable objects)
+-----------------
+if you pass mutable types, python behaves like call by reference.
+
+changes made inside the function will affect the original object.
+
+ex:
+---
+	demo.py
+	--------
+x=[1,2,3]
+def f1(y):
+    print(y) #[1,2,3]
+    y.append(4)
+    print(y) #[1,2,3,4]
+print(x) #[1,2,3]
+f1(x)
+print(x) #[1,2,3,4]
+
+	output
+	------
+[1, 2, 3]
+[1, 2, 3]
+[1, 2, 3, 4]
+[1, 2, 3, 4]
+
+
+what is Namespace?
+-------------------
+a namespace in python refers to a container that holds names(identifiers) and their corresponding objects(like variables,functions,classes,...) in simple word a namespace is a way of providing the unique names to an objects in python.
+
+in python, everything we are treated as an object.
+
+think of it like a dictionary where the key is the name and value is the object.
+
+in python, the Namespace can be categorized into 4 type's, they are
+
+	1).Builtin Namespace
+	2).Global Namespace
+	3).Local Namespace	
+	4).Non-Local(encloseing) Namespace
+
+Builtin Namespace: Contains builtin functions and exceptions like print(),type(),id(),len(),....,ValueError,ZeroDivisionError,...
+
+Global Namespace: created when a module is loaded it includes functions,variables in global scope
+
+Local Namespace: created when a function is called, it holds the function's local variables.
+
+Encloseing Namespace: for nested functions(non-local scope)
+
+ex:
+---
+	demo.py
+	-------
+"""simple namespace example"""
+x=10
+y=2.3
+z=4j
+def add(a,b):
+    """addition of two numbers"""
+    c=a+b
+    print("Local Namespace of add function through locals():",locals())
+    print("*"*45)
+    print("Local Namespace of add function through vars():",vars())
+add(4,5)
+print("="*45)
+def sub(p,q):
+    """subtraction of two numbers"""
+    r=p-q
+    print("Local Namespace of sub function through locals():",locals())
+    print("*"*45)
+    print("Local Namespace of sub function through vars():",vars())
+sub(10,20)
+print("="*45)
+print("Global Namespace through globals():",globals())
+
+	output
+	-------
+Local Namespace of add function through locals(): {'a': 4, 'b': 5, 'c': 9}
+*********************************************
+Local Namespace of add function through vars(): {'a': 4, 'b': 5, 'c': 9}
+=============================================
+Local Namespace of sub function through locals(): {'p': 10, 'q': 20, 'r': -10}
+*********************************************
+Local Namespace of sub function through vars(): {'p': 10, 'q': 20, 'r': -10}
+=============================================
+Global Namespace through globals(): {'__name__': '__main__', '__doc__': 'simple namespace example', '__package__': None, '__loader__': <class '_frozen_importlib.BuiltinImporter'>, '__spec__': None, '__builtins__': <module 'builtins' (built-in)>, '__file__': 'C:/Python314/demo.py', 'x': 10, 'y': 2.3, 'z': 4j, 'add': <function add at 0x0000018A35D65BC0>, 'sub': <function sub at 0x0000018A35D65D20>}
+>>> 
+
+    
+    
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,300 @@
+Anonymus Functions:
+-------------------
+we can define a function without a function name, that type of functions are called Anonymus functions.
+
+we can define a normal function by using "def" keyword.
+
+	syntax
+	------
+	def functionname(p_1,p_2,...,p_n):
+		--------
+		--------
+		--------
+
+we can define a anonymus function by using "lambda" keyword, because of that reason the anonymus functions are also called "lambda" functions.
+
+	syntax
+	------
+	lambda arguments:expression
+
+ex1:
+---
+create a normal function to return the addition of two numbers?
+
+	demo.py
+	-------
+def add(x,y):
+    return x+y
+print(add(4,5))
+print(type(add))
+
+	output
+	------
+9
+<class 'function'>
+
+create a anonymus(lambda) function to return the addition of two numbers?
+
+	demo.py
+	-------
+add=lambda x,y:x+y
+print(add(4,5))
+print(type(add))
+
+	output
+	------
+9
+<class 'function'>
+
+ex2:
+---
+create a normal function to check whether given number is either even or odd?
+
+	demo.py
+	------
+num=int(input("enter your number: "))
+def even_odd(x):
+    if x%2==0:
+        return "Even Number"
+    else:
+        return "Odd Number"
+print(even_odd(num))
+
+	output1
+	-------
+enter your number: 5
+Odd Number
+
+	output2
+	-------
+enter your number: 8
+Even Number
+
+create a anonymus(lambda) function to check whether given number is either even or odd?
+
+	demo.py
+	-------
+num=int(input("enter your number: "))
+even_odd=lambda x:"Even Number" if x%2==0 else "Odd Number"
+print(even_odd(num))
+
+	output1
+	-------
+enter your number: 5
+Odd Number
+
+	output2
+	-------
+enter your number: 8
+Even Number
+
+ex3:
+----
+create a normal function to check whether given number is either positive integer or negative integer or zero integer?
+
+	demo.py
+	--------
+num=int(input("enter your number: "))
+def p_n_z(x):
+    if x>0:
+        return "Positive Integer"
+    else:
+        if x<0:
+            return "Negative Integer"
+        else:
+            return "Zero Integer"
+print(p_n_z(num))
+
+	output1
+	-------
+enter your number: 5
+Positive Integer
+
+	output2
+	-------
+enter your number: -2
+Negative Integer
+
+	output3
+	--------
+enter your number: 0
+Zero Integer
+
+create a anonymus(lambda) function to check whether given number is either positive integer or negative integer or zero integer?
+
+	demo.py
+	-------
+num=int(input("enter your number: "))
+p_n_z=lambda x:"Positive Integer" if x>0 else "Negative Integer" if x<0 else "Zero Integer"
+print(p_n_z(num))
+
+	(or)
+
+num=int(input("enter your number: "))
+p_n_z=lambda x:"Positive Integer" if x>0 else \
+"Negative Integer" if x<0 else "Zero Integer"
+print(p_n_z(num))
+
+	output1
+	--------
+enter your number: 5
+Positive Integer
+
+	output2
+	-------
+enter your number: -2
+Negative Integer
+
+	output3
+	--------
+enter your number: 0
+Zero Integer
+
+ex4:
+---
+create a normal function to perform the arithmetic calculations
+
+	demo.py
+	-------
+def cal(x,y):
+    return x+y,x-y,x*y,x/y
+print(cal(4,5))
+
+	output
+	------
+(9, -1, 20, 0.8)
+
+create a anonymus(lambda) function to perform the arithmetic calculations?
+
+	demo.py
+	-------
+cal=lambda x,y:(x+y,x-y,x*y,x/y)
+print(cal(4,5))
+
+	output
+	------
+(9, -1, 20, 0.8)
+
+use case of lambda keyword:
+----------------------------
+the lambda keyword is used to create a anonymus(lambda) functions in python.
+
+the lambda keyword is used to create a nameless functions in python.
+
+the lambda keyword is used to create a single line functions in python.
+
+the lambda functions are used in higher-order functions
+				 ------------
+				       |
+	a function takes the parameter as another function
+
+the builtin higher order functions are like filter(),map() and reduce()
+
+working witg filter() function:
+--------------------------------
+the filter() function is a one builtin function in both python2.x and python3.x versions.
+
+the filter() function to return the filter object
+
+	filter(function,iterableobj)	--> filter object
+
+the filter() function takes the one by one element from the given iterable object,to apply the function, if function result is True the filter() function return that element otherwise the filter() function ignore that element.
+
+ex1:
+---
+	demo.py
+	--------
+x=[4,3,2,6,1,7,8,5,10,9]
+y=filter(lambda i:i%2==0,x)
+print(y)
+print(type(y))
+for ele in y:
+    print(ele)
+
+	output
+	------
+<filter object at 0x000001B2C25F2680>
+<class 'filter'>
+4
+2
+6
+8
+10
+
+ex2:
+----
+	demo.py
+	--------
+print(list(filter(lambda i:i%2==0,[4,3,2,6,1,7,8,5,10,9])))
+
+	output
+	------
+[4, 2, 6, 8, 10]
+
+working with map() function:
+-----------------------------
+the map() function is a one builtin function in python2.x and python3.x veresions
+
+the map() function to return the map object
+
+	map(function,*iterableobj)	--> map object
+
+the map() function takes the one by one element from the given iterable objects,to apply the function and return the result.
+
+ex1:
+---
+	demo.py
+	------
+x=[4,3,2,6,1,7,8,5,10,9]
+y=map(lambda i:i%2==0,x)
+print(y)
+print(type(y))
+for ele in y:
+    print(ele)
+
+	output
+	------
+<map object at 0x000001ECFE35B1C0>
+<class 'map'>
+True
+False
+True
+True
+False
+False
+True
+False
+True
+False
+
+ex2:
+----
+	demo.py
+	-------
+print(list(map(lambda i:i%2==0,[4,3,2,6,1,7,8,5,10,9])))
+
+	output
+	------
+[True, False, True, True, False, False, True, False, True, False]
+
+ex3:
+----
+	demo.py
+	-------
+print(list(map(lambda i:i+3,[4,3,2,6,1,7,8,5,10,9])))
+
+	output
+	------
+[7, 6, 5, 9, 4, 10, 11, 8, 13, 12]
+
+ex4:
+----
+	demo.py
+	-------
+print(list(filter(lambda j:j%3==0,map(lambda i:i+3,[4,3,2,6,1,7,8,5,10,9]))))
+
+	output
+	------
+[6, 9, 12]
+
+
