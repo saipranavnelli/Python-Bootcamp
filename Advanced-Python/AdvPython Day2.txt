@@ -1,0 +1,210 @@
+Note:
+----
+we can create N no.of Objects to single class but each and every object having unique address.
+
+ex:
+---
+	demo.py
+	-------
+class Student:
+    pass
+
+s1=Student()
+print(s1)
+s2=Student()
+print(s2)
+s3=Student()
+print(s3)
+
+	output
+	------
+<__main__.Student object at 0x000002A4D75717F0>
+<__main__.Student object at 0x000002A4D74E8B90>
+<__main__.Student object at 0x000002A4D74EB610>
+
+
+with respect to one object we can call one method N no.of Times.
+
+ex:
+---
+	demo.py
+	-------
+class Student:
+   def std_info(self):
+       print("hai")
+s1=Student()
+s1.std_info()
+s1.std_info()
+s1.std_info()
+s2=Student()
+s2.std_info()
+s2.std_info()
+s3=Student()
+s3.std_info()
+
+	output
+	------
+hai
+hai
+hai
+hai
+hai
+hai
+	
+what is self?
+------------
+a self is a reference variable which is pointing to current class instance.
+
+whenever we are creating an instance then automatically it self is passing to default parameter in the method.
+
+ex:
+---
+	demo.py
+	-------
+class Test:
+    def m1(self):
+        print(self)
+
+t1=Test()
+print(t1)
+t1.m1()
+print("="*45)
+t2=Test()
+print(t2)
+t2.m1()
+
+	output
+	------
+<__main__.Test object at 0x00000222DBC116A0>
+<__main__.Test object at 0x00000222DBC116A0>
+=============================================
+<__main__.Test object at 0x00000222DBB48B90>
+<__main__.Test object at 0x00000222DBB48B90>
+
+ex:
+---
+	demo.py
+	-------
+class Test:
+    def m1(abc):
+        print(abc)
+
+t1=Test()
+print(t1)
+t1.m1()
+print("="*45)
+t2=Test()
+print(t2)
+t2.m1()
+
+	output
+	------
+<__main__.Test object at 0x0000025D692816A0>
+<__main__.Test object at 0x0000025D692816A0>
+=============================================
+<__main__.Test object at 0x0000025D69218B90>
+<__main__.Test object at 0x0000025D69218B90>
+
+Variables:
+-----------
+a variable is a name,which is referenceing to an object in the memory.
+
+the variables are used to store the data for future reference/use.
+
+in object oriented programming, the variables can be categorized into 3 type's, they are
+
+	1).Static/Class Variables
+
+	2).Non-Static/Instance Variables
+
+	3).Local/Method Variables
+
+Static/Class Variables:
+-----------------------
+we can define a variables within the class and above the methods,constructor and initializers definitions i.e., we can define a variables at the begening of the class that variables are called Static/Class Variables.
+
+the Static/Class Variables are allocating the memory at only once.
+
+which data is common for all the objects of a class, that type data we are represented as Static Variables.
+
+we can access the Static variables data within the methods directly by using classname.
+
+we can access the Static variables data from outside the class by using classname or reference variable.
+
+ex:
+---
+	demo.py
+	-------
+class Student:
+    col_name="Vagdevi Technologies"
+    col_add="Ameerpet"
+    def Col_Info(self):
+        print("College Name: ",Student.col_name)
+        print("College Adderess: ",Student.col_add)
+s1=Student()
+s1.Col_Info()
+print("College Name: ",Student.col_name)
+print("College Adderess: ",Student.col_add)
+print("College Name: ",s1.col_name)
+print("College Adderess: ",s1.col_add)
+
+	output
+	------
+College Name:  Vagdevi Technologies
+College Adderess:  Ameerpet
+College Name:  Vagdevi Technologies
+College Adderess:  Ameerpet
+College Name:  Vagdevi Technologies
+College Adderess:  Ameerpet
+
+Non-Static/Instance Variables:
+-----------------------------
+we can define a variables within the methods/constructor/initializer with the help of default parameter like self, that type of variables are called Non-Static/Instance Variables.
+
+the Non-Static/Instance Variables memory allocation is depends on No.of Objects we are created.
+
+	1 object		--> 1 time memory allocation
+
+	2 objects		--> 2 time's memory is allocated
+
+	3 objects		--> 3 time's memory is allocated
+
+	....				....
+	....				....
+
+	N objects		--> N time's memory is allocated
+
+which data is changeing from one object to another object, that type of data we are represented as Non-Static/Instance Variables.
+
+we can access the Non-Static/Instance Variables data within the methods with the help of default parameter like 'self'.
+
+we can access the Non-Static/Instance Variables data from outside of that class with the help of reference variable only.
+
+ex:
+---
+	demo.py
+	-------
+class Student:
+    def Std_Info(self):
+        self.sid=101
+        self.sname="siva"
+        self.sadd="hyd"
+        print("Student Id:",self.sid)
+        print("Student Name:",self.sname)
+        print("Student Address: ",self.sadd)
+s1=Student()
+s1.Std_Info()
+print("Student Id:",s1.sid)
+print("Student Name:",s1.sname)
+print("Student Address: ",s1.sadd)
+
+	output
+	------
+Student Id: 101
+Student Name: siva
+Student Address:  hyd
+Student Id: 101
+Student Name: siva
+Student Address:  hyd
+
+

@@ -1,0 +1,232 @@
+ex1:
+----
+	demo.py
+	-------
+class Customer:
+    bname="XYZ Bank"
+    ifsc="XYZ00001234"
+    
+    def __init__(self,acno,name,pin,bal=0):
+        self.cacno=acno
+        self.cname=name
+        self.pin=pin
+        self.bal=bal
+        
+    def __str__(self):
+        return f"AcNo: {self.cacno}\nName: {self.cname}\nBalance: {self.bal}"
+
+    def deposit(self,pin,damt):
+        if pin==self.pin:
+            if damt>0:
+                self.bal+=damt
+                print("Deposited Successfully")
+                print(f"your current balance is: {self.bal}")
+            else:
+                print("Invalid Deposited Ammount")
+        else:
+            print("Invalid Pin")
+
+    def withdraw(self,pin,wamt):
+        if pin==self.pin:
+            if wamt>0:
+                if wamt<=self.bal:
+                    self.bal-=wamt
+                    print("Withdraw Successfully")
+                    print(f"your current balance is: {self.bal}")
+                else:
+                    print("Insufficient Funds in Your Account")
+            else:
+                print("Invalid Withdraw ammount")
+        else:
+            print("Invalid Pin")
+                    
+    def cust_info(self):
+        print(f"Customer Name: {self.cname}")
+        print(f"Customer AcNo: {self.cacno}")
+        print(f"Customer Balance: {self.bal}")
+        print(f"Bankname: {Customer.bname}")
+        print(f"IFSC Code: {Customer.ifsc}")
+        
+
+c1=Customer(1001,"siva",123)
+print(c1)
+c1.deposit(123,3000)
+c1.deposit(123,0)
+c1.deposit(1234,1000)
+c1.withdraw(123,2000)
+c1.withdraw(123,1500)
+c1.withdraw(123,0)
+c1.withdraw(1234,500)
+c1.cust_info()
+print("*"*45)
+c2=Customer(1002,"rama",999)
+print(c2)
+c2.deposit(999,2000)
+c2.withdraw(999,500)
+c2.cust_info()
+
+	output
+	------
+AcNo: 1001
+Name: siva
+Balance: 0
+Deposited Successfully
+your current balance is: 3000
+Invalid Deposited Ammount
+Invalid Pin
+Withdraw Successfully
+your current balance is: 1000
+Insufficient Funds in Your Account
+Invalid Withdraw ammount
+Invalid Pin
+Customer Name: siva
+Customer AcNo: 1001
+Customer Balance: 1000
+Bankname: XYZ Bank
+IFSC Code: XYZ00001234
+*********************************************
+AcNo: 1002
+Name: rama
+Balance: 0
+Deposited Successfully
+your current balance is: 2000
+Withdraw Successfully
+your current balance is: 1500
+Customer Name: rama
+Customer AcNo: 1002
+Customer Balance: 1500
+Bankname: XYZ Bank
+IFSC Code: XYZ00001234
+
+ex2:
+----
+write a python program to implement Arithmetic Calculator Menu driven Application by using class and object?
+
+	demo.py
+	-------
+class Calculator:
+    
+    def add(self):
+        x,y=eval(input("enter your input's: "))
+        res=x+y
+        return f"the addition of {x} and {y} is: {res}"
+    
+    def sub(self):
+        x,y=eval(input("enter your input's: "))
+        res=x-y
+        return f"the subtraction of {x} and {y} is: {res}"
+    
+    def mul(self):
+        x,y=eval(input("enter your input's: "))
+        res=x*y
+        return f"the multiplication of {x} and {y} is: {res}"
+    
+    def div(self):
+        x,y=eval(input("enter your input's: "))
+        if y==0:
+            return "sno can't be zero"
+        else:
+            res=x/y
+        return f"the division of {x} and {y} is: {res:.2f}"
+
+c=Calculator()
+while True:
+    print("Select any one option from the following options:\
+\n\t 1).Addition\n\t 2).Subtraction\n\t 3).Multiplication\
+\n\t 4).Division\n\t 5).Exit")
+    opt=int(input("enter your option: "))
+    if opt==1:
+        print(c.add())
+    elif opt==2:
+        print(c.sub())
+    elif opt==3:
+        print(c.mul())
+    elif opt==4:
+        print(c.div())
+    elif opt==5:
+        break
+    else:
+        print("Invalid Option")
+        
+print("Thanks for using my application")
+        
+   		output
+		------
+     
+      Select any one option from the following options:
+	 1).Addition
+	 2).Subtraction
+	 3).Multiplication
+	 4).Division
+	 5).Exit
+enter your option: 1
+enter your input's: 4,5
+the addition of 4 and 5 is: 9
+Select any one option from the following options:
+	 1).Addition
+	 2).Subtraction
+	 3).Multiplication
+	 4).Division
+	 5).Exit
+enter your option: 2
+enter your input's: 3,2
+the subtraction of 3 and 2 is: 1
+Select any one option from the following options:
+	 1).Addition
+	 2).Subtraction
+	 3).Multiplication
+	 4).Division
+	 5).Exit
+enter your option: 3
+enter your input's: 2,3
+the multiplication of 2 and 3 is: 6
+Select any one option from the following options:
+	 1).Addition
+	 2).Subtraction
+	 3).Multiplication
+	 4).Division
+	 5).Exit
+enter your option: 4
+enter your input's: 5,0
+sno can't be zero
+Select any one option from the following options:
+	 1).Addition
+	 2).Subtraction
+	 3).Multiplication
+	 4).Division
+	 5).Exit
+enter your option: 4
+enter your input's: 4,3
+the division of 4 and 3 is: 1.33
+Select any one option from the following options:
+	 1).Addition
+	 2).Subtraction
+	 3).Multiplication
+	 4).Division
+	 5).Exit
+enter your option: 6
+Invalid Option
+Select any one option from the following options:
+	 1).Addition
+	 2).Subtraction
+	 3).Multiplication
+	 4).Division
+	 5).Exit
+enter your option: 5
+Thanks for using my application  
+        
+Assignment-1:
+-------------
+write a python program to implement Arithmetic Calculator Menu driven Application by using functions?
+
+Assignment-2:
+-------------
+write a python program to implement Number System Calculator Menu driven Application by using functions?
+
+Assignment-3:
+-------------
+write a python program to build BMI(Body Mass Index) Calculator?
+
+
+
+

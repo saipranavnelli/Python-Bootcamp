@@ -1,0 +1,190 @@
+3. Private Members(private access modifier)
+Syntax: Double underscore (__name)
+
+Access: Can only be accessed within the class (name mangling applies)
+
+Use case: Use for sensitive data that shouldn’t be accessed directly.
+
+Real-World Analogy: Your bank balance — only you (and the system) should see it, not others.
+
+ex:
+---
+	demo.py
+	-------
+class BankAccount:
+    def __init__(self, balance):
+        self.__balance = balance  # private non-static attribute
+
+    def deposit(self, amount): #public method
+        self.__balance += amount
+
+    def get_balance(self): #public method
+        return self.__balance
+
+account = BankAccount(1000)
+account.deposit(500)
+print(account.get_balance())     # Correct access
+#print(account.__balance)      # ❌ Will raise AttributeError
+print(account._BankAccount__balance)  # Technically works (name mangling)
+
+	output
+	------
+1500
+1500
+
+what is Name Mangling?
+----------------------
+in Python, Name Mangling is a mechanism used to make class attributes private by modifieing their names.
+
+it happens when you define a variable with two leading underscores(__) and no morethan one trailing underscore.
+
+python changes the name internally : _classname__attributename
+
+Note:
+
+Modifier	Syntax		Accessible From		Convention Means...
+---------	-------		----------------	--------------------
+Public		name		Everywhere		Safe to access anywhere
+Protected	_name		Class + Subclass	Use with caution outside
+Private		__name		Only within the class	Should not be accessed 									outside
+what is Encapsulation?
+----------------------
+Encapsulation is the one of the fundamental principle of Object Oriented Programming(OOP).
+
+Encapsulation is the process of bundling data(variables) and methods(functions) that operates on the data into a single unit,usually class.
+
+		(or)
+
+it refers to wrapping the data (variables) and the code(methods) into a single unit,Usually class.
+
+It refers to restricting the direct access to some of an object components,meaning internal details of an object are hidden from outside the world.
+
+encapsulation helps:
+	Data Hiding: prevent direct modification object attributes
+
+	Code Maintainability: ensures controlled access to data
+
+	Security: protects data from accidental changes
+
+real life example: 
+	think of a capsule(medicine), it contains a mixture of substances inside a sealed shell, you can takes the capsule as a whole,but you can't access the individual ingredients directly, similarly in programming, encapsulation hides the inner working of a class and only expose the what is necessary.
+
+ex1: ATM Machine
+---
+when you use an ATM,you cannot directly access the bank database or internal logic. instead you interact with the machine using a provided interface(PIN, buttons).
+
+	demo.py
+	-------
+class ATM:
+    def __init__(self,balance,pin):
+        self.__balance=balance #private variable
+        self.__pin=pin #private variable
+
+    def check_balance(self,pin):
+        if pin==self.__pin:
+            return f"your balance is {self.__balance}."
+        else:
+            return "Invalid PIN"
+
+    def withdraw(self,pin,amount):
+        if pin==self.__pin:
+            if amount<=self.__balance:
+                self.__balance-=amount
+                return f"withdrawal success! Remaining Balance: {self.__balance}"
+            else:
+                return "Insufficient Balance."
+        else:
+            return "Invalid PIN"
+atm=ATM(5000,1234)
+print(atm.check_balance(1234))
+print(atm.withdraw(1234,3000))
+print(atm.check_balance(1234))
+print(atm.check_balance(1235))
+print(atm.withdraw(1234,3000))
+print(atm.withdraw(1235,3000))
+
+	output
+	------
+your balance is 5000.
+withdrawal success! Remaining Balance: 2000
+your balance is 2000.
+Invalid PIN
+Insufficient Balance.
+Invalid PIN
+
+ex2: car speed control system
+----
+a car's speed limit is controlled by the system,and users can't directly modify the engine's internals.
+
+	demo.py
+	-------
+class Car:
+    def __init__(self,max_speed):
+        self.__max_speed=max_speed #private variable
+        self.__current_speed=0 #private variable
+
+    def accelerate(self,speed):
+        if speed>self.__max_speed:
+            self.__current_speed=self.__max_speed
+        else:
+            self.__current_speed=speed
+        return f"Car is Running at {self.__current_speed} km/h"
+    def get_speed(self):
+        return f"Current Speed: {self.__current_speed} km/h"
+car=Car(200)
+print(car.accelerate(150))
+print(car.get_speed())
+print(car.accelerate(250))
+print(car.get_speed())
+
+	output
+	------
+Car is Running at 150 km/h
+Current Speed: 150 km/h
+Car is Running at 200 km/h
+Current Speed: 200 km/h
+
+ex3: employee salary system
+---
+in a company,employees can't directly access or modify their salary details, they can only see their salary details.
+
+they can only see their salary through a methods.
+
+	demo.py
+	-------
+class Employee:
+    def __init__(self,name,salary):
+        self.name=name #public variable
+        self.__salary=salary #private variable
+
+    def get_salary(self):
+        return f"Salary of {self.name}: {self.__salary}"
+
+    def set_salary(self,amount):
+        if amount>0:
+            self.__salary=amount
+            return f"Salary Updated to {self.__salary}"
+        else:
+            return "Invalid salary amount"
+
+emp=Employee("siva",40000)
+print(emp.get_salary())
+print(emp.set_salary(60000)) #update the salary
+print(emp.get_salary())
+
+	output
+	------
+Salary of siva: 40000
+Salary Updated to 60000
+Salary of siva: 60000
+
+note:
+-----
+encapsulation hides data using private variables (__var)
+
+access is controlled via public methods(getters/setters)
+
+ensures security,controlled modification and maintainability.
+
+
+

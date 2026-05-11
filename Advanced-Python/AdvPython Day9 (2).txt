@@ -1,0 +1,213 @@
+what is Inheritance?
+--------------------
+Inheritance is an OOP(Object Oriented Programming) concept that allows a class(child /derived/sub class) to inherit properties and behaviors from another class(parent/base/super class).
+
+This promotes code reusability,scalability and maintainability.
+
+types of inheritances:
+---------------------
+	single inheritance
+	multiple inheritance
+	multilevel inheritance
+	hierarchical inheritance
+	hybrid inheritance
+
+single inheritance:
+-------------------
+a single child class inherits from single parent class.
+
+ex:
+---
+consider a Bank Account System, where the base class BankAccount is inherited by SavingsAccount class.
+
+	demo.py
+	-------
+class BankAccount:
+    def __init__(self,account_holder,balance):
+        self.account_holder=account_holder
+        self.balance=balance
+
+    def deposit(self,amount):
+        self.balance+=amount
+        return f"{amount} deposited\nNew Balance: {self.balance}"
+
+class SavingsAccount(BankAccount):
+    def withdraw(self,amount):
+        if self.balance>=amount:
+            self.balance-=amount
+            return f"{amount} withdraw\nRemaining Balance: {self.balance}"
+        else:
+            return "Insufficient Balance"
+
+savings=SavingsAccount("siva",5000)
+print(savings.deposit(2000))
+print(savings.withdraw(3000))
+
+	output
+	-------
+2000 deposited
+New Balance: 7000
+3000 withdraw
+Remaining Balance: 4000
+
+Multiple Inheritance:
+---------------------
+a child class inherits from multiple parent classes.
+
+ex:
+---
+a SmartPhone inherits features from both Camera and Phone.
+
+	demo.py
+	--------
+class Camera:
+    def capture_photo(self):
+        return "Photo Captured!"
+
+class Phone:
+    def mak_call(self,number):
+        return f"calling {number}..."
+
+class SmartPhone(Camera,Phone):
+    def browse_internet(self):
+        return "Browsing Internet..."
+
+mobile=SmartPhone()
+print(mobile.capture_photo())
+print(mobile.mak_call(4524653465))
+print(mobile.browse_internet())
+
+	output
+	------
+Photo Captured!
+calling 4524653465...
+Browsing Internet...
+
+Multi-Level Inheritance:
+------------------------
+a child class inherits from another child class, creating a chain.
+
+ex:
+---
+An Electric Car inherits from Car, which in turn inherits from Vehicle.
+
+	demo.py
+	-------
+class Vehicle:
+    def general_info(self):
+        return "This is a Vehicle"
+
+class Car(Vehicle):
+    def vehicle_type(self):
+        return "This is a Car"
+
+class ElectricCar(Car):
+    def battery_info(self):
+        return "This car runs on electricity"
+
+tesla=ElectricCar()
+print(tesla.general_info())
+print(tesla.vehicle_type())
+print(tesla.battery_info())
+
+	output
+	------
+This is a Vehicle
+This is a Car
+This car runs on electricity
+
+Hierarchical Inheritance:
+------------------------
+multiple child classes inherit from a single parent class.
+
+ex:
+---
+a school management system, where Teacher and Student inherit from Person.
+
+	demo.py
+	--------
+class Person:
+    def __init__(self,name):
+        self.name=name
+
+    def display(self):
+        return f"Name: {self.name}"
+
+class Teacher(Person):
+    def teach(self,subject):
+        return f"{self.name} is teaching {subject} subject"
+
+class Student(Person):
+    def study(self,std):
+        return f"{self.name} is studying {std} class"
+
+teacher=Teacher("siva")
+print(teacher.display())
+print(teacher.teach("Python"))
+student=Student("rama")
+print(student.display())
+print(student.study("10th"))
+
+	output
+	------
+Name: siva
+siva is teaching Python subject
+Name: rama
+rama is studying 10th class
+
+Hybrid Inheritance:
+-------------------
+it is a combination of multiple inheritance types.
+
+ex:
+---
+a Multi-Functional Printer that works as both a Scanner and Printer.
+
+	demo.py
+	-------
+class Scanner:
+    def scan_document(self):
+        return "Document scanned"
+
+class Printer:
+    def print_document(self):
+        return "Document printed"
+
+class Photocopier(Scanner):
+    def copy_document(self):
+        return "Document copied"
+
+class MultiFunctionPrinter(Photocopier,Printer):
+    def fax_document(self):
+        return "Document Faxed"
+
+mfp=MultiFunctionPrinter()
+print(mfp.scan_document())
+print(mfp.print_document())
+print(mfp.copy_document())
+print(mfp.fax_document())
+
+	output
+	------
+Document scanned
+Document printed
+Document copied
+Document Faxed
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

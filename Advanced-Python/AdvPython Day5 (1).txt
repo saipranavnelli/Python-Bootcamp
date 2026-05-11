@@ -1,0 +1,276 @@
+what is Garbage Collection?
+--------------------------
+the Garbage Collection(GC) is a form of Automatic Memory Management.
+
+when program creates objects(like list,tuple,dictionary,class instances), they occupy memory(RAM). once these objects are no longer needed, the garbage collector frees up that memory so it can be reused.
+
+Garbage Collector means a system that automatically deletes unused objects from the memory.
+
+any high level programming language which support Garbage Collector concept, that type of high level programming languages are called Garbage Collected Languages.
+
+	ex: Java,Python,.Net,Go lang....
+
+note:
+-----
+in python, by default the Garbage Collector is Enable.
+
+ex1:
+----
+	demo.py
+	-------
+import gc
+print(gc.isenabled())
+
+	output
+	------
+True
+
+ex2:
+---
+	demo.py
+	-------
+import gc
+print(gc.isenabled())
+gc.disable()
+print(gc.isenabled())
+gc.enable()
+print(gc.isenabled())
+
+	output
+	------
+True
+False
+True
+
+when the Garbage Collector is Activated?
+-----------------------------------------
+	Scenario-1
+	----------
+	once program execution is over then immediately our python memory manager to calls the Garbage Collector, the Garbage Collector simply to delete that particular unused/unreferenced objects automatically.
+
+	befere delete an instance from the memory internally the destructor will be executed.
+
+	in python, __del__ is a destructor
+
+ex:
+---
+	demo.py
+	-------
+class Test:
+    def __new__(self):
+        print("Instance is Created")
+        return object.__new__(self)
+
+    def __del__(self):
+        print("Instance is Deleted")
+
+t1=Test()
+print("bye")
+
+	output
+	------
+C:\Python314>python demo.py
+Instance is Created
+bye
+Instance is Deleted
+
+Note:
+-----
+we can delete the objects manually by using "del" keyword also
+
+ex2:
+----
+	demo.py
+	-------
+class Test:
+    def __new__(self):
+        print("Instance is Created")
+        return object.__new__(self)
+
+    def __del__(self):
+        print("Instance is Deleted")
+
+t1=Test()
+t2=Test()
+t3=Test()
+del t2
+print("bye")
+
+	output
+	------
+C:\Python314>python demo.py
+Instance is Created
+Instance is Created
+Instance is Created
+Instance is Deleted
+bye
+Instance is Deleted
+Instance is Deleted
+
+	Scenario-2
+	-----------
+	whenever the object reference count is zero then immediately python memory manager to calls the garbage collector, the garbage collector to deallocate the memory for that perticular unused/unreferenced objects automatically.
+
+ex:
+---
+	demo.py
+	-------
+import sys
+class Test:
+    def __new__(self):
+        print("Instance is Created")
+        return object.__new__(self)
+
+    def __del__(self):
+        print("Instance is Deleted")
+
+t1=Test() 
+print(sys.getrefcount(t1)) 
+t2=t1
+print(sys.getrefcount(t1)) 
+t3=t2
+print(sys.getrefcount(t1)) 
+t4=Test() 
+print(sys.getrefcount(t4)) 
+del t3
+print(sys.getrefcount(t1)) 
+del t2
+print(sys.getrefcount(t1)) 
+del t1 
+print("bye")
+
+	output
+	------
+C:\Python314>python demo.py
+Instance is Created
+2
+3
+4
+Instance is Created
+2
+3
+2
+Instance is Deleted
+bye
+Instance is Deleted
+       
+types of methods:
+-----------------
+in python,we can define a methods in 4 ways, they are
+
+	1).Instance Methods
+	2).Class Methods
+	3).Static Methods
+	4).Abstract Methods
+
+
+Instance Methods:
+------------------
+we can define any method as a Instance Method,we dont required any Decorator(same like as a function).
+
+the instance methods takes the instance as a implicit first argument i.e., self as a default parameter
+
+in instance methods we can acceess both Static Variables(Class Variables) and 		Non-Static Variables(Instance Variables)
+
+from outside of that class we can access the Instance methods by using reference variable only.
+
+	Syntax
+	------
+	class classname:
+		-------
+		-------
+		def methodname(self,p_1,p_2,....p_n):
+			--------
+			--------
+
+
+Class Methods:
+---------------
+we can define any method as a Class Method, in that case we need to required classmethod decorator.
+
+the class methods takes class as a implicit first argument i.e., cls is a default parameter
+
+in class methods we can access only Static Variables(Class Variables) Data.
+
+from outside the class we can access the Class Methods directly by using Class Name or with the help of reference Variable also Possible.
+
+	syntax
+	------
+	class classname:
+		-------
+		-------
+		@classmethod
+		def methodname(cls,p_1,p_2,....p_n):
+			-------
+			-------
+
+
+Static Method:
+---------------
+we can define any method as a static method in that case we need to required staticmethod decorator.
+
+the static methods don't takes any thing as a implicit first argument.
+
+in static method we can access only local variables data i.e., some generalized data
+
+we can access the Static methods from outside of that class directly by using classname or with the help of reference variable also possible.
+
+	syntax
+	------
+	class classname:
+		--------
+		--------
+		@staticmethod
+		def methodname(p_1,p_2,....p_n):
+			-------
+			-------
+
+ex:
+---
+	demo.py
+	-------
+class Student:
+    col_name="Vagdevi Technologies"
+    def __init__(self,sid,name):
+        self.sid=sid
+        self.sname=name
+
+    @classmethod
+    def col_info(cls,add):
+        cls.col_add=add
+        print("College Name:",Student.col_name)
+        print("College Address:",cls.col_add)
+
+    def std_info(self,add):
+        self.sadd=add
+        print("Student Id:",self.sid)
+        print("Student Name:",self.sname)
+        print("Student Address:",self.sadd)
+        print("College Name:",Student.col_name)
+        print("College Address:",Student.col_add)
+
+    @staticmethod
+    def wishes(name):
+        print(f"hello {name},Good Morning")
+        
+s1=Student(101,'siva')
+s1.col_info("hyd")
+s1.std_info("Ameerpet")
+s1.wishes("siva")
+Student.col_info("vizag")
+Student.wishes("rama")
+#Student.std_info("xyz") #error
+
+	output
+	------
+College Name: Vagdevi Technologies
+College Address: hyd
+Student Id: 101
+Student Name: siva
+Student Address: Ameerpet
+College Name: Vagdevi Technologies
+College Address: hyd
+hello siva,Good Morning
+College Name: Vagdevi Technologies
+College Address: vizag
+hello rama,Good Morning

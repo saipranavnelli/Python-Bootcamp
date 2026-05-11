@@ -1,0 +1,223 @@
+Local/Method Variables:
+-----------------------
+we can define a variables within the methods directly, that type of variables are called Local Variables.
+
+we can access the Local Variables Data within that particular method only
+
+ex:
+---
+	demo.py
+	--------
+class Test:
+    x=10 #Static Variable
+    def m1(self):
+        self.y=20 #NonStatic Variable
+        z=30 #Local Variable
+        print(Test.x) #10
+        print(self.y) #20
+        print(z)#30
+    def m2(self):
+        print(Test.x) #10
+        print(self.y) #20
+        print(z) #Error
+t1=Test()
+t1.m1()
+t1.m2()
+
+	output
+	------
+10
+20
+30
+10
+20
+NameError: name 'z' is not defined
+   
+ex2:
+----
+	demo.py
+	-------
+class Student:
+    col_name="Vagdevi Technologies"
+    col_add="Ameerpet"
+    def std_info(self):
+        self.sid=101
+        self.sname="siva"
+        print("Student Id:",self.sid)
+        print("Student Name:",self.sname)
+    def col_info(self):
+        print("College Name:",Student.col_name)
+        print("College Address:",Student.col_add)
+s1=Student()
+s1.std_info()
+s1.col_info()
+
+	output
+	------
+Student Id: 101
+Student Name: siva
+College Name: Vagdevi Technologies
+College Address: Ameerpet
+
+
+Note:
+----
+whenever we are declare the non-static variables within the methods, in that case that non-static variables memory allocation is depends on no.of times we are calling a method, this is a more memory consumeing process, to overcome that problem to introduce Constructors and Initializers.
+
+what is Constructor?
+--------------------
+a constructor is a one special method, the main purpose constructor is to creating an instance.
+
+in python __new__() is a constructor.
+
+the constructor must return the instance.
+
+what is Initializer?
+--------------------
+a Initializer is a one special method, the main purpose of Initializer is to initialize the Non-static/Instance variables.
+
+in python __init__() is a Initializer
+
+the Initializer dont return anything i.e., return statement is not required
+
+note:
+-----
+the constructor and initializer's are executed automatically at the time of creating an instance.
+
+whenever we are trying to creating the instance internally first constructor is executed and next the initializer is executed.
+
+ex1:
+----
+	demo.py
+	--------
+class Test:
+    def __new__(self):
+        print("I am in Constructor")
+        return object.__new__(self)
+
+    def __init__(self):
+        print("I am in Initializer")
+        
+t1=Test()
+
+	(or)
+
+class Test:
+    def __init__(self):
+        print("I am in Initializer")
+        
+    def __new__(self):
+        print("I am in Constructor")
+        return object.__new__(self)   
+        
+t1=Test()
+
+	output
+	------
+I am in Constructor
+I am in Initializer
+
+Note:
+-----
+with respect to one object the constructor and initializers are executed at only once but with respect to one object we can call one method N no.of times.
+
+ex2:
+----
+	demo.py
+	-------
+class Test:
+    def __new__(self):
+       print("I am in Constructor")
+       return object.__new__(self)
+
+    def __init__(self):
+        print("I am in Initializer")
+
+    def m1(self):
+        print("i am in method m1")
+        
+t1=Test()
+t1.m1()
+t1.m1()
+t1.m1()
+t2=Test()
+t2.m1()
+t2.m1()
+
+	output
+	------
+I am in Constructor
+I am in Initializer
+i am in method m1
+i am in method m1
+i am in method m1
+I am in Constructor
+I am in Initializer
+i am in method m1
+i am in method m1
+
+ex:
+---
+	demo.py
+	-------
+class Student:
+    col_name="Vagdevi Technologies"
+    col_add="Ameerpet"
+    def __init__(self):
+        self.sid=101
+        self.sname="siva"        
+    def std_info(self):        
+        print("Student Id:",self.sid)
+        print("Student Name:",self.sname)
+    def col_info(self):
+        print("College Name:",Student.col_name)
+        print("College Address:",Student.col_add)
+s1=Student()
+s1.std_info()
+s1.col_info()
+
+	output
+	------
+Student Id: 101
+Student Name: siva
+College Name: Vagdevi Technologies
+College Address: Ameerpet
+
+ex:
+---
+	demo.py
+	-------
+class Student:
+    col_name="Vagdevi Technologies"
+    col_add="Ameerpet"
+    def __init__(self,sid,name):
+        self.sid=sid
+        self.sname=name       
+    def std_info(self):        
+        print("Student Id:",self.sid)
+        print("Student Name:",self.sname)
+    def col_info(self):
+        print("College Name:",Student.col_name)
+        print("College Address:",Student.col_add)
+s1=Student(101,"siva")
+s1.std_info()
+s1.col_info()
+s2=Student(102,"rama")
+s2.std_info()
+s2.col_info()
+
+	output
+	------
+Student Id: 101
+Student Name: siva
+College Name: Vagdevi Technologies
+College Address: Ameerpet
+Student Id: 102
+Student Name: rama
+College Name: Vagdevi Technologies
+College Address: Ameerpet
+
+
+
+
+

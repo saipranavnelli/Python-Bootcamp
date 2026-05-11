@@ -1,0 +1,171 @@
+class Person:
+    def __init__(self,name,add):
+        self.name=name
+        self.add=add
+    def person_info(self):
+        return f"Person Name:{self.name}\nPerson Address: {self.add}"
+
+class Student(Person):
+    def __init__(self,sid,name,add):
+        super().__init__(name,add)
+        self.sid=sid
+    def std_info(self):
+        return f"Student id: {self.sid}\nStudent name: {self.name}\nStudent address: {self.add}"
+s1=Student(101,'siva','hyd')
+print(s1.std_info())
+print(s1.person_info())
+
+Abstraction:
+------------
+Abstarction in python is one of the core principle of object oriented programming concept.
+
+it means hiding complex implementation details and showing only the essential features of an object.
+
+		(or)
+
+The process of handling complexity by hiding unnecessary details from the user and providing only necessary features or functionality is called abstraction in Python.
+
+in python, we can achive the abstraction by using following concept's:
+	1).Abstraction Base Classes(ABCs)
+	2).the abc module
+	3).abstract method
+
+an abstract class is a blueprint for creating other classes. Any class is referred to as an abstract class if it contains one or more abstract methods. 
+
+An abstract method is a function that has a declaration but does not have any implementation.
+
+These abstract classes are used when we want to provide a common interface for different implementations of a component. 
+
+	syntax
+	-------
+	from abc import ABC, abstractmethod
+
+	class AbstractClassName(ABC):
+
+    		@abstractmethod
+    		def abstract_method_name(self):
+     			#Empty body   
+			pass
+
+NOTE: 
+-----
+An abstract class can have both abstract methods and concrete methods. You can access both methods by instantiating the object of the abstract class. 
+
+Always provide an implementation of the abstract method in the child class even when implementation is given in the abstract class.
+
+A subclass must implement all abstract methods defined in the parent class otherwise it results in an error.
+
+example: ATM machine
+-------
+let's say you use an ATM machine you don't to know the internal function or how the money is being dispensed,you just press buttons.
+
+	demo.py
+	-------
+from abc import ABC,abstractmethod
+class ATM(ABC):
+    @abstractmethod
+    def withdraw(self,amount):
+        pass
+
+    @abstractmethod
+    def deposit(self,amount):
+        pass
+
+class HDFCATM(ATM):
+    def withdraw(self,amount):
+        print(f"Withdraw {amount} from HDFC Account")
+
+    def deposit(self,amount):
+        print(f"Deposited {amount} to HDFC Account")
+
+hdfcatm=HDFCATM()
+hdfcatm.withdraw(1000)
+hdfcatm.deposit(500)
+
+	output
+	------
+Withdraw 1000 from HDFC Account
+Deposited 500 to HDFC Account
+
+example2: payment Gateway
+--------
+different apps like Swiggy or Zomato offer multiple payment methods like UPI,Credit Card,Wallets. abstraction hides the details each payment method.
+	
+	demo.py
+	-------
+from abc import ABC,abstractmethod
+class Payment(ABC):
+    @abstractmethod
+    def pay(self,amount):
+        pass
+
+class UPI(Payment):
+    def pay(self,amount):
+        print(f"Paid {amount} using UPI")
+
+class CreditCard(Payment):
+    def pay(self,amount):
+        print(f"Paid {amount} using Credit Card")
+
+payment_method_upi=UPI()
+payment_method_upi.pay(400)
+payment_method_cc=CreditCard()
+payment_method_cc.pay(200)
+
+	output
+	-------
+Paid 400 using UPI
+Paid 200 using Credit Card
+
+
+example3: Vehicle Interface
+-------
+a driver doesn't need to know how the engine works just how to Accelerate and brake.
+
+	demo.py
+	-------
+from abc import ABC,abstractmethod
+class Vehicle(ABC):
+    @abstractmethod
+    def start_engine(self):
+        pass
+
+    @abstractmethod
+    def stop_engine(self):
+        pass
+
+class Car(Vehicle):
+    def start_engine(self):
+        print("Car Engine started")
+    def stop_engine(self):
+        print("Car Engine stopped")
+car=Car()
+car.start_engine()
+car.stop_engine()
+
+	output
+	-------
+Car Engine started
+Car Engine stopped
+
+example4:
+---------
+	demo.py
+	-------
+# Import ABC
+from abc import ABC, abstractmethod
+
+# Define an abstract class named Employee.
+class Employee(ABC):
+    # Define an abstract method named 'getTotalSalary', which must be empty.
+    # Using the @abstractmethod decorator
+    @abstractmethod
+    def getTotalSalary(self):
+        pass
+
+# Creating an object of an abstract class.
+emp = Employee()
+
+	output
+	------
+TypeError: Can't instantiate abstract class Employee without an implementation for abstract method 'getTotalSalary'

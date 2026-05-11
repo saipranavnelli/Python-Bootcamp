@@ -1,0 +1,289 @@
+what is MRO(Method Resolution Order)?
+-------------------------------------
+MRO defines the order in which class are searched when executeing a method or looking for an attribute.
+
+it is very important in multiple inheritance situations.
+
+how to check MRO in Python?
+---------------------------
+we can check MRO in python by using following options,
+
+	by calling mro()
+	by using __mro__
+	by using help()
+
+ex:
+---
+	demo.py
+	-------
+class x:
+    def m1(self):
+        print("hello")
+class y:
+    def m1(self):
+        print("hai")
+class z(x,y):
+    def m1(self):
+        print("bye")
+
+z1=z()
+print(z.mro())
+print("="*45)
+print(z.__mro__)
+print("="*45)
+print(help(z))
+
+	output
+	------
+[<class '__main__.z'>, <class '__main__.x'>, <class '__main__.y'>, <class 'object'>]
+=============================================
+(<class '__main__.z'>, <class '__main__.x'>, <class '__main__.y'>, <class 'object'>)
+=============================================
+Help on class z in module __main__:
+
+class z(x, y)
+   Method resolution order:
+       z
+       x
+       y
+       builtins.object
+
+ex2:
+---
+	demo.py
+	-------
+class x:
+    def m1(self):
+        print("hello")
+class y:
+    def m1(self):
+        print("hai")
+class z(x,y):
+    def m1(self):
+        print("bye")
+
+z1=z()
+z1.m1()
+
+	output
+	------
+bye
+
+ex3:
+---
+	demo.py
+	-------
+class x:
+    def m1(self):
+        print("hello")
+class y:
+    def m1(self):
+        print("hai")
+class z(x,y):
+    pass
+
+z1=z()
+z1.m1()
+
+	output
+	-------
+hello
+
+ex4:
+----
+	demo.py
+	-------
+class x:
+    def m1(self):
+        print("hello")
+class y:
+    def m1(self):
+        print("hai")
+class z(y,x):
+    pass
+
+z1=z()
+z1.m1()
+
+	output
+	------
+hai
+
+ex5:
+----
+	demo.py
+	-------
+class x:
+    def m1(self):
+        print("hello")
+class y:
+    def m1(self):        
+        print("hai")
+class z(x,y):
+   def m1(self):
+       super().m1()
+       print("bye")
+
+z1=z()
+z1.m1()
+
+	output
+	------
+hello
+bye
+
+ex6:
+----
+	demo.py
+	-------
+class x:
+    def m1(self):
+        print("hello")
+class y:
+    def m1(self):        
+        print("hai")
+class z(`:
+   def m1(self):
+       super().m1()
+       print("bye")
+
+z1=z()
+z1.m1()
+
+	output
+	------
+hai
+bye
+
+note:
+-----
+python uses something called C3 Linearization algorithm to determine the MRO.
+
+python's C3 linearization ensures:
+	Children come before Parents.
+	if a class appears in multiple bases,it only appear once(no-duplication)
+	Order Respects the declaration order of parents
+
+ex:
+---
+	demo.py
+	-------
+class x:
+    pass
+class y(x):
+    pass
+class z(x):
+    pass
+class a(y,z):
+    pass
+print(a.mro())
+
+	output
+	------
+[<class '__main__.a'>, <class '__main__.y'>, <class '__main__.z'>, <class '__main__.x'>, <class 'object'>]
+
+Benefits of Inheritance:
+-----------------------
+Code Reusability: no need to write the same code
+
+Scalability: New Features can be added with minimal changes
+
+Easy Maintenance: Bugs can be fixed at one place
+
+what is Polymorphism?
+---------------------
+the Polymorphism is an Object Oriented Programming(OOP) concept that allows objects of different classes to be treated as objects of a common superclass i.e., "many forms".
+
+in simple terms,polymorphism lets you define One Interface and have multiple implementations.
+
+types of polymorphism in python:
+
+1).Duck Typing(dynamic Polymorphism)
+2).Method Overriding(runtime polymorphism)
+3).Operator Overloading(compiletime polymorphism)
+
+ex1:
+---
+let's say you have multiple ways to make a payment: credit card,Paypal,PhonePay and Bank Transfer. all of them have a method called make_payment() but behave differently.
+
+	demo.py
+	-------
+class Payment:
+    def make_payment(self):
+        pass
+
+class CreditCard(Payment):
+    def make_payment(self):
+        return "paid using Credit Card"
+
+class PayPal(Payment):
+    def make_payment(self):
+        return "paid using PayPal"
+
+class PhonePay(Payment):
+    def make_payment(self):
+        return "paid using PhonePay"
+
+class BankTransfer(Payment):
+    def make_payment(self):
+        return "paid using Bank Transfer"
+
+def process_payment(payment_method):
+    print(payment_method.make_payment())
+
+credit=CreditCard()
+paypal=PayPal()
+phonepay=PhonePay()
+banktransfer=BankTransfer()
+
+process_payment(credit)
+process_payment(paypal)
+process_payment(phonepay)
+process_payment(banktransfer)
+
+	output
+	-------
+paid using Credit Card
+paid using PayPal
+paid using PhonePay
+paid using Bank Transfer
+
+ex2:
+----
+	demo.py
+	-------
+class Animal():
+    def make_sound(self):
+        pass
+
+class Dog(Animal):
+    def make_sound(self):
+        return "Woof"
+
+class Cat(Animal):
+    def make_sound(self):
+        return "Meow"
+
+def animal_sound(animal):
+    print(animal.make_sound())
+
+dog=Dog()
+cat=Cat()
+animal_sound(dog)
+animal_sound(cat)
+
+	output
+	------
+Woof
+Meow
+
+Benefits of Polymorphism:
+------------------------
+simplifies the code and promotes the reusability
+makes systems extensible and maintainable
+supports plug and play design
+
+
+
+
+

@@ -1,0 +1,291 @@
+Note:
+-----
+without static method decorator we are also creating static methods.
+
+ex:
+---
+	demo.py
+	-------
+class Test:
+    
+    @staticmethod
+    def m1():
+        """static method with the help of staticmethod decorator"""
+        print("hai")
+        
+    def m2():
+        """static method without help of staticmethod decorator"""
+        print("hello")
+        
+t1=Test()
+Test.m1()
+t1.m1()
+Test.m2()
+t1.m2() #Error
+
+	output
+	------
+hai
+hai
+hello
+
+TypeError: Test.m2() takes 0 positional arguments but 1 was given 
+
+Nested Classes:
+----------------
+we can define a class inside another class, is known as a nested classes.
+
+	syntax
+	-------
+	class classname: #outer class
+		--------
+		--------
+		--------
+		class classname: #inner class
+			---------
+			---------
+			---------  
+
+ex:
+---
+	demo.py
+	------
+class Animal:
+    legs=4
+    
+    class Dog:
+        def __init__(self,name,color):
+            self.name=name
+            self.color=color
+            
+        def Dog_Info(self):
+            print(f"Dogs are Having {Animal.legs} Legs")
+            print(f"Dog name is: {self.name}")
+            print(f"Dog color is: {self.color}")
+            
+        def Dog_Sound(self):
+            print("Dogs are Barking Bow Bow...")
+            
+    class Cat:
+        def __init__(self,name,color):
+            self.name=name
+            self.color=color
+            
+        def Cat_Info(self):
+            print(f"Cats are Having {Animal.legs} Legs")
+            print(f"Cat name is: {self.name}")
+            print(f"Cat color is: {self.color}")
+            
+        def Cat_Sound(self):
+            print("Cats are Barking Meaw Meaw...")
+            
+a=Animal()
+c=a.Cat('tiger','brown')
+c.Cat_Info()
+c.Cat_Sound()
+
+d=a.Dog('puppy','white')
+d.Dog_Info()
+d.Dog_Sound()
+
+	output
+	------
+Cats are Having 4 Legs
+Cat name is: tiger
+Cat color is: brown
+Cats are Barking Meaw Meaw...
+Dogs are Having 4 Legs
+Dog name is: puppy
+Dog color is: white
+Dogs are Barking Bow Bow...
+
+Nested Methods:
+---------------
+we can define a method inside another method, is known as a Nested Methods concept.
+
+	syntax
+	------
+	class classname:
+		--------
+		--------
+		def methodname(self):
+			--------
+			--------
+			def methodname():
+				--------
+				--------
+Note:
+----
+if we want to achive the Reusability within the methods, in that case we are using nested methods concept.
+
+ex: normal methods
+----
+	demo.py
+	-------
+class Calculator:
+    def add(self):
+        print("hai")
+        self.x=4
+        self.y=5
+        print(self.x+self.y)
+        print("hello")
+        self.x="siva"
+        self.y="krishna"
+        print(self.x+self.y)
+        print("Good Morning")
+        self.x=2.3
+        self.y=3.2
+        print(self.x+self.y)
+        print("bye")
+c=Calculator()
+c.add()
+
+	output
+	------
+hai
+9
+hello
+sivakrishna
+Good Morning
+5.5
+bye
+
+ex2:
+---
+	demo.py
+	-------
+class Calculator:
+    def add(self):
+        print("hai")
+        def res(x,y):
+            print(x+y)
+        res(4,5)        
+        print("hello")
+        res("siva","krishna")
+        print("Good Morning")
+        res(2.3,3.2)
+        print("bye")
+c=Calculator()
+c.add()
+
+	output
+	------
+hai
+9
+hello
+sivakrishna
+Good Morning
+5.5
+bye
+
+how to add attributes to class and instance from outside of that class?
+-----------------------------------------------------------------------
+we can add static attributes to class from outside of that class, by using class name directly.
+
+	syntax:
+	-------
+	classname.attributename=value  
+
+we can add non-static attributes to instance from outside of that class, by using reference variable.
+
+	syntax
+	------
+	reference_variable.attributename=value
+
+how to delete attributes from class and instance from outside of that class?
+-----------------------------------------------------------------------------
+we can delete the static attributes from class from outside of that class, by using del keyword.
+
+	syntax
+	------
+	del classname.attributename
+
+we can delete the non-static attributes from instance from outside of that class, by using del keyword.
+
+	syntax
+	------
+	del reference_variable.attributename
+
+
+ex:
+---
+	demo.py
+	-------
+class Test:
+    x=10
+    def __init__(self):
+        self.a=1
+
+    def m1(self):
+        print(Test.x)
+        print(self.a)
+
+t1=Test()
+t1.m1()
+Test.y=20
+t1.b=2
+t2=Test()
+t2.m1()
+Test.z=30
+t2.b=3
+print(Test.y)
+print(Test.z)
+print(t1.b)
+print(t2.b)
+del Test.y
+del t1.b
+print(t2.b)
+
+   	output
+	------
+10
+1
+10
+1
+20
+30
+2
+3
+3
+
+Builtin attributes of a class:
+-------------------------------
+whenever we are creating class internally our python interprter to add some attributes to that class automatically, that type of attributes are called Builtin Attributes of a class.
+
+__name__ : to return the class name
+
+__doc__ : to return the documentation string of a class
+
+__module__ : to return the module name, in python every file act as a one module, by default that module is called main module.
+
+__bases__ : to return the base class names, in python by default object class is the super/base class of all other classes either builtin or user-defined.
+
+__dict__ : to return the builtin attributes and user defined attributes of class in the form of dict.
+
+__init__ : initializer
+
+__new__ : constructor
+
+__del__ : destructor
+
+__str__ : string representation, it is a humna readable format
+
+__repr__ : string representation, original object is converted into string, some it is not a human readable format.
+
+__mro__ : to return the Method Resolution Order
+
+__add__ : to add two instances
+
+__mul__ : to apply the multiplication  on instance
+
+__eq__ : to compare the instancess
+__ne__
+__lt__
+__le__
+__gt__
+__ge__           
+
+        
+            
+
+  

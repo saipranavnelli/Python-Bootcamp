@@ -1,0 +1,223 @@
+		Advanced Python
+		---------------
+
+OOP's Concept's:
+-----------------
+Object Oriented Programming(OOP) is a programming Pardigm based on the concepts of objects which can contains data(attributes) and functions(methods).
+
+Key Concepts of OOP's:
+------------------------
+class : it is a blueprint for creating objects
+
+object: it is a instance of a class
+
+Encapsulation: bundling data and methods in a single unit(class) and restricting the access to internal details.
+
+Inheritance: one class inherit the properties and methods from another class
+
+Polymorphism: same method name behave differently depending on the object
+
+Abstraction: hiding the complex implementation details and showing only necessary features.
+
+Benefits of OOP's concept:
+--------------------------
+Modular code(easily to manage)
+Reusabilty
+Easier to debug and maintain
+flexibilty
+Security
+
+note:
+-----
+any high level programming language which support OOP's concepts,that type of high level programming languages are called Object Oriented Programming Languages.
+
+	ex: C++,Python,Java,.Net,....
+
+what is class?
+-------------
+a class is a Blueprint for creating objects.
+
+it defines attributes(variables) and methods(functions) that the objects created from the class will have.
+
+	syntax
+	------
+	class classname:
+		"""doc string"""
+		Data Member's
+		Operation's
+
+ex:
+----
+write a python program to define a class and display "hello world"?
+
+	demo.py
+	-------
+class test:
+    print("hello world!")
+
+	(or)
+
+class Test: #recommended
+    print("hello world!")
+
+	output
+	-----
+hello world
+
+Note:
+-----
+Naming Conventions in Python According to PEP8 Guidelines:
+
+Functions, variables, and attributes: Use lowercase_with_underscores (snake case).
+
+ex1:
+----
+	demo.py
+	-------
+first_num=int(input("enter your first number: "))
+second_num=int(input("enter your second number: "))
+print(first_num+second_num)
+
+ex2:
+----
+	demo.py
+	-------
+def add_of_two_numbers(x,y):
+	first_num=x
+	second_num=y
+	print(first_num+second_num)
+
+
+Classes and exceptions: Use CapitalizedWords (PascalCase or CamelCase).
+
+ex:
+---
+	demo.py
+	--------
+class AddOfTwoNumbers:
+	--------
+	--------
+
+Constants: Use ALL_CAPS_WITH_UNDERSCORES at the module level.
+
+ex:
+-----
+	demo.py
+	-------
+NUM_1=10
+NUM_2=20
+RES=NUM_1+NUM_2
+print(RES)
+
+Note:
+-----
+we can represent the data members in class by using variables.
+
+in object orinted programming, the variables can be categorized into 3 type's, they are
+
+	1).Static/Class Variables
+
+	2).Non-Static/Instance Variables
+
+	3).Local/Method Variables
+
+we can represent the operations in class by using methods.
+
+what is Method?
+----------------
+a method is a block of organized,reusable code to perform a particular action inside/within the class.
+
+	syntax
+	-------
+	class classname:
+		-------
+		-------
+		def methodname(self,p_1,p_2,...,p_n):
+			-------
+			-------
+
+in object oriented programming, we can define the methods in different ways, they are
+	
+	1).Instance Methods
+	
+	2).Class Methods
+
+	3).Static Methods
+
+	4).Abstract Methods
+
+ex2:
+----
+write a python program to define a class with method?
+
+	demo.py
+	-------
+class Wishes:
+    """simple class with method example"""
+    print("welcome")
+    def msg(self):
+        """simple method"""
+        print("siva krishna")
+        print("Good Afternoon")
+    print("good bye")
+print("bye")
+        
+	output
+	------
+welcome
+good bye
+bye
+
+note:
+-----
+in the above example our program executed class successfully but method is not executed.
+
+the methods are not executed automatically, whenever we are calling a method then only method logic will be executed.
+
+if we want to access the methods and attributes of a class from outside of that class, in that case we need to create an object.
+
+what is object?
+---------------
+an object is a instance of a class
+
+when you create an object, python memory manager to allocate the memory for it and you can use it to access class attributes and methods.
+
+	syntax
+	------
+	reference_variable=classname()
+
+ex3:
+----
+	demo.py
+	-------
+class Wishes: #class decleration
+    """class level documentation"""
+    print("welcome")
+    
+    def msg(self): #method decleration
+        """method level documentation"""
+        print("siva krishna")
+        print("Good Afternoon")
+        
+    print("good bye")
+    
+w=Wishes() #object creation
+print(w)
+w.msg() #method calling
+print("bye")
+    
+	output
+	------
+welcome
+good bye
+<__main__.Wishes object at 0x00000256557C16A0>
+siva krishna
+Good Afternoon
+bye
+
+what is reference variable?
+----------------------------
+a reference variable is the name that refers to(or point to) an object in the memory.
+
+through that reference variable we can access the methods and class attributes from outside of that class.
+

@@ -1,0 +1,251 @@
+ex1:
+----
+	demo.py
+	-------
+class Test:
+    """simple Test class Example"""
+    x=10
+    y=20
+    def __new__(self):
+        print("I am in Constructor")
+        return object.__new__(self)
+
+    def __init__(self):
+        print("I am in Initializer")
+        self.a=4
+        self.b=5
+
+    def add(self):
+        return self.a+self.b
+
+    def sub(self):
+        return Test.x-Test.y
+
+    def __del__(self):
+        print("I am in Destructor")
+
+t1=Test()
+print(t1.add())
+print(t1.sub())
+print(Test.__name__)
+print(Test.__doc__)
+print(Test.__bases__)
+print(Test.__module__)
+print(Test.__dict__)
+print(vars(t1))
+print("bye")
+
+	output
+	------
+C:\Python314>python demo.py
+
+I am in Constructor
+
+I am in Initializer
+
+9
+-10
+
+Test
+
+simple Test class Example
+
+(<class 'object'>,)
+
+__main__
+
+{'__module__': '__main__', '__firstlineno__': 1, '__doc__': 'simple Test class Example', 'x': 10, 'y': 20, '__new__': <staticmethod(<function Test.__new__ at 0x000001B9A5F33690>)>, '__init__': <function Test.__init__ at 0x000001B9A5F33740>, 'add': <function Test.add at 0x000001B9A5F337F0>, 'sub': <function Test.sub at 0x000001B9A5F338A0>, '__del__': <function Test.__del__ at 0x000001B9A5F33950>, '__static_attributes__': ('a', 'b'), '__dict__': <attribute '__dict__' of 'Test' objects>, '__weakref__': <attribute '__weakref__' of 'Test' objects>}
+
+{'a': 4, 'b': 5}
+
+bye
+
+I am in Destructor
+
+ex2:
+----
+	demo.py
+	--------
+class Book:
+    def __init__(self,pages):
+        self.pages=pages
+
+    def __add__(self,others):
+        return self.pages+others.pages
+
+    def __sub__(self,others):
+        return self.pages-others.pages
+
+    def __mul__(self,others):
+        return self.pages*others.pages
+
+    def __eq__(self,others):
+        if self.pages==others.pages:
+            return True
+        else:
+            return False
+
+    def __ne__(self,others):
+        if self.pages!=others.pages:
+            return True
+        else:
+            return False
+
+    def __lt__(self,others):
+        if self.pages<others.pages:
+            return True
+        else:
+            return False
+
+    def __le__(self,others):
+        if self.pages<=others.pages:
+            return True
+        else:
+            return False
+
+    def __gt__(self,others):
+        if self.pages>others.pages:
+            return True
+        else:
+            return False
+
+    def __ge__(self,others):
+        if self.pages>=others.pages:
+            return True
+        else:
+            return False
+        
+
+b1=Book(300)
+b2=Book(200)
+print(b1+b2)
+print(b1-b2)
+print(b1*b2)
+print(b1==b2)
+print(b1!=b2)
+print(b1<b2)
+print(b1<=b2)
+print(b1>b2)
+print(b1>=b2)
+
+	output
+	------
+500
+100
+60000
+False
+True
+False
+False
+True
+True
+
+ex3:
+----
+	demo.py
+	-------
+class Test:
+    def __str__(self):
+        return f"hello siva"
+t1=Test()
+print(t1)
+
+	(or)
+
+class Test:
+    def __repr__(self):
+        return f"hello siva"
+t1=Test()
+print(t1)
+
+	output
+	------
+hello siva
+
+Note:
+-----
+whenever we are calling str() function internally __str__() is executed and whenever we are calling repr() function internally __repr__() is executed.
+
+ex4:
+---
+>>> from datetime import datetime
+>>> x=datetime.now()
+>>> x
+datetime.datetime(2026, 4, 30, 12, 27, 57, 608586)
+>>> str(x)
+'2026-04-30 12:27:57.608586'
+>>> repr(x)
+'datetime.datetime(2026, 4, 30, 12, 27, 57, 608586)'
+
+Access Modifiers:
+------------------
+In Python, access modifiers determine the visibility and accessibility of class members (variables and methods).
+
+Unlike some other languages like Java or C++, Python doesn’t enforce strict access control, but it follows a naming convention to imply how members should be accessed.
+
+1. Public Members(public access modifier)
+
+Syntax: No underscore (name)
+
+Access: Can be accessed from anywhere (inside or outside the class)
+
+Use case: Use when you want a variable or method to be freely accessible.
+
+Real-World Analogy: A library book's title is visible to everyone.
+
+ex:
+---
+	demo.py
+	-------
+class Book:
+    def __init__(self, title):
+        self.title = title  # public non-static attribute
+
+    def get_title(self):    # public method
+        return self.title
+
+book = Book("The Alchemist")
+print(book.title)           # Accessing public non-static attribute
+print(book.get_title())     # Accessing public method
+
+	output
+	------
+The Alchemist
+The Alchemist
+
+2. Protected Members(protected access modifier)
+Syntax: Single underscore (_name)
+
+Access: Intended to be accessed within the class and subclasses
+
+Use case: Suggests that it shouldn’t be accessed from outside unless absolutely necessary.
+
+Real-World Analogy: An employee's salary — managers or HR can access it, but regular people shouldn't.
+
+ex:
+---
+	demo.py
+	-------
+class Employee:
+    def __init__(self, name, salary):
+        self.name = name #public non-static attribute
+        self._salary = salary  # protected non-static attribute
+
+class Manager(Employee):
+    def get_salary(self): #public method
+        return self._salary  # Accessing protected member in subclass
+
+m = Manager("Alice", 80000)
+print(m.name)
+print(m.get_salary())        # Allowed
+print(m._salary)             # Still accessible, but not recommended
+
+	output
+	-------
+Alice
+80000
+80000
+
+
+
+        

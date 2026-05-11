@@ -1,0 +1,428 @@
+Relationships between objects:
+------------------------------
+These are important relationships in OOP (Object-Oriented Programming) used to connect classes and objects.
+
+	1. Association
+	2. Aggregation
+	3. Composition
+	4. Inheritance
+
+Why Relationships are Important in OOP
+--------------------------------------
+Real-world systems are built using connected objects.
+
+Example:
+
+	College has Students
+	Car has Engine
+	Library uses Books
+
+
+1. Association:
+-----------------
+Association means two independent objects are related.
+
+this is a Weak relationship between the objects
+
+Objects can exist separately
+
+“uses-a” relationship
+
+
+Example:
+Teacher uses Student.
+
+	demo.py
+	-------
+class Student:    
+	def __init__(self, name):        
+		self.name = name
+class Teacher:    
+	def __init__(self, student):        
+		self.student = student
+
+
+Here:
+Student can exist without Teacher
+Teacher can exist without Student
+
+
+
+2. Aggregation
+---------------
+Aggregation is a special type of Association.
+
+Weak ownership between the objects
+
+One object contains another object
+
+Child can exist independently
+
+“has-a” relationship
+
+
+Example:
+Department has Professors.
+
+	demo.py
+	--------
+class Professor:    
+	def __init__(self, name):        
+		self.name = name
+class Department:    
+	def __init__(self, professors):        
+		self.professors = professors
+
+Usage:
+p1 = Professor("Ravi")
+p2 = Professor("Kiran")
+dept = Department([p1, p2])
+
+Here:
+Professors can exist without Department
+
+
+3. Composition
+---------------
+Composition means strong ownership between the objects
+
+Strong “has-a” relationship
+
+Child object depends on parent
+
+If parent is destroyed, child also goes away
+
+
+Example:
+
+	demo.py
+	-------
+Car has Engine.
+
+class Engine:    
+	def start(self):        
+		print("Engine started")
+class Car:    
+	def __init__(self):        
+		self.engine = Engine()
+
+Here:
+Engine belongs only to Car
+Engine is created inside Car
+
+
+4. Inheritance
+-------------
+Inheritance means one class acquires properties and methods of another class.
+
+“is-a” relationship
+
+Used for code reuse
+
+
+Example:
+Dog is an Animal.
+
+	demo.py
+	--------
+class Animal:    
+	def sound(self):        
+		print("Animal makes sound")
+class Dog(Animal):    
+	def bark(self):        
+		print("Dog barks")
+
+Usage:
+d = Dog()
+d.sound()
+d.bark()
+
+		Modular Programming
+		--------------------
+what is Module?
+---------------
+a module is a file containing python code(usually .py extension) that defines functions,classes,variables,executable statements which can be reused in other programs.
+
+in simple word, every python file we are calling as a module, by default that module is called main module.
+
+the python file name is a modulename.
+
+	ex: demo.py	--> demo is a module name
+
+	ref fig: module example
+
+Advantages of using Modules:
+----------------------------
+Code Reusability: define once use anywhere
+
+Better Organization: Split Large Programs into smaller,manageable files.
+
+Avoid Code Duplication
+
+easy maintenance and debugging
+
+namespace management: prevents variable name conflicts
+
+Types of Modules:
+----------------
+	Built-in Modules
+	User-Defined Modules
+	Third-Party Modules
+
+Built-in Modules:
+-----------------
+these modules are provided by the Python Standard Library
+
+	ex: builtins,math,os,sys,calendar,time,datetime,...,etc.,
+
+User-Defined Modules:
+---------------------
+these modules are created by the user(your own .py files)
+
+	ex: demo.py,sample.py,test.py,....,etc.,
+
+Third-Party Modules:
+--------------------
+these modules are installed via python package managers like pip
+
+	ex: pandas,numpy,matplotlib,....
+
+note:
+-----
+in python, by default every python file act as a main module.
+
+if we want to access the data from one module to another module, in that case we need to import that module.
+
+whenever we are importing a module, that imported module act as a sub module.
+
+	ref fig: module example2
+
+how to importing a module in python
+----------------------------------
+in python, importing modules is how you bring in external code(functions,classes,
+variables) to use in your current script.
+
+	basic import
+	import with alias(using as keyword)
+	import specific items from a module
+	import all items from a module(using *)
+
+ex1:
+----
+create a user-defined module
+
+	arithmeticoperations.py
+	-----------------------
+print("hai")
+print(__name__)
+x=10
+y=20
+def add(a,b):
+    c=a+b
+    return c
+print(add(4,5))
+class Test:
+    def sub(self,p,q):
+        self.p=p
+        self.q=q
+        self.r=self.p-self.q
+        return self.r
+t1=Test()
+print(t1.sub(5,3))
+        
+	output
+	------
+hai
+__main__
+9
+2
+
+Note:
+-----
+__name__ attribute to return __main__ if it is a main module otrherwise it return actual modulename.
+
+basic importing a module
+-------------------------
+	syntax
+	------
+	import modulename
+
+ex2:
+---
+	sample.py
+	---------
+import arithmeticoperations
+print(__name__)
+print(arithmeticoperations.x)
+print(arithmeticoperations.y)
+print(arithmeticoperations.add(2,3))
+t2=arithmeticoperations.Test()
+print(t2.sub(10,5))
+
+	output
+	------
+hai
+arithmeticoperations
+9
+2
+__main__
+10
+20
+5
+5
+
+purpose of if __name__=='__main__': condition?
+-----------------------------------------------
+to check whether that module is main module or not, if it is a main module then only that condition is True otherwise that condition is False.
+
+in python, it is a common and important practice used to control the execution of code when a file is run as a script or imported as a module.
+
+this condition allows a block of code to run only when the file is executed directly and not when it's imported.
+
+note:
+-----
+whenever we are executing python file directly in that case python interpreter sets the builtin variable __name__ value to "__main__"
+
+whenever we are importing a module, in that case python interpreter sets the buitin variable __name__ value to "actual module name".
+
+ex3:
+----
+	arithmeticoperations.py
+	------------------------
+print("hai")
+print(__name__)
+x=10
+y=20
+def add(a,b):
+    c=a+b
+    return c
+if __name__=='__main__':
+    print(add(4,5))
+class Test:
+    def sub(self,p,q):
+        self.p=p
+        self.q=q
+        self.r=self.p-self.q
+        return self.r
+if __name__=='__main__':
+    t1=Test()
+    print(t1.sub(5,3))
+        
+	output
+	-------
+hai
+__main__
+9
+2
+
+	sample.py
+	---------
+import arithmeticoperations
+print(__name__)
+print(arithmeticoperations.x)
+print(arithmeticoperations.y)
+print(arithmeticoperations.add(2,3))
+t2=arithmeticoperations.Test()
+print(t2.sub(10,5))
+
+	output
+	-------
+hai
+arithmeticoperations
+__main__
+10
+20
+5
+5
+
+import with alias (using as keyword)
+------------------
+useful for shortening long module names.
+
+	syntax
+	------
+	import modulename as renameofthatmodulename
+
+ex4:
+----
+	sample.py
+	-----------
+import arithmeticoperations as ao
+print(__name__)
+print(ao.x)
+print(ao.y)
+print(ao.add(2,3))
+t2=ao.Test()
+print(t2.sub(10,5))
+
+	output
+	------
+hai
+arithmeticoperations
+__main__
+10
+20
+5
+5
+
+import specific items from a module:
+-----------------------------------
+brings only selected functions/classes/variables
+
+	syntax
+	------
+	from modulename import p_1,p_2,....,p_n
+
+ex5:
+----
+	sample.py
+	---------
+from arithmeticoperations import x,y,add,Test
+print(__name__)
+print(x)
+print(y)
+print(add(2,3))
+t2=Test()
+print(t2.sub(10,5))
+
+	output
+	------
+hai
+arithmeticoperations
+__main__
+10
+20
+5
+5
+
+import all items from a module(using * operator)
+------------------------------------------------
+Brings everything from the module into your current namesapce.
+
+it is not recommended as it cause name conflicts and memory wasted.
+
+	syntax
+	------
+	from modulename import *
+
+ex6:
+----
+	sample.py
+	---------
+from arithmeticoperations import *
+print(__name__)
+print(x)
+print(y)
+print(add(2,3))
+t2=Test()
+print(t2.sub(10,5))
+
+	output
+	------
+hai
+arithmeticoperations
+__main__
+10
+20
+5
+5
