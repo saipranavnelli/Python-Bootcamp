@@ -1,0 +1,314 @@
+note:
+-----
+to install python-dateutil package
+
+	pip install python-dateutil
+
+ex:
+---
+	demo.py
+	-------
+from datetime import date
+from dateutil.relativedelta import relativedelta
+year,month,day=eval(input("enter your Birth year,month and day: "))
+bdate=date(year,month,day)
+cdate=date.today()
+difference=relativedelta(cdate,bdate)
+print(f"Age: {difference.years} Years, {difference.months} Months, {difference.days} Days")
+
+	output
+	-------
+enter your Birth year,month and day: 1991,1,14
+Age: 35 Years, 4 Months, 0 Days
+
+working with "random" module:
+------------------------------
+the "random" module is a one builtin module in python.
+
+if we want to display all the properties of "random" module, in that case we are using dir() function.
+
+	import random
+	dir(random)
+
+if we want to working with "random" module properties in that case it is mandatory to import "random" module into our program.
+
+ex1:
+----
+>>> from random import random
+>>> random()
+0.4547167281401786
+>>> random()
+0.5497165694761468
+>>> random()
+0.5838835720275632
+>>> random()
+0.48949798212159334
+>>> random()
+0.7773064420839082
+
+ex2:
+---
+>>> from random import uniform
+>>> uniform(1,5)
+4.066920752546237
+>>> uniform(1,5)
+4.314345385082165
+>>> uniform(1,5)
+2.6364290527774688
+>>> uniform(1,5)
+4.619991029135323
+>>> uniform(1,5)
+1.6538716712409443
+
+ex3:
+---
+>>> from random import randint
+>>> randint(1,5)
+1
+>>> randint(1,5)
+3
+>>> randint(1,5)
+4
+>>> randint(1,5)
+2
+>>> randint(1,5)
+5
+
+ex4:
+----
+>>> from random import randrange
+>>> randrange(5)
+0
+>>> randrange(5)
+4
+>>> randrange(5)
+1
+>>> randrange(5)
+2
+>>> randrange(5)
+3
+
+ex5:
+----
+>>> from random import randrange
+>>> randrange(5,10)
+8
+>>> randrange(5,10)
+5
+>>> randrange(5,10)
+6
+>>> randrange(5,10)
+9
+>>> randrange(5,10)
+7
+
+ex6:
+---
+>>> from random import randrange
+>>> randrange(1,10,2)
+5
+>>> randrange(1,10,2)
+7
+>>> randrange(1,10,2)
+9
+>>> randrange(1,10,2)
+1
+>>> randrange(1,10,2)
+3
+
+ex7:
+----
+>>> x=[5,2.3,4j,False,"siva"]
+>>> from random import choice
+>>> choice(x)
+False
+>>> choice(x)
+5
+>>> choice(x)
+'siva'
+>>> choice(x)
+2.3
+>>> choice(x)
+4j
+
+ex8:
+----
+>>> x=[5,2.3,4j,False,"siva"]
+>>> from random import choices
+>>> choices(x)
+[2.3]
+>>> choices(x)
+[False]
+>>> choices(x,k=2)
+[2.3, 4j]
+>>> choices(x,k=2)
+[False, False]
+>>> choices(x,k=3)
+[4j, 5, 5]
+>>> choices(x,k=3)
+[5, 'siva', 2.3]
+
+ex9:
+----
+>>> x=[5,2.3,4j,False,"siva"]
+>>> from random import shuffle
+>>> shuffle(x)
+>>> x
+[4j, 2.3, False, 'siva', 5]
+>>> shuffle(x)
+>>> x
+[2.3, 'siva', 5, False, 4j]
+>>> shuffle(x)
+>>> x
+[False, 4j, 5, 2.3, 'siva']
+
+ex10:
+-----
+	demo.py
+	--------
+from random import randint
+for i in range(6):
+    print(randint(0,9),end="")
+
+ex11:
+-----
+	demo.py
+	-------
+from random import choice
+from string import ascii_letters,digits
+s=ascii_letters+digits+'!@#$^&*'
+for i in range(8):
+    print(choice(s),end="")
+
+	(or)
+
+from random import choices
+from string import ascii_letters,digits
+s=ascii_letters+digits+'!@#$^&*'
+print("".join(choices(s,k=8)))
+
+ex12:
+-----
+	demo.py
+	-------
+from random import randint
+while True:
+    Roll_up=randint(1,6)
+    choice=int(input("enter your choice: "))
+    print("Dice Face Value is: ",Roll_up)
+    if Roll_up==choice:
+        print("Congratulations,you are the winner")
+        break
+    else:
+        print("Sorry,you are the Looser")
+        continue
+print("Thanks for using my application")
+    
+	output
+	------
+enter your choice: 5
+Dice Face Value is:  2
+Sorry,you are the Looser
+enter your choice: 2
+Dice Face Value is:  3
+Sorry,you are the Looser
+enter your choice: 5
+Dice Face Value is:  6
+Sorry,you are the Looser
+enter your choice: 3
+Dice Face Value is:  6
+Sorry,you are the Looser
+enter your choice: 2
+Dice Face Value is:  2
+Congratulations,you are the winner
+Thanks for using my application
+
+
+working with "os" module:
+------------------------------
+the "os" module is a one builtin module in python.
+
+if we want to display all the properties of "os" module, in that case we are using dir() function.
+
+	import os
+	dir(os)
+
+if we want to working with "os" module properties in that case it is mandatory to import "os" module into our program.
+
+ex1:
+----
+write a python script to get the current working directory?
+
+	C:\\Python314\\demo.py
+	-----------------------
+import os
+print(os.getcwd())
+
+	output
+	------
+C:\Python314
+
+ex2:
+----
+write a python script to create/make a directory?
+
+	demo.py
+	-------
+import os
+os.mkdir('siva')
+os.mkdir('D:\\sivakrishna\\rama\\krishna\\siva\\virat')
+
+ex3:
+---
+write a python script to change the directory?
+
+	demo.py
+	--------
+import os
+print(os.getcwd())
+os.chdir('siva')
+print(os.getcwd())
+os.chdir('D:\\sivakrishna\\rama')
+print(os.getcwd())
+
+	output
+	------
+C:\Python314
+C:\Python314\siva
+D:\sivakrishna\rama
+
+ex4:
+----
+write a python script to create a multiple directories?
+
+	demo.py
+	-------
+import os
+os.chdir('siva')
+dirs=['python','java','django']
+for d in dirs:
+    os.mkdir(d)
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,317 @@
+Module Search Path:
+------------------
+whenever we are importing a module, then immediately our python interpreter searching for that module in the following order,
+
+	1).Main Module Location i.e., current working directory
+
+	2).Python Path i.e., python installation location
+
+	3).Python Standard Library i.e., inside the Lib folder
+
+our imported module is not available in the above 3 locations, in that case our python interpreter to raise the ModuleNotFoundError Exception.
+
+ex1:
+-----
+	C:\\Python313\\siva\\wishes.py
+	-----------------------------
+print("hai")
+
+	C:\\Python313\\siva\\msg.py
+	---------------------------
+import wishes
+print("siva")
+
+	output
+	------
+hai
+siva
+
+ex2:
+----
+	C:\\Python313\\wishes.py
+	------------------------
+print("hai")
+
+	C:\\Python313\\siva\\msg.py
+	---------------------------
+import wishes
+print("siva")
+
+	output
+	------
+hai
+siva
+
+ex3:
+----
+	C:\\Python313\\Lib\\wishes.py
+	-----------------------------
+print("hai")
+
+	C:\\Python313\\siva\\msg.py
+	---------------------------
+import wishes
+print("siva")
+
+	output
+	------
+hai
+siva
+
+ex4:
+----
+	D:\\siva\\wishes.py
+	---------------------
+print("hai")
+
+	C:\\Python313\\siva\\msg.py
+	---------------------------
+import wishes
+print("siva")
+
+	output
+	------
+ModuleNotFoundError: No module named 'wishes'
+
+Reloading a module:
+--------------------
+by default, each and every module is loaded into the memory at only once.
+
+ex:
+---
+	C:\\Python313\\siva\\wishes.py
+	-------------------------------
+print("hai")
+
+
+	C:\\Python313\\siva\\msg.py
+	---------------------------
+import wishes
+print("siva")
+import wishes
+print("rama")
+import wishes
+print("krishna")
+
+	output
+	------
+hai
+siva
+rama
+krishna
+
+if we want reloading a module i.e., once again we are loading same module, in that case we are using reload() of importlib module
+
+ex2:
+---
+	C:\\Python313\\siva\\wishes.py
+	-------------------------------
+print("hai")
+
+
+	C:\\Python313\\siva\\msg.py
+	---------------------------
+import wishes
+import importlib
+print("siva")
+importlib.reload(wishes)
+print("rama")
+importlib.reload(wishes)
+print("krishna")
+
+	output
+	------
+hai
+siva
+hai
+rama
+hai
+krishna 
+
+how to get all the available modules in  python installation location and Standrad library?
+
+if we want to get all the available modules in python installation location and Standrad library, in that case we are using help() function.
+
+	help("modules")
+
+if we want to display all the properties of any module, in that case we are using dir() function.
+
+	import modulename
+	dir(modulename)
+
+working with "builtins" module:
+--------------------------------
+the "builtins" module is a one builtin module in python.
+
+if we want to display all the properties of "builtins" module, in that case we are using dir() function.
+
+	import builtins
+	dir(builtins)
+
+without importing builtins module into our program directly we can access builtins module properties.
+
+ex:
+---
+	demo.py
+	-------
+x=[4,3,7,9]
+print(x)
+print(len(x))
+print(min(x))
+print(sum(x))
+print(sorted(x))
+print(list(reversed(x)))
+y=13
+print(bin(y))
+print(oct(y))
+print(hex(y))
+print(ord('a'))
+print(chr(65))
+print(pow(2,3))
+print(round(2.4))
+print(round(2.6))
+
+	output
+	------
+[4, 3, 7, 9]
+4
+3
+23
+[3, 4, 7, 9]
+[9, 7, 3, 4]
+0b1101
+0o15
+0xd
+97
+A
+8
+2
+3
+
+Note:
+-----
+except Builtins module, we can access properties from any another module, in that case we need to import that module.
+
+working with "math" module:
+-----------------------------
+the "math" module is a one builtin module in python.
+
+if we want to display all the properties of "math" module, in that case we are using dir() function.
+
+	import math
+	dir(math)
+
+if we want to working with "math" module propertiesin that case it is mandatory to import "math" module into our program.
+
+ex:
+---
+	demo.py
+	-------
+from math import *
+print(pi)
+print(sin(90))
+print(cos(0))
+print(tan(45))
+print(sqrt(36))
+print(cbrt(27))
+print(factorial(5))
+print(lcm(3,5))
+print(gcd(6,12))
+print(perm(5,2))
+print(comb(5,2))
+print(prod([3,4,2]))
+print(radians(150))
+print(degrees(2))
+
+	output
+	------
+3.141592653589793
+0.8939966636005579
+1.0
+1.6197751905438615
+6.0
+3.0
+120
+15
+6
+20
+10
+24
+2.6179938779914944
+114.59155902616465
+
+
+working with "string" module
+-----------------------------
+the "string" module is a one builtin module in python.
+
+if we want to display all the properties of "string" module, in that case we are using dir() function.
+
+	import string
+	dir(string)
+
+if we want to working with "string" module properties in that case it is mandatory to import "string" module into our program.
+
+ex1:
+----
+>>> import string
+>>> string.ascii_letters
+'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+
+ex2:
+----
+>>> import string
+>>> string.ascii_lowercase
+'abcdefghijklmnopqrstuvwxyz'
+
+ex3:
+----
+>>> import string
+>>> string.ascii_uppercase
+'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+
+ex4:
+----
+>>> import string
+>>> string.digits
+'0123456789'
+
+ex5:
+----
+>>> import string
+>>> string.octdigits
+'01234567'
+
+ex6:
+----
+>>> import string
+>>> string.hexdigits
+'0123456789abcdefABCDEF'
+
+ex7:
+----
+>>> import string
+>>> string.printable
+'0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~ \t\n\r\x0b\x0c'
+
+ex8:
+----
+>>> import string
+>>> string.punctuation
+'!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~'
+
+ex9:
+----
+>>> import string
+>>> string.whitespace
+' \t\n\r\x0b\x0c'
+
+ex10:
+-----
+>>> import string
+>>> string.capwords("hello rama good 123evening")
+'Hello Rama Good 123evening'
+>>> "hello rama good 123evening".title()
+'Hello Rama Good 123Evening'
+>>> "hello rama good 123evening".capitalize()
+'Hello rama good 123evening'

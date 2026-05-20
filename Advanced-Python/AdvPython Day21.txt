@@ -1,0 +1,284 @@
+working with "platform" module:
+-------------------------------
+the "platform" module is a one builtin module in python
+
+if we want to display all the properties of "platform" module, in that case we are using dir() function.
+
+	import platform
+	dir(platform)
+
+if we want to working with "platform" module properties in that case it is mandatory to import "platform" module into our program.
+
+ex:
+---
+>>> import platform
+>>> platform.uname()
+uname_result(system='Windows', node='DESKTOP-54JC4S3', release='10', version='10.0.19045', machine='AMD64')
+
+>>> platform.system()
+'Windows'
+
+>>> platform.node()
+'DESKTOP-54JC4S3'
+
+>>> platform.release()
+'10'
+
+>>> platform.version()
+'10.0.19045'
+
+>>> platform.machine()
+'AMD64'
+
+>>> platform.processor()
+'Intel64 Family 6 Model 78 Stepping 3, GenuineIntel'
+
+>>> platform.python_branch()
+'tags/v3.14.3'
+
+>>> platform.python_build()
+('tags/v3.14.3:323c59a', 'Feb  3 2026 16:04:56')
+
+>>> platform.python_compiler()
+'MSC v.1944 64 bit (AMD64)'
+
+>>> platform.python_implementation()
+'CPython'
+
+>>> platform.python_revision()
+'323c59a'
+
+>>> platform.python_version()
+'3.14.3'
+
+>>> platform.python_version_tuple()
+('3', '14', '3')
+
+
+working with "collections" module:
+-------------------------------
+the "collections" module is a one builtin module in python
+
+if we want to display all the properties of "collections" module, in that case we are using dir() function.
+
+	import collections
+	dir(collections)
+
+if we want to working with "collections" module properties in that case it is mandatory to import "collections" module into our program.
+
+Counter:
+-------
+Elements are stored as dictionary keys and their counts are stored as dictionary values.
+
+	Counter(Iterableobj)
+
+ex1: working with Counter class
+---
+	demo.py
+	-------
+from collections import Counter
+x=Counter([10,20,30,10,30,40,10,20,30,10])
+print(x)
+print(type(x))
+print(x.most_common())
+print(x.most_common(1))
+print(x.most_common(2))
+print(x.total())
+x.subtract([10,20,30,20,40])
+print(x)
+print(x.total())
+
+	output
+	------
+Counter({10: 4, 30: 3, 20: 2, 40: 1})
+<class 'collections.Counter'>
+[(10, 4), (30, 3), (20, 2), (40, 1)]
+[(10, 4)]
+[(10, 4), (30, 3)]
+10
+Counter({10: 3, 30: 2, 20: 0, 40: 0})
+5
+
+what is namedtuple?
+------------------
+A namedtuple in Python is a factory function provided by the collections module that allows for the creation of tuple-like objects with named fields. 
+
+It offers the immutability and memory efficiency of regular tuples while enhancing readability by allowing access to elements using descriptive names (like attributes) instead of numerical indices.
+
+	syntax
+	------
+	namedtuple(typename, field_names)
+
+Key characteristics of namedtuple:
+-----------------------------------
+1).Subclass of tuple
+namedtuple instances are subclasses of the built-in tuple type, meaning they inherit all the functionalities of a regular tuple.
+
+2).Named fields
+Each element within a namedtuple instance can be accessed by a specific name, similar to how attributes are accessed in an object, using dot notation (e.g., object.field_name).
+
+3).Immutability
+Like regular tuples, namedtuple instances are immutable; their values cannot be changed after creation.
+
+4).Memory efficiency
+namedtuple instances are as memory-efficient as regular tuples because they do not have per-instance dictionaries, unlike typical Python objects.
+ 
+5).Readability
+The use of named fields significantly improves code readability and self-documentation, making it easier to understand the purpose of each element.
+
+
+ex2:
+----
+	demo.py
+	-------
+from collections import namedtuple
+student=namedtuple("Student",["sid","sname"])
+s1=student(101,'siva')
+print(s1)
+print(s1.sid)
+print(s1.sname)
+print(s1[0])
+print(s1[1])
+
+	output
+	------
+Student(sid=101, sname='siva')
+101
+siva
+101
+siva
+
+what is deque?
+---------------
+A deque, short for "double-ended queue" and pronounced "deck," is a data structure available in Python's collections module. 
+
+It is a generalization of both stacks and queues, allowing for efficient (O(1) time complexity) additions and removals of elements from both ends.
+
+	syntax
+	------
+	 deque(iterable,maxlen)
+	
+	here maxlen is a Optional parameter
+
+Key Features and Operations:
+----------------------------
+1).Efficient Appends and Pops
+Unlike standard Python lists where inserting or deleting at the beginning can be slow (O(n)), deques offer constant-time performance for append(), appendleft(), pop(), and popleft().
+
+2).Thread-Safe
+Deques are designed to be thread-safe for append and pop operations from different threads, making them suitable for concurrent programming.
+ 
+3).maxlen Parameter:
+Deques can be initialized with a maxlen parameter, which automatically limits the size of the deque. When a new element is added to a full deque, the element at the opposite end is automatically removed. This is useful for implementing fixed-size buffers or sliding window algorithms.
+
+Common Deque Methods:
+---------------------
+1).append(x)
+Adds x to the right end of the deque.
+
+2).appendleft(x)
+Adds x to the left end of the deque.
+
+3)pop()
+Removes and returns an element from the right end of the deque.
+
+4).popleft()
+Removes and returns an element from the left end of the deque.
+
+5).extend(iterable)
+Extends the deque by appending elements from the iterable to the right.
+
+6).extendleft(iterable)
+Extends the deque by appending elements from the iterable to the left.
+
+7).remove(value)
+Removes the first occurrence of value. Raises ValueError if value is not found.
+
+8).clear()
+Removes all elements from the deque.
+
+9).rotate(n=1)
+Rotate the deque n steps to the right.  If n is negative, rotates left.
+
+ex3:
+----
+	demo.py
+	-------
+from collections import deque
+x=deque([5,6,7])
+print(x)
+print(type(x))
+x.append(10)
+x.appendleft(100)
+print(x)
+x.extend([20,30,40])
+x.extendleft([200,300,400])
+print(x)
+print(x.index(5))
+x.insert(x.index(5),50)
+print(x)
+x.remove(50)
+print(x)
+x.pop()
+x.popleft()
+print(x)
+x.rotate() #n=1
+print(x)
+x.rotate(2) 
+print(x)
+x.rotate(-3)
+print(x)
+x.reverse()
+print(x)
+print(len(x))
+x.clear()
+print(x)
+print(len(x))
+
+	output
+	------
+deque([5, 6, 7])
+<class 'collections.deque'>
+deque([100, 5, 6, 7, 10])
+deque([400, 300, 200, 100, 5, 6, 7, 10, 20, 30, 40])
+4
+deque([400, 300, 200, 100, 50, 5, 6, 7, 10, 20, 30, 40])
+deque([400, 300, 200, 100, 5, 6, 7, 10, 20, 30, 40])
+deque([300, 200, 100, 5, 6, 7, 10, 20, 30])
+deque([30, 300, 200, 100, 5, 6, 7, 10, 20])
+deque([10, 20, 30, 300, 200, 100, 5, 6, 7])
+deque([300, 200, 100, 5, 6, 7, 10, 20, 30])
+deque([30, 20, 10, 7, 6, 5, 100, 200, 300])
+9
+deque([])
+0
+
+ex4:
+----
+	demo.py
+	-------
+from collections import deque
+x=deque([5,6,7],5)
+print(x)
+print(type(x))
+x.append(10)
+x.appendleft(100)
+print(x)
+x.append(20)
+print(x)
+x.appendleft(200)
+print(x)
+
+	output
+	------
+deque([5, 6, 7], maxlen=5)
+<class 'collections.deque'>
+deque([100, 5, 6, 7, 10], maxlen=5)
+deque([5, 6, 7, 10, 20], maxlen=5)
+deque([200, 5, 6, 7, 10], maxlen=5)
+
+
+
+
+
+

@@ -1,0 +1,174 @@
+working with 'time' module:
+----------------------------
+the "time" module is a one builtin module in python.
+
+if we want to display all the properties of "time" module, in that case we are using dir() function.
+
+	import time
+	dir(time)
+
+if we want to working with "time" module propertiesin that case it is mandatory to import "time" module into our program.
+
+ex1:
+---
+	demo.py
+	-------
+from time import ctime
+print(ctime())
+
+	output
+	------
+Tue May 12 11:55:39 2026
+
+ex2:
+---
+	demo.py
+	-------
+from time import localtime,gmtime
+print(localtime())
+print("*"*45)
+print(gmtime())
+
+	output
+	-------
+time.struct_time(tm_year=2026, tm_mon=5, tm_mday=12, tm_hour=11, tm_min=56, tm_sec=45, tm_wday=1, tm_yday=132, tm_isdst=0)
+*********************************************
+time.struct_time(tm_year=2026, tm_mon=5, tm_mday=12, tm_hour=6, tm_min=26, tm_sec=45, tm_wday=1, tm_yday=132, tm_isdst=0)
+
+ex3:
+---
+	demo.py
+	--------
+from time import asctime,localtime,gmtime
+print(asctime())
+print("*"*45)
+print(asctime(localtime()))
+print("*"*45)
+print(asctime(gmtime()))
+
+	output
+	------
+Tue May 12 12:01:20 2026
+*********************************************
+Tue May 12 12:01:20 2026
+*********************************************
+Tue May 12 06:31:20 2026
+
+ex4:
+----
+	demo.py
+	-------
+from time import sleep
+for i in range(5):
+    print("hai")
+    sleep(10)
+
+	output
+	-------
+hai
+hai
+hai
+hai
+hai
+
+ex5:
+-----
+	demo.py
+	-------
+from time import tzname
+print(tzname)
+
+	output
+	------
+('India Standard Time', 'India Daylight Time')
+
+strftime()
+----------
+Convert a time tuple to a string according to a format specification.
+
+	strftime(format, [time tuple]) -> string
+
+When the time tuple is not present, current time as returned by localtime() is used.
+
+    Commonly used format codes:
+
+    %Y  	Year with century as a decimal number.
+    %m  	Month as a decimal number [01,12].
+    %d  	Day of the month as a decimal number [01,31].
+    %H  	Hour (24-hour clock) as a decimal number [00,23].
+    %M  	Minute as a decimal number [00,59].
+    %S  	Second as a decimal number [00,61].
+    %z  	Time zone offset from UTC.
+    %a  	Locale's abbreviated weekday name.
+    %A  	Locale's full weekday name.
+    %b  	Locale's abbreviated month name.
+    %B  	Locale's full month name.
+    %c  	Locale's appropriate date and time representation.
+    %I  	Hour (12-hour clock) as a decimal number [01,12].
+    %p  	Locale's equivalent of either AM or PM.
+
+ex6:
+---
+>>> from time import strftime,localtime,gmtime
+>>> strftime("%Y-%m-%d %H:%M:%S %p")
+'2026-05-12 12:17:42 PM'
+>>> strftime("%Y-%m-%d %H:%M:%S %p",localtime())
+'2026-05-12 12:17:48 PM'
+>>> strftime("%Y-%m-%d %H:%M:%S %p",gmtime())
+'2026-05-12 06:47:54 AM'
+>>> strftime("%a %Y-%b-%d %I:%M:%S %p %z")
+'Tue 2026-May-12 12:18:49 PM +0530'
+>>> strftime("%A %Y-%B-%d %H:%M:%S %p %z")
+'Tuesday 2026-May-12 12:19:25 PM +0530'
+>>> strftime("%c")
+'Tue May 12 12:19:42 2026'
+
+strptime()
+-----------
+Parse a string to a time tuple according to a format specification.
+
+	strptime(string, format) -> struct_time
+
+ex7:
+---
+>>> from time import ctime,strptime
+>>> strptime("1991-1-14 8:32:24","%Y-%m-%d %H:%M:%S")
+time.struct_time(tm_year=1991, tm_mon=1, tm_mday=14, tm_hour=8, tm_min=32, tm_sec=24, tm_wday=0, tm_yday=14, tm_isdst=-1)
+>>> ctime()
+'Tue May 12 12:31:20 2026'
+>>> strptime(ctime(),"%a %b %d %H:%M:%S %Y")
+time.struct_time(tm_year=2026, tm_mon=5, tm_mday=12, tm_hour=12, tm_min=32, tm_sec=3, tm_wday=1, tm_yday=132, tm_isdst=-1)
+
+ex8:
+-----
+	demo.py
+	-------
+from time import perf_counter,sleep
+stime=perf_counter()
+num=int(input("enter your number: "))
+def fact(x):
+    if x==0:
+        return 1
+    else:
+        return x*fact(x-1)
+
+for i in range(num+1):
+    print(f"the factorial of {i} is: {fact(i)}")
+    sleep(2)
+
+etime=perf_counter()
+print(f"the elapsed time is: {etime-stime:.2f} Seconds")
+
+	output
+	------
+enter your number: 5
+the factorial of 0 is: 1
+the factorial of 1 is: 1
+the factorial of 2 is: 2
+the factorial of 3 is: 6
+the factorial of 4 is: 24
+the factorial of 5 is: 120
+the elapsed time is: 14.93 Seconds
+
+
+

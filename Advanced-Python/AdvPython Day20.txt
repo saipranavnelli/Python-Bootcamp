@@ -1,0 +1,228 @@
+working with "array" module:
+----------------------------
+the "array" module is a one builtin module in python
+
+if we want to display all the properties of "array" module, in that case we are using dir() function.
+
+	import array
+	dir(array)
+
+if we want to working with "array" module properties in that case it is mandatory to import "array" module into our program.
+
+how to create an array?
+-----------------------
+if we want to create an array by using array() function of array module.
+
+	from array import array
+	array(typecode [, initializer]) -> array object
+
+Return a new array whose items are restricted by typecode, and initialized from the optional initializer value, which must be a list,string or iterable over elements of the appropriate type.
+
+Arrays represent basic values and behave very much like lists, except the type of objects stored in them is constrained. 
+
+The type is specified at object creation time by using a type code, which is a single character.
+
+The following type codes are defined:
+
+      Type code   C Type             Minimum size in bytes
+      'b'         signed integer     	1
+      'B'         unsigned integer   	1
+      'u'         Unicode character  	2 
+      'h'         signed integer     	2
+      'H'         unsigned integer   	2
+      'i'         signed integer     	2
+      'I'         unsigned integer   	2
+      'l'         signed integer     	4
+      'L'         unsigned integer   	4
+      'q'         signed integer     	8 
+      'Q'         unsigned integer   	8 
+      'f'         floating-point     	4
+      'd'         floating-point     	8
+
+ex1:
+----
+	demo.py
+	-------
+from array import array
+a=array('i')
+print(a)
+print(type(a))
+
+	output
+	------
+array('i')
+<class 'array.array'>
+
+ex2:
+----
+	demo.py
+	-------
+from array import array
+a=array('i',[9,3,8,2])
+print(a)
+
+	output
+	-------
+array('i', [9, 3, 8, 2])
+
+ex3:
+----
+	demo.py
+	-------
+from array import array
+a=array('i',[9,3,8,2])
+print(a)
+print(a[1]) #Positive indexing
+print(a[-1]) #Negative indexing
+print(a[1:3]) #slicing
+
+	output
+	------
+array('i', [9, 3, 8, 2])
+3
+2
+array('i', [3, 8])
+
+ex4:
+----
+	demo.py
+	-------
+from array import array
+a=array('i',[9,3,-8,2])
+print(a)
+
+	output
+	------
+array('i', [9, 3, -8, 2])
+
+ex5:
+----
+	demo.py
+	-------
+from array import array
+a=array('I',[9,3,-8,2])
+print(a)
+
+	output
+	------
+OverflowError: can't convert negative value to unsigned int
+
+ex6:
+----
+	demo.py
+	-------
+from array import array
+a=array('I',[9,3,8,2])
+print(a)
+
+	output
+	------
+array('I', [9, 3, 8, 2])
+
+ex7:
+----
+	demo.py
+	-------
+from array import array
+a=array('i',[9,3,8.3,2])
+print(a)
+
+	output
+	------
+TypeError: 'float' object cannot be interpreted as an integer
+
+ex8:
+----
+	demo.py
+	-------
+from array import array
+a=array('f',[9.5,3,8.3,2.1])
+print(a)
+
+	output
+	------
+array('f', [9.5, 3.0, 8.300000190734863, 2.0999999046325684])
+
+Methods:
+----------
+append() -- append a new item to the end of the array
+
+buffer_info() -- return information giving the current memory info
+
+byteswap() -- byteswap all the items of the array
+
+count() -- return number of occurrences of an object
+
+extend() -- extend array by appending multiple elements from an iterable
+
+fromfile() -- read items from a file object
+
+fromlist() -- append items from the list
+
+frombytes() -- append items from the string
+
+index() -- return index of first occurrence of an object
+
+insert() -- insert a new item into the array at a provided position
+
+pop() -- remove and return item (default last)
+
+remove() -- remove first occurrence of an object
+
+reverse() -- reverse the order of the items in the array
+
+tofile() -- write all items to a file object
+
+tolist() -- return the array converted to an ordinary list
+
+tobytes() -- return the array converted to a string
+
+Attributes:
+-----------
+typecode -- the typecode character used to create the array
+
+itemsize -- the length in bytes of one array item
+
+ex9:
+----
+	demo.py
+	--------
+from array import array
+a=array('i',[9,3,7,2])
+print(a)
+b=array('i',[5,2,8])
+print(b)
+a.append(12)
+print(a)
+a.extend(b)
+print(a)
+a.insert(3,21)
+print(a)
+print(a.count(2))
+a.pop()
+print(a)
+a.pop(2)
+print(a)
+a.remove(21)
+print(a)
+print(a.index(5))
+a.reverse()
+print(a)
+print(a.index(5))
+
+	output
+	------
+array('i', [9, 3, 7, 2])
+array('i', [5, 2, 8])
+array('i', [9, 3, 7, 2, 12])
+array('i', [9, 3, 7, 2, 12, 5, 2, 8])
+array('i', [9, 3, 7, 21, 2, 12, 5, 2, 8])
+2
+array('i', [9, 3, 7, 21, 2, 12, 5, 2])
+array('i', [9, 3, 21, 2, 12, 5, 2])
+array('i', [9, 3, 2, 12, 5, 2])
+4
+array('i', [2, 5, 12, 2, 3, 9])
+1
+3
+

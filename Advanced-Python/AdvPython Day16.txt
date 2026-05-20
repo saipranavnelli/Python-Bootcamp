@@ -1,0 +1,296 @@
+working with "calendar" module:
+-------------------------------
+the "calendar" module is a one builtin module in python.
+
+if we want to display all the properties of "calendar" module, in that case we are using dir() function.
+
+	import calendar
+	dir(calendar)
+
+if we want to working with "calendar" module properties in that case it is mandatory to import "calendar" module into our program.
+
+ex1:
+----
+	demo.py
+	-------
+from calendar import calendar
+year=int(input("enter year: "))
+print(calendar(year))
+
+	(or)
+
+from calendar import prcal
+year=int(input("enter year: "))
+prcal(year)
+
+
+ex2:
+----
+	demo.py
+	-------
+from calendar import prcal
+year=int(input("enter year: "))
+no_of_months=int(input("enter no_of months in a Row: "))
+prcal(year,m=no_of_months) #by default m=3
+
+	(or)
+
+from calendar import calendar
+year=int(input("enter year: "))
+no_of_months=int(input("enter no_of months in a Row: "))
+print(calendar(year,m=no_of_months)) #by default m=3
+
+
+ex3:
+---
+	demo.py
+	-------
+from calendar import month
+year=int(input("enter year: "))
+mon_num=int(input("enter month number: "))
+print(month(year,mon_num))
+
+	(or)
+
+from calendar import prmonth
+year=int(input("enter year: "))
+mon_num=int(input("enter month number: "))
+prmonth(year,mon_num)
+
+ex4:
+---
+	demo.py
+	-------
+from calendar import isleap
+year=int(input("enter year: "))
+print(isleap(year))
+
+
+ex5:
+---
+	demo.py
+	-------
+from calendar import isleap
+syear=int(input("enter starting year: "))
+eyear=int(input("enter ending year: "))
+for year in range(syear,eyear+1):
+    if isleap(year):
+        print(year)
+        
+ex6:
+----
+	demo.py
+	-------
+from calendar import leapdays
+syear=int(input("enter starting year: "))
+eyear=int(input("enter ending year: "))
+print(f"the no.of leap days between {syear} and {eyear} are: \
+{leapdays(syear,eyear+1)}")
+
+
+ex7:
+---
+	demo.py
+	-------
+from calendar import month,SUNDAY,TextCalendar
+year=int(input("enter year: "))
+mon_num=int(input("enter month number: "))
+print(month(year,mon_num))
+print("*"*45)
+tc=TextCalendar(SUNDAY)
+print(tc.formatmonth(year,mon_num))
+
+ex8:
+----
+	demo.py
+	-------
+from calendar import month,HTMLCalendar
+year=int(input("enter year: "))
+mon_num=int(input("enter month number: "))
+print(month(year,mon_num))
+print("*"*45)
+hc=HTMLCalendar()
+print(hc.formatmonth(year,mon_num))
+
+
+working with "datetime" module:
+-------------------------------
+the "datetime" module is a one builtin module in python.
+
+if we want to display all the properties of "datetime" module, in that case we are using dir() function.
+
+	import datetime
+	dir(datetime)
+
+if we want to working with "datetime" module properties in that case it is mandatory to import "datetime" module into our program.
+
+ex1:
+----
+>>> from datetime import datetime
+>>> x=datetime.now()
+>>> x
+datetime.datetime(2026, 5, 13, 12, 18, 33, 434067)
+>>> type(x)
+<class 'datetime.datetime'>
+>>> x.year
+2026
+>>> x.month
+5
+>>> x.day
+13
+>>> x.hour
+12
+>>> x.minute
+18
+>>> x.second
+33
+>>> x.microsecond
+434067
+>>> x.ctime()
+'Wed May 13 12:18:33 2026'
+>>> x.min
+datetime.datetime(1, 1, 1, 0, 0)
+>>> x.max
+datetime.datetime(9999, 12, 31, 23, 59, 59, 999999)
+>>> x.strftime("%Y-%m-%d %H:%M:%S %p")
+'2026-05-13 12:18:33 PM'
+>>> x.timetuple().tm_yday
+133
+>>> x.timetuple().tm_wday
+2
+
+ex2:
+----
+>>> from datetime import datetime
+>>> y=datetime(1991,1,14,8,23,34,456)
+>>> y
+datetime.datetime(1991, 1, 14, 8, 23, 34, 456)
+>>> type(y)
+<class 'datetime.datetime'>
+>>> y.year
+1991
+>>> y.month
+1
+>>> y.day
+14
+>>> y.hour
+8
+>>> y.minute
+23
+>>> y.second
+34
+>>> y.microsecond
+456
+>>> y.ctime()
+'Mon Jan 14 08:23:34 1991'
+>>> y.min
+datetime.datetime(1, 1, 1, 0, 0)
+>>> y.max
+datetime.datetime(9999, 12, 31, 23, 59, 59, 999999)
+>>> y.strftime('%Y-%m-%d %H:%M:%S %p')
+'1991-01-14 08:23:34 AM'
+>>> y.strftime('%a %Y-%b-%d %H:%M:%S %p')
+'Mon 1991-Jan-14 08:23:34 AM'
+>>> y.strftime('%A %Y-%B-%d %H:%M:%S %p')
+'Monday 1991-January-14 08:23:34 AM'
+>>> y.timetuple().tm_yday
+14
+>>> y.timetuple().tm_wday
+0
+
+ex3:
+----
+>>> from datetime import date
+>>> x=date.today()
+>>> x
+datetime.date(2026, 5, 13)
+>>> type(x)
+<class 'datetime.date'>
+>>> x.year
+2026
+>>> x.month
+5
+>>> x.day
+13
+>>> x.ctime()
+'Wed May 13 00:00:00 2026'
+>>> x.min
+datetime.date(1, 1, 1)
+>>> x.max
+datetime.date(9999, 12, 31)
+>>> x.strftime("%Y-%m-%d")
+'2026-05-13'
+>>> x.timetuple().tm_yday
+133
+
+ex4:
+---
+>>> from datetime import date
+>>> y=date(1991,1,14)
+>>> y
+datetime.date(1991, 1, 14)
+>>> type(y)
+<class 'datetime.date'>
+>>> y.year
+1991
+>>> y.month
+1
+>>> y.day
+14
+>>> y.ctime()
+'Mon Jan 14 00:00:00 1991'
+>>> y.min
+datetime.date(1, 1, 1)
+>>> y.max
+datetime.date(9999, 12, 31)
+>>> y.strftime("%Y-%m-%d")
+'1991-01-14'
+
+ex5:
+---
+>>> from datetime import time
+>>> x=time()
+>>> x
+datetime.time(0, 0)
+
+>>> y=time(8,23,34,456)
+>>> y
+datetime.time(8, 23, 34, 456)
+>>> type(y)
+<class 'datetime.time'>
+>>> y.hour
+8
+>>> y.minute
+23
+>>> y.second
+34
+>>> y.microsecond
+456
+>>> y.min
+datetime.time(0, 0)
+>>> y.max
+datetime.time(23, 59, 59, 999999)
+
+
+ex6:
+---
+>>> from datetime import date,timedelta
+>>> x=date.today()
+>>> y=x-timedelta(days=10)
+>>> z=x+timedelta(days=10)
+>>> x
+datetime.date(2026, 5, 13)
+>>> str(x)
+'2026-05-13'
+>>> str(y)
+'2026-05-03'
+>>> str(z)
+'2026-05-23'
+>>> x.strftime('%A')
+'Wednesday'
+>>> y.strftime('%A')
+'Sunday'
+>>> z.strftime('%A')
+'Saturday'
+
+

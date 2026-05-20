@@ -1,0 +1,280 @@
+working with "sys" module:
+------------------------------
+the "sys" module is a one builtin module in python.
+
+if we want to display all the properties of "sys" module, in that case we are using dir() function.
+
+	import sys
+	dir(sys)
+
+if we want to working with "sys" module properties in that case it is mandatory to import "sys" module into our program.
+
+ex1:
+----
+>>> import sys
+>>> sys.version
+'3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]'
+
+ex2:
+---
+>>> import sys
+>>> sys.version_info
+sys.version_info(major=3, minor=14, micro=3, releaselevel='final', serial=0)
+
+ex3:
+----
+>>> import sys
+>>> sys.getwindowsversion()
+sys.getwindowsversion(major=10, minor=0, build=19045, platform=2, service_pack='')
+
+ex4:
+---
+>>> import sys
+>>> sys.path
+['', 'C:\\Python314\\python314.zip', 'C:\\Python314\\DLLs', 'C:\\Python314\\Lib', 'C:\\Python314', 'C:\\Python314\\Lib\\site-packages']
+
+ex5:
+---
+>>> import sys
+>>> sys.modules
+{'sys': <module 'sys' (built-in)>, 'builtins': <module 'builtins' (built-in)>, 
+ 'enum': <module 'enum' from 'C:\\Python314\\Lib\\enum.py'>, 'keyword': <module 'keyword' from 'C:\\Python314\\Lib\\keyword.py'>, 'annotationlib': <module 'annotationlib' from 'C:\\Python314\\Lib\\annotationlib.py'> ,..... }
+
+ex6:
+---
+>>> import sys
+>>> x=10
+>>> y=2.3
+>>> z="siva"
+>>> sys.getsizeof(x)
+28
+>>> sys.getsizeof(y)
+24
+>>> sys.getsizeof(z)
+45
+
+
+ex7:
+---
+	demo.py
+	-------
+import sys
+i=0
+while True:
+    print("hai",i)
+    if i==3:
+        sys.exit()
+    i+=1
+print("bye")
+
+
+stdin(standard input):
+---------------------
+it is the default source of input(usually the keyboard)
+
+in python, it is represented by sys.stdin
+
+functions like input() read from stdin
+
+stdout(standard output):
+------------------------
+it is the default destination for output(usually the console/terminal)
+
+in python,print() writes to sys.stdout
+
+stderr(standard error):
+-----------------------
+default stream for error messages
+
+it is seperate from stdout so errors can be seen/logged differently
+
+in python, it is represented by sys.stderr
+
+why do we need them?
+---------------------
+stdin,stdout,stderr make programs communicate with users or other programs
+
+they are useful in redirection:
+
+	python script.py > output.txt	---> sends stdout to file
+
+	python script.py 2 > error.txt	---> sends stderr to file
+
+	python script.py < input.txt	---> takes stdin from file instead of
+					     keyboard
+
+
+ex8: using stdin for input
+----
+	demo.py
+	-------
+import sys
+print("Enter your name: ")
+name=sys.stdin.readline().strip()
+print("hello,",name)
+
+	output
+	------
+C:\Users\Lenovo\Desktop>python demo.py
+Enter your name:
+siva
+hello, siva
+
+ex9: using stdout for output
+-----
+	demo.py
+	-------
+import sys
+sys.stdout.write("hello siva\n")
+print("Good Morning")
+
+	output
+	------
+C:\Users\Lenovo\Desktop>python demo.py
+hello siva
+Good Morning
+
+ex10: using stderr for errors
+-----
+	demo.py
+	-------
+import sys
+try:
+    z=10/0
+except ZeroDivisionError as e:
+    sys.stderr.write(f"error occured: {e}")
+
+ex11:
+-----
+	demo.py
+	-------
+import sys
+try:
+    z=10/0
+except ZeroDivisionError as e:
+    sys.stdout.write("hello siva")
+    sys.stderr.write(f"error occured: {e}")
+
+	output
+	-------
+C:\Users\Lenovo\Desktop>python demo.py 1>out.txt 2>err.txt
+
+out.txt			err.txt
+-------			--------
+hello siva		error occured: division by zero
+
+Note:
+-----
+in Unix/Linux and also windows shell, every process has three default file descriptors, they are
+
+	0	--> stdin(standard input)
+	1	--> stdout(standrad output)
+	2	--> stderr(standard error)
+
+in the above shell we are using:
+
+	1>	it is redirect to stdout
+	2>	is is redirect to stderr
+
+if you just use > without a number, it is defaults to 1> redirect to stdout
+
+
+what are command line arguments?
+----------------------------------
+Command Line Arguments(CLAs) are inputs that you pass to a python program from the command prompt/terminal when running it.
+
+ex:
+---
+	python myscript.py hello siva
+
+here myscript.py	--> python file
+     hello siva		--> command line arguments
+
+these allows you to control the program behavior without editing the code
+
+why use Command Line Arguments?
+-------------------------------
+Flexibility : you can change input without modifying the code
+
+Automation : useful in shell-scripts,cron jobs and devops pipelines
+
+Reusability : same program can work with different inputs
+
+Scalability : ideal for production scripts
+
+how to implement the command line arguments in python?
+------------------------------------------------------
+we can implement the command line arguments in python by using argv variable of sys module.
+
+the argv variable always to return the list of command line arguments.
+
+in python, our file name also will be treated as first command line argument.
+
+through command prompt we can pass any argument by default that argument will be treated as string object.
+
+ex1:
+----
+write a pytho script/program to get the list of command line arguments?
+
+	demo.py
+	--------
+import sys
+print(sys.argv)
+
+	output
+	-------
+C:\Users\Lenovo\Desktop>python demo.py hai 2 3.2 4j False
+['demo.py', 'hai', '2', '3.2', '4j', 'False']
+
+ex2:
+----
+write a python program to perform the addition 2 numbers by using command line arguments?
+
+	demo.py
+	------
+import sys
+x=int(sys.argv[1])
+y=int(sys.argv[2])
+print(f"the sum of {x} and {y} is: {x+y}")
+
+	output
+	------
+C:\Users\Lenovo\Desktop>python demo.py 4 5
+the sum of 4 and 5 is: 9
+
+ex3:
+---
+write a python program to check whether given number is even or odd?
+
+	demo.py
+	-------
+import sys
+x=int(sys.argv[1])
+def even_odd(y):
+    if y%2==0:
+        print("given number is a even number")
+    else:
+        print("given number is a odd number")
+even_odd(x)
+
+	output1
+	-------
+C:\Users\Lenovo\Desktop>python demo.py 5
+given number is a odd number
+
+	output2
+	-------
+C:\Users\Lenovo\Desktop>python demo.py 8
+given number is a even number
+
+
+
+
+
+
+
+
+
+
+
+

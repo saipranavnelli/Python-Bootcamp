@@ -1,0 +1,260 @@
+ex5:
+----
+write a python script/program to create a multiple files?
+
+	demo.py
+	-------
+import os
+print(os.getcwd())
+os.chdir('siva')
+print(os.getcwd())
+files=['test.py','demo.java','welcome.html','style.css','sample.py']
+for f in files:
+    open(f,'w')
+print("files are created successfully")
+
+	output
+	------
+C:\Python314
+C:\Python314\siva
+files are created successfully
+
+ex6:
+---
+write a python script to get the list of files and directories from the given path/location?
+
+	demo.py
+	-------
+import os
+print(os.getcwd())
+os.chdir('siva')
+print(os.listdir())
+print("*"*45)
+print(os.listdir('D:\\sivakrishna'))
+
+ex7:
+----
+write a python script to get the files from the given path/location?
+
+	demo.py
+	-------
+import os
+os.chdir('siva')
+for i in os.listdir():
+    if os.path.isfile(i):
+        print(i)
+
+ex8:
+----
+write a python script to get the dirs from the given path/location?
+
+	demo.py
+	-------
+import os
+os.chdir('siva')
+for i in os.listdir():
+    if os.path.isdir(i):
+        print(i)
+
+
+ex9:
+-----
+write a python script to get the list of python files and no.of python files from the given location/path?
+
+	demo.py
+	-------
+import os
+x=[]
+os.chdir('siva')
+for i in os.listdir():
+    if os.path.isfile(i):
+        if i.endswith(".py"):
+            x.append(i)
+print(x)
+print("="*45)
+print(len(x))
+
+ex10:
+-----
+write a python script/program to print the no.of items,no.of files and no.of directoris from the given location/path?
+
+	demo.py
+	-------
+import os
+os.chdir('siva')
+total_items=len(os.listdir())
+f_c=d_c=0
+for i in os.listdir():
+    if os.path.isfile(i):
+        f_c+=1
+    elif os.path.isdir(i):
+        d_c+=1
+print(f"Total No.of Items: {total_items}")
+print(f"No.of Files: {f_c}")
+print(f"No.of Dirs: {d_c}")
+
+ex11:
+----
+write a python program to rename the files and directories from the given location/path?
+
+	demo.py
+	-------
+import os
+os.chdir('siva')
+print(os.listdir())
+print("*"*45)
+os.rename('django','dj')
+os.rename('sample.py','sam.py')
+os.rename('welcome.html','welcome.py')
+print(os.listdir())
+
+	output
+	------
+['demo.java', 'django', 'java', 'python', 'sample.py', 'style.css', 'test.py', 'welcome.html']
+*********************************************
+['demo.java', 'dj', 'java', 'python', 'sam.py', 'style.css', 'test.py', 'welcome.py']
+
+ex12:
+----
+write a python script/program to remove the files and directories from the given location/path?
+
+	demo.py
+	-------
+import os
+os.chdir('siva')
+print(os.listdir())
+print("*"*45)
+os.rmdir('dj')
+os.remove('sam.py')
+print(os.listdir())
+
+	output
+	------
+['demo.java', 'dj', 'java', 'python', 'sam.py', 'style.css', 'test.py', 'welcome.py']
+*********************************************
+['demo.java', 'java', 'python', 'style.css', 'test.py', 'welcome.py']
+
+ex13:
+----
+write a python script/program to get the login details?
+
+	demo.py
+	-------
+import os
+print(os.getlogin())
+
+
+ex14:
+----
+write a python script/program to get the os name?
+
+	demo.py
+	-------
+import os
+print(os.name)
+
+ex15:
+----
+write a python script to get the path?
+
+	demo.py
+	-------
+import os
+print(os.path)
+
+
+ex16:
+-----
+write a python script to get process ID?
+
+	demo.py
+	--------
+import os
+print(os.getpid())
+
+
+ex17:
+----
+write a python script to get the parent process ID?
+
+	demo.py
+	--------
+import os
+print(os.getppid())
+
+ex18:
+-----
+write a python script/program to kill the process?
+
+	demo.py
+	-------
+import os
+import signal
+os.kill(os.getpid(),signal.SIGTERM)
+
+
+ex19:
+----
+write a python script/program to kill the parent process?
+
+	demo.py
+	-------
+import os
+import signal
+os.kill(os.getppid(),signal.SIGTERM)
+
+ex20:
+-----
+	demo.py
+	-------
+import os
+for r,d,f in os.walk('D:\\siva\\7am Selenium Practice'):
+    print("Root Directory: ",r)
+    print("List of Directories: ",d)
+    print("List of Files: ",f)
+    print("="*45)
+
+ex21:
+-----
+	demo.py
+	-------
+import os
+x=[]
+for r,d,f in os.walk('D:\\siva\\7am Selenium Practice'):
+    for file in f:
+        if file.endswith('.py'):
+            x.append(file)
+print(x)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
