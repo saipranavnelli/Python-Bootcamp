@@ -1,0 +1,245 @@
+what is Package?
+----------------
+a package is folder/directory which contains one or more python modules.
+
+we can treat any package as a python package, that package should contains __init__.py file.
+
+some times, a folder contains sub folder's also, we can treat that sub folder as a python package, that sub folder also contains __init__.py file.
+
+	ref fig: package example
+
+ex: create a package
+---
+	C:\\Python313\\example\\sample\\addition.py
+	--------------------------------------------
+a=10
+b=20
+def add(x,y):
+    z=x+y
+    print(z)
+
+
+	C:\\Python313\\example\\sample\\subtraction.py
+	----------------------------------------------
+c=30
+d=40
+def sub(x,y):
+    z=x-y
+    print(z)
+
+
+	C:\\Python313\\example\\sample\\__init__.py
+	--------------------------------------------
+empty file created
+
+	
+	C:\\Python313\\example\\sample\\basic\\multiplication.py
+	---------------------------------------------------------
+e=50
+f=60
+def mul(x,y):
+    z=x*y
+    print(z)
+
+	
+	C:\\Python313\\example\\sample\\basic\\__init__.py
+	--------------------------------------------------
+empty file created
+
+how to access the data from outside of that package?
+-----------------------------------------------------
+we can access the data from outside of that package, first we need to import that package,
+
+	1).normal/basic importing a package
+	
+	2).aliasing a packagename
+
+	3).from importing a package
+
+	4).from importing a package with *
+
+normal importing a package:
+----------------------------
+	import mainpackagename.modulename
+	import mainpackagename.subpackagename.modulename
+
+ex2:
+----
+	C:\\Python313\\example\\test.py
+	--------------------------------
+import sample.addition
+import sample.subtraction
+import sample.basic.multiplication
+print(sample.addition.a)
+print(sample.addition.b)
+sample.addition.add(4,5)
+print(sample.subtraction.c)
+print(sample.subtraction.d)
+sample.subtraction.sub(2,3)
+print(sample.basic.multiplication.e)
+print(sample.basic.multiplication.f)
+sample.basic.multiplication.mul(3,5)
+
+	output
+	------
+10
+20
+9
+30
+40
+-1
+50
+60
+15
+
+renameing a package:
+-------------------
+we can renameing a package by using 'as' keyword.
+
+	import mainpackagename.modulename as rename
+	import mainpackagename.subpackagename.modulename as rename
+
+ex3:
+----
+	C:\\Python313\\example\\test.py
+	--------------------------------
+import sample.addition as sa
+import sample.subtraction as ss
+import sample.basic.multiplication as sbm
+print(sa.a)
+print(sa.b)
+sa.add(4,5)
+print(ss.c)
+print(ss.d)
+ss.sub(2,3)
+print(sbm.e)
+print(sbm.f)
+sbm.mul(3,5)
+
+	output
+	-------
+10
+20
+9
+30
+40
+-1
+50
+60
+15
+
+
+from importing a package
+------------------------
+	from mainpackagename.modulename import p_1,p_2,...,p_n
+	from mainpackagename.subpackagename.modulename import p_1,p_2,...,p_n
+
+ex4:
+----
+	C:\\Python313\\example\\test.py
+	---------------------------------
+from sample.addition import a,b,add
+from sample.subtraction import c,d,sub
+from sample.basic.multiplication import e,f,mul
+print(a)
+print(b)
+add(4,5)
+print(c)
+print(d)
+sub(2,3)
+print(e)
+print(f)
+mul(3,5)
+
+	output
+	-------
+10
+20
+9
+30
+40
+-1
+50
+60
+15
+
+from importing a package with * option
+----------------------------------------
+	from mainpackagename.modulename import *
+	from mainpackagename.subpackagename.modulename import *
+
+ex5:
+----
+	C:\\Python313\\example\\test.py
+	--------------------------------
+from sample.addition import *
+from sample.subtraction import *
+from sample.basic.multiplication import *
+print(a)
+print(b)
+add(4,5)
+print(c)
+print(d)
+sub(2,3)
+print(e)
+print(f)
+mul(3,5)
+
+	output
+	------
+10
+20
+9
+30
+40
+-1
+50
+60
+15	
+
+
+what happens when you run a .py file?
+---------------------------------------
+when you execute a Python File(demo.py):
+
+step1: Python Interpreter reads .py file(your source code)
+
+step2: Python Interpreter compiles the .py into bytecode(a lower level,platform independent representation).
+
+step3: Bytecode is either executed immediately or saved as a .pyc files inside a __pycache__ folder
+
+step4: Python Interpreter(specifically Python Virtual Machine(PVM)) executes the bytecode instruction by instruction.
+
+	ref fig: python interpreter architecture
+
+python program execution flow:
+-------------------------------
+	your Code(.py file)
+	     |
+	Parser(checks syntax)
+	     |
+	Compiler(translate to Byte code)
+	     |
+	Bytecode( .pyc in __pycache__ folder)
+	     |
+	Python Virtual Machine(PVM)
+	      |
+	Execution(Running the program and show the output)
+
+Note:
+-----
+if .pyc file is already exists and is up-to-date,Python skips compiling , it directly loads the .pyc and runs it.
+
+if source .py file has changed , python recompiles and Generates a new .pyc file.
+
+what is Cpython?
+----------------
+CPython is the reference implementation of the Python programming language. Written in C and Python, CPython is the default and most widely used implementation of the Python language.
+
+CPython can be defined as both an interpreter and a compiler as it compiles Python code into bytecode before interpreting it.
+
+how to get python implementation?
+---------------------------------
+>>> import platform
+>>> platform.python_implementation()
+'CPython'

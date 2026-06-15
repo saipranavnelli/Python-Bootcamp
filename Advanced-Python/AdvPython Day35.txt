@@ -1,0 +1,262 @@
+		DataBase Connectivity		
+		---------------------
+
+what is Data?
+-------------
+a data can be raw fact related to any instance/object.
+
+	ex: student	--> student name,student age,student fee,....
+
+	some times the data can be represented pdf,xml,image,audio,video,....
+
+the Data can be categorized into 3-types,they are
+
+	Structured Data			--> tables
+
+	Semi Structured Data		--> xml,csv,pdf,...
+
+	Unstructured Data		--> images,audio,video,graphs,maps,...
+
+what is Database?
+-----------------
+a Database is a collection of organized,related data.
+
+types of Databases:
+
+	Hierarchical Databases
+	Distributed Databases
+	Centralized Databases
+	Network Databases
+	Relational Databases
+	Object Oriented Relational Databases
+	No-SQL Databases
+	Dataware Houses
+	OLTP Databases
+	Cloud Databases
+	.....
+	.....
+
+what is DBMS?
+--------------
+the DBMS(Database Management System's) is a software(collection of programs),which is used to create,manipulate and delete the databases.
+
+	RDBMS(Relational Database Management System's)
+		Oracle,Mysql,Sqlite3,MS-SQL server,DB2,....
+
+	ORDBMS(Object Relational Database Management System's)
+		PostgreSQL
+
+
+No-SQL Databases:
+-----------------
+these databases are used to store unstructured data.
+
+No-SQL means Not Only SQL.
+
+types of No-SQL Databases are
+
+	Document Databases	--> MongoDB
+
+	Column Databases	--> Cassandra,Hbase
+
+	Key-value Databases	--> Redis,DynamoDB
+
+	Graph Databases		--> Neo4j
+
+what is SQL?
+-------------
+SQL(Structured Query Language) is a Query Language,which is used to communicate the databases.
+
+SQL language is introduced in the year of 1970's by E.F.Codd,in IBM
+
+SQL follow the ANSI-C standards.
+
+By using SQL,we are performeing the following operations,
+
+	--> to create a databases
+	--> to create a tables
+	--> to inserting the data into database
+	--> to retreive the data from the database
+	--> to peform the update and delete opertations
+	--> to create indexes,views,procedures,....
+note:
+-----
+simply by using SQL to perform CURD/CRUD operations.
+
+SQL is a case-insensitive language.
+
+
+Basic SQL Commands:
+--------------------
+Data Definition Languages(DDL):
+
+	these commands are used to define the database structure,table structure,apply some changes in our tables.
+
+	these commands are auto commited statements
+
+	Create,Alter(add,modify,rename,drop), Drop,Rename,Truncate.
+
+Data Manipulation Languages(DML):
+
+	These commands are used to manipulate the data like insertions,deletions and updatetions.
+
+	These commands are commited statements.
+
+	Update,Insert,Delete
+
+Data Retreival/Query Languages(DRL/DQL):
+	
+	These commands are used to retreive the data from the database.
+
+	Select command is a DRL/DQL command
+
+Data Control Languages(DCL):
+
+	These commands are used to perform the Admin Level operations like giveing the permessions to the users and remove the permissions from the user.
+
+	Grant and Revoke
+
+Transaction Control Languages(TCL):
+	
+	These commands are used to perform the operations at Transaction level i.e., sql query level.
+
+	Commit, Rollback, Savepoint
+
+
+if we want to connect and communicate the databases through our python program,to required following thinngs,
+
+	1).Database server(local/remote)
+
+	2).Database server related python Database API/library/package
+
+
+	Database Server		Python Database API
+	---------------		-------------------
+	sqlite3			sqlite3 (it's by default)
+
+	mysql server		mysql-connector-python/pymysql
+
+	oracle server		cx_Oracle
+
+	ms-sql server		pyodbc
+
+	PostgreSQL server	psycopg2
+	
+	mongoDB server		pymongo
+
+	.....			.....
+	.....			.....
+
+
+note:
+-----
+from python3.13 versions onwards, if we want to connect mysql database throgh python to install pymysql database api
+
+	pip install pymysql
+
+
+step's to connect and communicate the databases:
+-------------------------------------------------
+step1:
+------
+to import that particular database API
+
+step2:
+-----
+to create a connection object
+
+	we can create a connection object by calling connect() of that particular database API.
+
+step3:
+-----
+to create a cursor object
+
+	we can create a cursor object by calling cursor() of connection object.
+
+step4:
+-----
+to pass the sql query to database server
+
+	we can pass the sql query to database server through the execute() of cursor object.
+
+step5:
+-----
+to close the cursor object
+
+	we can close the cursor object by calling close() of cursor object.
+
+step6:
+-----
+finally to close the connection object
+
+	we can close the connection object by calling close() of connection object.
+
+how to connect mysql server through python script/program?
+----------------------------------------------------------
+	if we want to connect the mysql server through python script/program, in that case we need to required two things, they are
+
+	mysql database server	--> https://dev.mysql.com/downloads/installer/
+
+	mysql database related python database API
+			       --------------------
+				mysql-connector-python/pymysql   --> python
+
+			        mysqlclient		 --> python with django
+
+
+if we want to install mysql-connector-python, in that case we are using following command
+
+	C:\Users\Lenovo> pip install mysql-connector-python (in old versions)
+
+	C:\Users\Lenovo> pip install pymysql (in new versions)
+
+
+ex1:
+---
+write a python script to create a database in mysql server?
+
+	demo.py
+	--------
+import pymysql
+conn_obj=pymysql.connect(user="root",password="root",host="localhost",
+                         port=3306)
+print("Connection Established")
+cur_obj=conn_obj.cursor()
+cur_obj.execute("create database my1130amdb")
+print("Database Created Successfully")
+cur_obj.close()
+conn_obj.close()
+print("Connection Closed")
+
+	output
+	------
+Connection Established
+Database Created Successfully
+Connection Closed
+
+ex2:
+----
+write a python script to create a table in the mysql database server?
+
+	demo.py
+	--------
+import pymysql
+conn_obj=pymysql.connect(user="root",password="root",host="localhost",
+                         port=3306,database="my1130amdb")
+print("Connection Established")
+cur_obj=conn_obj.cursor()
+cur_obj.execute("create table emp(eid int primary key,ename char(40),\
+esal decimal(6,2),dno int)")
+print("Table Created Successfully")
+cur_obj.close()
+conn_obj.close()
+print("Connection Closed")
+
+	output
+	------
+Connection Established
+Table Created Successfully
+Connection Closed
+
+
+

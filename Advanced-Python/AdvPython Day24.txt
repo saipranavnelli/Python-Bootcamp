@@ -1,0 +1,363 @@
+what is Multi-Tasking?
+-----------------------
+running multiple tasks(programs or process) apparently at the same time,is known as a multi-tasking.
+
+example: playing music while browsing the internet
+
+the multi-tasking can be categorized into 2 types, they are
+
+	1).Thread Based Multi-tasking
+		ex: Multi-threading
+
+	2).Process Based Multi-tasking
+		ex: multi-processing
+
+
+what is Multi-threading?
+------------------------
+running the multiple threads within a single process concurrently and sharing the same memory space,is known as a Multi-threading.
+
+it is best for I/O Bound tasks
+
+example: in a web browser,one thread renders the page,another handles the user input,another downloads content, all in one application.
+
+what is Multi-processing?
+--------------------------
+running the multiple process/programs at the same time i.e., parallely,each with it's own memory space, is known as a Multi-Processing.
+
+it is best for CPU Bound tasks
+
+example: listening the music in VLC while writeing the code in VS Code and downloading file in the browser.
+
+what is thread?
+---------------
+a thread is a lightweight unit of execution within a process.
+
+shares memory with other threads in the same process.
+
+what is process?
+----------------
+a process is an instance of a running program,when you run any application like chrome,word,python,..., the operating system creates a process for it.
+
+each process has it's own memory space.
+
+
+realtime use case:
+-------------------
+think of a process as a house:
+	it has its own walls(memory space),furniture(resources) and doors(interfaces)
+
+think of a thread is like a person inside the house:
+	multiple people(threads) can work in the same house(process),sharing everything.
+
+what is Concurrency?
+--------------------
+structuring a program to deal with multiple tasks at once,even if not truly parallel.
+
+tasks are switching not at same time.
+
+what is Parllelism?
+------------------
+structuring a program to deal with multiple tasks at the same time,usually using multiple CPU cores.
+
+Note:
+-----
+achive the True parllelism in multi-processing(not pure threading due to GIL(Global Interpreter Lock) in Cpython)
+
+
+in python, there are 3 main ways to create and manage the threads.
+
+
+scenario-1: using threading.Thread class
+-----------
+this is the most commonly used method.
+
+example:
+--------
+	demo.py
+	--------
+import threading
+def print_numbers():
+    for i in range(5):
+        print(i)
+
+#create a thread
+t=threading.Thread(target=print_numbers)
+#activate the thread
+t.start()
+
+	output
+	------
+C:\Python314>python demo.py
+0
+1
+2
+3
+4
+
+scenario-2: by subclassing threading.Thread
+----------
+create a custom class that extends Thread
+
+	demo.py
+	-------
+import threading
+class MyThread(threading.Thread):
+    #define a thread
+    def run(self):
+        for i in range(5):
+            print(i)
+
+#create a thread class instance
+t=MyThread()
+#starts the thread activity
+t.start()
+
+	output
+	------
+C:\Python314>python demo.py
+0
+1
+2
+3
+4
+
+scenario-3: using concurrent.futures.ThreadPoolExecutor(High Level API)
+-----------
+	
+	demo.py
+	-------
+from concurrent.futures import ThreadPoolExecutor
+def print_numbers():
+    for i in range(5):
+        print(i)
+
+with ThreadPoolExecutor() as executor:
+    executor.submit(print_numbers)
+
+	output
+	------
+C:\Python314>python demo.py
+0
+1
+2
+3
+4
+
+Note:
+-----
+threading.Thread : simple tasks
+(function based)
+
+Subclassing Thread : when encapsulating logic in a class
+
+ThreadPoolExecutor : managing Multiple threads with ease
+
+ex: multiple threads doing different tasks
+---
+	demo.py
+	-------
+import threading
+import time
+
+#task1: print Even numbers
+def print_even():
+    for i in range(10):
+        if i%2==0:
+            print(f"Even: {i}")
+            time.sleep(1)
+
+#task2: print Odd numbers
+def print_odd():
+    for j in range(10):
+        if j%2!=0:
+            print(f"Odd: {j}")
+            time.sleep(1)
+            
+#task3: Print Alphabets
+def print_letters():
+    for k in ['A','B','C','D','E']:
+        print(f"Letter: {k}")
+        time.sleep(1)
+
+#creating a threads
+t1=threading.Thread(target=print_even)
+t2=threading.Thread(target=print_odd)
+t3=threading.Thread(target=print_letters)
+#starts the thread activity
+t1.start()
+t2.start()
+t3.start()
+
+	output
+	-------
+C:\Python314>python demo.py
+Even: 0
+Odd: 1
+Letter: A
+Even: 2
+Odd: 3
+Letter: B
+Even: 4
+Letter: C
+Odd: 5
+Even: 6
+Letter: D
+Odd: 7
+Even: 8
+Letter: E
+Odd: 9
+
+ex:
+---
+	demo.py
+	-------
+import threading
+import time
+
+#task1: print Even numbers
+def print_even():
+    for i in range(10):
+        if i%2==0:
+            print(f"Even: {i}")
+            time.sleep(1)
+
+#task2: print Odd numbers
+def print_odd():
+    for j in range(10):
+        if j%2!=0:
+            print(f"Odd: {j}")
+            time.sleep(1)
+            
+#task3: Print Alphabets
+def print_letters():
+    for k in ['A','B','C','D','E']:
+        print(f"Letter: {k}")
+        time.sleep(1)
+
+#creating a threads
+t1=threading.Thread(target=print_even)
+t2=threading.Thread(target=print_odd)
+t3=threading.Thread(target=print_letters)
+#starts the thread activity
+t1.start()
+t2.start()
+t3.start()
+#wait until thread terminates
+t1.join()
+t2.join()
+t3.join()
+for i in range(5):
+    print("hai")
+
+	output
+	------
+C:\Python314>python demo.py
+Even: 0
+Odd: 1
+Letter: A
+Even: 2
+Letter: B
+Odd: 3
+Even: 4
+Odd: 5
+Letter: C
+Odd: 7
+Even: 6
+Letter: D
+Even: 8
+Odd: 9
+Letter: E
+hai
+hai
+hai
+hai
+hai
+
+note:
+-----
+the threads execution is not under the control of programmer.
+
+the threads execution is under the control of job schedular.
+
+in python(and most programming environments), the operating system's thread(Job) schedular controls the threads execution,not python program itself.
+
+key controllers of thread execution:
+------------------------------------
+1).Operating System(OS) Job Schedular
+
+it decides which thread runs,when and for how long.
+handles context switching between threads
+
+it considers factors like priority,CPU Availability,I/O waits,....,etc.,
+
+2).Python Interpreter(Global Interpreter Lock - GIL, in Cpython)
+
+in Cpython,one thread to execute Python Byte code at a time, even on multi-core systems.
+
+threads in python are best used for I/O Bound Tasks like web scrapping,file reading,...,etc., not CPU-heavy tasks
+
+3).program logic(optional)
+
+you can start,stop or pause threads in your code
+
+use threadobj.start(),threadobj.join(),threading.Lock(),Event(),...,etc., to control the thread behavior at a high level,but not sceduling.
+
+thread life cycle:
+------------------
+in python, the thread life cycle refers to the different states a thread goes through from creation to completion.
+
+	new/born(created)
+	runnable(Ready to Run)
+	running
+	blocked/waiting
+	dead
+
+new(created)
+-------------
+a thread is created using threading.Thread() but not yet started.
+
+	demo.py
+	-------
+import threading
+
+def task():
+    print("thread running")
+
+t=threading.Thread(target=taks)
+
+runnable(Ready to Run)
+----------------------
+the thread is started with t.start().
+
+it is now ready to run but waiting for CPU allocation
+
+	demo.py
+	-------
+t.start()
+
+running
+--------
+the thread is currently executeing it's target function.
+
+blocked/waiting
+---------------
+the thread is temporarly inactive, waiting for:
+	
+	I/O Operations
+	A lock(Lock, Semaphore,...,etc.,)
+	A Sleep timeout
+
+	demo.py
+	-------
+import time
+time.sleep(2) #thread enter waiting state upto 2 seconds
+
+dead(terminated)
+----------------
+the thread has finished execution(either normally or via an exception)
+
+	demo.py
+	-------
+t.join()
+

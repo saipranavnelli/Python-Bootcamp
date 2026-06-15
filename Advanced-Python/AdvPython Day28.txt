@@ -1,0 +1,427 @@
+single try with multiple except blocks:
+---------------------------------------
+	try:
+	   stmt_1
+	   stmt_2
+	   ......
+	   stmt_n
+	except ExceptionClassName:
+	   stmt_1
+	   stmt_2
+	   ......
+	   stmt_n
+	except ExceptionClassName:
+	   stmt_1
+	   stmt_2
+	   ......
+	   stmt_n
+	--------
+	--------
+	except ExceptionClassName:
+	   stmt_1
+	   stmt_2
+	   ......
+	   stmt_n
+	except:
+	    stmt_1
+	    stmt_2
+	    ......
+	    stmt_n
+
+note:
+----
+in single-try with multiple except blocks, we can define the default except block must be last.
+
+ex:
+---
+	demo.py
+	-------
+print("hai")
+try:
+    x=int(input("enter x value: "))
+    y=int(input("enter y value: "))
+    z=x/y
+    print(z)
+    a=[10,20,30,40,50]
+    i=int(input("enter index: "))
+    print(a[i])
+    b={'m':45,'sc':67,'so':31}
+    j=input("enter key: ")
+    print(b[j])
+    print(c)
+except ValueError:
+    print("Enter Integers only")
+except IndexError:
+    print("Index Out Of Range")
+except KeyError:
+    print("Missing Key")
+except ZeroDivisionError:
+    print("sno can't be zero")
+except:
+    print("should be define 'c' variable")
+
+print("bye")
+          
+	output1
+	-------
+hai
+enter x value: 3
+enter y value: 2
+1.5
+enter index: 2
+30
+enter key: sc
+67
+should be define 'c' variable
+bye
+
+	output2
+	--------
+hai
+enter x value: 3
+enter y value: 2
+1.5
+enter index: 2
+30
+enter key: py
+Missing Key
+bye
+
+	output3
+	-------
+hai
+enter x value: 3
+enter y value: 2
+1.5
+enter index: 5
+Index Out Of Range
+bye
+
+	output4
+	-------
+hai
+enter x value: 3
+enter y value: 2.3
+Enter Integers only
+bye
+
+	output5
+	-------
+hai
+enter x value: 3
+enter y value: 0
+sno can't be zero
+bye
+
+ex2:
+----
+	demo.py
+	-------
+print("hai")
+try:
+    x=int(input("enter x value: "))
+    y=int(input("enter y value: "))
+    z=x/y
+    print(z)
+    a=[10,20,30,40,50]
+    i=int(input("enter index: "))
+    print(a[i])
+    b={'m':45,'sc':67,'so':31}
+    j=input("enter key: ")
+    print(b[j])
+    print(c)
+except (ValueError,IndexError,KeyError,ZeroDivisionError) as e:
+    print(e)
+except:
+    print("should be define 'c' variable")
+
+print("bye")
+          
+	output1
+	--------
+hai
+enter x value: 3
+enter y value: 2
+1.5
+enter index: 2
+30
+enter key: sc
+67
+should be define 'c' variable
+bye
+
+	output2
+	-------
+hai
+enter x value: 3
+enter y value: 2
+1.5
+enter index: 2
+30
+enter key: py
+'py'
+bye
+
+	output3
+	-------
+hai
+enter x value: 3
+enter y value: 2
+1.5
+enter index: 5
+list index out of range
+bye
+
+	output4
+	-------
+hai
+enter x value: 3
+enter y value: 2.3
+invalid literal for int() with base 10: '2.3'
+bye
+
+	output5
+	-------
+hai
+enter x value: 3
+enter y value: 0
+division by zero
+bye
+
+ex3:
+---
+	demo.py
+	-------
+print("hai")
+try:
+    x=int(input("enter x value: "))
+    y=int(input("enter y value: "))
+    z=x/y
+    print(z)
+    a=[10,20,30,40,50]
+    i=int(input("enter index: "))
+    print(a[i])
+    b={'m':45,'sc':67,'so':31}
+    j=input("enter key: ")
+    print(b[j])
+    print(c)
+except Exception as e:
+    print(e)
+
+print("bye")
+
+	output1
+	-------
+hai
+enter x value: 3
+enter y value: 2
+1.5
+enter index: 2
+30
+enter key: sc
+67
+name 'c' is not defined
+bye
+
+what is Exception Class?
+--------------------------
+an Exception Class is a one Builtin exception class, it act as a super class of all builtin exception classes like ValueError,ZeroDivisionError,NameError,KeyError,
+IndexError,....etc.,
+
+the user-defined exception classes also should be derived from this class.
+          
+Nested Try:
+-----------
+we can define a try block inside another try block, is known as a nested try block.
+
+	syntax
+	------
+	try: #outer-try
+	   stmt_1
+           stmt_2
+	   ......
+	   try: #inner-try
+              stmt_1
+              stmt_2
+	      ......
+	   except:
+	      stmt_1
+	      stmt_2
+	      ......
+	except:
+	    stmt_1
+	    stmt_2
+	    ......
+
+if any exception will be occured in our outer-try block, that can be handled by using outer-try-except block only, whether it is handled that except block logic will be executed otherwise our program execution will be terminates abnormally.
+
+ex1:
+----
+	demo.py
+	--------
+print("hai")
+try:
+    x=int(input("enter x value: "))
+    y=int(input("enter y value: "))
+    try:
+        z=x/y
+        print(z)
+    except ZeroDivisionError:
+        print("sno can't be zero")
+    
+except ValueError:
+    print("enter integers only")
+print("bye")
+          
+output1: without exception in our outer try block
+-------
+hai
+enter x value: 2
+enter y value: 3
+0.6666666666666666
+bye
+
+
+output2: with exception in our outer try, that can be handled by outer try except
+-------
+hai
+enter x value: 3
+enter y value: 2.3
+enter integers only
+bye
+
+ex2:
+----
+	demo.py
+	-------
+print("hai")
+try:
+    x=int(input("enter x value: "))
+    y=int(input("enter y value: "))
+    try:
+        z=x/y
+        print(z)
+    except ValueError:
+        print("enter integers only")    
+    
+except ZeroDivisionError:
+        print("sno can't be zero")
+print("bye")
+          
+output1: without exception in our outer try block
+-------
+hai
+enter x value: 2
+enter y value: 3
+0.6666666666666666
+bye
+
+
+output2: with exception in our outer try, that can't be handled by outer try except
+-------
+hai
+enter x value: 3
+enter y value: 2.3
+ValueError: invalid literal for int() with base 10: '2.3'
+
+
+if any exception will be occured in our inner-try block, that can be handled by using inner-try-except block,whether it is handled in that case inner-try-except block will be executed otherwise to handle that exception by using outer-try-except block also, whether it is handled in that case outer-try-except block logic will be executed otherwise our program execution will be terminates abnormally.
+
+ex1:
+---
+	demo.py
+	--------
+print("hai")
+try:
+    x=int(input("enter x value: "))
+    y=int(input("enter y value: "))
+    try:
+        z=x/y
+        print(z)
+    except ZeroDivisionError:
+        print("sno can't be zero")
+except ValueError:
+    print("Enter Integers only")
+print("bye")
+
+output1: without exception in our inner try block
+--------
+hai
+enter x value: 4
+enter y value: 2
+2.0
+bye
+
+output2: with exception in our inner try, that can be handled by inner try except
+--------
+hai
+enter x value: 4
+enter y value: 0
+sno can't be zero
+bye
+
+ex2:
+----
+	demo.py
+	-------
+print("hai")
+try:
+    x=int(input("enter x value: "))
+    y=int(input("enter y value: "))
+    try:
+        z=x/y
+        print(z)    
+    except ValueError:
+        print("Enter Integers only")
+except ZeroDivisionError:
+        print("sno can't be zero")
+print("bye")
+
+output1: without exception in our inner try block
+--------
+hai
+enter x value: 4
+enter y value: 2
+2.0
+bye
+
+output2:  with exception in our inner try, that can be handled by outer try except
+-------
+hai
+enter x value: 4
+enter y value: 0
+sno can't be zero
+bye
+
+ex3:
+----
+	demo.py
+	--------
+print("hai")
+try:
+    x=int(input("enter x value: "))
+    y=int(input("enter y value: "))
+    try:
+        z=x/y
+        print(z)    
+    except ValueError:
+        print("Enter Integers only")
+except NameError:
+        print("sno can't be zero")
+print("bye")
+
+output1: without exception in our inner try block
+--------
+hai
+enter x value: 4
+enter y value: 2
+2.0
+bye
+
+output2: with exception in our inner try, that can't be handled by both except blocks
+--------
+hai
+enter x value: 4
+enter y value: 0
+
+ZeroDivisionError: division by zero

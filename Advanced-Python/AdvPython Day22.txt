@@ -1,0 +1,442 @@
+working with "itertools" module:
+----------------------------
+the "itertools" module is a one builtin module in python
+
+if we want to display all the properties of "itertools" module, in that case we are using dir() function.
+
+	import itertools
+	dir(itertools)
+
+if we want to working with "itertools" module properties in that case it is mandatory to import "itertools" module into our program.
+
+accumulate()
+------------
+Return series of accumulated sums
+
+	accumulate(iterableobj)
+
+ex:
+---
+	demo.py
+	-------
+from itertools import accumulate
+x=[5,2,4,7,8,1]
+print(list(accumulate(x)))
+
+	output
+	------
+[5, 7, 11, 18, 26, 27]
+
+combinations()
+--------------
+Return successive r-length combinations of elements in the iterable.
+
+	combinations(iterableobj,r)
+
+ex:
+---
+from itertools import combinations
+x=[5,2,4,7,1]
+print(list(combinations(x,2)))
+
+	output
+	-------
+[(5, 2), (5, 4), (5, 7), (5, 1), (2, 4), (2, 7), (2, 1), (4, 7), (4, 1), (7, 1)]
+
+permutations()
+---------------
+Return successive r-length permutations of elements in the iterable.
+
+	permutations(iterableobj,r)
+
+ex:
+---
+	demo.py
+	-------
+from itertools import permutations
+x=[5,2,4,7,1]
+print(list(permutations(x,2)))
+	
+	output
+	------
+[(5, 2), (5, 4), (5, 7), (5, 1), (2, 5), (2, 4), (2, 7), (2, 1), (4, 5), (4, 2), (4, 7), (4, 1), (7, 5), (7, 2), (7, 4), (7, 1), (1, 5), (1, 2), (1, 4), (1, 7)]
+
+
+combinations_with_replacement()
+--------------------------------
+Return successive r-length combinations of elements in the iterable allowing individual elements to have successive repeats.
+
+	combinations_with_replacement(iterableobj,r)
+
+ex:
+---	
+	demo.py
+	-------
+from itertools import combinations_with_replacement
+x=[5,2,4,7,1]
+print(list(combinations_with_replacement(x,2)))
+
+	output
+	-------
+[(5, 5), (5, 2), (5, 4), (5, 7), (5, 1), (2, 2), (2, 4), (2, 7), (2, 1), (4, 4), (4, 7), (4, 1), (7, 7), (7, 1), (1, 1)]
+
+chain()
+-------
+Return a chain object whose .__next__() method returns elements from the first iterable until it is exhausted, then elements from the next iterable, until all of the iterables are exhausted.
+
+	chain(*iterableobjs)
+
+ex1:
+---
+	demo.py
+	-------
+from itertools import chain
+x=[5,2,4,7,1]
+for i in chain(x):
+    print(i)
+
+	output
+	------
+5
+2
+4
+7
+1
+
+ex2:
+---
+	demo.py
+	-------
+from itertools import chain
+x=[5,2,4,7,1]
+y=[10,9,6,8,3]
+for i in chain(x,y):
+    print(i)
+
+	output
+	-------
+5
+2
+4
+7
+1
+10
+9
+6
+8
+3
+
+count()
+-------
+Return a count object whose .__next__() method returns consecutive values.
+
+	count(start=0,step=1)
+
+ex1:
+---
+	demo.py
+	-------
+from itertools import count
+c=0
+for i in count():
+    print(i)
+    c+=1
+    if c==10:
+        break
+
+	output
+	------
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+
+ex2:
+----
+	demo.py
+	-------
+from itertools import count
+c=0
+for i in count(start=100):
+    print(i)
+    c+=1
+    if c==10:
+        break
+
+	output
+	-------
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+
+ex3:
+---
+	demo.py
+	-------
+from itertools import count
+c=0
+for i in count(start=1,step=10):
+    print(i)
+    c+=1
+    if c==10:
+        break
+
+	output
+	------
+1
+11
+21
+31
+41
+51
+61
+71
+81
+91
+
+cycle()
+-------
+Return elements from the iterable until it is exhausted. Then repeat the sequence indefinitely.
+
+	cycle(iterableobj)
+
+ex:
+---
+	demo.py
+	-------
+from itertools import cycle
+c=0
+for i in cycle([5,3,7,2]):
+    print(i)
+    c+=1
+    if c==10:
+        break
+
+	output
+	------
+5
+3
+7
+2
+5
+3
+7
+2
+5
+3
+
+product()
+---------
+Cartesian product of input iterables.  Equivalent to nested for-loops.
+
+	product(*iterables, repeat=1)
+
+ex1:
+---
+	demo.py
+	-------
+from itertools import product
+x=[6,3,7,2]
+print(list(product(x)))
+print("="*45)
+print(list(product(x,repeat=2)))
+
+	output
+	------
+[(6, 6), (6, 3), (6, 7), (6, 2), (3, 6), (3, 3), (3, 7), (3, 2), (7, 6), (7, 3), (7, 7), (7, 2), (2, 6), (2, 3), (2, 7), (2, 2)]
+
+repeat()
+--------
+create an iterator which returns the object for the specified number of times.  If not specified, returns the object endlessly.
+
+	repeat(object,times)
+
+ex:
+---
+	demo.py
+	--------
+from itertools import repeat
+for i in repeat(5,10):
+    print(i)
+
+	output
+	-------
+5
+5
+5
+5
+5
+5
+5
+5
+5
+5
+
+filterfalse()
+-------------
+Return those items of iterable for which function(item) is false.
+
+If function is None, return the items that are false.
+
+	filterfalse(function,iterableobj)
+
+ex:
+---
+	demo.py
+	-------
+from itertools import filterfalse
+print(list(filterfalse(lambda i:i%2==0,[5,2,4,3,7,8,6,9,1])))
+
+	output
+	------
+[5, 3, 7, 9, 1]
+
+groupby()
+---------
+make an iterator that returns consecutive keys and groups from the iterable
+
+	groupby(iterable, key=None)
+
+	here the iterable means Elements to divide into groups according to the key 		function.
+
+ 	here key is A function for computing the group category for each element.
+        If the key function is not specified or is None, the element itself is used 		for grouping. 
+
+ex:
+---
+	demo.py
+	-------
+from itertools import groupby
+x=[10,20,30,10,30,20,10,40,30,20,10]
+y=groupby(x,key=x.count)
+z={}
+for key,value in y:
+    z[key]=list(value)
+print(z)
+
+	output
+	------
+{4: [10], 3: [30, 20], 1: [40]}
+
+working with "functools" module:
+-------------------------------
+the "functools" module is a one builtin module in python
+
+if we want to display all the properties of "functools" module, in that case we are using dir() function.
+
+	import functools
+	dir(functools)
+
+if we want to working with "functools" module properties in that case it is mandatory to import "functools" module into our program.
+
+cache()
+--------
+cache function results forever(no-size limit).
+
+it is best for pure functions
+
+faster repeated calls
+No limit -> can consume more memory
+
+ex:
+---
+	demo.py
+	-------
+from functools import cache
+
+@cache
+def fibonacci(n):
+    if n<2:
+        return n
+    return fibonacci(n-1)+fibonacci(n-2)
+print(fibonacci(35))
+
+	output
+	------
+9227465
+
+lru_cache()
+-----------
+caches results but keeps only recently used values(LRU=Least Recently Used)
+
+ex1:
+---
+	demo.py
+	-------
+from functools import lru_cache
+
+@lru_cache(maxsize=3)
+def square(n):
+    print(f"calculating {n}")
+    return n*n
+print(square(2))
+print(square(3))
+print(square(4))
+print(square(2))
+print(square(5))
+print(square(3))
+print(square(5))
+
+
+	output
+	-------
+calculating 2
+4
+calculating 3
+9
+calculating 4
+16
+4
+calculating 5
+25
+calculating 3
+9
+25
+
+ex2:
+----
+	demo.py
+	-------
+from functools import lru_cache
+
+@lru_cache()
+def square(n):
+    print(f"calculating {n}")
+    return n*n
+print(square(2))
+print(square(3))
+print(square(4))
+print(square(2))
+print(square(5))
+print(square(3))
+print(square(5))
+
+	output
+	------
+calculating 2
+4
+calculating 3
+9
+calculating 4
+16
+4
+calculating 5
+25
+9
+25
+
+
+

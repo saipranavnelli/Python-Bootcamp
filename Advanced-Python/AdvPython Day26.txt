@@ -1,0 +1,186 @@
+what is Multi-processing?
+-------------------------
+the Multi-processing is the ability of computer to run multiple process(programs or tasks) at the same time, by using two or more CPU cores.
+
+Each Process runs independently and has it's own memory space.
+
+what is Process?
+---------------
+a program in execution
+
+what is parallelism?
+--------------------
+tasks are executed truly at the same time on multiple CPUs or Cores.
+
+what is Multi-core CPUs?
+-----------------------
+allows multiple process to be executed in parallel
+
+Benafits of multi-processing?
+------------------------------
+Faster Execution for heavy tasks
+Better CPU Utilization
+Improved Performance over single-threaded or single-process models
+
+how to implement the multi-processing in python?
+-------------------------------------------------
+we can implement the multi-processing in python by using multiprocessing module.
+
+the multiprocessing is a module in python,that allows you to create multiple process,enabling parallel execution of tasks across multiple CPU cores.
+
+why use Multi-processing?
+------------------------------
+Parallelism: utilize multiple CPU cores for faster execution
+
+Avoid GIL Limitation: python threads are limited by the Global Interpreter Lock(GIL), Multiprocessing bypass this.
+
+Efficient for CPU bound tasks: such as mathmatical computaions, data crunching,...
+
+ex:
+---
+	demo.py
+	-------
+from multiprocessing import Process
+
+def print_numbers():
+    for i in range(5):
+        print(f"Number: {i}")
+
+
+if __name__=='__main__':
+    p1=Process(target=print_numbers)
+    p2=Process(target=print_numbers)
+    p1.start()
+    p2.start()
+    p1.join()
+    p2.join()
+
+
+ex2:
+----
+	demo.py
+	-------
+from multiprocessing import Pool
+
+def squares(n):
+    return n*n
+
+if __name__=='__main__':
+    numbers=[1,2,3,4,5]
+    with Pool(processes=3) as pool:
+        results=pool.map(squares,numbers)
+    print(results)
+
+
+note:
+----
+Process : used to create a new process
+
+start() : Begins the process
+
+join() : waits until the process completes
+
+Pool : Automatically manages multiple worker processes
+
+map() : applies the function to each item in the iterable
+
+when to use:
+------------
+Use Process when tasks are independent and limited
+
+Use Pool for bulk data processing in parllel
+
+			Exception Handling
+			------------------
+
+what is Error?
+--------------
+an Error is a problem in a program that prevent it from executing correctly.
+
+Types of Errors:
+----------------
+the Errors Can be Categorized into 3 type's, they are
+
+	1).Syntax Errors
+
+	2).Logical Errors
+
+	3).Runtime Errors(Exceptions)
+
+
+Syntax Errors:
+--------------
+these are the mistakes in the code that violate the rules of the python language.
+
+the interpreter detect them before the program runs.
+
+the error which occurs before starting the program execution, that type of errors are called Syntax Errors.
+
+if any syntax error occured in our python program, in that case our python program will not be start the execution.
+
+ex:
+---
+	demo.py
+	-------
+#missing colon
+if 10>5
+   print("hello")
+
+ex2:
+----
+	demo.py
+	--------
+#incorrect Indentation
+def func():
+print("hai siva")
+
+ex3:
+----
+	demo.py
+	-------
+#missing string literal
+print("hello siva)
+
+ex4:
+----
+	demo.py
+	-------
+#unclosed parantheses
+print("hello world"
+
+
+the common syntax errors:
+
+	missing colon(:)
+	incorrect indentation
+	misspelled keywords
+	unclosed parentheses,quotes
+
+Logical Errors:
+----------------
+code runs without crashing the program but gives wrong results due to incorrect/flaw logic in the program.
+
+ex:
+---
+	demo.py
+	-------
+def avg(a,b,c):
+    return (a+b+c)/2
+print(avg(5,10,15)) #wrong output: expected: 10.0,actual: 15.0
+
+Runtime Errors(Exception)
+------------------------
+these occurs while the program is running.
+
+the code may be syntatically correct but an issue arises during the runtime/execution.
+
+examples:
+---------
+print(10/0) #ZeroDivisionError
+
+int("siva") #ValueError
+
+print(x) #NameError
+
+a=[3,2,5]
+print(a[4]) #IndexError

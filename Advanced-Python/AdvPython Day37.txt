@@ -1,0 +1,496 @@
+ex16:
+-----
+write a python script to retreive the employee data in ascending order based on salary?
+
+	demo.py
+	------
+import pymysql
+conn_obj=pymysql.connect(user="root",password="root",host="localhost",
+                         port=3306,database="my1130amdb")
+print("Connection Established")
+cur_obj=conn_obj.cursor()
+cur_obj.execute("select * from emp order by esal")
+print("Eid","Ename","Esal","Dno",sep="\t")
+for rec in cur_obj:
+    print(rec[0],rec[1],rec[2],rec[3],sep="\t")
+cur_obj.close()
+conn_obj.close()
+print("Connection Closed")
+
+	output
+	------
+Connection Established
+Eid	Ename	Esal	Dno
+106	rahul	2500.00	10
+110	rama	2700.00	10
+107	krishna	2800.00	30
+103	dhoni	2900.00	30
+101	siva	3000.00	10
+104	sachin	3000.00	10
+108	gill	3000.00	10
+111	surya	3000.00	30
+102	virat	3100.00	20
+105	panth	3100.00	20
+109	hardik	3100.00	20
+Connection Closed
+
+
+ex17:
+-----
+write a python script to retreive the employee data in descending order based on salary?
+
+	demo.py
+	------
+import pymysql
+conn_obj=pymysql.connect(user="root",password="root",host="localhost",
+                         port=3306,database="my1130amdb")
+print("Connection Established")
+cur_obj=conn_obj.cursor()
+cur_obj.execute("select * from emp order by esal desc")
+print("Eid","Ename","Esal","Dno",sep="\t")
+for rec in cur_obj:
+    print(rec[0],rec[1],rec[2],rec[3],sep="\t")
+cur_obj.close()
+conn_obj.close()
+print("Connection Closed")
+
+	output
+	------
+Connection Established
+Eid	Ename	Esal	Dno
+102	virat	3100.00	20
+105	panth	3100.00	20
+109	hardik	3100.00	20
+101	siva	3000.00	10
+104	sachin	3000.00	10
+108	gill	3000.00	10
+111	surya	3000.00	30
+103	dhoni	2900.00	30
+107	krishna	2800.00	30
+110	rama	2700.00	10
+106	rahul	2500.00	10
+Connection Closed
+
+ex18:
+-----
+write a python script to perform aggrigate functions?
+
+	demo.py
+	-------
+import pymysql
+conn_obj=pymysql.connect(user="root",password="root",host="localhost",
+                         port=3306,database="my1130amdb")
+print("Connection Established")
+cur_obj=conn_obj.cursor()
+cur_obj.execute("select count(*),min(esal),max(esal),sum(esal),avg(esal) \
+from emp")
+for rec in cur_obj:
+    print(f"Total No.of Employees: {rec[0]}")
+    print(f"Minimum Salary: {rec[1]}")
+    print(f"Maximum Salary: {rec[2]}")
+    print(f"Total Salary: {rec[3]}")
+    print(f"Average Salary: {rec[4]:.2f}")
+cur_obj.close()
+conn_obj.close()
+print("Connection Closed")
+
+	output
+	------
+Connection Established
+Total No.of Employees: 11
+Minimum Salary: 2500.00
+Maximum Salary: 3100.00
+Total Salary: 32200.00
+Average Salary: 2927.27
+Connection Closed
+
+ex19:
+-----
+write a python script to update employee salary to 5000 whoose employee working under department number 10 and which employee name startswith 's' charecter?
+
+	demo.py
+	-------
+import pymysql
+conn_obj=pymysql.connect(user="root",password="root",host="localhost",
+                         port=3306,database="my1130amdb")
+print("Connection Established")
+cur_obj=conn_obj.cursor()
+print("Before Update")
+cur_obj.execute("select * from emp where dno=10")
+print("Eid","Ename","Esal","Dno",sep="\t")
+for rec in cur_obj:
+    print(rec[0],rec[1],rec[2],rec[3],sep="\t")
+cur_obj.execute("update emp set esal=5000 where dno=10 and ename like 's%'")
+print("Updated Successfully")
+print("After Update")
+cur_obj.execute("select * from emp where dno=10")
+print("Eid","Ename","Esal","Dno",sep="\t")
+for rec in cur_obj:
+    print(rec[0],rec[1],rec[2],rec[3],sep="\t")
+cur_obj.execute("rollback")
+print("Rollback Completed Successfully")
+cur_obj.execute("select * from emp where dno=10")
+print("Eid","Ename","Esal","Dno",sep="\t")
+for rec in cur_obj:
+    print(rec[0],rec[1],rec[2],rec[3],sep="\t")
+
+cur_obj.close()
+conn_obj.close()
+print("Connection Closed")
+
+	output
+	------
+Connection Established
+Before Update
+Eid	Ename	Esal	Dno
+101	siva	3000.00	10
+104	sachin	3000.00	10
+106	rahul	2500.00	10
+108	gill	3000.00	10
+110	rama	2700.00	10
+Updated Successfully
+After Update
+Eid	Ename	Esal	Dno
+101	siva	5000.00	10
+104	sachin	5000.00	10
+106	rahul	2500.00	10
+108	gill	3000.00	10
+110	rama	2700.00	10
+Rollback Completed Successfully
+Eid	Ename	Esal	Dno
+101	siva	3000.00	10
+104	sachin	3000.00	10
+106	rahul	2500.00	10
+108	gill	3000.00	10
+110	rama	2700.00	10
+Connection Closed
+
+ex20:
+-----
+write a python script to delete employee data whoose employee working under department number 10 and which employee name startswith 's' charecter?
+
+	demo.py
+	-------
+import pymysql
+conn_obj=pymysql.connect(user="root",password="root",host="localhost",
+                         port=3306,database="my1130amdb")
+print("Connection Established")
+cur_obj=conn_obj.cursor()
+print("Before Delete")
+cur_obj.execute("select * from emp where dno=10")
+print("Eid","Ename","Esal","Dno",sep="\t")
+for rec in cur_obj:
+    print(rec[0],rec[1],rec[2],rec[3],sep="\t")
+cur_obj.execute("delete from emp where dno=10 and ename like 's%'")
+print("Deleted Successfully")
+print("After Delete")
+cur_obj.execute("select * from emp where dno=10")
+print("Eid","Ename","Esal","Dno",sep="\t")
+for rec in cur_obj:
+    print(rec[0],rec[1],rec[2],rec[3],sep="\t")
+cur_obj.execute("rollback")
+print("Rollback Completed Successfully")
+cur_obj.execute("select * from emp where dno=10")
+print("Eid","Ename","Esal","Dno",sep="\t")
+for rec in cur_obj:
+    print(rec[0],rec[1],rec[2],rec[3],sep="\t")
+
+cur_obj.close()
+conn_obj.close()
+print("Connection Closed")
+
+	output
+	-------
+Connection Established
+Before Delete
+Eid	Ename	Esal	Dno
+101	siva	3000.00	10
+104	sachin	3000.00	10
+106	rahul	2500.00	10
+108	gill	3000.00	10
+110	rama	2700.00	10
+Deleted Successfully
+After Delete
+Eid	Ename	Esal	Dno
+106	rahul	2500.00	10
+108	gill	3000.00	10
+110	rama	2700.00	10
+Rollback Completed Successfully
+Eid	Ename	Esal	Dno
+101	siva	3000.00	10
+104	sachin	3000.00	10
+106	rahul	2500.00	10
+108	gill	3000.00	10
+110	rama	2700.00	10
+Connection Closed
+
+working with sqlite3 database:
+-------------------------------
+SQLite3 is a popular lightweight, embedded relational database management system (RDBMS) often used in applications where a full-fledged database server is not needed. 
+
+It's known for its simplicity, portability, and minimal resource requirements. 
+SQLite3 is a C library that allows applications to create and manage databases directly on the file system without a separate server process. 
+
+Python SQLite3 module is used to integrate the SQLite database with Python.
+ 
+It is a standardized Python DBI API 2.0 and provides a straightforward and simple-to-use interface for interacting with SQLite databases. There is no need to install this module separately as it comes along with Python after the 2.5x version.
+
+SQLite Studio is a free, open-source graphical User Interface (GUI) tool for working with SQLite databases. 
+
+It simplifies database management, offering a user-friendly interface to create, query, and manage SQLite databases without writing extensive SQL commands. 
+
+SQLite Studio is ideal for beginners and experienced developers like, providing features like syntax highlighting, query execution, and database visualization.
+
+Installation of SQLite Studio
+
+1. Download SQLite Studio: 
+Visit the official SQLite Studio website: https://sqlitestudio.pl/ and download the version suitable for your operating system.
+
+2. Extract Files: Extract the downloaded file into a directory of your choice.
+
+3. Run SQLite Studio: Open the executable file (sqlitestudio.exe on Windows) to launch the application.
+
+ex1:
+---
+write a python script to create a database in sqlite3?
+
+	demo.py
+	--------
+import sqlite3
+sqlite3.connect("Employee.db")
+print("Database Created Successfully")
+
+	output
+	------
+Database Created Successfully
+
+ex2:
+---
+write a python script to create a table in sqlite3 database?
+
+	demo.py
+	-------
+import sqlite3
+conn_obj=sqlite3.connect("Employee.db")
+print("Connection Established")
+cur_obj=conn_obj.cursor()
+cur_obj.execute("create table emp(eid number,ename string,esal float(6,2),\
+dno number)")
+print("Table Created Successfully")
+cur_obj.close()
+conn_obj.close()
+print("Connection Closed")
+
+	output
+	------
+Connection Established
+Table Created Successfully
+Connection Closed
+
+ex3:
+---
+write a python script to insert the data into sqlite3 database?
+
+	demo.py
+	-------
+import sqlite3
+conn_obj=sqlite3.connect("Employee.db")
+print("Connection Established")
+cur_obj=conn_obj.cursor()
+cur_obj.execute("insert into emp values(101,'siva',3000,10)")
+cur_obj.execute("insert into emp values(102,'virat',3100,20)")
+cur_obj.execute("insert into emp values(103,'dhoni',2900,30)")
+cur_obj.execute("insert into emp values(104,'sachin',3000,10)")
+cur_obj.execute("insert into emp values(105,'rama',3100,20)")
+cur_obj.execute("insert into emp values(106,'panth',2500,10)")
+cur_obj.execute("insert into emp values(107,'krishna',3000,30)")
+print("Inserted Successfully")
+cur_obj.execute("commit")
+print("commit completed")
+cur_obj.close()
+conn_obj.close()
+print("Connection Closed")
+
+	output
+	------
+Connection Established
+Inserted Successfully
+commit completed
+Connection Closed
+
+ex4:
+---
+write a python script to retreive the data from the sqlite3 database?
+
+	demo.py
+	-------
+import sqlite3
+conn_obj=sqlite3.connect("Employee.db")
+print("Connection Established")
+cur_obj=conn_obj.cursor()
+cur_obj.execute("select * from emp")
+for rec in cur_obj:
+    print(rec)
+cur_obj.close()
+conn_obj.close()
+print("Connection Closed")
+
+	output
+	-------
+Connection Established
+(101, 'siva', 3000.0, 10)
+(102, 'virat', 3100.0, 20)
+(103, 'dhoni', 2900.0, 30)
+(104, 'sachin', 3000.0, 10)
+(105, 'rama', 3100.0, 20)
+(106, 'panth', 2500.0, 10)
+(107, 'krishna', 3000.0, 30)
+Connection Closed
+
+ex5:
+---
+	demo.py
+	-------
+import sqlite3
+conn_obj=sqlite3.connect("Employee.db")
+print("Connection Established")
+cur_obj=conn_obj.cursor()
+cur_obj.execute("select * from emp")
+print("Eid","Ename","Esal","Dno",sep="\t")
+for rec in cur_obj:
+    print(rec[0],rec[1],rec[2],rec[3],sep="\t")
+cur_obj.close()
+conn_obj.close()
+print("Connection Closed")
+
+ex6:
+---
+write a python script to retreive the employee data whoose employee working under department number 10?
+
+	demo.py
+	-------
+import sqlite3
+conn_obj=sqlite3.connect("Employee.db")
+print("Connection Established")
+cur_obj=conn_obj.cursor()
+cur_obj.execute("select * from emp where dno=10")
+print("Eid","Ename","Esal","Dno",sep="\t")
+for rec in cur_obj:
+    print(rec[0],rec[1],rec[2],rec[3],sep="\t")
+cur_obj.close()
+conn_obj.close()
+print("Connection Closed")
+
+	output
+	------
+Connection Established
+Eid	Ename	Esal	Dno
+101	siva	3000.0	10
+104	sachin	3000.0	10
+106	panth	2500.0	10
+Connection Closed
+
+ex7:
+---
+write a python script to update the employee salary to 5000 whoose employee working under department number 10 and which employee name startswith 's' charecter?
+
+	demo.py
+	--------
+import sqlite3
+conn_obj=sqlite3.connect("Employee.db")
+print("Connection Established")
+cur_obj=conn_obj.cursor()
+print("Before Update")
+cur_obj.execute("select * from emp where dno=10")
+print("Eid","Ename","Esal","Dno",sep="\t")
+for rec in cur_obj:
+    print(rec[0],rec[1],rec[2],rec[3],sep="\t")
+cur_obj.execute("update emp set esal=5000 where dno=10 and ename like 's%'")
+print("Updated Suucessfully")
+print("After Update")
+cur_obj.execute("select * from emp where dno=10")
+print("Eid","Ename","Esal","Dno",sep="\t")
+for rec in cur_obj:
+    print(rec[0],rec[1],rec[2],rec[3],sep="\t")
+cur_obj.execute("rollback")
+print("Rollback Completed Successfully")
+cur_obj.execute("select * from emp where dno=10")
+print("Eid","Ename","Esal","Dno",sep="\t")
+for rec in cur_obj:
+    print(rec[0],rec[1],rec[2],rec[3],sep="\t")
+cur_obj.close()
+conn_obj.close()
+print("Connection Closed")
+
+	output
+	------
+Connection Established
+Before Update
+Eid	Ename	Esal	Dno
+101	siva	3000.0	10
+104	sachin	3000.0	10
+106	panth	2500.0	10
+Updated Suucessfully
+After Update
+Eid	Ename	Esal	Dno
+101	siva	5000.0	10
+104	sachin	5000.0	10
+106	panth	2500.0	10
+Rollback Completed Successfully
+Eid	Ename	Esal	Dno
+101	siva	3000.0	10
+104	sachin	3000.0	10
+106	panth	2500.0	10
+Connection Closed
+
+ex8:
+---
+write a python script to delete the employee data whoose employee working under department number 10 and which employee name startswith 's' charecter?
+
+	demo.py
+	--------
+import sqlite3
+conn_obj=sqlite3.connect("Employee.db")
+print("Connection Established")
+cur_obj=conn_obj.cursor()
+print("Before Delete")
+cur_obj.execute("select * from emp where dno=10")
+print("Eid","Ename","Esal","Dno",sep="\t")
+for rec in cur_obj:
+    print(rec[0],rec[1],rec[2],rec[3],sep="\t")
+cur_obj.execute("delete from emp where dno=10 and ename like 's%'")
+print("Deleted Suucessfully")
+print("After Delete")
+cur_obj.execute("select * from emp where dno=10")
+print("Eid","Ename","Esal","Dno",sep="\t")
+for rec in cur_obj:
+    print(rec[0],rec[1],rec[2],rec[3],sep="\t")
+cur_obj.execute("rollback")
+print("Rollback Completed Successfully")
+cur_obj.execute("select * from emp where dno=10")
+print("Eid","Ename","Esal","Dno",sep="\t")
+for rec in cur_obj:
+    print(rec[0],rec[1],rec[2],rec[3],sep="\t")
+cur_obj.close()
+conn_obj.close()
+print("Connection Closed")
+
+	output
+	------
+Connection Established
+Before Delete
+Eid	Ename	Esal	Dno
+101	siva	3000.0	10
+104	sachin	3000.0	10
+106	panth	2500.0	10
+Deleted Suucessfully
+After Delete
+Eid	Ename	Esal	Dno
+106	panth	2500.0	10
+Rollback Completed Successfully
+Eid	Ename	Esal	Dno
+101	siva	3000.0	10
+104	sachin	3000.0	10
+106	panth	2500.0	10
+Connection Closed
+

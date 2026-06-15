@@ -1,0 +1,265 @@
+working with YAML files:
+------------------------
+YAML (YAML Ain't Markup Language) is a human-readable data-serialization language.
+
+		(or)
+
+YAML is a human-friendly data serialization language for all programming languages. 
+
+
+It is commonly used for configuration files, but it is also used in data storage (e.g. debugging output) or transmission (e.g. document headers).
+
+YAML natively supports three basic data types:
+	scalars (such as strings, integers, and floats), 
+	lists,
+	associative arrays.
+
+.yaml or .yml is a extension of YAML files.
+
+python provides various libraries/packages to working with YAML files,they are
+	PyYAML and ruamel.yaml
+
+if we want to install pyyaml package, in that case we are using following command,
+
+	pip install pyyaml
+
+ex:
+---
+C:\Users\Lenovo>pip install pyyaml
+
+note:
+-----
+To use PyYAML in our scripts, import the module as follows,Note that you don’t import "pyyaml", but simply "yaml"
+
+	import yaml
+
+ex1:
+----
+write a python script to read the data from yaml file?
+
+if we want to read the data from yaml files,in that case we are using load() function of yaml module.
+
+	syntax:
+	------
+load(stream, Loader)
+	Parse the first YAML document in a stream and produce the corresponding Python 	object.
+
+	items.yaml
+	----------
+raincoat: 1
+coins: 5
+books: 23
+spectacles: 2
+chairs: 12
+pens: 6
+
+	demo.py
+	-------
+import yaml
+with open('items.yaml') as f1:
+    x=yaml.load(f1,Loader=yaml.FullLoader)
+    print(x)
+
+output:
+--------
+{'raincoat': 1, 'coins': 5, 'books': 23, 'spectacles': 2, 'chairs': 12, 'pens': 6}
+
+ex2:
+----
+write a python program to read all the documents from the yaml file?
+
+	if we want to read all the documents from the yaml file, in that case we are using load_all()function of yaml module.
+
+syntax:
+-------
+load_all(stream, Loader):
+	Parse all YAML documents in a stream and produce corresponding Python objects.
+
+	data.yaml
+	---------
+cities:
+  - Bratislava
+  - Kosice
+  - Trnava
+  - Moldava
+  - Trencin
+---
+companies:
+  - Eset
+  - Slovnaft
+  - Duslo Sala
+  - Matador Puchov
+
+	demo.py
+	-------
+import yaml
+with open('data.yaml') as f1:
+    x=yaml.load_all(f1,Loader=yaml.FullLoader)
+    for doc in x:
+        print(doc)
+
+output
+------
+{'cities': ['Bratislava', 'Kosice', 'Trnava', 'Moldava', 'Trencin']}
+{'companies': ['Eset', 'Slovnaft', 'Duslo Sala', 'Matador Puchov']}
+
+
+ex3:
+----
+write a python script to write/dump the data into yaml file?
+
+if we want to dump/write the data into yaml files,in that case we are using dump() function of yaml module.
+
+	
+	syntax:
+	--------
+	dump(data,fileobj)
+
+	demo.py
+	-------
+import yaml
+users = [{'name': 'John Doe', 'occupation': 'gardener'},
+         {'name': 'Lucy Black', 'occupation': 'teacher'}]
+with open('users.yaml', 'w') as f:    
+    yaml.dump(users, f)
+
+output:
+-----
+	users.yaml
+	----------
+- name: John Doe
+  occupation: gardener
+- name: Lucy Black
+  occupation: teacher
+
+ex4:
+----
+	demo.py
+	-------
+import yaml
+data = {"Employe":[{'eid':1,'ename':'abc','eadd':'hyd'},
+                   {'eid':2,'ename':'pqr','eadd':'pune'},
+                   {'eid':3,'ename':'xyz','eadd':'vizag'}
+                   ],
+        "Customer": [{'cid':101,'cname':'siva','csal':3000.0},
+                     {'cid':101,'cname':'siva','csal':3000.0},
+                     {'cid':101,'cname':'siva','csal':3000.0}
+                     ]
+        
+        }
+with open('data1.yaml', 'w') as f:    
+    data = yaml.dump(data, f)
+
+output:
+-------
+	data1.yaml
+	---------
+Customer:
+- cid: 101
+  cname: siva
+  csal: 3000.0
+- cid: 101
+  cname: siva
+  csal: 3000.0
+- cid: 101
+  cname: siva
+  csal: 3000.0
+Employe:
+- eadd: hyd
+  eid: 1
+  ename: abc
+- eadd: pune
+  eid: 2
+  ename: pqr
+- eadd: vizag
+  eid: 3
+  ename: xyz
+
+working with excel file's:
+---------------------------
+Microsoft Excel is a spreadsheet program available in the Microsoft Office Package. 
+
+MS Excel is used to create Worksheets (spreadsheets) to store and organize data in a table format.
+
+Microsoft Excel is one of the most used software application in the world.
+ 
+Excel have the Powerful Tools and Functions, using it for wide verity of applications across the global IT Companies. 
+
+It is easy to enter the data, read and manipulate the data. 
+
+Excel stores the data in a table format in Rows and Columns.
+
+Excel documents are called workbooks,Each workbook has sheets,typically called spreadsheets.
+
+if we want to working the excel sheets through python programming, we need to required openpyxl library.
+
+openpyxl is a Python library to read/write Excel 2010 xlsx/xlsm/xltx/xltm files.
+
+if we want to working openpyxl library, in that case first we need to install that particular library.
+
+	pip install openpyxl
+
+
+ex1:
+----
+write a python program to read the data from excel?
+
+	employee.xlsx(sheetname: Sheet1)
+	-------------
+eid	ename	esal	dno
+101	siva	3000	10
+102	rama	4000	20
+103	krishna	5000	30
+
+
+	demo.py
+	--------
+import openpyxl
+wb=openpyxl.load_workbook('employee.xlsx')
+ws=wb['Sheet1']
+rows=ws.max_row
+cols=ws.max_column
+for r in range(1,rows+1):
+    for c in range(1,cols+1):
+        cell_obj=ws.cell(row=r,column=c)
+        print(cell_obj.value,end="\t")
+    print()
+
+	output
+	-------
+eid	ename	esal	dno	
+101	siva	3000	10	
+102	rama	4000	20	
+103	krishna	5000	30
+
+ex2:
+----
+write a python script/program to write the data into excel?
+
+	demo.py
+	-------
+import openpyxl
+wb=openpyxl.load_workbook('employee.xlsx')
+ws=wb['Sheet2']
+headings=['sid','sname','sadd']
+for r in range(1,2):
+    for c in range(1,len(headings)+1):
+        cell_obj=ws.cell(row=r,column=c)
+        cell_obj.value=headings[c-1]
+
+data=[[101,'siva','hyd'],[102,'rama','pune'],[103,'krishna','vizag']]
+for r in range(2,len(data)+2):
+    for c in range(1,len(data[r-2])+1):
+        cell_obj=ws.cell(row=r,column=c)
+        cell_obj.value=data[r-2][c-1]
+
+wb.save('employee.xlsx')
+
+output:
+-------
+	employee.xlsx(sheet name: Sheet2)
+	--------------
+sid	sname	sadd
+101	siva	hyd
+102	rama	pune
+103	krishna	vizag

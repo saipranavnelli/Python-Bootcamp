@@ -1,0 +1,161 @@
+what is Thread scheduling?
+--------------------------
+thread sceduling is the mechanism by which an operating system or runtime decides which thread to run at any given time when multiple threads are ready to run.
+
+why is Thread Scheduling Needed?
+--------------------------------
+1).Concurrency: to allow multiple threads to run seemingly at the same time(especially on single-core processor)
+
+2).Efficiency: To utilize CPU cores effectively by not leaving them idle
+
+3).Fairness: to ensure all threads get a chance to execute
+
+4).Responsiveness: to prioritize certain tasks
+
+how thread scheduling work in python(CPython)?
+-----------------------------------------------
+Python uses a Global Interpreter Lock(GIL), Which means only one thread executes python bytecode at a time.
+
+you can't control scheduling priorities directly(like in Java or C++), but can simmulate control using sleep,locks and queues.
+
+ex1:
+---
+	demo.py
+	-------
+import threading
+import time
+
+def task(name,delay):
+    for i in range(5):
+        print(f"{name} is running iteration {i}")
+        time.sleep(delay) #simulates scheduling/wait time
+
+#create threads with different delays to simulate scheduling
+t1=threading.Thread(target=task,args=("Thread-1",1))
+t2=threading.Thread(target=task,args=("Thread-2",1))
+t1.start()
+t2.start()
+t1.join()
+t2.join()
+print("all thread completed")
+
+
+thread scheduling using Lock, which ensures synchronized access to shared resources, helping prevent race conditions.
+
+scenario:
+--------
+two threads are trying to update a shared counter without a lock,both may access and modify it simultaneously,leading to incorrect results.
+
+ex2: without locking
+----
+	demo.py
+	-------
+import threading
+import time
+
+#shared Resource
+counter=0
+
+def inc_counter(thread_name):
+    global counter
+    for _ in range(5):        
+        local_counter=counter
+        print(f"{thread_name} read counter: {local_counter}")
+        time.sleep(0.1) #simulating processing time
+        counter=local_counter+1
+        print(f"{thread_name} updated counter to: {counter}")        
+        time.sleep(0.1) #yield to other thread
+#creating a threads
+t1=threading.Thread(target=inc_counter, args=("Thread-1",))
+t2=threading.Thread(target=inc_counter, args=("Thread-2",))
+t1.start()
+t2.start()
+t1.join()
+t2.join()
+print(f"Final Counter Value: {counter}")
+        
+ex3:
+---
+	demo.py
+	-------
+import threading
+import time
+
+#shared Resource
+counter=0
+
+#lock object
+lock_obj=threading.Lock()
+
+def inc_counter(thread_name):
+    global counter
+    for _ in range(5):
+        lock_obj.acquire()
+        local_counter=counter
+        print(f"{thread_name} read counter: {local_counter}")
+        time.sleep(0.1) #simulating processing time
+        counter=local_counter+1
+        print(f"{thread_name} updated counter to: {counter}")
+        lock_obj.release()
+        time.sleep(0.1) #yield to other thread
+#creating a threads
+t1=threading.Thread(target=inc_counter, args=("Thread-1",))
+t2=threading.Thread(target=inc_counter, args=("Thread-2",))
+t1.start()
+t2.start()
+t1.join()
+t2.join()
+print(f"Final Counter Value: {counter}")
+
+note:
+-----
+lock_obj.acquire() : ensures only one thread modifies counter at a time.
+
+lock_obj.release() : allows other threads to proceed
+
+time.sleep() : helps simulate thread scheduling/yielding behavior
+
+ex:  advanced Scheduling(priority simulation)
+----
+while python threads don't support setting priority directly,you can simulate priority by controlling their delay or using custom schedulars.
+
+ex:
+----
+	demo.py
+	-------
+import threading
+import queue
+import time
+
+# Priority queue (lower number = higher priority)
+task_queue = queue.PriorityQueue()
+
+def task(priority, name):
+    time.sleep(priority)  # Simulate priority with sleep
+    print(f"Executing {name} with priority {priority}")
+
+# Adding the tasks
+task_queue.put((2, "Low priority task"))
+task_queue.put((1, "Medium priority task"))
+task_queue.put((0, "High priority task"))
+
+# Scheduler thread
+def scheduler():
+    threads = []
+    while not task_queue.empty():
+        priority, name = task_queue.get()
+        t = threading.Thread(target=task, args=(priority, name))
+        t.start()           # Start the thread
+        threads.append(t)   # Save the thread to join later
+
+    # Wait for all threads to finish
+    for t in threads:
+        t.join()
+
+scheduler()
+
+	output
+	------
+Executing High priority task with priority 0
+Executing Medium priority task with priority 1
+Executing Low priority task with priority 2

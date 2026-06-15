@@ -1,0 +1,380 @@
+finally block
+---------------
+we can define any block which is preeceded by "finally" keyword, that block is called finally block.
+
+	syntax
+	------
+	finally:
+	   stmt_1
+	   stmt_2
+	   ......
+	   stmt_n
+
+which statements we want to executed whether exception is raised or not, even though exception is raised whether it is handled or not, that type of statements we are writing in the finally block.
+
+in generally, the resource releasing statements we are writing inside the finally block.
+
+ex1:
+---
+	demo.py
+	-------
+print("hai")
+try:
+    x=int(input("enter x value: "))
+    y=int(input("enter y value: "))
+    z=x/y 
+    print(z)
+except ZeroDivisionError:
+    print("Sno can't be zero")
+finally:
+    print("I am in Finally Block")
+print("bye")
+    
+    
+output1: without any exception
+-------
+hai
+enter x value: 3
+enter y value: 2
+1.5
+I am in Finally Block
+bye
+
+output2: with exception can be handled
+-------
+hai
+enter x value: 3
+enter y value: 0
+Sno can't be zero
+I am in Finally Block
+bye
+
+output3: with exception can't be handled
+--------
+hai
+enter x value: 3
+enter y value: 2.3
+I am in Finally Block
+ValueError: invalid literal for int() with base 10: '2.3'
+
+
+try else
+---------
+	syntax
+	-------
+	try:
+	   stmt_1
+	   stmt_2
+	   ......
+	   stmt_n
+	except:
+           stmt_1
+	   stmt_2
+	   ......
+	   stmt_n
+	else:
+	   stmt_1
+	   stmt_2
+	   ......
+	   stmt_n
+
+ex:
+---
+	demo.py
+	-------
+print("hai")
+try:
+    x=int(input("enter x value: "))
+    y=int(input("enter y value: "))
+    z=x/y     
+except ZeroDivisionError:
+    print("Sno can't be zero")
+else:
+    print(z)
+finally:
+    print("I am in Finally Block")
+print("bye")
+    
+	output1
+	-------
+hai
+enter x value: 3
+enter y value: 2
+1.5
+I am in Finally Block
+bye
+
+	output2
+	--------
+hai
+enter x value: 3
+enter y value: 0
+Sno can't be zero
+I am in Finally Block
+bye
+
+User-defined Exceptions:
+-----------------------
+	we can define a exception according to our business requirements, that type of exceptions are called User-defined Exceptions.
+
+steps to implement the User-defined Exceptions:
+------------------------------------------------
+step1: to create a user defined exception class
+-----
+
+we can define any class as a user-defined exception class, in that case our class is extending by Exception class.
+
+	syntax
+	------
+	class calssname(Exception):
+		--------
+		--------
+		--------
+
+step2: to raise the user-defined exception
+-----
+
+we can raise the exception manually by using "raise" keyword.
+
+	syntax
+	------
+	raise ExceptionClassname
+
+step3: to handle the user-defined exceptions
+-----
+
+we can handle the user-defined exception by using try and except blocks.    
+
+ex:
+----
+	demo.py
+	-------
+from random import randint
+class ValueTooSmall(Exception):
+    pass
+
+class ValueTooLarge(Exception):
+    pass
+
+x=randint(0,9)
+
+while True:
+    y=int(input("enter your guessing number: "))
+    try:
+        if y<x:
+            raise ValueTooSmall
+        elif y>x:
+            raise ValueTooLarge
+        else:
+            break
+    except ValueTooSmall:
+        print("Value Too Small,Try Again!")
+    except ValueTooLarge:
+        print("Value Too Large,Try Again!")
+        
+print("Congratulations,Your Guess is Correct")
+            
+	output
+	------
+enter your guessing number: 5
+Value Too Small,Try Again!
+enter your guessing number: 7
+Value Too Large,Try Again!
+enter your guessing number: 6
+Congratulations,Your Guess is Correct
+
+what is Assertion?
+-----------------
+an Assertion is a boolean expression,whenever the assertion will be return True in that case donothing in our program, our program contineously executed otherwise to stop the program execution and to raise the AssertionError.
+
+in python, we can implement the assertions by using assert keyword.
+
+	syntax
+	------
+	assert expression
+
+		(or)
+
+	assert expression,"error message"
+
+ex1:
+---
+	demo.py
+	-------
+obj=eval(input("enter list object: "))
+def avg(x):
+    assert len(x)!=0
+    return sum(x)/len(x)
+print(avg(obj))
+
+	output1
+	--------
+enter list object: [6,3,7,2]
+4.5
+
+	output2
+	--------
+enter list object: []
+
+AssertionError
+
+ex2:
+----
+	demo.py
+	--------
+obj=eval(input("enter list object: "))
+def avg(x):
+    assert len(x)!=0,'lenth is zero'
+    return sum(x)/len(x)
+print(avg(obj))
+
+	output1
+	-------
+enter list object: [6,3,7,2]
+4.5
+
+	output2
+	-------
+enter list object: []
+AssertionError: lenth is zero
+
+ex3:
+----
+	demo.py
+	--------
+class NonIterableError(Exception):
+    pass
+
+class StringError(Exception):
+    pass
+
+obj=eval(input("enter list object: "))
+def avg(x):
+    try:
+        if type(x)==str:
+            raise StringError
+        elif type(x) in [int,float,complex,bool]:
+            raise NonIterableError
+        else:
+            assert len(x)!=0
+    except StringError:
+        print("we can't perform average operation on string object")
+    except NonIterableError:
+        print("enter iterable objects only")
+    except AssertionError:
+        print("Lenth should not be zero")
+    else:
+        print(sum(x)/len(x))
+avg(obj)
+
+	output1
+	--------
+enter list object: [6,2,7,9]
+6.0
+
+	output2
+	--------
+enter list object: []
+Lenth should not be zero
+
+	output3
+	--------
+enter list object: "siva"
+we can't perform average operation on string object
+
+	output4
+	--------
+enter list object: 56
+enter iterable objects only
+
+ex4:
+----
+	demo.py
+	-------
+class NonIterableError(Exception):
+    def __init__(self):
+        print("enter iterable objects only")
+    
+
+class StringError(Exception):
+    def __init__(self):
+        print("we can't perform average operation on string object")
+
+obj=eval(input("enter list object: "))
+def avg(x):
+    try:
+        if type(x)==str:
+            raise StringError
+        elif type(x) in [int,float,complex,bool]:
+            raise NonIterableError
+        else:
+            assert len(x)!=0,"Length Should not be zero"
+    except (StringError,NonIterableError,AssertionError) as e:
+        print(e)
+        
+        
+    else:
+        print(sum(x)/len(x))
+avg(obj)
+
+
+	(or)
+
+class NonIterableError(Exception):
+    def __init__(self):
+        print("enter iterable objects only")
+    
+
+class StringError(Exception):
+    def __init__(self):
+        print("we can't perform average operation on string object")
+
+obj=eval(input("enter list object: "))
+def avg(x):
+    try:
+        if type(x)==str:
+            raise StringError
+        elif type(x) in [int,float,complex,bool]:
+            raise NonIterableError
+        else:
+            assert len(x)!=0,"Length Should not be zero"
+    except Exception as e:
+        print(e)
+        
+        
+    else:
+        print(sum(x)/len(x))
+avg(obj)
+
+	output1
+	--------
+enter list object: [5,3,7,9]
+6.0
+
+	output2
+	--------
+enter list object: []
+Length Should not be zero
+
+	output3
+	--------
+enter list object: "siva"
+we can't perform average operation on string object
+
+	output4
+	--------
+enter list object: 56
+enter iterable objects only
+
+
+
+
+
+
+
+
+
+
+
+
+

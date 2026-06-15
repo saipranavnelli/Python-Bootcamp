@@ -1,0 +1,243 @@
+ex9:
+----
+	demo.py
+	-------
+f1=open("D:\\siva\\class\\krishna\\test.txt",'w')
+f1.write("welcome to vagdevi technologies")
+f1.close()
+
+output:
+-------
+	D:\\siva\\class\\krishna\\test.txt
+	----------------------------------
+welcome to vagdevi technologies
+
+ex10:
+-----
+	D:\\siva\\class\\krishna\\test.txt
+	----------------------------------
+welcome to vagdevi technologies
+
+	demo.py
+	-------
+f1=open("D:/siva/class/krishna/test.txt")
+print(f1.read())
+f1.close()
+
+output:
+-------
+welcome to vagdevi technologies
+
+why we need to Manage the Resources
+-----------------------------------
+In any programming language, the usage of resources like file operations or database connections is very common But these resources are limited in supply. Therefore, the main problem lies in making sure to release these resources after usage. If they are not released then it will lead to resource leakage and may cause the system to either slow down or crash.
+
+Context Managers:
+-----------------
+Context managers are a fundamental design pattern in Python that provide a structured approach to resource management.
+
+A context manager in Python is an object that is used to manage resources, such as file handling, network connections, and database connections. It provides a way to allocate and release resources automatically when they are no longer needed, ensuring proper cleanup and preventing resource leaks.
+
+how to implement the Context Managers
+---------------------------------------
+Context managers are typically used with the 'with' statement, which guarantees that the resources managed by the context manager are properly released at the end of the block, even if an exception occurs.
+
+ex11:
+-----
+	demo.py
+	--------
+f1=open("test.txt",'w')
+f1.write("hello world")
+print(f1.closed)
+
+output			test.txt
+-------			---------
+False			empty file i.e., dont write anything in that file
+
+ex12:
+-----
+	demo.py
+	-------
+with open("test1.txt",'w') as f1:
+    f1.write("hello world")
+print(f1.closed)
+
+output			test1.txt
+-------			---------
+True			hello world
+
+ex13:
+-----
+write a python script to read entire data from the file?
+
+	test.txt
+	--------
+hello
+siva krishna
+good afternoon
+how are you
+
+	demo.py
+	-------
+with open("test.txt") as f1:
+    print(f1.read())
+
+output
+------
+hello
+siva krishna
+good afternoon
+how are you
+
+			
+ex14:
+-----
+write a python script to read the line from the file?
+
+	test.txt
+	--------
+hello
+siva krishna
+good afternoon
+how are you
+
+	demo.py
+	--------
+with open("test.txt") as f1:
+    print(f1.readline())
+
+output
+------
+hello
+
+ex15:
+-----
+write a python script to read all the lines from the file?
+
+	test.txt
+	--------
+hello
+siva krishna
+good afternoon
+how are you
+
+	demo.py
+	--------
+with open("test.txt") as f1:
+    print(f1.readlines())
+
+output:
+-------
+['hello\n', 'siva krishna\n', 'good afternoon\n', 'how are you']
+
+
+ex16:
+-----
+write a python script to read Nth line from the file?
+
+	test.txt
+	--------
+hello
+siva krishna
+good afternoon
+how are you
+
+	demo.py
+	--------
+n=int(input("enter line number: "))
+with open("test.txt") as f1:
+    print(f1.readlines()[n-1])
+
+output
+------
+enter line number: 3
+good afternoon
+
+ex17:
+-----
+write a python script to return the no.of lines in a Given File?
+
+	test.txt
+	--------
+hello
+siva krishna
+good afternoon
+how are you
+
+	demo.py
+	--------
+with open("test.txt") as f1:
+    print(len(f1.readlines()))
+
+output
+------
+4
+
+ex18:
+-----
+write a python script to return the no.of words in a Given File?	
+
+	test.txt
+	--------
+hello
+siva krishna
+good afternoon
+how are you
+
+	demo.py
+	--------
+with open("test.txt") as f1:
+    print(len(f1.read().split()))
+
+output:
+------
+8
+
+ex19:
+-----
+write a python script to return the no.of charecters in a Given File?	
+
+	test.txt
+	--------
+hello
+siva krishna
+good afternoon
+how are you
+
+	demo.py
+	--------
+with open("test.txt") as f1:
+    print(len(f1.read()))
+
+output:
+-------
+45
+
+ex20:
+-----
+write a python script to return the no.of charecters in a Given File except whitespace charecters	
+
+	test.txt
+	--------
+hello
+siva krishna
+good afternoon
+how are you
+
+	demo.py
+	--------
+with open("test.txt") as f1:
+    words=f1.read().split()
+    char_count=0
+    for word in words:
+        char_count+=len(word)
+    print(char_count)
+
+output
+------
+38
+
+
+
+
+

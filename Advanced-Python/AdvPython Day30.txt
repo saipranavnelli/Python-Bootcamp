@@ -1,0 +1,283 @@
+		File Handling
+		------------
+Generally, the programming languages are suitable for only processing the data.
+
+the programming languages are not suitable storeing the data because the programming languages programs memory will be allocated in RAM.
+
+RAM(Random Access Memory) is a Volatile Memory i.e., once turn off our computer then automatically to errase the data from the RAM.
+
+if we are not storeing the data permanently in that case we can't use that data in future.
+
+if we want to store the data permanently in a Non-Volatile memory like harddisk for future use/reference, in that case we are using following concept's
+
+	File's(text,csv,json,yaml,pdf,excel,...)
+	DataBase's(SQL & NoSQL)
+	HDFS's(Hadoop Distributed File System's)
+
+what is File?
+------------
+	a file is a named location on the disc, which is used to store the data permanently in a non-volatile memory like harddisk for future use/reference.
+
+		(or)
+
+	A file is a collection of data stored on a computer, which can be in different formats like text, CSV, JSON, Excel, YAML, or XML.
+
+if we want to working with file's, first we need to open the file.
+
+if we want to open the file,in that case we are using open() of builtins module.
+
+	open(file,mode)
+
+at the time of opening a file we need to specify the mode of the file.
+
+	Mode		Description
+	----		------------
+	r	-->	open a file in read mode
+			it's by default
+
+	w	-->	open a file in write mode, if file already existed in that 				case to	delete the already existed data in that file and to 				add the new data into that file otherwise to create a new 				file and write the data into that file.
+
+	a	-->	open a file in append mode, if file already existed in that 				case to append the data at the end of the already existed 				data in that file otherwise to create a new file and to write 			the data into that file.
+
+	x	-->	open a file in exclusive creation mode, if file already 				existed the operation become fail otherwise to create a new 				file and write the data into that file.
+
+	t	-->	open a file in text mode
+			it's by default
+
+	b	-->	open a file in bytes mode
+
+	+	-->	to apply the multiple modes at a time
+
+the open() to return the file object.
+
+the file object provides some methods to perform the operation on the files.
+
+	Method		Description
+	------		------------
+	read()		to read the entire data from the file
+
+	read(N)		to read the N charecters from the file
+
+	readline()	to read the line from the file
+
+	readlines()	to read all the lines from the file
+
+	write(S)	to write the data into the file
+
+	writelines()	to write the multiple lines into the file
+
+	tell()		to return the current file pointer position
+
+	seek()		to chnage the file pointer position
+
+	close()		to close the file
+
+after performeing the operations on the file next we need to close the file.
+
+we can close the file by using close() method of file object.
+
+order of the file handling:
+----------------------------
+step1:
+-----
+to opening a file
+
+we can opening a file by using open() of builtins module.
+
+	syntax
+	------
+	file_obj=open(file,mode)
+
+	ex:
+	---
+	f1=open('sample.txt') #read and text mode
+
+	f2=open('D:\\siva\\python\\sample.txt','w') #write and text mode
+
+	f3=open('D:/siva/python/sample.txt','a') #append and text mode
+
+step2:
+------
+to perform the operation on the file
+
+	syntax
+	------
+	file_obj.methodname()
+
+	ex:
+	---
+	f1.read()
+
+	f2.write(S) # here S means string type of data
+
+step3:
+------
+close the file
+
+	syntax
+	-----
+	file_obj.close()
+
+	ex:
+	---
+	f1.close()
+
+	f2.close()
+
+working with text files:
+-------------------------
+ex1:
+----
+write a python program to read the data from the given file?
+
+	sample.txt
+	------------
+hello siva
+
+	demo.py
+	-------
+f1=open('sample.txt')
+print(f1.read())
+f1.close()
+        
+output
+------
+hello siva
+
+
+ex2:
+---
+	sample.txt
+	------------
+hello siva
+
+	demo.py
+	-------
+f1=open('sample.txt')
+data=f1.read()
+print(data)
+print(f1.name)
+print(f1.mode)
+print(f1.closed)
+f1.close()
+print(f1.closed)
+        
+output
+------
+hello siva
+sample.txt
+r
+False
+True
+
+ex3:
+---
+write a python script to write the data into text file, if file already existed?
+
+	sample.txt
+	------------
+hello siva
+
+	demo.py
+	-------
+f1=open('sample.txt','w')
+f1.write("welcome to vagdevi technologies")
+f1.close()
+
+output:
+------
+	sample.txt
+	----------
+welcome to vagdevi technologies
+
+ex4:
+----
+write a python script to write the data into text file, if file doesn't existed?  
+
+	demo.py
+	-------
+f1=open('sample1.txt','w')
+f1.write("welcome to vcs it soloutions")
+f1.close()
+
+output
+-------
+	sample1.txt
+	-----------
+welcome to vcs it soloutions
+
+ex5:
+----
+write a python script to write the data into text file, if file already existed?
+
+	sample.txt
+	----------
+welcome to vagdevi technologies
+
+	demo.py
+	-------
+f1=open('sample.txt','a')
+f1.write("hello siva")
+f1.close()
+
+output:
+------
+	sample.txt
+	----------
+welcome to vagdevi technologieshello siva        
+
+ex6:
+----
+write a python script to write the data into text file, if file doesn't existed? 
+
+	demo.py
+	-------
+f1=open('sample2.txt','a')
+f1.write("hello siva")
+f1.close()
+
+output:
+-------
+	sample2.txt
+	------------
+hello siva
+
+
+ex7:
+----
+write a python script to write the data into text file, if file already existed?
+
+	sample.txt
+	----------        
+welcome to vagdevi technologieshello siva       
+
+  	demo.py
+	-------
+f1=open('sample.txt','x')
+f1.write("Good bye")
+f1.close()
+
+output:
+-------
+FileExistsError: [Errno 17] File exists: 'sample.txt'  
+
+ex8:
+----
+write a python script to write the data into text file, if file doesn't existed? 
+
+	demo.py
+	-------
+f1=open('sample3.txt','x')
+f1.write("Good bye")
+f1.close()
+
+output:
+------
+	sample3.txt
+	-----------
+Good bye        
+
+      
+      
+
+

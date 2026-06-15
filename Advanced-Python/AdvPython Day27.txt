@@ -1,0 +1,215 @@
+what is Exception?
+-------------------
+an exception is an event that intrrupts the normal flow of the programs execution when something goes wrong.
+
+common types of exceptions:
+
+ZeroDivisionError: raised when dividing by zero
+
+ValueError: raised when function receive the wrong value
+
+TypeError: raised when an operation is performed on incompatible types
+
+IndexError: raised when an index is out of range
+
+KeyError: raised when a key is not found in a dictionary
+
+FileNotFoundError: raised when file is not found
+
+NameError: raised when a variable is not defined
+
+AttributeError: raised when an invalid attribute is accessed
+
+ImportError: raised when an import fails
+
+ModuleNotFoundError: raised when an module not found
+
+
+what is Exception Handling?
+-----------------------------
+Exception Handling is a Mechanism in python that allows you to gracefully handle errors (called exceptions) that may occur during program execution,without crashing the program.
+
+		(or)
+
+whenever the Exception will be occured then immediately to Identify which exception will be occured,Receiveing that exception class object and Forwarding it, is known as a Exception Handling.
+
+why use Exception Handling:
+-----------------------------
+to avoid the program crashes
+to show the meaning full error messages
+to handle the specific error situations(like file not found,divide by zero,...)
+to ensure the proper cleanup actions(like closing a file or connection)
+
+when to use Exception Handling?
+--------------------------------
+reading or writing files(working with files)
+connecting to data bases
+calling APIs
+input validation
+working with external devices
+
+Note:
+------
+exception handling makes your python programs more robust,secure and user-friendly by allowing you to catch and respond to errors, instead of letting your program crash.
+
+types of exceptions:
+--------------------
+the exceptions can be categorized into 2 type's, they are
+
+	1).Builtin Exception's
+
+	2).User Defined Exception's
+
+Builtin Exception's:
+--------------------
+these Exception's are already predefined for some special purpose,we can use that exceptions only for that particular purpose.
+
+every builtin exception having it's own exception class, whenever the builtin exception will be occured then automatically that builtin exception class object is raised but we can handle that builtin exception manually.
+
+
+how to Handling the Exceptions?
+-------------------------------
+we can handling the exceptions in python by using try and except blocks.
+
+try block:
+----------
+we can define a block by using try keyword, that block is called try block.
+
+	syntax
+	------
+	try:
+	   stmt_1
+	   stmt_2
+	   ......
+	   stmt_n
+
+which statements causes to exceptions and which statements execution is depends on exception occured statements, that type of statements we are represented within/inside the try block.
+
+if any exception will be occured in our try block then immediately our try block to Identify which type of exception will be occured,Receiveing that execption class object and Forwarding to the Except block.
+
+except block:
+-----------
+in except block, we can write the user friendly messages to the user, related to exception.
+
+the except block can be categorized into 2 type's, they are
+
+	1).Default Except Block
+
+	2).Named Except Block
+
+Default Except Block:
+--------------------
+the Default except block can handle any type of exceptions.
+
+	syntax
+	------
+	except:
+	   stmt_1
+	   stmt_2
+	   ......
+	   stmt_n
+
+note:
+----
+if any exception will be occured in our try block then only the control will goto the except block otherwise the control dont goto the except block.
+
+ex1:
+----
+	demo.py
+	-------
+print("hai")
+x=int(input("enter x value: "))
+y=int(input("enter y value: "))
+try:
+    z=x/y
+    print(z)
+except:
+    print("Sno Can't be Zero")
+print("bye")
+
+output1: without any exception
+-------
+hai
+enter x value: 3
+enter y value: 2
+1.5
+bye
+
+output2: with exception can be handled
+-------
+hai
+enter x value: 3
+enter y value: 0
+Sno Can't be Zero
+bye
+
+Named Except Block:
+-------------------
+the named except block can handle only that particular type of exceptions.
+
+	syntax
+	------
+	except ExceptionClassname:
+		-------
+		-------
+		-------
+
+ex:
+---
+	demo.py
+	-------
+print("hai")
+try:
+    x=int(input("enter x value: "))
+    y=int(input("enter y value: "))
+    z=x/y
+    print(z)
+except ZeroDivisionError:
+    print("Sno Can't be Zero")
+print("bye")
+
+output1: without any exception
+-------
+hai
+enter x value: 3
+enter y value: 2
+1.5
+bye
+
+output2: with exception can be handled
+--------
+hai
+enter x value: 3
+enter y value: 0
+Sno Can't be Zero
+bye
+
+output3: with exception can't be handled
+--------
+hai
+enter x value: 3
+enter y value: 2.3
+ValueError: invalid literal for int() with base 10: '2.3'
+
+ex4:
+----
+write a python script to print the list of builtin exception classes?
+
+	demo.py
+	-------
+import builtins
+x=[]
+for i in dir(builtins):
+    if i.isalpha():
+        if i[0].isupper():
+            if i not in ['True','False','None']:
+                x.append(i)
+print(x)
+print("*"*45)
+print(len(x))
+
+	output
+	------
+['ArithmeticError', 'AssertionError', 'AttributeError', 'BaseException', 'BaseExceptionGroup', 'BlockingIOError', 'BrokenPipeError', 'BufferError', 'BytesWarning', 'ChildProcessError', 'ConnectionAbortedError', 'ConnectionError', 'ConnectionRefusedError', 'ConnectionResetError', 'DeprecationWarning', 'EOFError', 'Ellipsis', 'EncodingWarning', 'EnvironmentError', 'Exception', 'ExceptionGroup', 'FileExistsError', 'FileNotFoundError', 'FloatingPointError', 'FutureWarning', 'GeneratorExit', 'IOError', 'ImportError', 'ImportWarning', 'IndentationError', 'IndexError', 'InterruptedError', 'IsADirectoryError', 'KeyError', 'KeyboardInterrupt', 'LookupError', 'MemoryError', 'ModuleNotFoundError', 'NameError', 'NotADirectoryError', 'NotImplemented', 'NotImplementedError', 'OSError', 'OverflowError', 'PendingDeprecationWarning', 'PermissionError', 'ProcessLookupError', 'PythonFinalizationError', 'RecursionError', 'ReferenceError', 'ResourceWarning', 'RuntimeError', 'RuntimeWarning', 'StopAsyncIteration', 'StopIteration', 'SyntaxError', 'SyntaxWarning', 'SystemError', 'SystemExit', 'TabError', 'TimeoutError', 'TypeError', 'UnboundLocalError', 'UnicodeDecodeError', 'UnicodeEncodeError', 'UnicodeError', 'UnicodeTranslateError', 'UnicodeWarning', 'UserWarning', 'ValueError', 'Warning', 'WindowsError', 'ZeroDivisionError']
+*********************************************
+73

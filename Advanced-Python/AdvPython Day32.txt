@@ -1,0 +1,204 @@
+what is file pointer?
+----------------------
+whenever we are opening a file one cursor is blinking, that cursor is called file pointer, by default the file pointer is located at 0 indexing.
+
+ex21:
+-----
+	test.txt
+	--------
+hello sachin tendulkar good afternoon
+
+	demo.py
+	-------
+with open('test.txt') as f1:
+    print(f1.tell())#0
+    print(f1.read(3))#'hel'
+    print(f1.tell())#3
+    print(f1.read(7))#"lo sach"
+    print(f1.tell())#10
+    f1.seek(5)
+    print(f1.read(7))#' sachin'
+    f1.seek(15)
+    print(f1.read(3))#'ndu'
+    print(f1.tell())#18
+
+	output
+	-------
+0
+hel
+3
+lo sach
+10
+ sachin
+ndu
+18
+
+ex22:
+-----
+write a python script to write the multiple lines into the file?
+
+	demo.py
+	-------
+with open('test3.txt','w') as f1:
+   f1.write("hello\nsiva krishna\nGood Afternoon")
+
+output
+------
+	test3.txt
+	---------
+hello
+siva krishna
+Good Afternoon
+
+ex23:
+----
+	demo.py
+	--------
+with open('test2.txt','w') as f1:
+   f1.writelines(["hello\n","siva krishna\n","Good Afternoon"])
+
+output
+------
+	test2.txt
+	----------
+hello
+siva krishna
+Good Afternoon
+
+ex24:
+-----
+	demo.py
+	-------
+x="siva"
+y=x.encode()
+with open('test4.txt','wb') as f1:
+    f1.write(y)
+
+output:
+-------
+	test4.txt
+	---------
+siva
+
+ex25:
+----
+	demo.py
+	-------
+with open('test4.txt','rb') as f1:
+    print(f1.read())
+
+output:
+-------
+b'siva'
+
+what is Serialization?
+----------------------
+the process of converting a Python object into a byte stream,JSON or Other format so it can be stored(ex: file,database) or transmitted(ex: over a network).
+
+what is Deserialization?
+--------------------------
+it is a reverse process of Serialization i.e., converting the stored/transmitted data back into a Python object.
+
+why do we use Serialization?
+----------------------------
+Saving Program state : store data to a file
+
+Data Transmission: send data over networks(APIs,sockets)
+
+Inter Process Communication(IPC): Share the objects between programs or systems
+
+caching: store objects for fast access later
+
+persistance storage: save objects to DB,file or cloud in a reusable format
+
+How implement Serialization and Deserialization in Python?
+----------------------------------------------------------
+Scenario1: using pickle(for python native objects)
+---------
+serialization
+-------------
+	demo.py
+	-------
+import pickle
+x=[4,2.3,4j,False,"siva"]
+with open('demo.pkl','wb') as f1:
+    pickle.dump(x,f1)
+
+output:
+------
+	demo.pkl
+	--------
+€•E       ]”(KG@ffffffŒbuiltins”Œcomplex”“”G        G@      †”R”‰Œsiva”e.
+
+
+deserialization:
+---------------
+
+	demo.pkl
+	--------
+€•E       ]”(KG@ffffffŒbuiltins”Œcomplex”“”G        G@      †”R”‰Œsiva”e.
+
+
+	demo.py
+	-------
+import pickle
+with open('demo.pkl','rb') as f1:
+    print(pickle.load(f1))
+
+output:
+-------
+[4, 2.3, 4j, False, 'siva']
+
+Note:
+------
+pickle is a Python-Specific and it is not secure for unstructured data.
+
+using json(for human readable and interoperable format)
+----------
+ex: serialization(writing the data into json)
+----
+	demo.py
+	-------
+import json
+data={"Name":"Siva","Age":34}
+with open("data.json","w") as f1:
+    json.dump(data,f1)
+    
+output:
+------
+	data.json
+	---------
+{"Name": "Siva", "Age": 34}
+
+ex: deserialization(reading the data from json)
+---
+	demo.py
+	-------
+import json
+with open("data.json") as f1:
+    res=json.load(f1)
+    print(res)
+    print(res['Name'])
+    print(res['Age'])
+    
+	output
+	------
+{'Name': 'Siva', 'Age': 34}
+Siva
+34
+
+Note:
+-----
+JSON is cross-platform and most widely used in APIs
+
+Advanced: using yaml or marshal
+
+yaml: for configs(human-readable)
+
+marshal: similar to pickle but less safe and not portable
+
+
+
+
+
+

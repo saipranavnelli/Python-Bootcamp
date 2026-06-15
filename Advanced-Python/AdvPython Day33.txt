@@ -1,0 +1,264 @@
+working with csv files:
+------------------------
+A CSV file (Comma-Separated Values) is a plain text file that stores tabular data, where each line represents a row and the values within each row are separated by commas. 
+
+It's a simple and widely used file format for importing and exporting data between different applications and software, especially spreadsheets and databases
+
+ex1:
+----
+write a python program to read the data from csv file?
+
+	emp.csv
+	-------
+eid,ename,esal,dno
+101,siva,3000,10
+102,rama,4000,20
+103,krishna,5000,30
+
+	demo.py
+	-------
+import csv
+with open('emp.csv') as f1:
+    reader_obj=csv.reader(f1)
+    for row in reader_obj:
+        print(row)
+
+output:
+------
+['eid', 'ename', 'esal', 'dno']
+['101', 'siva', '3000', '10']
+['102', 'rama', '4000', '20']
+['103', 'krishna', '5000', '30']
+
+
+ex2:
+---
+write a python program to read the data from csv file?
+
+	emp.csv
+	-------
+eid,ename,esal,dno
+101,siva,3000,10
+102,rama,4000,20
+103,krishna,5000,30
+
+	demo.py
+	-------
+import csv
+with open('emp.csv') as f1:
+    reader_obj=csv.DictReader(f1)
+    for row in reader_obj:
+        print(row)
+
+output:
+------
+{'eid': '101', 'ename': 'siva', 'esal': '3000', 'dno': '10'}
+{'eid': '102', 'ename': 'rama', 'esal': '4000', 'dno': '20'}
+{'eid': '103', 'ename': 'krishna', 'esal': '5000', 'dno': '30'}
+
+ex3:
+---
+write a python program to write the data into csv file?
+
+	demo.py
+	-------
+import csv
+with open('std.csv','w') as f1:
+    writer_obj=csv.writer(f1)
+    writer_obj.writerow(['sid','sname','sfee'])
+    writer_obj.writerow([101,'siva',3000.0])
+    writer_obj.writerow([102,'rama',4000.0])
+    writer_obj.writerow([103,'krishna',2000.0])
+    
+output:
+------
+	std.csv
+	-------
+sid,sname,sfee
+
+101,siva,3000.0
+
+102,rama,4000.0
+
+103,krishna,2000.0
+
+ex4:
+----
+	demo.py
+	--------
+import csv
+with open('std1.csv','w',newline="") as f1:
+    writer_obj=csv.writer(f1)
+    writer_obj.writerow(['sid','sname','sfee'])
+    writer_obj.writerow([101,'siva',3000.0])
+    writer_obj.writerow([102,'rama',4000.0])
+    writer_obj.writerow([103,'krishna',2000.0])
+    
+output:
+------
+	std1.csv
+	--------
+sid,sname,sfee
+101,siva,3000.0
+102,rama,4000.0
+103,krishna,2000.0
+
+ex5:
+---
+	demo.py
+	-------
+import csv
+with open('std2.csv','w',newline="") as f1:
+    writer_obj=csv.writer(f1)
+    writer_obj.writerows([['sid','sname','sfee'],
+                          [101,'siva',3000.0],
+                          [102,'rama',4000.0],
+                          [103,'krishna',2000.0]])
+output:
+-------
+	std2.csv
+	-------
+sid,sname,sfee
+101,siva,3000.0
+102,rama,4000.0
+103,krishna,2000.0
+
+ex6:
+----
+	demo.py
+	--------
+import csv
+with open('cust.csv','w',newline="") as f1:
+    writer_obj=csv.DictWriter(f1,fieldnames=["cid","cname","cadd"])
+    writer_obj.writerow({"cid":101,"cname":"siva","cadd":"hyd"})
+    writer_obj.writerow({"cid":102,"cname":"rama","cadd":"pune"})
+    writer_obj.writerow({"cid":103,"cname":"krishna","cadd":"vizag"})
+
+output:
+-------
+	cust.csv
+	--------
+101,siva,hyd
+102,rama,pune
+103,krishna,vizag
+
+ex7:
+----
+	demo.py
+	--------
+import csv
+with open('cust1.csv','w',newline="") as f1:
+    writer_obj=csv.DictWriter(f1,fieldnames=["cid","cname","cadd"])
+    writer_obj.writeheader()
+    writer_obj.writerow({"cid":101,"cname":"siva","cadd":"hyd"})
+    writer_obj.writerow({"cid":102,"cname":"rama","cadd":"pune"})
+    writer_obj.writerow({"cid":103,"cname":"krishna","cadd":"vizag"})
+
+output:
+------
+	cust1.csv
+	---------
+cid,cname,cadd
+101,siva,hyd
+102,rama,pune
+103,krishna,vizag
+
+ex8:
+----
+	demo.py
+	-------
+import csv
+with open('cust2.csv','w',newline="") as f1:
+    writer_obj=csv.DictWriter(f1,fieldnames=["cid","cname","cadd"])
+    writer_obj.writeheader()
+    writer_obj.writerows([{"cid":101,"cname":"siva","cadd":"hyd"},
+                          {"cid":102,"cname":"rama","cadd":"pune"},
+                          {"cid":103,"cname":"krishna","cadd":"vizag"}])
+    
+
+output
+------
+	cust2.csv
+	----------
+cid,cname,cadd
+101,siva,hyd
+102,rama,pune
+103,krishna,vizag
+
+what is package manager?
+-------------------------
+A package manager is a system or set of tools used to automate installing, upgrading, configuring and using software.
+
+		(or)
+
+Package manager (aka “Package Management System”) is a set of software components which are responsible for tracking what software artifacts (executables, scripts, shared libraries and more). 
+
+Packages are defined as a bundle of software artifacts that can be installed/removed as a group
+
+list of package managers:
+
+	pip	
+	anaconda(conda)
+	chacolaty
+	npm
+	yarn
+	....
+	....etc.,
+
+what is Anaconda?
+-----------------
+Anaconda is a distribution of the Python and R programming languages for scientific computing, that aims to simplify package management and deployment.
+
+This distribution includes data-science packages suitable for Windows, Linux, and macOS
+
+what is npm?
+------------
+npm(node package manager) is a package manager for the JavaScript programming language maintained by npm, Inc. 
+
+npm is the default package manager for the JavaScript runtime environment Node.js and it is included as a recommended feature in the Node.js installer.	
+
+what is Yarn?
+-------------
+Yarn(Yet Another Resource Negotiator) is one of the main JavaScript package managers, developed in 2016 by Sebastian McKenzie of Meta for the Node.js JavaScript runtime environment.
+
+what is Chocolatey?
+------------------
+Chocolatey is a machine-level, command-line package manager and installer for software on Microsoft Windows.
+    
+what is pip?
+------------
+pip is a package-management system written in Python and it is used to install and manage the python packages.
+
+The Python Software Foundation recommends using pip for installing Python applications and its dependencies during the development and deployment.
+
+pip's command-line interface allows the install of Python software packages by using following command: 
+
+	pip install some-package-name
+
+Pip's command-line interface allows the remove/uninstall the python software packages by using following command: 
+
+	pip uninstall some-package-name
+
+
+by default, the pip is access in only scripts folder in our python installation location.
+
+if we want to access the pip on top of any location in our computer, first we need to set the pip path.
+
+what is PEP?
+-------------
+PEP stands for Python Enhancement Proposal.
+
+A PEP is a design document providing information to the Python community, or describing a new feature for Python or its processes or environment.
+
+PEP 0 	– Index of Python Enhancement Proposals (PEPs)
+PEP 1 	– PEP Purpose and Guidelines
+PEP 8 	– Style Guide for Python Code
+PEP 201 – Lockstep Iteration
+PEP 202 – List Comprehensions
+PEP 249 – Python Database API Specification v2.0
+PEP 396 – Module Version Numbers
+PEP 440 – Version Identification and Dependency Specification
+PEP 515 – Underscores in Numeric Literals
+
+
+
