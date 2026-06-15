@@ -1,0 +1,216 @@
+ex:
+---
+	demo.py
+	-------
+from abc import ABC,abstractmethod
+
+#Abstract Base Class 
+class Animal(ABC):
+ 
+    #concrete method
+    def sleep(self):
+        print("Going to sleep in a while")
+
+     #concrete method
+    def eat(self):
+        print("Start eating")
+
+    #abstract method
+    @abstractmethod
+    def sound(self):        
+        pass
+ 
+class Snake(Animal):
+    def sound(self):
+        print("I hiss")
+ 
+class Dog(Animal):
+    def sound(self):
+        print("I bark")
+ 
+class Lion(Animal):
+    def sound(self):
+        print("I roar")
+s=Snake()
+s.sound()
+s.eat()
+s.sleep()
+d=Dog()
+d.sound()
+d.eat()
+d.sleep()
+l=Lion()
+l.sound()
+l.eat()
+l.sleep()
+
+	output
+	------
+I hiss
+Start eating
+Going to sleep in a while
+I bark
+Start eating
+Going to sleep in a while
+I roar
+Start eating
+Going to sleep in a while
+
+Property Decorator:
+-------------------
+The @property decorator in Python is used to create managed attributes in classes — allowing you to define getter, setter, and deleter methods while still accessing them like normal attributes.
+
+It’s a way to implement encapsulation without changing the attribute access syntax.
+
+
+How It Works:
+------------
+@property
+	Turns a method into a getter for a read-only attribute.
+
+@<property_name>.setter
+	Defines a setter method for assigning values.
+
+@<property_name>.deleter
+	Defines a deleter method for deleting the attribute.
+
+Advantages:
+-----------
+Encapsulation: Control access to internal data.
+Validation: Add checks before setting values.
+Backward Compatibility: Change implementation without changing the interface.
+
+ex:
+---
+	demo.py
+	-------
+class Home:
+    def __init__(self,price):
+        self._price=price
+
+    @property
+    def cost(self):
+        return f"{self._price}"
+
+    @cost.setter
+    def cost(self,price):
+        if price>0:
+            self._price=price
+            print("Updtaed Price Successfully")
+        else:
+            print("Not Updated")
+
+    @cost.deleter
+    def cost(self):
+        del self._price
+
+h=Home(4000000)
+print(h.cost)
+h.cost=5000000
+print(h.cost)
+del h.cost
+print(h.cost) #error
+
+	output
+	-------
+4000000
+Updtaed Price Successfully
+5000000
+AttributeError: 'Home' object has no attribute '_price'
+
+dataclass:
+-----------
+A dataclass in Python is a decorator that simplifies the creation of classes by automatically generating special methods like __init__, __repr__, __str__, and __eq__.
+
+It is particularly useful for classes that primarily store data.
+
+Key Features:
+-------------
+Automatic Method Generation: The @dataclass decorator generates methods like __init__, __repr__,__str__ and __eq__ automatically.
+
+Type Annotations: Fields are defined using type hints, making the code more readable and maintainable.
+
+Default Values: You can assign default values to fields 
+
+why use Data Classes:
+---------------------
+cleaner syntax for data holding classes
+
+builtin features like comparision,representation,default values,...
+
+writeing the less code and achive the more functonalities
+
+ex: by using Normal Class
+---
+	demo.py
+	-------
+class Student:
+    def __init__(self,sid,sname,sadd,sfee=0):
+        self.sid=sid
+        self.sname=sname
+        self.sadd=sadd
+        self.sfee=sfee
+
+    def __str__(self):
+        return f"Student Id:{self.sid},Student Name:{self.sname},\
+Student Address: {self.sadd},Student Fee:{self.sfee}"
+
+    def __eq__(self,others):
+        if self.sid==others.sid:
+            if self.sname==others.name:
+                if self.sadd==others.sadd:
+                    if self.sfee==others.sfee:
+                        return True
+                    else:
+                        return False
+                else:
+                    return False
+            else:
+                return False
+        else:
+            return False
+                    
+        
+
+s1=Student(101,'siva','hyd',5000)
+print(s1)
+s2=Student(102,'rama','hyd')
+print(s2)
+print(s1==s2)
+
+	output
+	------
+Student Id:101,Student Name:siva,Student Address: hyd,Student Fee:5000
+Student Id:102,Student Name:rama,Student Address: hyd,Student Fee:0
+False
+
+ex2: by using Data Class
+----
+	demo.py
+	-------
+from dataclasses import dataclass
+
+@dataclass
+class Student:
+    sid:int
+    sname:str
+    sadd:str
+    sfee:int=0 
+
+s1=Student(101,'siva','hyd',5000)
+print(s1)
+s2=Student(102,'rama','hyd')
+print(s2)
+print(s1==s2)
+
+	output
+	-------
+Student(sid=101, sname='siva', sadd='hyd', sfee=5000)
+Student(sid=102, sname='rama', sadd='hyd', sfee=0)
+False
+
+
+
+
+
+
