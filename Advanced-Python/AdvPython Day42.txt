@@ -1,0 +1,453 @@
+finditer()
+----------
+to return the matching object for each match in the given string object.
+
+if there's no match, the finditer() to return the empty object i.e., don't return anything.
+
+	finditer(pattern,string,flags=0)
+
+ex22:
+----
+	demo.py
+	-------
+import re
+match_objs=re.finditer(r"hello","hello siva Hello krishna hello rama")
+for match_obj in match_objs:
+    print(match_obj)
+
+	output
+	-------
+<re.Match object; span=(0, 5), match='hello'>
+<re.Match object; span=(25, 30), match='hello'>
+
+ex23:
+----
+	demo.py
+	-------
+import re
+match_objs=re.finditer(r"Hello","hello siva Hello krishna hello rama")
+for match_obj in match_objs:
+    print(match_obj)
+
+	output
+	------
+<re.Match object; span=(11, 16), match='Hello'>
+
+ex24:
+-----
+	demo.py
+	------
+import re
+match_objs=re.finditer(r"Hello","hello siva Hello krishna hello rama",re.I)
+for match_obj in match_objs:
+    print(match_obj)
+
+	output
+	------
+<re.Match object; span=(0, 5), match='hello'>
+<re.Match object; span=(11, 16), match='Hello'>
+<re.Match object; span=(25, 30), match='hello'>
+
+ex25:
+-----
+	demo.py
+	-------
+import re
+match_objs=re.finditer(r"hai","hello siva Hello krishna hello rama",re.I)
+for match_obj in match_objs:
+    print(match_obj)
+
+	output
+	------
+no output
+
+sub()
+------
+the sub() is used to search for pattern, if pattern is matching to replace with another pattern otherwise don't replace the pattern.
+
+	sub(pattern,repl_pattern,string)
+
+ex26:
+----
+	demo.py
+	-------
+import re
+print(re.sub(r"hello",r"hai","hello siva Hello krishna hello rama"))
+
+	output
+	------
+hai siva Hello krishna hai rama
+
+ex27:
+-----
+	demo.py
+	------
+import re
+print(re.sub(r"hey",r"hai","hello siva Hello krishna hello rama"))
+
+	output
+	------
+hello siva Hello krishna hello rama
+
+split()
+-------
+to split the string into list of words based on the given pattern.
+
+	split(pattern,string)
+
+ex28:
+-----
+	demo.py
+	-------
+import re
+print(re.split(r"[\s.,:]+","hello siva,Hello.krishna:hello rama"))
+
+	output
+	-------
+['hello', 'siva', 'Hello', 'krishna', 'hello', 'rama']
+
+ex29:
+-----
+	demo.py
+	-------
+import re
+string="Jan 14,jun 10,sep,DEC 5"
+pattern=r"[a-zA-Z]+ [0-9]+"
+matches=re.findall(pattern,string)
+for match in matches:
+    print(match)
+
+	(or)
+
+import re
+string="Jan 14,jun 10,sep,DEC 5"
+pattern=r"[a-zA-Z]+ \d+"
+matches=re.findall(pattern,string)
+for match in matches:
+    print(match)
+
+	output
+	------
+Jan 14
+jun 10
+DEC 5
+
+ex30:
+-----
+	demo.py
+	-------
+import re
+string="Jan 14,jun 10,sep,DEC 5"
+pattern=r"([a-zA-Z]+) \d+"
+matches=re.findall(pattern,string)
+for match in matches:
+    print(match)
+
+	output
+	------
+Jan
+jun
+DEC
+
+ex31:
+-----
+	emp.txt
+	-------
+101 siva 3000
+RAMA 4000 102
+5000 103 kRiShNa
+
+	demo.py
+	-------
+import re
+with open('emp.txt') as f1:
+    string=f1.read()
+    pattern=r"[a-zA-Z]+"
+    matches=re.findall(pattern,string)
+
+for match in matches:
+    print(match)
+
+	output
+	------
+siva
+RAMA
+kRiShNa
+
+ex32:
+-----
+	emp.txt
+	-------
+101 siva 3000 D.siva123@gmail.com
+D_Rama4u@yahoo.in RAMA 4000 102
+5000 Krishna-1991@OUTLOOK.LIVE 103 kRiShNa
+
+	demo.py
+	-------
+import re
+with open('emp.txt') as f1:
+    string=f1.read()
+    pattern=r"[\w._-]+@\w+.[a-zA-Z]+"
+    matches=re.findall(pattern,string)
+
+for match in matches:
+    print(match)
+
+	output
+	------
+D.siva123@gmail.com
+D_Rama4u@yahoo.in
+Krishna-1991@OUTLOOK.LIVE
+
+ex33:
+-----
+	emp.txt
+	-------
+8019658644
+79757575
+655434654
+9090908765
+68786754
+7089754
+807545785
+6543326863
+90985442
+808987765
+7086484471
+97654323
+655368229
+8886501571
+
+	demo.py
+	-------
+import re
+with open('emp.txt') as f1:
+    string=f1.read()
+    pattern=r"\d{10}"
+    matches=re.findall(pattern,string)
+
+for match in matches:
+    print(match)
+
+	output
+	------
+8019658644
+9090908765
+6543326863
+7086484471
+8886501571
+
+ex34:
+-----
+	demo.py
+	-------
+import re
+with open('emp.txt') as f1:
+    string=f1.read()
+    pattern=r"8\d{9}"
+    matches=re.findall(pattern,string)
+
+for match in matches:
+    print(match)
+
+	output
+	------
+8019658644
+8886501571
+
+ex35:
+----
+	demo.py
+	-------
+import re
+with open('emp.txt') as f1:
+    string=f1.read()
+    pattern=r"[68]\d{9}"
+    matches=re.findall(pattern,string)
+
+for match in matches:
+    print(match)
+
+	output
+	------
+8019658644
+6543326863
+8886501571
+
+ex36:
+----
+	demo.py
+	-------
+import re
+with open('emp.txt') as f1:
+    string=f1.read()
+    pattern=r"[678]\d{9}"
+    matches=re.findall(pattern,string)
+
+for match in matches:
+    print(match)
+
+	(or)
+
+import re
+with open('emp.txt') as f1:
+    string=f1.read()
+    pattern=r"[6-8]\d{9}"
+    matches=re.findall(pattern,string)
+
+for match in matches:
+    print(match)
+
+	output
+	------
+8019658644
+6543326863
+7086484471
+8886501571
+
+ex37:
+-----
+	emp.txt
+	-------
+AP05HJ5654
+TS09KL8765
+KA01GS5329
+MP05MN6549
+ap35nb4531
+ts02hd3428
+tn05hf7658
+ka03ba5657
+AP01GA5647
+
+	demo.py
+	-------
+import re
+with open('emp.txt') as f1:
+    string=f1.read()
+    pattern=r"ap\w+|ts\w+"
+    matches=re.findall(pattern,string,re.I)
+
+for match in matches:
+    print(match)
+
+	output
+	------
+AP05HJ5654
+TS09KL8765
+ap35nb4531
+ts02hd3428
+AP01GA5647
+
+ex38:
+------
+	emp.txt
+	-------
+hello
+hai siva
+Hello rama Good afternoon
+hai krishna how are you
+hello sachin where are you hello
+
+	demo.py
+	-------
+import re
+with open('emp.txt') as f1:
+    string=f1.read()
+    pattern=r"^hello"
+    matches=re.findall(pattern,string)
+
+for match in matches:
+    print(match)
+
+	output
+	------
+hello
+
+ex39:
+-----
+	demo.py
+	-------
+import re
+with open('emp.txt') as f1:
+    string=f1.read()
+    pattern=r"^hello"
+    matches=re.findall(pattern,string,re.M)
+
+for match in matches:
+    print(match)
+
+	(OR)
+
+import re
+with open('emp.txt') as f1:
+    string=f1.read()
+    pattern=r"^hello"
+    matches=re.findall(pattern,string,re.MULTILINE)
+
+for match in matches:
+    print(match)
+	
+	output
+	------
+hello
+hello
+
+ex40:
+-----
+	demo.py
+	-------
+import re
+with open('emp.txt') as f1:
+    string=f1.read()
+    pattern=r"^hello"
+    matches=re.findall(pattern,string,re.M|re.I)
+
+for match in matches:
+    print(match)
+
+	output
+	------
+hello
+Hello
+hello
+
+ex41:
+-----
+	demo.py
+	-------
+import re
+with open('emp.txt') as f1:
+    string=f1.read()
+    pattern=r"^hello.*"
+    matches=re.findall(pattern,string,re.M|re.I)
+
+for match in matches:
+    print(match)
+
+	output
+	-------
+hello
+Hello rama Good afternoon
+hello sachin where are you hello
+
+ex42:
+----
+	demo.py
+	-------
+import re
+with open('emp.txt') as f1:
+    string=f1.read()
+    pattern=r"^hello.*hello$"
+    matches=re.findall(pattern,string,re.M|re.I)
+
+for match in matches:
+    print(match)
+
+	output
+	------
+hello sachin where are you hello
+
+
+
+
+

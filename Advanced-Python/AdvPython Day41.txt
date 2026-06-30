@@ -1,0 +1,313 @@
+working with match() function:
+------------------------------
+the match() is used to match the pattern at the begening of the string only.
+
+	match(pattern,string,flags=0)
+
+if the pattern is matching at the begening of the string, in that case the match() to return match object otherwise the match() to return None.
+
+ex1:
+----
+	demo.py
+	--------
+import re
+string="hello siva krishna good morning"
+pattern="hello"
+match_obj=re.match(pattern,string)
+print(match_obj)
+
+	output
+	-------
+<re.Match object; span=(0, 5), match='hello'>
+
+ex2:
+---
+	demo.py
+	-------
+import re
+match_obj=re.match("hello","hello siva krishna good morning")
+print(match_obj)
+
+	(or)
+
+import re
+match_obj=re.match(r"hello","hello siva krishna good morning")
+print(match_obj)
+
+	output
+	------
+<re.Match object; span=(0, 5), match='hello'>
+
+ex3:
+---
+	demo.py
+	-------
+import re
+match_obj=re.match(r"siva","hello siva krishna good morning")
+print(match_obj)
+
+	output
+	-----
+None
+
+ex4:
+---
+	demo.py
+	-------
+import re
+match_obj=re.match(r"morning","hello siva krishna good morning")
+print(match_obj)
+
+	output
+	------
+None
+
+ex5:
+---
+	demo.py
+	-------
+import re
+match_obj=re.match(r"hai","hello siva krishna good morning")
+print(match_obj)
+
+	output
+	------
+None
+
+ex6:
+---
+	demo.py
+	-------
+import re
+match_obj=re.match(r"Hello","hello siva krishna good morning")
+print(match_obj)
+
+	output
+	------
+None
+
+ex7:
+---
+	demo.py
+	-------
+import re
+match_obj=re.match(r"Hello","hello siva krishna good morning",re.I)
+print(match_obj)
+
+	(or)
+
+import re
+match_obj=re.match(r"Hello","hello siva krishna good morning",re.IGNORECASE)
+print(match_obj)
+
+	output
+	-------
+<re.Match object; span=(0, 5), match='hello'>
+
+ex8:
+---
+	demo.py
+	--------
+import re
+match_obj=re.match(r"Hello","hello siva krishna good morning",re.IGNORECASE)
+if match_obj:
+    print("Input String:",match_obj.string)
+    print("Input Pattern:",match_obj.re)
+    print("Matching Pattern:",match_obj.group())
+    print("Matching Pattern Range:",match_obj.span())
+    print("Matching Pattern Started at:",match_obj.start())
+    print("Matching Pattern Ending at:",match_obj.end())
+else:
+    print("No Match!")
+
+	output
+	------
+Input String: hello siva krishna good morning
+Input Pattern: re.compile('Hello', re.IGNORECASE)
+Matching Pattern: hello
+Matching Pattern Range: (0, 5)
+Matching Pattern Started at: 0
+Matching Pattern Ending at: 5
+
+ex9:
+---
+	demo.py
+	-------
+import re
+match_obj=re.match(r"siva","hello siva krishna good morning",re.IGNORECASE)
+if match_obj:
+    print("Input String:",match_obj.string)
+    print("Input Pattern:",match_obj.re)
+    print("Matching Pattern:",match_obj.group())
+    print("Matching Pattern Range:",match_obj.span())
+    print("Matching Pattern Started at:",match_obj.start())
+    print("Matching Pattern Ending at:",match_obj.end())
+else:
+    print("No Match!")
+
+	output
+	------
+No Match!
+
+working with search function:
+-----------------------------
+the search function to match the pattern at any where in the string.
+
+	search(pattern,string,flags=0)
+
+if the matching pattern is find/match at anywhere in the string in that case the search() to return the match object otherwise the search() to return the None.
+
+in our string object the multiple matches are there in that case the search() to return the only first occurence of that matching object.
+
+ex10:
+-----
+	demo.py
+	--------
+import re
+match_obj=re.search(r"hello","hello siva krishna good morning")
+print(match_obj)
+
+	output
+	------
+<re.Match object; span=(0, 5), match='hello'>
+
+ex11:
+----
+	demo.py
+	-------
+import re
+match_obj=re.search(r"siva","hello siva krishna good morning")
+print(match_obj)
+
+	output
+	-------
+<re.Match object; span=(6, 10), match='siva'>
+
+ex12:
+----
+	demo.py
+	--------
+import re
+match_obj=re.search(r"morning","hello siva krishna good morning")
+print(match_obj)
+
+	output
+	-------
+<re.Match object; span=(24, 31), match='morning'>
+
+ex13:
+----
+	demo.py
+	-------
+import re
+match_obj=re.search(r"hai","hello siva krishna good morning")
+print(match_obj)
+
+	output
+	------
+None
+
+ex14:
+----
+	demo.py
+	-------
+import re
+match_obj=re.search(r"Hello","hello siva krishna good morning")
+print(match_obj)
+
+	output
+	-------
+None
+
+ex15:
+----
+	demo.py
+	-------
+import re
+match_obj=re.search(r"Hello","hello siva krishna good morning",re.I)
+print(match_obj)
+
+	output
+	-------
+<re.Match object; span=(0, 5), match='hello'>
+
+ex16:
+----
+	demo.py
+	-------
+import re
+match_obj=re.search(r"Hello","hello siva Hello krishna hello rama")
+print(match_obj)
+
+	output
+	------
+<re.Match object; span=(11, 16), match='Hello'>
+
+ex17:
+-----
+	demo.py
+	-------
+import re
+match_obj=re.search(r"Hello","hello siva Hello krishna hello rama",re.I)
+print(match_obj)
+
+	output
+	------
+<re.Match object; span=(0, 5), match='hello'>
+
+findall()
+---------
+to return the list of all the matching patterns in the string.
+
+if there's no match, in that case then it will return empty list object.
+
+	findall(pattern,string,flags=0)
+
+
+ex18:
+----
+	demo.py
+	-------
+import re
+matches=re.findall(r"Hello","hello siva Hello krishna hello rama")
+print(matches)
+
+	output
+	------
+['Hello']
+
+ex19:
+----
+	demo.py
+	-------
+import re
+matches=re.findall(r"hello","hello siva Hello krishna hello rama")
+print(matches)
+
+	output
+	-------
+['hello', 'hello']
+
+ex20:
+----
+	demo.py
+	-------
+import re
+matches=re.findall(r"hello","hello siva Hello krishna hello rama",re.I)
+print(matches)
+
+	output
+	------
+['hello', 'Hello', 'hello']
+
+ex21:
+-----
+	demo.py
+	-------
+import re
+matches=re.findall(r"hai","hello siva Hello krishna hello rama",re.I)
+print(matches)
+
+	output
+	------
+[]

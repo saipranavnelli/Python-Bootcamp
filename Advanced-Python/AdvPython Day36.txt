@@ -1,0 +1,424 @@
+ex3:
+----
+write a python script to insert the data into mysql database server?
+
+	demo.py
+	-------
+import pymysql
+conn_obj=pymysql.connect(user="root",password="root",host="localhost",
+                         port=3306,database="my1130amdb")
+print("Connection Established")
+cur_obj=conn_obj.cursor()
+cur_obj.execute("insert into emp values(101,'siva',3000,10)")
+cur_obj.execute("insert into emp values(102,'virat',3100,20)")
+cur_obj.execute("insert into emp values(103,'dhoni',2900,30)")
+cur_obj.execute("insert into emp values(104,'sachin',3000,10)")
+cur_obj.execute("insert into emp values(105,'panth',3100,20)")
+cur_obj.execute("insert into emp values(106,'rahul',2500,10)")
+cur_obj.execute("insert into emp values(107,'krishna',2800,30)")
+cur_obj.execute("insert into emp values(108,'gill',3000,10)")
+cur_obj.execute("insert into emp values(u109,'hardik',3100,20)")
+cur_obj.execute("insert into emp values(110,'rama',2700,10)")
+cur_obj.execute("insert into emp values(111,'surya',3000,30)")
+print("Inserted Successfully")
+cur_obj.execute("commit")
+print("commit completed")
+cur_obj.close()
+conn_obj.close()
+print("Connection Closed")
+
+	output
+	------
+Connection Established
+Inserted Successfully
+commit completed
+Connection Closed
+
+ex4:
+----
+write a python script to retreive the data from mysql database server?
+
+	demo.py
+	-------
+import pymysql
+conn_obj=pymysql.connect(user="root",password="root",host="localhost",
+                         port=3306,database="my1130amdb")
+print("Connection Established")
+cur_obj=conn_obj.cursor()
+cur_obj.execute("select * from emp")
+for rec in cur_obj:
+    print(rec)
+cur_obj.close()
+conn_obj.close()
+print("Connection Closed")
+
+	output
+	------
+Connection Established
+(101, 'siva', Decimal('3000.00'), 10)
+(102, 'virat', Decimal('3100.00'), 20)
+(103, 'dhoni', Decimal('2900.00'), 30)
+(104, 'sachin', Decimal('3000.00'), 10)
+(105, 'panth', Decimal('3100.00'), 20)
+(106, 'rahul', Decimal('2500.00'), 10)
+(107, 'krishna', Decimal('2800.00'), 30)
+(108, 'gill', Decimal('3000.00'), 10)
+(109, 'hardik', Decimal('3100.00'), 20)
+(110, 'rama', Decimal('2700.00'), 10)
+(111, 'surya', Decimal('3000.00'), 30)
+Connection Closed
+
+ex5:
+----
+	demo.py
+	-------
+import pymysql
+conn_obj=pymysql.connect(user="root",password="root",host="localhost",
+                         port=3306,database="my1130amdb")
+print("Connection Established")
+cur_obj=conn_obj.cursor()
+cur_obj.execute("select * from emp")
+print("Eid","Ename","Esal","Dno",sep="\t")
+for rec in cur_obj:
+    print(rec[0],rec[1],rec[2],rec[3],sep="\t")
+cur_obj.close()
+conn_obj.close()
+print("Connection Closed")
+
+	output
+	------
+Connection Established
+Eid	Ename	Esal	Dno
+101	siva	3000.00	10
+102	virat	3100.00	20
+103	dhoni	2900.00	30
+104	sachin	3000.00	10
+105	panth	3100.00	20
+106	rahul	2500.00	10
+107	krishna	2800.00	30
+108	gill	3000.00	10
+109	hardik	3100.00	20
+110	rama	2700.00	10
+111	surya	3000.00	30
+Connection Closed
+
+ex6:
+----
+write a python script/program to fetch only one record from the cursor object?
+
+	demo.py
+	-------
+import pymysql
+conn_obj=pymysql.connect(user="root",password="root",host="localhost",
+                         port=3306,database="my1130amdb")
+print("Connection Established")
+cur_obj=conn_obj.cursor()
+cur_obj.execute("select * from emp")
+print("Eid","Ename","Esal","Dno",sep="\t")
+rec=cur_obj.fetchone()
+print(rec[0],rec[1],rec[2],rec[3],sep="\t")
+cur_obj.close()
+conn_obj.close()
+print("Connection Closed")
+
+	output
+	------
+Connection Established
+Eid	Ename	Esal	Dno
+101	siva	3000.00	10
+Connection Closed
+
+ex7:
+----
+write a python script/program to fetch many records from the cursor object?
+
+	demo.py
+	-------
+import pymysql
+conn_obj=pymysql.connect(user="root",password="root",host="localhost",
+                         port=3306,database="my1130amdb")
+print("Connection Established")
+cur_obj=conn_obj.cursor()
+cur_obj.execute("select * from emp")
+print("Eid","Ename","Esal","Dno",sep="\t")
+records=cur_obj.fetchmany(5)
+for rec in records:
+    print(rec[0],rec[1],rec[2],rec[3],sep="\t")
+cur_obj.close()
+conn_obj.close()
+print("Connection Closed")
+
+	output
+	------
+Connection Established
+Eid	Ename	Esal	Dno
+101	siva	3000.00	10
+102	virat	3100.00	20
+103	dhoni	2900.00	30
+104	sachin	3000.00	10
+105	panth	3100.00	20
+Connection Closed
+
+ex8:
+----
+write a python script/program to fetch all records from the cursor object?
+
+	demo.py
+	-------
+import pymysql
+conn_obj=pymysql.connect(user="root",password="root",host="localhost",
+                         port=3306,database="my1130amdb")
+print("Connection Established")
+cur_obj=conn_obj.cursor()
+cur_obj.execute("select * from emp")
+print("Eid","Ename","Esal","Dno",sep="\t")
+records=cur_obj.fetchall()
+for rec in records:
+    print(rec[0],rec[1],rec[2],rec[3],sep="\t")
+cur_obj.close()
+conn_obj.close()
+print("Connection Closed")
+
+	output
+	-------
+Connection Established
+Eid	Ename	Esal	Dno
+101	siva	3000.00	10
+102	virat	3100.00	20
+103	dhoni	2900.00	30
+104	sachin	3000.00	10
+105	panth	3100.00	20
+106	rahul	2500.00	10
+107	krishna	2800.00	30
+108	gill	3000.00	10
+109	hardik	3100.00	20
+110	rama	2700.00	10
+111	surya	3000.00	30
+Connection Closed
+
+ex9:
+----
+write a python script to retreive the employee data whoose employee working under department number 10?
+
+	demo.py
+	-------
+import pymysql
+conn_obj=pymysql.connect(user="root",password="root",host="localhost",
+                         port=3306,database="my1130amdb")
+print("Connection Established")
+cur_obj=conn_obj.cursor()
+cur_obj.execute("select * from emp where dno=10")
+for rec in cur_obj:
+    print(rec[0],rec[1],rec[2],rec[3],sep="\t")
+cur_obj.close()
+conn_obj.close()
+print("Connection Closed")
+
+	output
+	------
+Connection Established
+101	siva	3000.00	10
+104	sachin	3000.00	10
+106	rahul	2500.00	10
+108	gill	3000.00	10
+110	rama	2700.00	10
+Connection Closed
+
+ex10:
+----
+write a python script to retreive the employee data whoose employee working under department number 10 and which employee to get the salary is 3000?
+
+	demo.py
+	-------
+import pymysql
+conn_obj=pymysql.connect(user="root",password="root",host="localhost",
+                         port=3306,database="my1130amdb")
+print("Connection Established")
+cur_obj=conn_obj.cursor()
+cur_obj.execute("select * from emp where dno=10 and esal=3000")
+for rec in cur_obj:
+    print(rec[0],rec[1],rec[2],rec[3],sep="\t")
+cur_obj.close()
+conn_obj.close()
+print("Connection Closed")
+
+	output
+	-------
+Connection Established
+101	siva	3000.00	10
+104	sachin	3000.00	10
+108	gill	3000.00	10
+Connection Closed
+
+ex11:
+----
+write a python script to retreive the employee data whoose employee working under department number 10 and which employee name startswith 's' charecter?
+
+	demo.py
+	-------
+import pymysql
+conn_obj=pymysql.connect(user="root",password="root",host="localhost",
+                         port=3306,database="my1130amdb")
+print("Connection Established")
+cur_obj=conn_obj.cursor()
+cur_obj.execute("select * from emp where dno=10 and ename like 's%'")
+for rec in cur_obj:
+    print(rec[0],rec[1],rec[2],rec[3],sep="\t")
+cur_obj.close()
+conn_obj.close()
+print("Connection Closed")
+
+	output
+	------
+Connection Established
+101	siva	3000.00	10
+104	sachin	3000.00	10
+Connection Closed
+
+ex12:
+----
+write a python script to retreive the employee data whoose employee working under department number 10 and which employee name endswith 'a' charecter?
+
+	demo.py
+	-------
+import pymysql
+conn_obj=pymysql.connect(user="root",password="root",host="localhost",
+                         port=3306,database="my1130amdb")
+print("Connection Established")
+cur_obj=conn_obj.cursor()
+cur_obj.execute("select * from emp where dno=10 and ename like '%a'")
+for rec in cur_obj:
+    print(rec[0],rec[1],rec[2],rec[3],sep="\t")
+cur_obj.close()
+conn_obj.close()
+print("Connection Closed")
+
+	output
+	------
+Connection Established
+101	siva	3000.00	10
+110	rama	2700.00	10
+Connection Closed
+
+ex13:
+-----
+write a python script to retreive the employee data whoose employee working under department number 10 and which employee name contains 'i' charecter?
+
+	demo.py
+	-------
+import pymysql
+conn_obj=pymysql.connect(user="root",password="root",host="localhost",
+                         port=3306,database="my1130amdb")
+print("Connection Established")
+cur_obj=conn_obj.cursor()
+cur_obj.execute("select * from emp where dno=10 and ename like '%i%'")
+for rec in cur_obj:
+    print(rec[0],rec[1],rec[2],rec[3],sep="\t")
+cur_obj.close()
+conn_obj.close()
+print("Connection Closed")
+
+	output
+	------
+Connection Established
+101	siva	3000.00	10
+104	sachin	3000.00	10
+108	gill	3000.00	10
+Connection Closed
+
+ex14:
+-----
+write a python script to retreive the employee data whoose employee working under department number 10 and which employee name contains second charecter is 'i'?
+
+	demo.py
+	-------
+import pymysql
+conn_obj=pymysql.connect(user="root",password="root",host="localhost",
+                         port=3306,database="my1130amdb")
+print("Connection Established")
+cur_obj=conn_obj.cursor()
+cur_obj.execute("select * from emp where dno=10 and ename like '_i%'")
+for rec in cur_obj:
+    print(rec[0],rec[1],rec[2],rec[3],sep="\t")
+cur_obj.close()
+conn_obj.close()
+print("Connection Closed")
+
+	output
+	------
+Connection Established
+101	siva	3000.00	10
+108	gill	3000.00	10
+Connection Closed
+
+ex15:
+-----
+write a python script to retreive the employee data which employee to get salary between 2800 and 3000?
+
+	demo.py
+	-------
+import pymysql
+conn_obj=pymysql.connect(user="root",password="root",host="localhost",
+                         port=3306,database="my1130amdb")
+print("Connection Established")
+cur_obj=conn_obj.cursor()
+cur_obj.execute("select * from emp where esal between 2800 and 3000")
+for rec in cur_obj:
+    print(rec[0],rec[1],rec[2],rec[3],sep="\t")
+cur_obj.close()
+conn_obj.close()
+print("Connection Closed")
+
+	output
+	------
+Connection Established
+101	siva	3000.00	10
+103	dhoni	2900.00	30
+104	sachin	3000.00	10
+107	krishna	2800.00	30
+108	gill	3000.00	10
+111	surya	3000.00	30
+Connection Closed
+
+
+ex15:
+-----
+write a python script to retreive the employee data which employee to get salary in 2800 and 3000?
+
+	demo.py
+	------
+import pymysql
+conn_obj=pymysql.connect(user="root",password="root",host="localhost",
+                         port=3306,database="my1130amdb")
+print("Connection Established")
+cur_obj=conn_obj.cursor()
+cur_obj.execute("select * from emp where esal in(2800,3000)")
+for rec in cur_obj:
+    print(rec[0],rec[1],rec[2],rec[3],sep="\t")
+cur_obj.close()
+conn_obj.close()
+print("Connection Closed")
+
+	output
+	------
+Connection Established
+101	siva	3000.00	10
+104	sachin	3000.00	10
+107	krishna	2800.00	30
+108	gill	3000.00	10
+111	surya	3000.00	30
+Connection Closed
+
+
+
+
+
+
+
+
+
+
+
+
+
+

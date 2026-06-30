@@ -1,0 +1,359 @@
+what is Iterator?
+-----------------
+an Iterator is an object in python that implements two methods,they are
+
+	__iter__()
+	__next__()
+
+__iter__() : return the iterator object itself
+
+__next__() : returns the next value from the sequence, when there are no more items/elements, it raises a StopIteration Exception.
+
+why use Iterators?
+------------------
+to loop through large data without loading everything into the memory
+
+to create your own custom sequence/collections/iterable objects.
+
+useful in data pipelines,stream processing and working with infinite sequences.
+
+ex1: builtin iterable 
+----
+python's built-in datatype's like list,tuple,string,dict,set are iterables, which means we can create iterators from them.
+
+	demo.py
+	-------
+x=[5,12,9,7]
+print(type(x))
+y=iter(x)
+print(y)
+print(type(y))
+print(next(y)) #5
+print(next(y)) #12
+print(next(y)) #9
+print(next(y)) #7
+print(next(y)) #StopIteration
+
+	output
+	------
+<class 'list'>
+<list_iterator object at 0x0000013B115BB010>
+<class 'list_iterator'>
+5
+12
+9
+7
+StopIteration
+
+example2: Custom Iterator Class
+---------
+you can define your own iterator by creating class with __iter__() and __next__() methods.
+
+	demo.py
+	-------
+class EvenNumbers:
+    def __init__(self,max_num):
+        self.min_num=0
+        self.max_num=max_num
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self.min_num>self.max_num:
+            raise StopIteration
+        current=self.min_num
+        self.min_num+=2
+        return current
+even_nums=EvenNumbers(10)
+x=iter(even_nums)
+print(next(x))#0
+print(next(x))#2
+print(next(x))#4
+print(next(x))#6
+print(next(x))#8
+print(next(x))#10
+print(next(x))#StopIteration
+
+	output
+	------
+0
+2
+4
+6
+8
+10
+StopIteration
+
+ex3:
+----
+	demo.py
+	-------
+class EvenNumbers:
+    def __init__(self,max_num):
+        self.min_num=0
+        self.max_num=max_num
+
+    def __iter__(self):
+        return self
+    
+    def __next__(self):
+        if self.min_num>self.max_num:
+            raise StopIteration
+        current=self.min_num
+        self.min_num+=2
+        return current
+even_nums=EvenNumbers(10)
+x=iter(even_nums)
+for i in x:
+    print(i)
+
+	output
+	------
+0
+2
+4
+6
+8
+10
+
+ex4: Infinite Sequence
+----
+	demo.py
+	-------
+class FibonacciSequence:
+    def __init__(self):
+        self.a,self.b=0,1
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        fib=self.a
+        self.a,self.b=self.b,self.a+self.b
+        return fib
+fib_obj=FibonacciSequence()
+x=iter(fib_obj)
+print(next(x)) #0
+print(next(x)) #1
+print(next(x)) #1
+print(next(x)) #2
+print(next(x)) #3
+print(next(x)) #5
+print(next(x)) #8
+print(next(x)) #13
+
+	output
+	-------
+0
+1
+1
+2
+3
+5
+8
+13
+
+what is an Iterable?
+--------------------
+an Iterable is any object that can return an iterator.
+
+it has a method called __iter__(),that returns an iterator.
+
+Builtin iterable objects are list,tuple,string,set,dict,...
+
+>>> dir(list)
+['__add__', '__class__', '__class_getitem__', '__contains__', '__delattr__', '__delitem__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__getitem__', '__getstate__', '__gt__', '__hash__', '__iadd__', '__imul__', '__init__', '__init_subclass__', '__iter__', '__le__', '__len__', '__lt__', '__mul__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__reversed__', '__rmul__', '__setattr__', '__setitem__', '__sizeof__', '__str__', '__subclasshook__', 'append', 'clear', 'copy', 'count', 'extend', 'index', 'insert', 'pop', 'remove', 'reverse', 'sort']
+
+>>> x=[]
+>>> type(x)
+<class 'list'>
+
+>>> y=iter(x)
+>>> type(y)
+<class 'list_iterator'>
+
+>>> dir(y)
+['__class__', '__delattr__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__getstate__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__iter__', '__le__', '__length_hint__', '__lt__', '__ne__', '__new__', '__next__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__']
+
+
+
+what is Generator?
+------------------
+a Generator is a special type of iterator that is defined using a function with the yield keyword instead of returneing all values at once like a normal function.
+
+why use Generators?
+-------------------
+Memory Efficient: Generates values one at a time instead of storing them memory
+
+Lazy Evalution : values are computed when you needed
+
+Readable : easier to write than custom Iterator classes
+
+note:
+----
+the Generator function to return the Generator object.
+
+whenever we are calling the next() function our Generator function is executed upto yield statement (yield statement is also included).
+
+there's no yield statement still we can call next() to raise StopIteration Exception.
+
+
+ex1:
+----
+	demo.py
+	-------
+def f1():
+    n=0
+    print("hai")
+    yield n
+    n+=1
+    print("hello")
+    yield n
+    n+=1
+    print("Good Morning")
+    yield n
+    n+=1
+    print("bye")
+x=f1()
+print(x)
+print(type(x))
+print(next(x))
+print(next(x))
+print(next(x))
+print(next(x))
+
+	output
+	------
+<generator object f1 at 0x000001EDE48265C0>
+<class 'generator'>
+hai
+0
+hello
+1
+Good Morning
+2
+bye
+StopIteration
+
+ex2:
+----
+	demo.py
+	-------
+def f1():
+    n=0
+    print("hai")
+    yield n
+    n+=1
+    print("hello")
+    yield n
+    n+=1
+    print("Good Morning")
+    yield n
+    n+=1
+    print("bye")
+x=f1()
+print(x)
+print(type(x))
+for i in x:
+    print(i)
+
+	output
+	-------
+<generator object f1 at 0x0000020E026B65C0>
+<class 'generator'>
+hai
+0
+hello
+1
+Good Morning
+2
+bye
+
+ex3:
+----
+	demo.py
+	-------
+def even_numbers(max_num):
+    min_num=0
+    while min_num<=max_num:
+        yield min_num
+        min_num+=2
+
+x=even_numbers(10)
+print(x)
+print(next(x))
+print(next(x))
+print(next(x))
+print(next(x))
+print(next(x))
+print(next(x))
+print(next(x))
+
+	output
+	------
+<generator object even_numbers at 0x000001B912CE6500>
+0
+2
+4
+6
+8
+10
+StopIteration
+
+ex4:
+----
+	demo.py
+	-------
+def even_numbers(max_num):
+    min_num=0
+    while min_num<=max_num:
+        yield min_num
+        min_num+=2
+
+x=even_numbers(10)
+print(x)
+for i in x:
+    print(i)
+
+output:
+-------
+<generator object even_numbers at 0x000001CC51A76500>
+0
+2
+4
+6
+8
+10
+
+ex5:
+----
+	demo.py
+	--------
+def fibonacci_sequence():
+    a,b=0,1
+    while True:
+        yield a
+        a,b=b,a+b
+x=fibonacci_sequence()
+print(next(x))
+print(next(x))
+print(next(x))
+print(next(x))
+print(next(x))
+print(next(x))
+print(next(x))
+print(next(x))
+print(next(x))
+
+output:
+-------
+0
+1
+1
+2
+3
+5
+8
+13
+21

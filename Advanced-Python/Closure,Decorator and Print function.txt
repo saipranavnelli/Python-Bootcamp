@@ -1,0 +1,249 @@
+what is Closure?
+-----------------
+a closure is a function object that remembers values in its enclosing lexical scope even if that scope is no longer active.
+
+we can define any function as a closure function, that should follow the following rules,they are
+
+	1). you define a function inside another function
+
+	2). the inner function uses variables from the outer function
+
+	3). the outer function return the inner function
+
+the inner function remembers the outer variables due to Closure.
+
+ex:
+----
+	demo.py
+	-------
+def f1(x): #outer function
+    print("hello from outer function")
+    def f2(): #inner function
+        print("siva from inner function")
+        print("capture x value from outer function:",x)
+        print("good bye from inner function")
+    return f2
+
+a=f1("good morning")
+a()
+
+	output
+	------
+hello from outer function
+siva from inner function
+capture x value from outer function: good morning
+good bye from inner function
+
+ex2:
+---
+	demo.py
+	-------
+def multiplier(factor):
+    def multiply(value):
+        return value*factor
+    return multiply
+x=multiplier(3)
+y=x(5)
+print(y) #5*3=15
+a=multiplier(5)
+b=a(3)
+print(b)  #3*5=15
+
+	output
+	------
+15
+15
+
+what is Decorator?
+-------------------
+a decorator is a function that takes another function as input, adds some functionality,and returns a new function, without modifying the original function.
+
+Note:
+-----
+in python Decorator is also known as a Wrapper Function.
+
+ex1:
+---
+	demo.py
+	-------
+#decorator function
+def f1(x): #outer function
+    print("hello")
+    def f2(): #inner function
+        print("siva")
+        x()
+        print("good bye")
+    return f2
+
+#normal function
+def f3():
+    print("Good Morning")
+
+a=f1(f3)
+a()
+
+	output
+	------
+hello
+siva
+Good Morning
+good bye
+
+ex2:
+---
+	demo.py
+	-------
+#decorator function
+def f1(x): #outer function
+    print("hello")
+    def f2(): #inner function
+        print("siva")
+        x()
+        print("good bye")
+    return f2
+
+#normal function
+@f1
+def f3():
+    print("Good Morning")
+
+f3()
+
+	output
+	------
+hello
+siva
+Good Morning
+good bye
+
+ex3:
+---
+	demo.py
+	-------
+#decorator function
+def f1(x): #outer function
+    print("hello")
+    def f2(): #inner function
+        print("siva")
+        x()
+        print("good bye")
+    return f2
+
+
+	sample.py
+	---------
+from demo import f1
+
+#normal function
+@f1
+def f3():
+    print("Good Morning")
+
+f3()
+
+	output
+	------
+hello
+siva
+Good Morning
+good bye
+
+working with print() function:
+---------------------------------
+the print() is a one builtin function in python3.x versions.
+
+the print() is used to print the value to the output screen/window.
+
+	print(*values,sep=" ",end="\n",file=sys.stdout,flush=False)
+
+		(or)
+
+	print(val_1,val_2,...,val_n,sep=" ",end="\n",file=sys.stdout,flush=False)
+
+ex1:
+----
+	demo.py
+	-------
+print("hai")
+print("hai","siva")
+print("hai","siva","krishna")
+print("hai","siva","krishna",sep=",")
+print("hai","siva","krishna",sep="\t")
+print("hai","siva","krishna",sep="")
+
+	output
+	------
+hai
+hai siva
+hai siva krishna
+hai,siva,krishna
+hai	siva	krishna
+haisivakrishna
+
+ex2:
+---
+	demo.py
+	-------
+print("hai")
+print("siva")
+print("krishna")
+print("hai",end=" ")
+print("siva",end=" ")
+print("krishna")
+print("hai",end=",")
+print("siva",end=",")
+print("krishna")
+print("hai",end="\t")
+print("siva",end="\t")
+print("krishna")
+
+	output
+	------
+hai
+siva
+krishna
+hai siva krishna
+hai,siva,krishna
+hai	siva	krishna
+
+ex3:
+---
+	demo.py
+	-------
+f1=open('test.txt','w')
+print("hai")
+print("hello",file=f1)
+f1.close()
+
+output			test.txt
+------			----------
+hai 			hello
+
+ex4:
+---
+	demo.py
+	-------
+f1=open('test1.txt','w')
+print("hai")
+print("hello",file=f1)
+
+output			test1.txt
+------			----------
+hai 			empty file i.e., dont write anything because 
+			we can't close the file
+
+ex5:
+---
+	demo.py
+	-------
+f1=open('test2.txt','w')
+print("hai")
+print("hello",file=f1,flush=True)
+
+output			test2.txt
+------			----------
+hai 			hello
+
+
+
+

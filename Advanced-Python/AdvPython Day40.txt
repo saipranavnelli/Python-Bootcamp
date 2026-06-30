@@ -1,0 +1,291 @@
+what is ORM?
+------------
+ORM(Object Relational Mapping) is a programming Technique/Interface/Tool that allows you to interact with a relational databases(sqlite,mysql,postgresql,ms-sql server,Oracle,...) using objects in your programming Language.
+
+Instead of writing the raw SQL Queries/Statements(like select * from emp), ORM allows you to interact with database using Python classes and methods.
+
+Why use ORM?
+------------
+Easy To Use: work with database data as python objects
+
+Less SQL: Reduce the need to write raw sql queries
+
+Secure: protects against SQL Injection
+
+Reusable Code: it promotes clean and maintainable code
+
+Productivity: Faster Development with less code
+
+Python ORM Tools:
+-----------------
+SQLAlchemy : it is Most popular,powerful and support multiple databases
+
+Django ORM : Built into Django web framework
+
+Tortoise ORM: Async ORM, it is good for modern async frameworks
+
+Peewe : lightweight ORM, It is suitable for small projects
+
+working SQLAlchemy ORM with SQLite Database:
+--------------------------------------------
+if we want to working with SQLAlchemy, in that case first we need to install SQLAlchemy.
+
+	pip install sqlalchemy
+
+ex:
+----
+C:\Users\Lenovo>pip install sqlalchemy
+
+ex1:
+---
+write a python program to create Database,table,insert and retreive operation on sqlite database with SQLAlchemy ORM?
+
+	demo.py
+	-------
+from sqlalchemy import create_engine,Column,Integer,String
+from sqlalchemy.orm import sessionmaker,declarative_base
+
+#create engine and connect the SQLite database
+engine=create_engine('sqlite:///students.db',echo=True)
+
+#orm base class
+Base=declarative_base()
+
+#Define a Table as a Python Class
+class Student(Base):
+    __tablename__='students' #table name in DB
+    sid=Column(Integer,primary_key=True)
+    sname=Column(String)
+    sage=Column(Integer)
+
+#Create the Table
+Base.metadata.create_all(engine)
+
+#start a session
+Session=sessionmaker(bind=engine)
+session=Session()
+
+#Insert the Data
+s1=Student(sid=101,sname="siva",sage=34)
+s2=Student(sid=102,sname="rama",sage=30)
+s3=Student(sid=103,sname="krishna",sage=40)
+session.add_all([s1,s2,s3])
+session.commit()
+
+#Retreive/Querying data
+students=session.query(Student).all()
+print("Sid","Sname","Sage",sep="\t")
+for student in students:
+    print(student.sid,student.sname,student.sage,sep="\t")
+    
+ex2:
+----
+write a python program to create Database,table,insert and retreive operation on mysql database with SQLAlchemy ORM?
+
+mysql> create database testdb;
+Query OK, 1 row affected (0.04 sec)
+
+	demo.py
+	-------
+from sqlalchemy import create_engine,Column,Integer,String
+from sqlalchemy.orm import sessionmaker,declarative_base
+
+#create engine and connect the SQLite database
+engine=create_engine('mysql+pymysql://root:root@localhost/testdb',echo=True)
+
+#orm base class
+Base=declarative_base()
+
+#Define a Table as a Python Class
+class Student(Base):
+    __tablename__='students' #table name in DB
+    sid=Column(Integer,primary_key=True)
+    sname=Column(String(50))
+    sage=Column(Integer)
+
+#Create the Table
+Base.metadata.create_all(engine)
+
+#start a session
+Session=sessionmaker(bind=engine)
+session=Session()
+
+#Insert the Data
+s1=Student(sid=101,sname="siva",sage=34)
+s2=Student(sid=102,sname="rama",sage=30)
+s3=Student(sid=103,sname="krishna",sage=40)
+session.add_all([s1,s2,s3])
+session.commit()
+
+#Retreive/Querying data
+students=session.query(Student).all()
+print("Sid","Sname","Sage",sep="\t")
+for student in students:
+    print(student.sid,student.sname,student.sage,sep="\t")
+    
+
+
+
+mysql> use testdb;
+Database changed
+
+mysql> show tables;
++------------------+
+| Tables_in_testdb |
++------------------+
+| students         |
++------------------+
+1 row in set (0.04 sec)
+
+mysql> select * from students;
++-----+---------+------+
+| sid | sname   | sage |
++-----+---------+------+
+| 101 | siva    |   34 |
+| 102 | rama    |   30 |
+| 103 | krishna |   40 |
++-----+---------+------+
+3 rows in set (0.00 sec)
+
+Regular Expressions:
+--------------------
+the Regular Expression is also known as a RegEx in python,it is a sequence of meta charecters,numbers and alphabets that define a particular pattern.
+
+the regular expression can be defined as the sequence of charecters which are used to search for a pattern in a string.
+
+the regular expression in python is used to identify wheather a pattern exists in the given string or not.
+
+ex:
+---
+consider yourself as a Manager and you have a list of all your employe names,you need to send a common message to the employees whoose name startswith 'h',endswith 'i' and length is '6' charecters,in that case we are using bellow regular expression pattern.
+
+	ex:  ^h....i$
+
+	^,$,.	--> meta charecters,
+
+		--> ^ it represent the pattern is present at the beginning
+		    of the string
+
+		--> $ it represent the pattern is present at the ending of the 
+		    string
+
+ 		--> . it matches any one charecter
+
+
+list_of_employee_names		result
+-----------------------		--------
+siva				not matched
+hardik				not matched
+harini				matched
+hijack				not matched
+hema				not matched
+honey				not matched
+hasini				matched
+hamsanandini			not matched
+
+if we want to working with regular expressions in python,to required to import re module.
+
+	import re
+
+how to forming the regular expressions?
+---------------------------------------
+	a regular expression can be formed by using the mixing of meta-charecters,
+special sequences and set's.
+
+meta-charecters:
+----------------
+meta charecter is a charecter with the specified meaning.
+
+	[ ]	--> it matches any one charecter from the list of charecters
+
+	.	--> it matches any one charecter
+
+	^	--> it match a pattern at the beginning of the string
+
+	$	--> it match a pattern at the end of the string
+
+	*	--> it matches 0 or more occurencess of preceeding charecter
+
+	+	--> it matches 1 or more occurencess of preceeding charecter
+
+	{m}	--> it matches exactly 'm' occurencess of preceeding charecter.
+
+	{m,n}	--> it matches minimum 'm' occurencess and maximum 'n' occurencess of 		    		    preceeding charecter.
+
+	{m,}	--> it matches minimum 'm' occurencess and maximum no limit 		    		    	    occurencess of preceeding charecter.
+
+	|	--> it matches any one string from the given list of strings.
+
+	()	--> to capture the pattern
+
+	\	--> it represent the special charecter
+	
+	?	--> it matches 0 or 1 occurencess of preceeding charecter
+
+special Sequences:
+------------------
+the special sequences are the sequences containing '\' followed by one of the charecter.
+	
+	
+	\d	--> it matches any one digit	--> [0-9]
+
+	\D	--> it matches any one non-digit -->[^0-9]
+
+	\w	--> it matches any one alphanumeric -->[a-zA-Z0-9]
+
+	\W	--> it matches any one non-alphanumeric --> [^a-zA-Z0-9]
+
+	\s	--> it matches any one whitespace charecters like \n,\t,' '
+
+	\S	--> it matches any one non-whitespace charecters
+
+
+sets:
+-----
+a set is a group of charecters given inside a pair of square brackets,it represent the special meaning.
+
+	[aeiou]	--> it matches any one vowel charecter from the list of vowels.
+
+	[^aeiou] --> it matches any one charecter except vowel
+
+	[a-d]	--> it matches any one charecter from the given range of charecters.	
+
+	[0-9]	--> it matches any one digit from 0 to 9
+
+	[^0-9]  --> it matches any one non digit
+
+	[a-z]	--> it matches any one lowercase alphabet
+	
+	[^a-z]  --> it matches any one non-lowercase alphabet
+
+	[A-Z]	--> it matches any one uppercase alphabets
+
+	[^A-Z]	--> it matches any one non uppercase alphabet
+
+	[a-zA-Z] --> it matches any one alphabet
+
+	[^a-zA-Z] --> it matches any one non alphabet
+
+	[a-zA-Z0-9] --> it matches any one alphanumeric
+
+	[^a-zA-Z0-9] --> it matches any one non alphanumeric
+
+
+note:
+-----
+if any confusion with regular expression pattern to avoid that confusion we would use following syntax,
+
+	r'expression'
+
+	(or)
+
+	r"expression"
+
+the re module to provides some functions to perform the operations,they are
+
+	match()
+	search()
+	findall()
+	finditer()
+	sub()
+	split()

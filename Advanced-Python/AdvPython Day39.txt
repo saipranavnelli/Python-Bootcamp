@@ -1,0 +1,408 @@
+how to filter the data?
+-----------------------
+When finding documents in a collection, you can filter the result by using a query object.
+
+The first argument of the find() method is a query object, and is used to limit the search.
+
+ex10:
+----
+	demo.py
+	-------
+import pymongo
+mongo_client_obj=pymongo.MongoClient("mongodb://localhost:27017")
+dbobj=mongo_client_obj["employe"]
+coll_obj=dbobj["emp"]
+for doc in coll_obj.find({"esal":4000},{"_id":0}):
+    print(doc)
+
+	output
+	------
+{'eid': 104, 'ename': 'sachin', 'esal': 4000, 'dno': 10}
+
+ex11:
+----
+	demo.py
+	-------
+import pymongo
+mongo_client_obj=pymongo.MongoClient("mongodb://localhost:27017")
+dbobj=mongo_client_obj["employe"]
+coll_obj=dbobj["emp"]
+for doc in coll_obj.find({"esal":{"$gt":4000}},{"_id":0}):
+    print(doc)
+
+	output
+	------
+{'eid': 106, 'ename': 'dhoni', 'esal': 4500, 'dno': 30}
+
+Filter With Regular Expressions:
+--------------------------------
+You can also use regular expressions as a modifier.
+
+Regular expressions can only be used to query strings.
+
+
+ex12:
+----
+write a python script to get the employe documents from the collection in a MongoDB,Which employe name starts with 's' charecter?
+
+	demo.py
+	-------
+import pymongo
+mongo_client_obj=pymongo.MongoClient("mongodb://localhost:27017")
+dbobj=mongo_client_obj["employe"]
+coll_obj=dbobj["emp"]
+for doc in coll_obj.find({"ename":{"$regex":'^s'}},{"_id":0}):
+    print(doc)
+
+	output
+	------
+{'eid': 101, 'ename': 'siva', 'esal': 3000, 'dno': 10}
+{'eid': 104, 'ename': 'sachin', 'esal': 4000, 'dno': 10}
+
+ex13:
+----
+write a python script to get the employe documents from the collection in a MongoDB,Which employe name endswith 'a' charecter?
+
+	demo.py
+	-------
+import pymongo
+mongo_client_obj=pymongo.MongoClient("mongodb://localhost:27017")
+dbobj=mongo_client_obj["employe"]
+coll_obj=dbobj["emp"]
+for doc in coll_obj.find({"ename":{"$regex":'a$'}},{"_id":0}):
+    print(doc)
+
+	output
+	-------
+{'eid': 101, 'ename': 'siva', 'esal': 3000, 'dno': 10}
+
+
+Sort the Result:
+--------------
+Use the sort() method to sort the result in ascending or descending order.
+
+The sort() method takes one parameter for "fieldname" and one parameter for "direction" (ascending is the default direction).
+
+note:
+-----
+sort("fieldname", 1) #ascending
+sort("filedname", -1) #descending
+
+ex14:
+----
+write a python script to get the employe data in ascending order based on salary from the collection in MongoDB?
+
+	demo.py
+	-------
+import pymongo
+mongo_client_obj=pymongo.MongoClient("mongodb://localhost:27017")
+dbobj=mongo_client_obj["employe"]
+coll_obj=dbobj["emp"]
+for doc in coll_obj.find().sort("esal"):
+    print(doc)
+
+	(or)
+
+import pymongo
+mongo_client_obj=pymongo.MongoClient("mongodb://localhost:27017")
+dbobj=mongo_client_obj["employe"]
+coll_obj=dbobj["emp"]
+for doc in coll_obj.find().sort("esal",1):
+    print(doc)
+
+
+	output
+	-------
+{'_id': ObjectId('658fbf6e902db5d9533864e9'), 'eid': 101, 'ename': 'siva', 'esal': 3000, 'dno': 10}
+{'_id': 6, 'eid': 107, 'ename': 'rohith', 'esal': 3500, 'dno': 10}
+{'_id': 4, 'eid': 105, 'ename': 'virat', 'esal': 3900, 'dno': 20}
+{'_id': 3, 'eid': 104, 'ename': 'sachin', 'esal': 4000, 'dno': 10}
+{'_id': 5, 'eid': 106, 'ename': 'dhoni', 'esal': 4500, 'dno': 30}
+
+ex15:
+----
+write a python script to get the employe data in descending order based on salary from the collection in MongoDB?
+
+	demo.py
+	-------
+import pymongo
+mongo_client_obj=pymongo.MongoClient("mongodb://localhost:27017")
+dbobj=mongo_client_obj["employe"]
+coll_obj=dbobj["emp"]
+for doc in coll_obj.find({},{"_id":0}).sort("esal",-1):
+    print(doc)
+
+	output
+	------
+{'eid': 106, 'ename': 'dhoni', 'esal': 4500, 'dno': 30}
+{'eid': 104, 'ename': 'sachin', 'esal': 4000, 'dno': 10}
+{'eid': 105, 'ename': 'virat', 'esal': 3900, 'dno': 20}
+{'eid': 107, 'ename': 'rohith', 'esal': 3500, 'dno': 10}
+{'eid': 101, 'ename': 'siva', 'esal': 3000, 'dno': 10}
+
+ex16:
+-----
+	demo.py
+	-------
+import pymongo
+mongo_client_obj=pymongo.MongoClient("mongodb://localhost:27017")
+dbobj=mongo_client_obj["employe"]
+coll_obj=dbobj["emp"]
+for doc in coll_obj.find({"ename":{"$regex":'^s'}},{"_id":0}).sort("esal",-1):
+    print(doc)
+
+	output
+	------
+{'eid': 104, 'ename': 'sachin', 'esal': 4000, 'dno': 10}
+{'eid': 101, 'ename': 'siva', 'esal': 3000, 'dno': 10}
+
+how to update the document in our collection?
+----------------------------------------------
+if we want to update the document in our collection, in that case we are using update_one() method.
+
+The first parameter of the update_one() method is a query object defining which document to update.
+
+Note: If the query finds more than one record, only the first occurrence is updated.
+
+The second parameter is an object defining the new values of the document.
+
+ex16:
+-----
+
+	demo.py
+	-------
+import pymongo
+mongo_client_obj=pymongo.MongoClient("mongodb://localhost:27017")
+dbobj=mongo_client_obj["employe"]
+coll_obj=dbobj["emp"]
+print("before update")
+for rec in coll_obj.find({},{"_id":0}):
+    print(rec)
+coll_obj.update_one({"esal":{"$eq":3900}},{"$set":{"esal":5000}})
+print("updated successfully")
+print("after update")
+for rec in coll_obj.find({},{"_id":0}):
+    print(rec)
+
+	output
+	------
+before update
+{'eid': 101, 'ename': 'siva', 'esal': 3000, 'dno': 10}
+{'eid': 102, 'ename': 'rama', 'esal': 4000, 'dno': 20}
+{'eid': 103, 'ename': 'krishna', 'esal': 3500, 'dno': 30}
+{'eid': 104, 'ename': 'sachin', 'esal': 4000, 'dno': 10}
+{'eid': 105, 'ename': 'virat', 'esal': 3900, 'dno': 20}
+{'eid': 106, 'ename': 'dhoni', 'esal': 4500, 'dno': 30}
+{'eid': 107, 'ename': 'rohith', 'esal': 3500, 'dno': 10}
+updated successfully
+after update
+{'eid': 101, 'ename': 'siva', 'esal': 3000, 'dno': 10}
+{'eid': 102, 'ename': 'rama', 'esal': 4000, 'dno': 20}
+{'eid': 103, 'ename': 'krishna', 'esal': 3500, 'dno': 30}
+{'eid': 104, 'ename': 'sachin', 'esal': 4000, 'dno': 10}
+{'eid': 105, 'ename': 'virat', 'esal': 5000, 'dno': 20}
+{'eid': 106, 'ename': 'dhoni', 'esal': 4500, 'dno': 30}
+{'eid': 107, 'ename': 'rohith', 'esal': 3500, 'dno': 10}
+
+how to update multiple documents at a time?
+------------------------------------------
+if we want to update multiple documents in our collection at a time, in that case we are using update_many() function.
+
+
+ex17:
+----
+	demo.py
+	-------
+import pymongo
+mongo_client_obj=pymongo.MongoClient("mongodb://localhost:27017")
+dbobj=mongo_client_obj["employe"]
+coll_obj=dbobj["emp"]
+print("before update")
+for rec in coll_obj.find({},{"_id":0}):
+    print(rec)
+coll_obj.update_many({"ename":{"$regex":"a$"}},{"$set":{"esal":9000}})
+print("Multiple documents are updated successfully")
+print("after update")
+for rec in coll_obj.find({},{"_id":0}):
+    print(rec)
+
+	output
+	------
+before update
+{'eid': 101, 'ename': 'siva', 'esal': 3000, 'dno': 10}
+{'eid': 102, 'ename': 'rama', 'esal': 4000, 'dno': 20}
+{'eid': 103, 'ename': 'krishna', 'esal': 3500, 'dno': 30}
+{'eid': 104, 'ename': 'sachin', 'esal': 4000, 'dno': 10}
+{'eid': 105, 'ename': 'virat', 'esal': 5000, 'dno': 20}
+{'eid': 106, 'ename': 'dhoni', 'esal': 4500, 'dno': 30}
+{'eid': 107, 'ename': 'rohith', 'esal': 3500, 'dno': 10}
+Multiple documents are updated successfully
+after update
+{'eid': 101, 'ename': 'siva', 'esal': 9000, 'dno': 10}
+{'eid': 102, 'ename': 'rama', 'esal': 9000, 'dno': 20}
+{'eid': 103, 'ename': 'krishna', 'esal': 9000, 'dno': 30}
+{'eid': 104, 'ename': 'sachin', 'esal': 4000, 'dno': 10}
+{'eid': 105, 'ename': 'virat', 'esal': 5000, 'dno': 20}
+{'eid': 106, 'ename': 'dhoni', 'esal': 4500, 'dno': 30}
+{'eid': 107, 'ename': 'rohith', 'esal': 3500, 'dno': 10}
+
+how to limit the documents from the result set?
+-----------------------------------------------
+if we want to limit the documents from the result set, in that case we are using limit() method.
+
+The limit() method takes one parameter, a number defining how many documents to return.
+
+ex18:
+----
+	demo.py
+	-------
+import pymongo
+mongo_client_obj=pymongo.MongoClient("mongodb://localhost:27017")
+dbobj=mongo_client_obj["employe"]
+coll_obj=dbobj["emp"]
+for rec in coll_obj.find({},{"_id":0}).limit(3):
+    print(rec)
+
+	output
+	------
+{'eid': 101, 'ename': 'siva', 'esal': 9000, 'dno': 10}
+{'eid': 102, 'ename': 'rama', 'esal': 9000, 'dno': 20}
+{'eid': 103, 'ename': 'krishna', 'esal': 9000, 'dno': 30}
+
+how to delete the documents from the collection?
+-------------------------------------------------
+if we want to delete the documents from the collection, in that case we are using 
+delete_one() method.
+
+The parameter of the delete_one() method is a query object defining which document to delete.
+
+Note: If the query finds more than one document, only the first occurrence is deleted.
+
+ex19:
+----
+	demo.py
+	-------
+import pymongo
+mongo_client_obj=pymongo.MongoClient("mongodb://localhost:27017")
+dbobj=mongo_client_obj["employe"]
+coll_obj=dbobj["emp"]
+print("before delete")
+for rec in coll_obj.find({},{"_id":0}):
+    print(rec)
+coll_obj.delete_one({"esal":5000})
+print("deleted successfully")
+print("after delete")
+for rec in coll_obj.find({},{"_id":0}):
+    print(rec)
+
+	output
+	------
+before delete
+{'eid': 101, 'ename': 'siva', 'esal': 9000, 'dno': 10}
+{'eid': 102, 'ename': 'rama', 'esal': 9000, 'dno': 20}
+{'eid': 103, 'ename': 'krishna', 'esal': 9000, 'dno': 30}
+{'eid': 104, 'ename': 'sachin', 'esal': 4000, 'dno': 10}
+{'eid': 105, 'ename': 'virat', 'esal': 5000, 'dno': 20}
+{'eid': 106, 'ename': 'dhoni', 'esal': 4500, 'dno': 30}
+{'eid': 107, 'ename': 'rohith', 'esal': 3500, 'dno': 10}
+deleted successfully
+after delete
+{'eid': 101, 'ename': 'siva', 'esal': 9000, 'dno': 10}
+{'eid': 102, 'ename': 'rama', 'esal': 9000, 'dno': 20}
+{'eid': 103, 'ename': 'krishna', 'esal': 9000, 'dno': 30}
+{'eid': 104, 'ename': 'sachin', 'esal': 4000, 'dno': 10}
+{'eid': 106, 'ename': 'dhoni', 'esal': 4500, 'dno': 30}
+{'eid': 107, 'ename': 'rohith', 'esal': 3500, 'dno': 10}
+
+how to delete multiple documents from the collection?
+------------------------------------------------------
+if we want to delete the multiple documents from the collection at a time, in that case we are using delete_many() method.
+
+The parameter of the delete_many() method is a query object defining which documents to delete.
+
+ex20:
+-----
+	demo.py
+	-------
+import pymongo
+mongo_client_obj=pymongo.MongoClient("mongodb://localhost:27017")
+dbobj=mongo_client_obj["employe"]
+coll_obj=dbobj["emp"]
+print("before delete")
+for rec in coll_obj.find({},{"_id":0}):
+    print(rec)
+coll_obj.delete_many({"ename":{"$regex":"^s"}})
+print("multiple documents are deleted successfully")
+print("after delete")
+for rec in coll_obj.find({},{"_id":0}):
+    print(rec)
+
+	output
+	------
+before delete
+{'eid': 101, 'ename': 'siva', 'esal': 9000, 'dno': 10}
+{'eid': 102, 'ename': 'rama', 'esal': 9000, 'dno': 20}
+{'eid': 103, 'ename': 'krishna', 'esal': 9000, 'dno': 30}
+{'eid': 104, 'ename': 'sachin', 'esal': 4000, 'dno': 10}
+{'eid': 106, 'ename': 'dhoni', 'esal': 4500, 'dno': 30}
+{'eid': 107, 'ename': 'rohith', 'esal': 3500, 'dno': 10}
+multiple documents are deleted successfully
+after delete
+{'eid': 102, 'ename': 'rama', 'esal': 9000, 'dno': 20}
+{'eid': 103, 'ename': 'krishna', 'esal': 9000, 'dno': 30}
+{'eid': 106, 'ename': 'dhoni', 'esal': 4500, 'dno': 30}
+{'eid': 107, 'ename': 'rohith', 'esal': 3500, 'dno': 10}
+
+how to delete all the documents from the collection?
+----------------------------------------------------
+To delete all documents in a collection, pass an empty query object to the delete_many() method:
+
+ex21:
+-----
+	demo.py
+	-------
+import pymongo
+mongo_client_obj=pymongo.MongoClient("mongodb://localhost:27017")
+dbobj=mongo_client_obj["employe"]
+coll_obj=dbobj["emp"]
+print("before delete")
+for rec in coll_obj.find({},{"_id":0}):
+    print(rec)
+coll_obj.delete_many({})
+print("all the documents are deleted successfully")
+print("after delete")
+for rec in coll_obj.find({},{"_id":0}):
+    print(rec)
+
+	output
+	-------
+before delete
+{'eid': 102, 'ename': 'rama', 'esal': 9000, 'dno': 20}
+{'eid': 103, 'ename': 'krishna', 'esal': 9000, 'dno': 30}
+{'eid': 106, 'ename': 'dhoni', 'esal': 4500, 'dno': 30}
+{'eid': 107, 'ename': 'rohith', 'esal': 3500, 'dno': 10}
+all the documents are deleted successfully
+after delete
+
+how to delete/drop the collection in mongodb?
+-----------------------------------------
+if we want to delete/drop the collection in mongodb, in that case we are using drop() method.
+
+ex22:
+-----
+	demo.py
+	-------
+import pymongo
+mongo_client_obj=pymongo.MongoClient("mongodb://localhost:27017")
+dbobj=mongo_client_obj["employe"]
+coll_obj=dbobj["emp"]
+coll_obj.drop()
+print("collection deleted/droped successfully")
+
+	output
+	------
+collection deleted/droped successfully
+
+note:
+----
+The drop() method returns true if the collection was dropped successfully, and false if the collection does not exist.

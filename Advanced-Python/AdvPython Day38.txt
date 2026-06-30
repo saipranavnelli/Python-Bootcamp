@@ -1,0 +1,282 @@
+What is NoSQL?
+--------------
+NoSQL((Not only SQL) is a type of database management system (DBMS) that is designed to handle and store large volumes of unstructured and semi-structured data.
+
+Types of NoSQL databases:
+------------------------
+1).Document databases: 
+	These databases store data as semi-structured documents, such as JSON or XML, and can be queried using document-oriented query languages.
+
+	ex: MongoDB, CouchDB, Cloudant
+
+2).Key-value stores: 
+	These databases store data as key-value pairs, and are optimized for simple and fast read/write operations.
+
+	ex: Memcached, Redis, Coherence,DynamoDB,Casandra
+
+3).Column-family stores: 
+	These databases store data as column families, which are sets of columns that are treated as a single entity. They are optimized for fast and efficient querying of large amounts of data.
+
+	ex: Hbase, Big Table, Accumulo
+
+4).Graph databases: 
+	These databases store data as nodes and edges, and are designed to handle complex relationships between data.
+
+	ex: Amazon Neptune, Neo4j
+
+
+
+what is MongoDB?
+-----------------
+MongoDB is an open source NoSQL(Not only SQL) database management program. 
+
+MongoDB is a document-oriented NoSQL database used for high volume data storage,Instead of using tables and rows as in the traditional relational databases, MongoDB makes use of collections and documents. 
+
+Documents consist of key-value pairs which are the basic unit of data in MongoDB.
+
+Collections contain sets of documents and function which is the equivalent of relational database tables. 
+
+MongoDB is a database which came into light around the mid-2000s.
+
+how to download mongoDB server?
+-------------------------------
+goto https://www.mongodb.com/try/download/community
+
+
+what is PyMongo?
+-----------------
+The PyMongo library allows interaction with the MongoDB database through Python.
+
+it is a native Python driver for MongoDB.
+
+PyMongo can be installed using pip:
+
+	pip install pymongo
+
+
+Creating a Database:
+--------------------
+To create a database in MongoDB, start by creating a MongoClient object, then specify a connection URL with the correct ip address and the name of the database you want to create.
+
+MongoDB will create the database if it does not exist, and make a connection to it.
+
+ex:
+---
+write a python script to create database in mongoDB?
+
+	demo.py
+	-------
+import pymongo
+mongoclient_obj=pymongo.MongoClient("mongodb://localhost:27017")
+print("Mongodb Client object is created successfully")
+mydb=mongoclient_obj["Employe"]
+print("Employe Database created Successfully")
+
+output:
+-------
+Mongodb Client object is created successfully
+Employe Database created Successfully
+
+
+Note:
+-----
+In MongoDB, a database is not created until it gets content!
+
+MongoDB waits until you have created a collection (table), with at least one document (record) before it actually creates the database (and collection).
+
+ex2:
+---
+write a python script to get the list of databases in mongoDB?
+
+	demo.py
+	-------
+import pymongo
+mongoclient_obj=pymongo.MongoClient("mongodb://localhost:27017")
+print(mongoclient_obj.list_database_names())
+
+output:
+------
+['admin', 'config', 'local']
+
+ex3:
+----
+write a python script to check wheather our database is created or not?
+
+	demo.py
+	-------
+import pymongo
+mongoclient_obj=pymongo.MongoClient("mongodb://localhost:27017")
+list_of_databases=mongoclient_obj.list_database_names()
+if "Employe" in list_of_databases:
+    print("True")
+else:
+    print("False")
+
+output:
+------
+False
+
+what is document?
+------------------
+A document in MongoDB is the same as a record in SQL databases.
+
+how to Insert the document Into Collection?
+--------------------------------------------
+To insert a record/document as it is called in MongoDB, into a collection, we use the insert_one() method.
+
+The first parameter of the insert_one() method is a dictionary containing the name(s) and value(s) of each field in the document you want to insert.
+
+ex4:
+---
+write a python script to insert the document into collection?
+
+	demo.py
+	-------
+import pymongo
+mongoclient_obj=pymongo.MongoClient("mongodb://localhost:27017")
+print("Mongodb Client object is created successfully")
+dbobj=mongoclient_obj["employe"]
+print("Employe Database is created successfully")
+collection_obj=dbobj["emp"]
+print("emp collection is created successfully")
+collection_obj.insert_one({"eid":101,"ename":"siva","esal":3000,"dno":10})
+print("Inserted Successfully")
+
+output:
+-------
+Mongodb Client object is created successfully
+Employe Database is created successfully
+emp collection is created successfully
+Inserted Successfully
+
+note:
+-----
+If you do not specify an _id field, then MongoDB will add one for you and assign a unique id for each document.
+
+how to insert multiple documents into collection?
+-------------------------------------------------
+To insert multiple documents into a collection in MongoDB, we use the insert_many() method.
+
+The first parameter of the insert_many() method is a list containing dictionaries with the data you want to insert.
+
+ex5:
+---
+write a python script to insert many documents into collection?
+
+	demo.py
+	------
+import pymongo
+mongoclient_obj=pymongo.MongoClient("mongodb://localhost:27017")
+dbobj=mongoclient_obj["employe"]
+collection_obj=dbobj["emp"]
+list_of_employees=[{"_id":3,"eid":104,"ename":"sachin","esal":4000,"dno":10},
+                   {"_id":4,"eid":105,"ename":"virat","esal":3900,"dno":20},
+                   {"_id":5,"eid":106,"ename":"dhoni","esal":4500,"dno":30},
+                   {"_id":6,"eid":107,"ename":"rohith","esal":3500,"dno":10}]
+collection_obj.insert_many(list_of_employees)
+print("successfully inserted")
+
+output:
+-------
+successfully inserted	
+
+how to retreive the data from the collection in MongoDB?
+---------------------------------------------------------
+If we want to retreive the data from the collection in MongoDB, in that case we are using find() and find_one() methods.
+
+it is similar to "select" statement in SQL.
+
+find_one()
+----------
+The find_one() method returns the first document in the collection.
+
+ex6:
+----
+write a python script to retreive the document from the collection in mongoDB?
+
+	demo.py
+	-------
+import pymongo
+mongo_client_obj=pymongo.MongoClient("mongodb://localhost:27017")
+dbobj=mongo_client_obj["employe"]
+coll_obj=dbobj["emp"]
+print(coll_obj.find_one())
+
+	output
+	-------
+{'_id': ObjectId('656de2ae0257514bd9812673'), 'eid': 101, 'ename': 'siva', 'esal': 3000, 'dno': 10}
+
+find()
+------
+The find() method returns all documents from the collection.
+
+No parameters in the find() method gives you the same result as SELECT * in SQL.
+
+ex7:
+----
+write a python script to retreive all the documents from the collection?
+
+	demo.py
+	-------
+import pymongo
+mongo_client_obj=pymongo.MongoClient("mongodb://localhost:27017")
+dbobj=mongo_client_obj["employe"]
+coll_obj=dbobj["emp"]
+for doc in coll_obj.find():
+    print(doc)
+
+	output
+	------
+{'_id': ObjectId('658fbf6e902db5d9533864e9'), 'eid': 101, 'ename': 'siva', 'esal': 3000, 'dno': 10}
+{'_id': 3, 'eid': 104, 'ename': 'sachin', 'esal': 4000, 'dno': 10}
+{'_id': 4, 'eid': 105, 'ename': 'virat', 'esal': 3900, 'dno': 20}
+{'_id': 5, 'eid': 106, 'ename': 'dhoni', 'esal': 4500, 'dno': 30}
+{'_id': 6, 'eid': 107, 'ename': 'rohith', 'esal': 3500, 'dno': 10}
+
+ex8:
+----
+	demo.py
+	-------
+import pymongo
+mongo_client_obj=pymongo.MongoClient("mongodb://localhost:27017")
+dbobj=mongo_client_obj["employe"]
+coll_obj=dbobj["emp"]
+for doc in coll_obj.find({},{"_id":0}):
+    print(doc)
+
+	output
+	------
+{'eid': 101, 'ename': 'siva', 'esal': 3000, 'dno': 10}
+{'eid': 104, 'ename': 'sachin', 'esal': 4000, 'dno': 10}
+{'eid': 105, 'ename': 'virat', 'esal': 3900, 'dno': 20}
+{'eid': 106, 'ename': 'dhoni', 'esal': 4500, 'dno': 30}
+{'eid': 107, 'ename': 'rohith', 'esal': 3500, 'dno': 10}
+
+ex9:
+----
+	demo.py
+	------
+import pymongo
+mongo_client_obj=pymongo.MongoClient("mongodb://localhost:27017")
+dbobj=mongo_client_obj["employe"]
+coll_obj=dbobj["emp"]
+for doc in coll_obj.find({},{"_id":0,"eid":1,"ename":1,"dno":1}):
+    print(doc)
+
+	output
+	------
+{'eid': 101, 'ename': 'siva', 'dno': 10}
+{'eid': 104, 'ename': 'sachin', 'dno': 10}
+{'eid': 105, 'ename': 'virat', 'dno': 20}
+{'eid': 106, 'ename': 'dhoni', 'dno': 30}
+{'eid': 107, 'ename': 'rohith', 'dno': 10}
+
+note:
+-----
+The first parameter of the find() method is a query object.In this example we use an empty query object, which selects all documents in the collection.
+
+The second parameter of the find() method is an object describing which fields to include in the result.here 1 means include and 0 means exclude
+
+You are not allowed to specify both 0 and 1 values in the same object (except if one of the fields is the _id field).
+
+If you specify a field with the value 0, all other fields get the value 1, and vice versa.
